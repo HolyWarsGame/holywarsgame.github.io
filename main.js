@@ -1,12 +1,14 @@
-var cookies = 0;
+var warriors = 0;
+var souls = 0;
 
-function cookieClick(number){
-    cookies = cookies + number;
-    document.getElementById("cookies").innerHTML = cookies;
+function demonClick(number){
+    souls = souls + number;
+    document.getElementById("souls").innerHTML = souls;
 };
 
 var cursors = 0;
 
+/*
 function buyCursor(){
     var cursorCost = Math.floor(10 * Math.pow(1.1,cursors));     //works out the cost of this cursor
     if(cookies >= cursorCost){                                   //checks that the player can afford the cursor
@@ -23,4 +25,4 @@ window.setInterval(function(){
 	
 	cookieClick(cursors);
 	
-}, 1000);
+}, 1000);*/
