@@ -4,22 +4,50 @@
 		<link rel="stylesheet" type="text/css" href="interface.css" />
 	</head>
 	<body>
+		<br />
+		<button onclick="goldClick(1)">Gather Gold</button>
+		<br />
 		<button onclick="demonClick(1)">Kill Demon!</button>
+		<br />
+		Gold: <span id="gold">0</span>
+		<br />
+		Faith: <span id="faith">0</span>
 		<br />
 		Souls: <span id="souls">0</span>
 		<br />
+		<hr>
+		<button onclick="buyPeasant()">Recruit Peasant</button>
 		<br />
-		<button onclick="buyWarrior()">Buy Warrior</button>
+		Peasants: <span id="peasants">0</span>
 		<br />
-		Warriors: <span id="warriors">0</span>
+		Peasant Cost: <span id="PeasantCost">10</span> gold
 		<br />
-		Warrior Cost: <span id="WarriorCost">10</span> souls
+		<hr>
+		<button onclick="buyPriest()">Recruit Priest</button>
 		<br />
-		<button onclick="buyWeapon()">Buy Warrior</button>
+		Priests: <span id="priests">0</span>
+		<br />
+		Priest Cost: <span id="PriestCost">1000</span> gold
+		<br />		
+		<br />
+		<hr>
+		<button title="A pious warrior" onclick="buyPaladin()">Recruit Paladin</button>
+		<br />
+		Paladins: <span id="paladins">0</span>
+		<br />
+		Paladin Cost: <span id="PaladinCost">100</span> faith
+		<br />
+		<button onclick="buyWeapon()">Buy Weapon</button>
 		<br />
 		Weapons: <span id="weapons">0</span>
 		<br />
-		Weapon Cost: <span id="WeaponCost">50</span> souls
+		Weapon Cost: <span id="WeaponCost">1000</span> faith
+		
+		<br />
+		<br />
+		<br />
+		<button onclick="debugCurrency()">DebugMoney</button>
+		<br />
 		
 		<script type="text/javascript" src="main.js"></script>
 	</body>
