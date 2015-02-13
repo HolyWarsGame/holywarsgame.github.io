@@ -10,6 +10,7 @@ function goldClick(number){
 
 function clickFaith(number){
     faith = faith + number;
+    faith.toPrecision(2)
     document.getElementById("faith").innerHTML = faith;
 };
 
@@ -18,10 +19,15 @@ function demonClick(number){
     document.getElementById("souls").innerHTML = souls;
 };
 
+function peasantClick(number){
+	peasants = peasants + number;
+	document.getElementById("peasants").innerHTML = peasants;
+};
+
 function debugCurrency(){
-	gold=10000;
-	faith=1000;
-	souls=200;
+	gold = gold + 10000;
+	faith = faith + 1000;
+	souls = souls + 200;
 }
 
 var peasants = 0;
@@ -35,6 +41,19 @@ function buyPeasant(){
     };
     var nextPeasantCost = Math.floor(10 * Math.pow(1.1,peasants));       //works out the cost of the next Peasant
     document.getElementById('PeasantCost').innerHTML = nextPeasantCost;  //updates the Peasant cost for the user
+};
+
+var taverns = 0;
+function buyTavern(){
+	var TavernCost = Math.floor(1000 * Math.pow(1.5,taverns));
+		if(gold >= TavernCost){
+			taverns = taverns + 1;
+			gold = gold - TavernCost;
+			document.getElementById('taverns').innerHTML = taverns;
+			document.getElementById('gold').innerHTML = gold;
+		};
+		var nextTavernCost = Math.floor(1000 * Math.pow(1.5, taverns));
+		document.getElementByID('TavernCost').innerHTML = nextTavernCost;
 };
 
 var priests = 0;
@@ -61,7 +80,7 @@ function buyPaladin(){
         document.getElementById('souls').innerHTML = faith;  //updates the number of souls for the user
     };
     var nextPaladinCost = Math.floor(100 * Math.pow(1.1,paladins));       //works out the cost of the next Paladin
-    document.getElementById('PaladinCost').innerHTML = nextPaladinCost;  //updates the cursor cost for the user
+    document.getElementById('PaladinCost').innerHTML = nextPaladinCost;  //updates the Paladin cost for the user
 };
 
 var weapons = 0;
@@ -75,7 +94,7 @@ function buyWeapon(){
         document.getElementById('souls').innerHTML = souls;  //updates the number of souls for the user
     };
     var nextWeapCost = Math.floor(1000 * Math.pow(1.1,weapons));       //works out the cost of the next weapon
-    document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the cursor cost for the user
+    document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
 };
 
 window.setInterval(function(){
@@ -93,3 +112,8 @@ window.setInterval(function(){
 
 	clickFaith(priests*0.1);
 }, 1000);
+
+window.setInterval(function(){
+
+	peasantClick(taverns);
+}, 10000);
