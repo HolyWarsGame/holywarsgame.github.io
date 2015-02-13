@@ -1,0 +1,109 @@
+
+Enemy:  Horde of cliff Racers
+	Goblin
+	Orc
+	Brigands/bandits		
+	Troll
+	Ogre
+	Cyclops
+	Dire Wolves
+	Putrid Ooze
+
+	Angry Demon
+	Possessed Armor
+	Hellhound
+	Gelatinous undead
+	Witch
+	Werewolves
+	Bloody Wraith
+	Elder Vampire (L)
+	Succubus (L)
+	Corrupted Archmage (B)
+	Corrupted Sylph
+
+
+Base unit: Peasant
+
+Battle Units: 	Page
+		Squire
+		Knight
+		Knight-Captain
+		Paladin (Need Faith)
+		Master Paladin
+
+		Benevolent Shade (Number of souls)
+		Aspect of Justice 
+		Angel
+		Archangel
+		Seraphim
+		
+
+Non-combat Units: 	Tradesman/Craftsman
+			Merchant - Gold currency generator
+			Farmer
+			Miner - platinum ore generator
+
+Faith-production units: Acolyte
+			Priest
+			Bishop
+			ArchBishop
+			- upgrade to have % of faith turned into souls (battle-hardened)
+
+Building Unit/Upgrade:  Cathedral - unlocks Faith units (requires resources)
+			Mine - unlocks Miner unit 
+			Monastery - generates priest
+			Barracks - generate knights 
+			Tavern - generate peasants 
+				- upgrade to generate one of each non-combat unit					
+			Spirit Nexus - generate benevolent shade
+			Divine Gate - generate angel
+			Bazaar - generates tradesman
+			
+				 
+
+Artifact/relic: Curious Map (Spirit units can be summoned)
+		Tome of Benediction (Allows merging of M. Paladin and Seraphim = Divine Archon)
+				
+
+
+Master Paladin ability: send on journey to collect artifact (% chance)
+
+Milestone: unlock Master Paladin, you can try take on Corrupted Archmage (boss).
+	- Success: you get a new upgrade/support unit - Archmage
+
+Archmage - open portal?
+	- unlocks reset ability (dimensional shift)
+	- time warp (accelerate production forward by 1 hr)
+	- imbue weapon (i.e. increase soul gain rate by 25%)
+	- transmutation/alchemy (convert resources)
+	- rapture (convert Master Paladin to Seraphim)
+	
+
+Intermediate Goals: Defeat lieutenants 
+	- Ice Succubus
+	- May drop important artifacts/materials/spell pages
+
+
+Ultimate Goal: Challenge the Evil One 
+	- Available when minimum number of divine archons have been summoned
+	- Success on dependent on your army composition and number of units 
+
+
+If you challenge a boss you're not prepared to face, you lose a portion of your units.
+
+Everytime Evil One is defeated - you get one purified essence and unlocks prestige shop. 
+
+Prestige Shop - uses boss currency
+
+
+Issues to Address Later:
+
+Saving Data
+Collection of gold/minerals for upgrades (i.e. weapons, armor, boss drops)
+
+Magic casting unit collects gold
+
+
+
+
+
