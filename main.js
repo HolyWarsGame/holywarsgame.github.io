@@ -64,7 +64,7 @@ var paladins = 0;
 
 function buyPaladin(){
     var PaladinCost = Math.floor(100 * Math.pow(1.1,paladins));     //works out the cost of this Paladin
-    if(souls >= PaladinCost){                                   //checks that the player can afford the Paladin
+    if(faith >= PaladinCost){                                   //checks that the player can afford the Paladin
         paladins = paladins + 1;                                   //increases number of Paladins
     	faith = faith - PaladinCost;                          //removes the souls spent
         document.getElementById('paladins').innerHTML = paladins;  //updates the number of Paladins for the user
