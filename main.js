@@ -2,6 +2,9 @@
 var souls = 0;
 var gold = 0;
 var faith = 0;
+var goldpersec = 0;
+var faithpersec = 0;
+var soulspersec = 0;
 
 function goldClick(number){
     gold = gold + number;
@@ -10,7 +13,7 @@ function goldClick(number){
 
 function clickFaith(number){
     faith = faith + number;
-    faith.toPrecision(2)
+    faith.toFixedDown(2);
     document.getElementById("faith").innerHTML = faith;
 };
 
@@ -85,6 +88,18 @@ function buyWeapon(){
     document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
 };
 
+window.setInterval(function(){                                 //Update per second counts
+    goldpersec = peasants;
+    document.getElementById("goldpersec").innerHTML = goldpersec;
+    
+    faithpersec = priests*0.1
+    document.getElementById("faithpersec").innerHTML = faithpersec;
+    
+    soulspersec = paladins*(weapons+1);
+    document.getElementByID("soulspersec").innerHTML = soulspersec;
+    
+},10);
+
 window.setInterval(function(){
 	
 	demonClick(paladins*(weapons+1));
@@ -102,4 +117,11 @@ window.setInterval(function(){
 	clickFaith(priests*0.1);
 	
 }, 1000);
+
+
+Number.prototype.toFixedDown = function(digits) {
+    var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
+        m = this.toString().match(re);
+    return m ? parseFloat(m[1]) : this.valueOf();
+};
 
