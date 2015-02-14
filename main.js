@@ -68,7 +68,7 @@ function buyPaladin(){
         paladins = paladins + 1;                                   //increases number of Paladins
     	faith = faith - PaladinCost;                          //removes the souls spent
         document.getElementById('paladins').innerHTML = paladins;  //updates the number of Paladins for the user
-        document.getElementById('souls').innerHTML = faith;  //updates the number of souls for the user
+        document.getElementById('faith').innerHTML = faith;  //updates the number of souls for the user
     };
     var nextPaladinCost = Math.floor(100 * Math.pow(1.1,paladins));       //works out the cost of the next Paladin
     document.getElementById('PaladinCost').innerHTML = nextPaladinCost;  //updates the Paladin cost for the user
@@ -78,11 +78,11 @@ var weapons = 0;
 
 function buyWeapon(){
     var WeaponCost = Math.floor(1000 * Math.pow(1.1,weapons));     //works out the cost of this weapon
-    if(souls >= WeaponCost){                                   //checks that the player can afford the weapon
+    if(faith >= WeaponCost){                                   //checks that the player can afford the weapon
         weapons = weapons + 1;                                   //increases number of weapons
-    	souls = souls - WeaponCost;                          //removes the souls spent
+    	faith = faith - WeaponCost;                          //removes the souls spent
         document.getElementById('weapons').innerHTML = weapons;  //updates the number of weapons for the user
-        document.getElementById('souls').innerHTML = souls;  //updates the number of souls for the user
+        document.getElementById('souls').innerHTML = faith;  //updates the number of souls for the user
     };
     var nextWeapCost = Math.floor(1000 * Math.pow(1.1,weapons));       //works out the cost of the next weapon
     document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
