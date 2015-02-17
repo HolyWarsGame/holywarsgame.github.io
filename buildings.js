@@ -8,7 +8,7 @@ function buyTavern(){
 			document.getElementById('gold').innerHTML = gold;
 		};
 		var nextTavernCost = Math.floor(1000 * Math.pow(1.5, taverns));
-		document.getElementByID('TavernCost').innerHTML = nextTavernCost;
+		document.getElementById('TavernCost').innerHTML = nextTavernCost;
 };
 
 

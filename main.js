@@ -124,7 +124,7 @@ function UpdateButtons() {
 	}
 
 	//Enable/disables buy paladin button depending on if there is enough currency
-	if(faith < document.getElementById('TavernCost').innerHTML){	
+	if(gold < document.getElementById('TavernCost').innerHTML){	
 		document.getElementById("btnbuyTavern").disabled = true;
 	}
 	else{
@@ -138,11 +138,11 @@ window.setInterval(function(){                                 //Update per seco
     document.getElementById("goldpersec").innerHTML = goldpersec;
     
     faithpersec = priests*0.1
-	faithpersec = faithpersec.toFixedDown(2)
+	faithpersec = faithpersec.toFixedDown(2);
     document.getElementById("faithpersec").innerHTML = faithpersec;
     
     soulspersec = paladins*(weapons+1);
-    document.getElementByID("soulspersec").innerHTML = soulspersec;
+    document.getElementById("soulspersec").innerHTML = soulspersec;
     
 },10);
 

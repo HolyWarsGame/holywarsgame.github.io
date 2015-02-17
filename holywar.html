@@ -16,8 +16,12 @@
 	</style>
 	<style type="text/css" media="screen">@import "tabs.css";</style>
 	
+	<script type="text/javascript" src="jquery.js"</script>
+	<script type="text/javascript" src="jquery_cookie.js"</script>
+	
 	</head>
 	<body>
+	
 		<div style="color:#0000FF">
   		<!---<h1>Holy War</h1>--->
 		</div>
@@ -100,12 +104,27 @@
 		<br />
 		<br />
 		<button onclick="debugCurrency()" >DebugMoney</button>
-		<br />	
+		<br />
+		
+		<button onclick="saveCookie()" >SaveCookie</button>
+		<button onclick="loadCookie()" >LoadCookie</button>
+		
+		<script type ="text/javascript">
+		function saveCookie(){
+			$.cookie("visits",10);
+		};
+		
+		function loadCookie(){
+			console.debug($.cookie("visits"));
+		};
+			
+		</script>
+		
 		
     	<script type="text/javascript" src="tabs.js"></script>
 		<script type="text/javascript" src="main.js"></script>
 		<script type="text/javascript" src="buildings.js"></script>
-		<script type="text/javascript" src="jquery.js"</script>
+
 	</body>
 		
 </html>
