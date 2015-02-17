@@ -1,7 +1,7 @@
 
 var souls = 0;
 var gold = 0;
-var faith = 0.00;
+var faith = 100;
 var goldpersec = 0;
 var faithpersec = 0;
 var soulspersec = 0;
