@@ -114,7 +114,7 @@ window.setInterval(function(){
 window.setInterval(function(){
 
 	clickFaith(priests*0.1);
-	faith.toFixedDown(2);
+	faith = faith.toFixedDown(2);
 }, 1000);
 
 
