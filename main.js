@@ -34,15 +34,16 @@ function debugCurrency(){
 }
 
 var peasants = 0;
+var tavernpeasants = 0;																//Tavern generated peasants
 function buyPeasant(){
-    var PeasantCost = Math.floor(10 * Math.pow(1.1,peasants));     //works out the cost of this Peasant
+    var PeasantCost = Math.floor(10 * Math.pow(1.1,peasants - tavernpeasants));     //works out the cost of this Peasant
     if(gold >= PeasantCost){                                   //checks that the player can afford the Peasant
         peasants = peasants + 1;                                   //increases number of Peasants
     	gold = gold - PeasantCost;                          //removes the gold spent
         document.getElementById('peasants').innerHTML = peasants;  //updates the number of Peasants for the user
         document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
     };
-    var nextPeasantCost = Math.floor(10 * Math.pow(1.1,peasants));       //works out the cost of the next Peasant
+    var nextPeasantCost = Math.floor(10 * Math.pow(1.1,peasants - tavernpeasants));       //works out the cost of the next Peasant
     document.getElementById('PeasantCost').innerHTML = nextPeasantCost;  //updates the Peasant cost for the user
 };
 
@@ -88,11 +89,40 @@ function buyWeapon(){
     document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
 };
 
+
+function UpdateButtons() {
+	//Enable/disables buy peasant button depending on if there is enough currency
+	if(gold < document.getElementById('PeasantCost').innerHTML){	
+		document.getElementById("btnbuyPeasant").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyPeasant").disabled = false;
+	}
+	
+	//Enable/disables buy priest button depending on if there is enough currency
+	if(gold < document.getElementById('PriestCost').innerHTML){	
+		document.getElementById("btnbuyPriest").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyPriest").disabled = false;
+	}	
+	
+	//Enable/disables buy paladin button depending on if there is enough currency
+	if(faith < document.getElementById('PaladinCost').innerHTML){	
+		document.getElementById("btnbuyPaladin").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyPaladin").disabled = false;
+	}	
+}
+
+
 window.setInterval(function(){                                 //Update per second counts
     goldpersec = peasants;
     document.getElementById("goldpersec").innerHTML = goldpersec;
     
     faithpersec = priests*0.1
+	faithpersec = faithpersec.toFixedDown(2)
     document.getElementById("faithpersec").innerHTML = faithpersec;
     
     soulspersec = paladins*(weapons+1);
@@ -100,23 +130,29 @@ window.setInterval(function(){                                 //Update per seco
     
 },10);
 
-window.setInterval(function(){
+window.setInterval(function(){					//Soul generation via paladins etc
 	
 	demonClick(paladins*(weapons+1));
 	
 }, 1000);
 
-window.setInterval(function(){
+window.setInterval(function(){					//Gold generation via peasants etc
 
 	goldClick(peasants);
 	
 }, 1000);
 
-window.setInterval(function(){
+window.setInterval(function(){					//Faith Generation via priests etc
 
 	clickFaith(priests*0.1);
 	faith = faith.toFixedDown(2);
 }, 1000);
+
+window.setInterval(function(){					//Enables/disables buttons 
+	
+	UpdateButtons()
+	
+}, 10);
 
 
 Number.prototype.toFixedDown = function(digits) {

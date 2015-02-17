@@ -3,7 +3,8 @@
 		<title>Holy War</title>
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Dynamic JavaScript Tabs Example</title>
+	
+	
 	<style type="text/css">
 		html, body
 		{
@@ -14,7 +15,7 @@
 
 	</style>
 	<style type="text/css" media="screen">@import "tabs.css";</style>
-	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 	
 	</head>
 	<body>
@@ -39,7 +40,7 @@
 				<h1 class="tab" title="title for page 1">Production</h1>
 				
 				
-		<button onclick="buyPeasant()">Recruit Peasant</button>
+		<button  id ="btnbuyPeasant" onclick="buyPeasant()">Recruit Peasant</button>
 		<br />
 		Peasants: <span id="peasants">0</span>
 		<br />
@@ -49,8 +50,8 @@
 		<br />
 		</div>
 		<div class="tab-content">
-				<h1 class="tab" title="Faith Generation">Faith</h1>
-					<button onclick="buyPriest()">Recruit Priest</button>
+				<h1 class="tab" title="Faith">Cathedral</h1>
+					<button  id ="btnbuyPriest" onclick="buyPriest()">Recruit Priest</button>
 					<br />
 					Priests: <span id="priests">0</span>
 					<br />
@@ -60,8 +61,8 @@
 		</div>
 		
 		<div class="tab-content">
-				<h1 class="tab" title="title for page 3">Holy</h1>
-						<button title="A pious warrior" onclick="buyPaladin()">Recruit Paladin</button>
+				<h1 class="tab" title="Training ground for the most pious">Holy</h1>
+						<button  id ="btnbuyPaladin" title="A warrior blessed by the faithful" onclick="buyPaladin()">Recruit Paladin</button>
 						<br />
 						Paladins: <span id="paladins">0</span>
 						<br />
@@ -76,7 +77,7 @@
 		
 		<div class="tab-content">
 				<h1 class="tab" title="Buildings">Buildings</h1>
-					<button title="Recruits a peasant every few seconds" onclick="buyTavern()">Buy Tavern</button>
+					<button  id ="btnbuyTavern" title="Recruits a peasant every few seconds" onclick="buyTavern()">Buy Tavern</button>
 					<br />
 					Taverns: <span id="taverns">0</span>
 					<br />
@@ -94,12 +95,10 @@
 		<br />
 		<br />
 		<br />
-		<button onclick="debugCurrency()">DebugMoney</button>
+		<button onclick="debugCurrency()" >DebugMoney</button>
 		<br />	
-	
-	<script type="text/javascript" src="tabs.js"></script>
-
-
+								
+    	<script type="text/javascript" src="tabs.js"></script>
 		<script type="text/javascript" src="main.js"></script>
 		<script type="text/javascript" src="buildings.js"></script>
 
