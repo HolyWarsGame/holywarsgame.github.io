@@ -13,7 +13,7 @@ function goldClick(number){
 
 function clickFaith(number){
     faith = faith + number;
-    faith = Math.Round10(faith, -2);
+    //faith = Math.Round10(faith, -2);
     document.getElementById("faith").innerHTML = faith;
 };
 
