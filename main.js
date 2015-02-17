@@ -1,7 +1,7 @@
 
 var souls = 0;
 var gold = 0;
-var faith = 100;
+var faith = 0;
 var goldpersec = 0;
 var faithpersec = 0;
 var soulspersec = 0;
@@ -13,7 +13,7 @@ function goldClick(number){
 
 function clickFaith(number){
     faith = faith + number;
-    Math.Round10(faith, -2);
+    //Math.Round10(faith, -2);
     document.getElementById("faith").innerHTML = faith;
 };
 
