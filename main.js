@@ -13,7 +13,6 @@ function goldClick(number){
 
 function clickFaith(number){
     faith = faith + number;
-    //Math.Round10(faith, -2);
     document.getElementById("faith").innerHTML = faith;
 };
 
@@ -115,7 +114,7 @@ window.setInterval(function(){
 window.setInterval(function(){
 
 	clickFaith(priests*0.1);
-	
+	faith.toFixedDown(2);
 }, 1000);
 
 
