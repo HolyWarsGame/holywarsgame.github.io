@@ -90,6 +90,15 @@ function buyWeapon(){
 };
 
 
+function ButtonCheck(currency,cost,button){
+		if(currency < cost){
+			button.disabled = true;
+		}
+		else{
+			button.disabled = false;
+		}
+}
+
 function UpdateButtons() {
 	//Enable/disables buy peasant button depending on if there is enough currency
 	if(gold < document.getElementById('PeasantCost').innerHTML){	
@@ -98,7 +107,6 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnbuyPeasant").disabled = false;
 	}
-	
 	//Enable/disables buy priest button depending on if there is enough currency
 	if(gold < document.getElementById('PriestCost').innerHTML){	
 		document.getElementById("btnbuyPriest").disabled = true;
@@ -113,7 +121,15 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnbuyPaladin").disabled = false;
-	}	
+	}
+
+	//Enable/disables buy paladin button depending on if there is enough currency
+	if(faith < document.getElementById('TavernCost').innerHTML){	
+		document.getElementById("btnbuyTavern").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyTavern").disabled = false;
+	}		
 }
 
 
@@ -153,6 +169,7 @@ window.setInterval(function(){					//Enables/disables buttons
 	UpdateButtons()
 	
 }, 10);
+	
 
 
 Number.prototype.toFixedDown = function(digits) {

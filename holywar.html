@@ -15,22 +15,24 @@
 
 	</style>
 	<style type="text/css" media="screen">@import "tabs.css";</style>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 	
 	</head>
 	<body>
 		<div style="color:#0000FF">
-  		<h1>Holy War</h1>
+  		<!---<h1>Holy War</h1>--->
 		</div>
 		<br />
 		<button onclick="goldClick(1)">Gather Gold</button>
 		<br />
 		<button onclick="demonClick(1)">Kill Demon!</button>
 		<br />
+		<img src = "images/money_gold.png" alt="Gold coins">
 		Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
 		<br />
+		<img src = "images/faith.png" alt="Praying Hands">
 		Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
 		<br />
+		<img src = "images/Souls.png" alt="Souls">
 		Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)
 		<br />
 
@@ -86,7 +88,9 @@
 		
 		<div class="tab-content">
 				<h1 class="tab" title="Statistics">Stats</h1>
-					Gold Per Second: <span id="goldpersec">0</span> g/s
+					Gold Per Second: <span id="goldpersec">0</span> gps <br \>
+					Faith Per Second: <span id="faithpersec">0</span> fps <br \>
+					Souls per Second: <span id="soulspersec">0</span> sps
 		</div>
 		
 	</div>
@@ -97,10 +101,11 @@
 		<br />
 		<button onclick="debugCurrency()" >DebugMoney</button>
 		<br />	
-								
+		
     	<script type="text/javascript" src="tabs.js"></script>
 		<script type="text/javascript" src="main.js"></script>
 		<script type="text/javascript" src="buildings.js"></script>
-
+		<script type="text/javascript" src="jquery.js"</script>
 	</body>
+		
 </html>
