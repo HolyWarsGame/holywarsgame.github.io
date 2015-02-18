@@ -159,13 +159,13 @@
 	<script type ="text/javascript">
 		function saveCookie(){
 			$.cookie("gold",gold,{expires:365});
-//			$.cookie("peasants",peasants{expires:365});
+			$.cookie("peasants",peasants{expires:365});
 			alert("Gold and peasants saved!");
 		};
 		
 		function deleteCookie(){
 			$.removeCookie("gold");
-//			$.removeCookie("peasants");
+			$.removeCookie("peasants");
 		};
 		
 		function loadCookie(){
@@ -173,9 +173,9 @@
 			if($.cookie("gold") != null){
 				gold = parseInt($.cookie("gold"));
 			}
-//			if($.cookie("peasants") != null){
-//				peasants = parseInt($.cookie("peasants"));
-//			}				
+			if($.cookie("peasants") != null){
+				peasants = parseInt($.cookie("peasants"));
+			}				
 		};
 			
 	</script>	
