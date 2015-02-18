@@ -92,7 +92,7 @@
 		
 	  
 	  <div id="Resources" class="collapse in" >
-		<div class = "well">
+		<div class = "well well-sm">
 			<div id = "golddiv" class = "container">
 				<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_goldsmall.png"/>
 				Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
@@ -209,13 +209,13 @@
 	 <!--- ALERTS ARE HERE --->
 	<div id = openMineAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>New!</strong> You can now hire miners to mine minerals for you!   
+        <strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
 		<!---<a href ="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')">Go!</a>-->
     </div>
 	
 	<div id = openCathAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>New!</strong> The faithful are attracted to your cathedral.   
+        <strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
 		<!--<a href ="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')">Dismiss</a>-->
     </div>   
    
