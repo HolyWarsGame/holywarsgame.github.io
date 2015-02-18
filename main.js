@@ -129,6 +129,13 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnbuyTavern").disabled = false;
+	}
+
+	if(faith < document.getElementById('WeaponCost').innerHTML){	
+		document.getElementById("btnbuyWeapon").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyWeapon").disabled = false;
 	}		
 }
 
