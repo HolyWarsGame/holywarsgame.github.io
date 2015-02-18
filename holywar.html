@@ -111,11 +111,11 @@
 		
 		<script type ="text/javascript">
 		function saveCookie(){
-			$.cookie("visits",10);
+			$.cookie("gold",gold);
 		};
 		
 		function loadCookie(){
-			console.debug($.cookie("visits"));
+			console.debug($.cookie("gold"));
 		};
 			
 		</script>
@@ -126,5 +126,6 @@
 		<script type="text/javascript" src="buildings.js"></script>
 
 	</body>
-		
+	
+	<body onload ="loadCookie()">
 </html>
