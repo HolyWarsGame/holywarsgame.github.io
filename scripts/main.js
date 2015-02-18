@@ -52,6 +52,7 @@ function debugCurrency(){
 	gold = gold + 10000;
 	faith = faith + 1000;
 	souls = souls + 200;
+	iron = iron + 500;
 }
 
 function buyPeasant(){
@@ -165,7 +166,7 @@ function UpdateButtons() {
 	
 	if(minesOpened){
 		document.getElementById("btnOpenMines").disabled = true
-		document.getElementById("btnOpenMines").innerHTML = "Mines Purchased";
+		document.getElementById("btnOpenMines").innerHTML = "Mines built";
 	}
 	else if(!minesOpened && gold < 1500){
 		document.getElementById("btnOpenMines").disabled = true
@@ -173,6 +174,17 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnOpenMines").disabled = false
 	}
+	
+	if(cathedralOpened){
+		document.getElementById("btnOpenCathedral").disabled = true
+		document.getElementById("btnOpenCathedral").innerHTML = "Cathedral built";
+	}
+	else if(!cathedralOpened && gold < 10000 && iron < 500){
+		document.getElementById("btnOpenCathedral").disabled = true
+	}
+	else{
+		document.getElementById("btnOpenCathedral").disabled = false
+	}	
 }
 
 window.setInterval(function(){                                 //Update per second counts
