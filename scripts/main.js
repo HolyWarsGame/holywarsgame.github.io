@@ -10,6 +10,7 @@ var iron = 0;
 var goldpersec = 0;
 var faithpersec = 0;
 var soulspersec = 0;
+var ironpersec = 0;
 
 //Unit Variables//
 var peasants = 0;
@@ -164,6 +165,7 @@ function UpdateButtons() {
 		document.getElementById("btnbuyTavern").disabled = false;
 	}	
 	
+	//Changes status of the building mines button
 	if(minesOpened){
 		document.getElementById("btnOpenMines").disabled = true
 		document.getElementById("btnOpenMines").innerHTML = "Mines built";
@@ -175,6 +177,7 @@ function UpdateButtons() {
 		document.getElementById("btnOpenMines").disabled = false
 	}
 	
+	//Changes status of the building cathedral button
 	if(cathedralOpened){
 		document.getElementById("btnOpenCathedral").disabled = true
 		document.getElementById("btnOpenCathedral").innerHTML = "Cathedral built";
@@ -197,6 +200,9 @@ window.setInterval(function(){                                 //Update per seco
     
     soulspersec = paladins*(weapons+1);
     document.getElementById("soulspersec").innerHTML = soulspersec;
+	
+	ironpersec = miners;
+	document.getElementById("ironpersec").innerHTML = ironpersec;
     
 },10);
 
