@@ -142,6 +142,9 @@ function UpdateButtons() {
 		document.getElementById("btnbuyTavern").disabled = false;
 	}	
 	
+	if(minesOpened){
+		document.getElementById("btnOpenMines").disabled = true
+	}
 }
 
 window.setInterval(function(){                                 //Update per second counts
