@@ -97,17 +97,25 @@
 	  
 	  <div id="Resources" class="container" >
 
-		<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_gold.png"/>
-		Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
+		<div id = "golddiv" class = "container">
+			<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_gold.png"/>
+			Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
+		</div>		
 		
-		<img src = "images/faith.png" alt="Praying Hands">
-		Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
+		<div id = "irondiv" class = "container">
+			<img src = "images/iron.png" alt="Praying Hands">
+			Iron: <span id="iron">0</span>      ( <span id="ironpersec">0</span> ips)
+		</div>
 		
-		<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/souls.png"/>
-		Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)
+		<div id = "faithdiv" class = "container">
+			<img src = "images/faith.png" alt="Praying Hands">
+			Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
+		</div>
 		
-		<img src = "images/iron.png" alt="Praying Hands">
-		Iron: <span id="iron">0</span>      ( <span id="ironpersec">0</span> ips)
+		<div id = "soulsdiv" class = "container">
+			<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/souls.png"/>
+			Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
+		</div>
 	  </div>
 	  
 	  <div id="Production" class= "jumbotron">
@@ -136,6 +144,7 @@
 	  
 	 <div id="Cathedral" class= "jumbotron">
 		<h4>Cathedral</h4>
+		<hr>
 		<div id="PriestTab" class = "container">
 			<button id=btnbuyPriest onclick="buyPriest()"	type="button" class="btn btn-primary">Train Priest</button>
 			<br />
@@ -239,5 +248,5 @@
 	
   </body>
   
-  <body onload = "loadCookie(); CollapseAll();">
+  <body onload = "loadCookie(); CollapseAll(); toggle('Production')" >
 </html>
