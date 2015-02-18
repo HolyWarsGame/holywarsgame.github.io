@@ -174,15 +174,23 @@
 	<script type ="text/javascript">
 		function saveCookie(){
 			$.cookie("gold",gold,{expires:365});
+			$.cookie("faith",faith,{expires:365});
+			$.cookie("souls",souls,{expires:365});
 			$.cookie("peasants",peasants,{expires:365});
 			$.cookie("taverns",taverns,{expires:365});
-			alert("Gold and peasants and taverns saved!");
+			$.cookie("priests",priests,{expires:365});
+			$.cookie("paladins",paladins,{expires:365});
+			alert("Gold, faith, souls, peasants, taverns, priests, and paladins saved!");
 		};
 		
 		function deleteCookie(){
 			$.removeCookie("gold");
+			$.removeCookie("faith");			
+			$.removeCookie("souls");
 			$.removeCookie("peasants");
 			$.removeCookie("taverns");
+			$.removeCookie("priests");
+			$.removeCookie("paladins");
 		};
 		
 		function loadCookie(){
@@ -190,6 +198,14 @@
 			if($.cookie("gold") != null){
 				gold = parseInt($.cookie("gold"));
 			}
+			if($.cookie("faith") != null){
+				faith = parseInt($.cookie("faith"));
+				document.getElementById("faith").innerHTML = faith;
+			}			
+			if($.cookie("souls") != null){
+				souls = parseInt($.cookie("souls"));
+				document.getElementById("souls").innerHTML = souls;
+			}					
 			if($.cookie("peasants") != null){
 				peasants = parseInt($.cookie("peasants"));
 				document.getElementById("peasants").innerHTML = peasants;
@@ -198,6 +214,14 @@
 				taverns = parseInt($.cookie("taverns"));
 				document.getElementById("taverns").innerHTML = taverns;
 			}		
+			if($.cookie("priests") != null){
+				priests = parseInt($.cookie("priests"));
+				document.getElementById("priests").innerHTML = priests;
+			}			
+			if($.cookie("paladins") != null){
+				paladins = parseInt($.cookie("paladins"));
+				document.getElementById("paladins").innerHTML = paladins;
+			}
 		};
 		
 		function hardReset(){
