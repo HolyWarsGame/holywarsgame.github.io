@@ -57,6 +57,7 @@
 			if(myBool = true){
 				minesOpened = true
 				document.getElementById("Mining").style.display = "block";
+				document.getElementById('btnbuyMiner').innerHTML = "Mines Bought");
 			}
 		}			
 		if($.cookie("tavernpeasants") != null){
