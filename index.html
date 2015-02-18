@@ -149,6 +149,7 @@
 		Taverns: <span id="taverns">0</span>
 		<br />
 		Tavern Cost: <span id="TavernCost">1000</span>
+		Peasants produced by tavern: <span id="tavernpeasants">0</span>
 	 </div>
 	
 	
@@ -179,10 +180,11 @@
 			$.cookie("faith",faith,{expires:365});
 			$.cookie("souls",souls,{expires:365});
 			$.cookie("peasants",peasants,{expires:365});
+			$.cookie("tavernpeasants",tavernpeasants,{expires:365});			
 			$.cookie("taverns",taverns,{expires:365});
 			$.cookie("priests",priests,{expires:365});
 			$.cookie("paladins",paladins,{expires:365});
-			alert("Gold, faith, souls, peasants, taverns, priests, and paladins saved!");
+			alert("Gold, faith, souls, peasants, tavernpeasants, taverns, priests, and paladins saved!");
 		};
 		
 		function deleteCookie(){
@@ -190,6 +192,7 @@
 			$.removeCookie("faith");			
 			$.removeCookie("souls");
 			$.removeCookie("peasants");
+			$.removeCookie("tavernpeasants");			
 			$.removeCookie("taverns");
 			$.removeCookie("priests");
 			$.removeCookie("paladins");
@@ -211,7 +214,11 @@
 			if($.cookie("peasants") != null){
 				peasants = parseInt($.cookie("peasants"));
 				document.getElementById("peasants").innerHTML = peasants;
-			}				
+			}	
+			if($.cookie("tavernpeasants") != null){
+				tavernpeasants = parseInt($.cookie("tavernpeasants"));
+				document.getElementById("tavernpeasants").innerHTML = tavernpeasants;
+			}					
 			if($.cookie("taverns") != null){
 				taverns = parseInt($.cookie("taverns"));
 				document.getElementById("taverns").innerHTML = taverns;
@@ -236,6 +243,7 @@
 				souls = 0;
 				faith = 0;
 				peasants = 0;
+				tavernpeasants = 0;
 				paladins = 0;
 				priests = 0;
 				weapons = 0;
