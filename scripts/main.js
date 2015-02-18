@@ -47,6 +47,20 @@ function buyPeasant(){
     document.getElementById('PeasantCost').innerHTML = nextPeasantCost;  //updates the Peasant cost for the user
 };
 
+var miners = 0;
+var tavernminers = 0;
+function buyMiner(){
+    var MinerCost = Math.floor(250 * Math.pow(1.25,miners - tavernminers));     //works out the cost of this miners
+    if(gold >= MinerCost){                                   //checks that the player can afford the miners
+        miners = miners + 1;                                   //increases number of miners
+    	gold = gold - MinerCost;                          //removes the gold spent
+        document.getElementById('miners').innerHTML = miners;  //updates the number of miners for the user
+        document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
+    };
+    var nextMinerCost = Math.floor(250 * Math.pow(1.25,peasants - tavernminers));       //works out the cost of the next Peasant
+    document.getElementById('MinerCost').innerHTML = nextMinerCost;  //updates the Peasant cost for the user
+};
+
 
 var priests = 0;
 function buyPriest(){
