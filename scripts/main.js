@@ -182,7 +182,7 @@ function UpdateButtons() {
 		document.getElementById("btnOpenCathedral").disabled = true
 		document.getElementById("btnOpenCathedral").innerHTML = "Cathedral built";
 	}
-	else if(!cathedralOpened && gold < 10000 && iron < 500){
+	else if(!cathedralOpened && (gold < 10000 || iron < 500)){
 		document.getElementById("btnOpenCathedral").disabled = true
 	}
 	else{
