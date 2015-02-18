@@ -114,7 +114,6 @@ var minesOpened=false;
 function buyMines(){
 	if(gold >= 1500){
 		minesOpened = true;
-		document.getElementById("btnOpenMines").value = "Mines Purchased");
 		document.getElementById('Mining').style.display = "block";
 		document.getElementById('openMineAlert').style.display = "block";
 		gold = gold - 1500;
@@ -165,6 +164,7 @@ function UpdateButtons() {
 	
 	if(minesOpened){
 		document.getElementById("btnOpenMines").disabled = true
+		document.getElementById("btnOpenMines").value = "Mines Purchased");
 	}
 	else if(!minesOpened && gold < 1500){
 		document.getElementById("btnOpenMines").disabled = true
