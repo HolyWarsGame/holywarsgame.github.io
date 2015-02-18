@@ -40,6 +40,7 @@
 			</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="scripts/saveload.js"></script>
   </head>
 
   <body>
@@ -80,8 +81,7 @@
 				  <li><a id="hardreset" href="javascript:hardReset()">!Hard reset!</a></li>
 				  <li class="divider"></li>
                   <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
+                  <li><a href="#">About</a></li>
                 </ul>
               </li>
             </ul>
@@ -193,8 +193,6 @@
    
    </div> <!-- /container -->
 
-
-
    
 	
 	<script type ="text/javascript">
@@ -209,85 +207,7 @@
 		};
 	</script>
 	
-	
-	<script type ="text/javascript">
-		function saveCookie(){
-			$.cookie("gold",gold,{expires:365});
-			$.cookie("faith",faith,{expires:365});
-			$.cookie("souls",souls,{expires:365});
-			$.cookie("peasants",peasants,{expires:365});
-			$.cookie("tavernpeasants",tavernpeasants,{expires:365});			
-			$.cookie("taverns",taverns,{expires:365});
-			$.cookie("priests",priests,{expires:365});
-			$.cookie("paladins",paladins,{expires:365});
-			alert("Gold, faith, souls, peasants, tavernpeasants, taverns, priests, and paladins saved!");
-		};
-		
-		function deleteCookie(){
-			$.removeCookie("gold");
-			$.removeCookie("faith");			
-			$.removeCookie("souls");
-			$.removeCookie("peasants");
-			$.removeCookie("tavernpeasants");			
-			$.removeCookie("taverns");
-			$.removeCookie("priests");
-			$.removeCookie("paladins");
-		};
-		
-		function loadCookie(){
-		//	console.debug($.cookie("gold"));
-			if($.cookie("gold") != null){
-				gold = parseInt($.cookie("gold"));
-			}
-			if($.cookie("faith") != null){
-				faith = parseInt($.cookie("faith"));
-				document.getElementById("faith").innerHTML = faith;
-			}			
-			if($.cookie("souls") != null){
-				souls = parseInt($.cookie("souls"));
-				document.getElementById("souls").innerHTML = souls;
-			}					
-			if($.cookie("peasants") != null){
-				peasants = parseInt($.cookie("peasants"));
-				document.getElementById("peasants").innerHTML = peasants;
-			}	
-			if($.cookie("tavernpeasants") != null){
-				tavernpeasants = parseInt($.cookie("tavernpeasants"));
-				document.getElementById("tavernpeasants").innerHTML = tavernpeasants;
-			}					
-			if($.cookie("taverns") != null){
-				taverns = parseInt($.cookie("taverns"));
-				document.getElementById("taverns").innerHTML = taverns;
-			}		
-			if($.cookie("priests") != null){
-				priests = parseInt($.cookie("priests"));
-				document.getElementById("priests").innerHTML = priests;
-			}			
-			if($.cookie("paladins") != null){
-				paladins = parseInt($.cookie("paladins"));
-				document.getElementById("paladins").innerHTML = paladins;
-			}
-		};
-		
-		function hardReset(){
-		//set all variables to zero, delete cookies
-		var answer
-			answer = confirm("Are you sure you want to hard reset? You will LOSE ALL YOUR DATA!");
-			if(answer == true){
-				deleteCookie();
-				gold = 0;
-				souls = 0;
-				faith = 0;
-				peasants = 0;
-				tavernpeasants = 0;
-				paladins = 0;
-				priests = 0;
-				weapons = 0;
-				location.reload(false);
-			}
-		};
-			
-	</script>	
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

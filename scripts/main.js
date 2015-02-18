@@ -165,6 +165,12 @@ function UpdateButtons() {
 	if(minesOpened){
 		document.getElementById("btnOpenMines").disabled = true
 	}
+	else if(!minesOpened && gold < 1500){
+		document.getElementById("btnOpenMines").disabled = true
+	}
+	else{
+		document.getElementById("btnOpenMines").disabled = false
+	}
 }
 
 window.setInterval(function(){                                 //Update per second counts
@@ -180,33 +186,26 @@ window.setInterval(function(){                                 //Update per seco
     
 },10);
 
-window.setInterval(function(){					//Soul generation via paladins etc
-	
+window.setInterval(function(){					//Soul generation via paladins etc every second
 	demonClick(paladins*(weapons+1));
-	
 }, 1000);
 
-window.setInterval(function(){					//Gold generation via peasants etc
-
+window.setInterval(function(){					//Gold generation via peasants etc every second
 	goldClick(peasants);
-	
 }, 1000);
 
-window.setInterval(function(){					//Faith Generation via priests etc
-
+window.setInterval(function(){					//Faith Generation via priests etc every second
 	clickFaith(priests*0.1);
 	faith = faith.toFixedDown(2);
 }, 1000);
 
-window.setInterval(function(){
+window.setInterval(function(){					//Iron Generation via minors etc every second
 	mineClick(miners);
 },1000);
 
 
 window.setInterval(function(){					//Enables/disables buttons 
-	
 	UpdateButtons();
-	
 }, 10);
 
 
