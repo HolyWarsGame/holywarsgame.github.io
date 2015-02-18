@@ -17,5 +17,6 @@ window.setInterval(function(){
 
 	peasantClick(taverns);
 	tavernpeasants = tavernpeasants + taverns;
+	document.getElementById('tavernpeasants').innerHTML = nextTavernCost;
 
 }, 10000);
