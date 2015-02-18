@@ -9,7 +9,8 @@
 		$.cookie("taverns",taverns,{expires:365});
 		$.cookie("priests",priests,{expires:365});
 		$.cookie("paladins",paladins,{expires:365});
-		alert("Gold, faith, souls, peasants, tavernpeasants, taverns, priests, and paladins saved!");
+		$.cookie("minesOpened",minesOpened,{expires:365});
+		alert("Your game has been saved!");
 	};
 	
 	function deleteCookie(){
@@ -23,6 +24,7 @@
 		$.removeCookie("taverns");
 		$.removeCookie("priests");
 		$.removeCookie("paladins");
+		$.removeCookie("minesOpened");
 	};
 	
 	function loadCookie(){
@@ -49,7 +51,13 @@
 		if($.cookie("miners") != null){
 			miners = parseInt($.cookie("miners"));
 			document.getElementById("miners").innerHTML = miners;
-		}	
+		}
+		if($.cookie("minesOpened") != null){
+			if($.cookie("minesOpened") = "true"){
+				minesOpened = true
+				document.getElementById("Mining").style.display = "block";
+			}
+		}			
 		if($.cookie("tavernpeasants") != null){
 			tavernpeasants = parseInt($.cookie("tavernpeasants"));
 			document.getElementById("tavernpeasants").innerHTML = tavernpeasants;
