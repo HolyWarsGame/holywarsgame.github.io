@@ -133,7 +133,6 @@ function UpdateButtons() {
 	
 }
 
-
 window.setInterval(function(){                                 //Update per second counts
     goldpersec = peasants;
     document.getElementById("goldpersec").innerHTML = goldpersec;
