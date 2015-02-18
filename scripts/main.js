@@ -114,6 +114,14 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnbuyPaladin").disabled = false;
 	}	
+	
+	//Enable/disables buy imbue weapon button depending on if there is enough currency
+	if(faith < document.getElementById('WeaponCost').innerHTML){	
+		document.getElementById("btnbuyWeapon").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyWeapon").disabled = false;
+	}		
 }
 
 

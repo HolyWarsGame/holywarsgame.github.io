@@ -72,8 +72,11 @@
                   <li><a id="save" href="javascript:saveCookie();">Save Cookie</a></li>
                   <li><a id="load" href="javascript:loadCookie()">Load Cookie</a></li>
 				  <li><a id="delete" href="javascript:deleteCookie()">Delete Cookie</a></li>
+				  <li class="divider"></li>
 				  <li><a id="debugmoney" href="javascript:debugCurrency()">Add debugging currency</a></li>
                   <li class="divider"></li>
+				  <li><a id="hardreset" href="javascript:hardReset()">!Hard reset!</a></li>
+				  <li class="divider"></li>
                   <li class="dropdown-header">Nav header</li>
                   <li><a href="#">Separated link</a></li>
                   <li><a href="#">One more separated link</a></li>
@@ -179,6 +182,22 @@
 				peasants = parseInt($.cookie("peasants"));
 				document.getElementById("peasants").innerHTML = peasants;
 			}				
+		};
+		
+		function hardReset(){
+		//set all variables to zero, delete cookies
+		var answer
+			answer = confirm("Are you sure you want to hard reset? You will LOSE ALL YOUR DATA!");
+			if(answer == true){
+				deleteCookie();
+				gold = 0;
+				souls = 0;
+				faith = 0;
+				peasants = 0;
+				paladins = 0;
+				priests = 0;
+				weapons = 0;
+			}
 		};
 			
 	</script>	
