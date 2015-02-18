@@ -72,7 +72,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a id="displayText" href="javascript:toggle('Resources');">Toggle Resources</a></li>
+                  <li><a id="displayResourceOpt" data-toggle="collapse" href="#Resources" aria-expanded="true" aria-controls="Resources">Toggle Resources</a></li>
                   <li><a id="save" href="javascript:saveCookie();">Save Cookie</a></li>
                   <li><a id="load" href="javascript:loadCookie()">Load Cookie</a></li>
 				  <li><a id="delete" href="javascript:deleteCookie()">Delete Cookie</a></li>
@@ -96,8 +96,8 @@
       </nav>
 		
 	  
-	  <div id="Resources" class="container" >
-
+	  <div id="Resources" class="collapse" >
+		<div class = "well">
 		<div id = "golddiv" class = "container">
 			<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_goldsmall.png"/>
 			Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
@@ -117,6 +117,7 @@
 			<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/soulssmall.png"/>
 			Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
 		</div>
+	  </div>
 	  </div>
 	  
 	  <div id="Production" class= "jumbotron">
