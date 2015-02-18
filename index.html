@@ -63,7 +63,8 @@
               <li><a href="#">Home</a></li>
 			  <li><a id="ProductionTab" href="javascript:CollapseAll(); toggle('Production');">Production</a></li>
               <li><a id="FaithTab" href="javascript:CollapseAll(); toggle('Cathedral');">Cathedral</a></li>
-			  <li><a id="ProductionTab" href="javascript:CollapseAll(); toggle('Holy');">Holy</a></li>
+			  <li><a id="HolyTab" href="javascript:CollapseAll(); toggle('Holy');">Holy</a></li>
+			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Buildings');">Buildings</a></li>
 			  <li><a href="#">Contact</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
@@ -141,13 +142,22 @@
 	 </div>
 	 
 	 <div id="Buildings" class = "jumbotron">
-		<button  id ="btnbuyTavern" title="Recruits a peasant every few seconds" onclick="buyTavern()">Buy Tavern</button>
+		<button id=btnbuyTavern title="Recruits a peasant every few seconds" onclick="buyTavern()"	type="button" class="btn btn-primary">Build Tavern</button>	
 		<br />
 		Taverns: <span id="taverns">0</span>
 		<br />
 		Tavern Cost: <span id="TavernCost">1000</span>
 	 </div>
+	
+	
+	<div class="alert alert-info" role="alert" style="display: none;">
+        <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+    </div>
+   
+   
    </div> <!-- /container -->
+
+
 
    
 	

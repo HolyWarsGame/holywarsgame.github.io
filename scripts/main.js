@@ -121,7 +121,16 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnbuyWeapon").disabled = false;
-	}		
+	}
+
+	//Enable/disables buy tavern button depending on if there is enough currency
+	if(gold < document.getElementById('TavernCost').innerHTML){	
+		document.getElementById("btnbuyTavern").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyTavern").disabled = false;
+	}	
+	
 }
 
 
