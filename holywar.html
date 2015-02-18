@@ -107,15 +107,24 @@
 		<br />
 		
 		<button onclick="saveCookie()" >SaveCookie</button>
+		<button onclick="DeleteCookie()">DeleteCookie</button>
 		<button onclick="loadCookie()" >LoadCookie</button>
 		
 		<script type ="text/javascript">
 		function saveCookie(){
-			$.cookie("gold",gold);
+			$.cookie("gold",gold,{expires:365});
+		};
+		
+		function deleteCookie(){
+			$.removecookie("gold");
 		};
 		
 		function loadCookie(){
 			console.debug($.cookie("gold"));
+			if($.cookie("gold") != null){
+				gold = $.cookie("gold");
+			}
+			
 		};
 			
 		</script>
