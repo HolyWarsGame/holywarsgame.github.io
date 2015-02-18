@@ -95,6 +95,7 @@ function buyMines(){
 	if(gold >= 1500){
 		minesOpened = true;
 		document.getElementById('Mining').style.display = "block";
+		document.getElementById('openMineAlert').style.display = "block";
 		gold = gold - 1500;
 		document.getElementById('gold').innerHTML = gold;
 	}
