@@ -63,8 +63,10 @@
 			  <li><a id="ProductionTab" href="javascript:CollapseAll(); toggle('Production');">Production</a></li>
               <li><a id="FaithTab" href="javascript:CollapseAll(); toggle('Cathedral');">Cathedral</a></li>
 			  <li><a id="HolyTab" href="javascript:CollapseAll(); toggle('Holy');">Holy</a></li>
-			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Buildings');">Buildings</a></li>
-			  <li><a href="#">Contact</a></li>
+			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Structures');">Structures</a></li>
+			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Ethereal');">Ethereal</a></li>
+			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Relics');">Relics</a></li>
+			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Battle');">Battle</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -114,6 +116,11 @@
 		<br />
 		Peasant Cost: <span id="PeasantCost">10</span> gold
 		<br />
+		<br />
+		
+		<div id="Mining" class = "container" style="display: none;">
+			<p> test TeST</p>
+		</div>
 	  </div>
 	  
 	 <div id="Cathedral" class= "jumbotron">
@@ -141,20 +148,40 @@
 		Weapon Cost: <span id="WeaponCost">1000</span> faith
 	 </div>
 	 
-	 <div id="Buildings" class = "jumbotron">
-	    <h4>Buildings</h4>
-		<button id=btnbuyTavern title="Recruits a peasant every few seconds" onclick="buyTavern()"	type="button" class="btn btn-primary">Build Tavern</button>	
+	 <div id="Structures" class = "jumbotron">
+	    <h4>Structures</h4>
+		<button id=btnbuyTavern title="A peasant joins your forces every few seconds" onclick="buyTavern()"	type="button" class="btn btn-primary">Build Tavern</button>	
 		<br />
 		Taverns: <span id="taverns">0</span>
 		<br />
-		Tavern Cost: <span id="TavernCost">1000</span>
+		Tavern Cost: <span id="TavernCost">5000</span> gold
 		<br />
 		Peasants produced by tavern: <span id="tavernpeasants">0</span>
+		<br /><br />
+		
+		<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="buyMines()"	type="button" class="btn btn-warning">Open Mines</button>
+		<br />
+		Opening the mine costs 1500 gold.
+		
+	 </div>
+	 
+	 <div id="Ethereal" class = "jumbotron">
+	   <h4>Ethereal</h4>
+		
 	 </div>
 	
-	
+	 <div id="Relics" class = "jumbotron">
+	   <h4>Relics</h4>
+	   
+	 </div>
+
+	 <div id="Battle" class = "jumbotron">
+	   <h4>Battle</h4>
+	 
+	 </div>	 
+	 
 	<div class="alert alert-info" role="alert" style="display: none;">
-        <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+        <strong>Heads up!</strong> You can now afford to hire peasants to scrounge for gold for you!
     </div>
    
    
@@ -166,7 +193,10 @@
 	
 	<script type ="text/javascript">
 		function CollapseAll(){
-			document.getElementById("Buildings").style.display = "none";
+			document.getElementById("Battle").style.display = "none";
+			document.getElementById("Relics").style.display = "none";
+			document.getElementById("Ethereal").style.display = "none";
+			document.getElementById("Structures").style.display = "none";
 			document.getElementById("Holy").style.display = "none";
 			document.getElementById("Cathedral").style.display = "none";
 			document.getElementById("Production").style.display = "none";

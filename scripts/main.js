@@ -89,6 +89,16 @@ function buyWeapon(){
     document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
 };
 
+var minesOpened=false;
+
+function buyMines(){
+	if(gold >= 1500){
+		minesOpened = true;
+		document.getElementById('Mining').style.display = "block";
+		gold = gold - 1500;
+		document.getElementById('gold').innerHTML = gold;
+	}
+};
 
 function UpdateButtons() {
 	//Enable/disables buy peasant button depending on if there is enough currency
