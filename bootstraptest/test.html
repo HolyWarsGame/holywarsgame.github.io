@@ -26,6 +26,18 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+	
+			<script language="javascript"> 
+			function toggle(elementId) {
+				var ele = document.getElementById(elementId);
+				if(ele.style.display == "block") {
+						ele.style.display = "none";
+				}
+				else {
+					ele.style.display = "block";
+				}
+			} 
+			</script>
   </head>
 
   <body>
@@ -46,16 +58,17 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="../holywar.html" target = "main_Iframe">Home</a></li>
-              <li><a href="#">About</a></li>
-			  <li><a href="http://www.bing.com" target="main_Iframe">Bing</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#">Home</a></li>
+			  <li><a id="ProductionTab" href="javascript:CollapseAll(); toggle('Production');">Production</a></li>
+              <li><a id="FaithTab" href="javascript:CollapseAll(); toggle('Cathedral');">Cathedral</a></li>
+			  <li><a id="ProductionTab" href="javascript:CollapseAll(); toggle('Holy');">Holy</a></li>
+			  <li><a href="#">Contact</a></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
+                  <li><a id="displayText" href="javascript:toggle('Resources');">Toggle Resources</a></li>
+                  <li><a id="save" href="javascript:saveCookie();">Save</a></li>
+                  <li><a href="#">Load</a></li>
                   <li class="divider"></li>
                   <li class="dropdown-header">Nav header</li>
                   <li><a href="#">Separated link</a></li>
@@ -63,20 +76,107 @@
                 </ul>
               </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="">Default <span class="sr-only">(current)</span></a></li>
-            </ul>
+			<!--
+						<ul class="nav navbar-nav navbar-right">
+						  <li class="active"><a href="">Default <span class="sr-only">(current)</span></a></li>
+						</ul>
+			-->
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
 		
 	  
-	  <div class="jumbotron">
-		<iframe src="../holywar.html" style="border:none"  width="800" height="600" scrolling = "no" name = "main_Iframe"></iframe>
+	  <div id="Resources" class="container" >
+
+		<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "../images/money_gold.png"/>
+		Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
+		
+		<img src = "../images/faith.png" alt="Praying Hands">
+		Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
+		
+		<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "../images/souls.png"/>
+		Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)
+		
 	  </div>
+	  
+	  <div id="Production" class= "jumbotron">
+		<h4>Production</h4>
+		<button id=btnbuyPeasant onclick="buyPeasant()"	type="button" class="btn btn-primary">Recruit Peasant</button>
+		<br />
+		Peasants: <span id="peasants">0</span>
+		<br />
+		Peasant Cost: <span id="PeasantCost">10</span> gold
+		<br />
+	  </div>
+	  
+	 <div id="Cathedral" class= "jumbotron">
+		<h4>Cathedral</h4>
+		<button id=btnbuyPriest onclick="buyPriest()"	type="button" class="btn btn-primary">Train Priest</button>
+		<br />
+		Priests: <span id="priests">0</span>
+		<br />
+		Priest Cost: <span id="PriestCost">1000</span> gold
+		<br />
+	 </div>
+	 
+	 <div id="Holy" class = "jumbotron">
+		<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-primary">Train Paladin</button>
+		<br />
+		Paladins: <span id="paladins">0</span>
+		<br />
+		Paladin Cost: <span id="PaladinCost">100</span> faith
+		<br />
+		<button id=btnbuyWeapon onclick="btnbuyWeapon()"	type="button" class="btn btn-primary">Imbue Weapon</button>		
+		<br />
+		Weapons: <span id="weapons">0</span>
+		<br />
+		Weapon Cost: <span id="WeaponCost">1000</span> faith
+	 </div>
+	 
+	 <div id="Buildings" class = "jumbotron">
+		<button  id ="btnbuyTavern" title="Recruits a peasant every few seconds" onclick="buyTavern()">Buy Tavern</button>
+		<br />
+		Taverns: <span id="taverns">0</span>
+		<br />
+		Tavern Cost: <span id="TavernCost">1000</span>
+	 </div>
+   </div> <!-- /container -->
 
-    </div> <!-- /container -->
-
+   
+	
+	<script type ="text/javascript">
+		function CollapseAll(){
+			document.getElementById("Buildings").style.display = "none";
+			document.getElementById("Holy").style.display = "none";
+			document.getElementById("Cathedral").style.display = "none";
+			document.getElementById("Production").style.display = "none";
+		};
+	</script>
+	
+	
+	<script type ="text/javascript">
+		function saveCookie(){
+			$.cookie("gold",gold,{expires:365});
+//			$.cookie("peasants",peasants{expires:365});
+			alert("Gold and peasants saved!");
+		};
+		
+		function deleteCookie(){
+			$.removeCookie("gold");
+//			$.removeCookie("peasants");
+		};
+		
+		function loadCookie(){
+		//	console.debug($.cookie("gold"));
+			if($.cookie("gold") != null){
+				gold = parseInt($.cookie("gold"));
+			}
+//			if($.cookie("peasants") != null){
+//				peasants = parseInt($.cookie("peasants"));
+//			}				
+		};
+			
+	</script>	
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -84,8 +184,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+ <!--   <script src="assets/js/ie10-viewport-bug-workaround.js"></script>-->
+ 	<script type="text/javascript" src="../buildings.js"></script>
 	<script type="text/javascript" src="../main.js"></script>
 	
   </body>
+  
+  <body onload = "CollapseAll()">
 </html>

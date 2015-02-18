@@ -77,27 +77,18 @@ function buyPaladin(){
 
 var weapons = 0;
 
-function btnbuyWeapon(){
+function buyWeapon(){
     var WeaponCost = Math.floor(1000 * Math.pow(1.1,weapons));     //works out the cost of this weapon
     if(faith >= WeaponCost){                                   //checks that the player can afford the weapon
         weapons = weapons + 1;                                   //increases number of weapons
     	faith = faith - WeaponCost;                          //removes the souls spent
         document.getElementById('weapons').innerHTML = weapons;  //updates the number of weapons for the user
-        document.getElementById('souls').innerHTML = faith;  //updates the number of souls for the user
+        document.getElementById('souls').innerHTML = souls;  //updates the number of souls for the user
     };
     var nextWeapCost = Math.floor(1000 * Math.pow(1.1,weapons));       //works out the cost of the next weapon
     document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
 };
 
-
-function ButtonCheck(currency,cost,button){
-		if(currency < cost){
-			button.disabled = true;
-		}
-		else{
-			button.disabled = false;
-		}
-}
 
 function UpdateButtons() {
 	//Enable/disables buy peasant button depending on if there is enough currency
@@ -107,6 +98,7 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnbuyPeasant").disabled = false;
 	}
+	
 	//Enable/disables buy priest button depending on if there is enough currency
 	if(gold < document.getElementById('PriestCost').innerHTML){	
 		document.getElementById("btnbuyPriest").disabled = true;
@@ -121,22 +113,7 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnbuyPaladin").disabled = false;
-	}
-
-	//Enable/disables buy paladin button depending on if there is enough currency
-	if(gold < document.getElementById('TavernCost').innerHTML){	
-		document.getElementById("btnbuyTavern").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyTavern").disabled = false;
-	}
-
-	if(faith < document.getElementById('WeaponCost').innerHTML){	
-		document.getElementById("btnbuyWeapon").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyWeapon").disabled = false;
-	}		
+	}	
 }
 
 
@@ -145,7 +122,7 @@ window.setInterval(function(){                                 //Update per seco
     document.getElementById("goldpersec").innerHTML = goldpersec;
     
     faithpersec = priests*0.1
-	faithpersec = faithpersec.toFixedDown(2);
+	faithpersec = faithpersec.toFixedDown(2)
     document.getElementById("faithpersec").innerHTML = faithpersec;
     
     soulspersec = paladins*(weapons+1);
@@ -173,10 +150,9 @@ window.setInterval(function(){					//Faith Generation via priests etc
 
 window.setInterval(function(){					//Enables/disables buttons 
 	
-	UpdateButtons()
+	UpdateButtons();
 	
 }, 10);
-	
 
 
 Number.prototype.toFixedDown = function(digits) {
