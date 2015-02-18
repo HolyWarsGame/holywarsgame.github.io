@@ -16,5 +16,6 @@ function buyTavern(){
 window.setInterval(function(){
 
 	peasantClick(taverns);
+	tavernpeasants = tavernpeasants + taverns;
 
 }, 10000);
