@@ -154,54 +154,66 @@
 	 
 	 <div id="Holy" class = "jumbotron">
 		<h4>Holy</h4>
-		<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-primary">Train Paladin</button>
-		<br />
-		Paladins: <span id="paladins">0</span>
-		<br />
-		Paladin Cost: <span id="PaladinCost">100</span> faith
-		<br />
-		<button id=btnbuyWeapon onclick="btnbuyWeapon()"	type="button" class="btn btn-primary">Imbue Weapon</button>		
-		<br />
-		Weapons: <span id="weapons">0</span>
-		<br />
-		Weapon Cost: <span id="WeaponCost">1000</span> faith
+		<hr>
+		<div id = "PaladinTab" class = "container">
+			<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-primary">Train Paladin</button>
+			<br />
+			Paladins: <span id="paladins">0</span>
+			<br />
+			Paladin Cost: <span id="PaladinCost">100</span> faith
+			<br />
+		</div>
+		<div id = "PaladinWeaponTab" class = "container">
+			<button id=btnbuyWeapon onclick="btnbuyWeapon()"	type="button" class="btn btn-primary">Imbue Weapon</button>		
+			<br />
+			Weapons: <span id="weapons">0</span>
+			<br />
+			Weapon Cost: <span id="WeaponCost">1000</span> faith
+		</div>
 	 </div>
 	 
 	 <div id="Structures" class = "jumbotron">
 	    <h4>Structures</h4>
-		<button id=btnbuyTavern title="A peasant joins your forces every few seconds" onclick="buyTavern()"	type="button" class="btn btn-primary">Build Tavern</button>	
-		<br />
-		Taverns: <span id="taverns">0</span>
-		<br />
-		Tavern Cost: <span id="TavernCost">5000</span> gold
-		<br />
-		Peasants produced by tavern: <span id="tavernpeasants">0</span>
-		<br /><br />
+		<hr>
+		<div id = "DefaultStructuresTab" class = "container">
+			<button id=btnbuyTavern title="A peasant joins your forces every few seconds" onclick="buyTavern()"	type="button" class="btn btn-primary">Build Tavern</button>	
+			<br />
+			Taverns: <span id="taverns">0</span>
+			<br />
+			Tavern Cost: <span id="TavernCost">5000</span> gold
+			<br />
+			Peasants produced by tavern: <span id="tavernpeasants">0</span>
+			<br /><br />
+			<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="buildMines()"	type="button" class="btn btn-warning">Open Mines</button>
+			<br />
+			Opening the mine costs 1500 gold.
+			<br /><br />
+		</div>
 		
-		<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="buildMines()"	type="button" class="btn btn-warning">Open Mines</button>
-		<br />
-		Opening the mine costs 1500 gold.
-		<br /><br />
+		<div id = "FaithStructuresTab" class = "container">
 		
-		<button id=btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-warning">Build Cathedral</button>
-		<br />
-		Opening the mine costs 10000 gold and 500 iron.
-		<br />	
-		
+			<button id=btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-warning">Build Cathedral</button>
+			<br />
+			Opening the mine costs 10000 gold and 500 iron.
+			<br />	
+		</div>
 	 </div>
 	 
 	 <div id="Ethereal" class = "jumbotron">
 	   <h4>Ethereal</h4>
+	   <hr>
 		
 	 </div>
 	
 	 <div id="Relics" class = "jumbotron">
 	   <h4>Relics</h4>
+	   <hr>
 	   
 	 </div>
 
 	 <div id="Battle" class = "jumbotron">
 	   <h4>Battle</h4>
+	   <hr>
 	 
 	 </div>	 
 	 
