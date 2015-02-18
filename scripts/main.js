@@ -2,6 +2,7 @@
 var souls = 0;
 var gold = 0;
 var faith = 0;
+var iron = 0;
 var goldpersec = 0;
 var faithpersec = 0;
 var soulspersec = 0;
@@ -25,6 +26,11 @@ function demonClick(number){
 function peasantClick(number){
 	peasants = peasants + number;
 	document.getElementById("peasants").innerHTML = peasants;
+};
+
+function mineClick(number){
+	iron = iron + number;
+	document.getElementById("iron").innerHTML = iron;
 };
 
 function debugCurrency(){
@@ -57,7 +63,7 @@ function buyMiner(){
         document.getElementById('miners').innerHTML = miners;  //updates the number of miners for the user
         document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
     };
-    var nextMinerCost = Math.floor(250 * Math.pow(1.25,peasants - tavernminers));       //works out the cost of the next Peasant
+    var nextMinerCost = Math.floor(250 * Math.pow(1.25,miners - tavernminers));       //works out the cost of the next Peasant
     document.getElementById('MinerCost').innerHTML = nextMinerCost;  //updates the Peasant cost for the user
 };
 
@@ -191,6 +197,11 @@ window.setInterval(function(){					//Faith Generation via priests etc
 	clickFaith(priests*0.1);
 	faith = faith.toFixedDown(2);
 }, 1000);
+
+window.setInterval(function(){
+	clickMine(miners);
+},1000);
+
 
 window.setInterval(function(){					//Enables/disables buttons 
 	
