@@ -27,7 +27,7 @@ function buildMines(){
 function buildCathedral(){
 	if(gold >= 10000 && iron >= 500){
 		cathedralOpened = true;
-		document.getElementById('Cathedral').style.display = "block";
+//		document.getElementById('Cathedral').style.display = "block";
 		document.getElementById('FaithMenu').style.display = "block";
 		document.getElementById('openCathAlert').style.display = "block";
 		gold = gold - 10000;
