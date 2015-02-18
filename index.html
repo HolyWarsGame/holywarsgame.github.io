@@ -61,13 +61,13 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-			  <li><a id="ProductionTab" href="javascript:CollapseAll(); toggle('Production');">Production</a></li>
-              <li><a id="FaithTab" href="javascript:CollapseAll(); toggle('Cathedral');">Cathedral</a></li>
-			  <li><a id="HolyTab" href="javascript:CollapseAll(); toggle('Holy');">Holy</a></li>
-			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Structures');">Structures</a></li>
-			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Ethereal');">Ethereal</a></li>
-			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Relics');">Relics</a></li>
-			  <li><a id="BuildingTab" href="javascript:CollapseAll(); toggle('Battle');">Battle</a></li>
+			  <li><a id="ProductionMenu" href="javascript:CollapseAll(); toggle('Production');">Production</a></li>
+              <li><a id="FaithMenu" href="javascript:CollapseAll(); toggle('Cathedral');" style="display: none;">Cathedral</a></li>
+			  <li><a id="HolyMenu" href="javascript:CollapseAll(); toggle('Holy');">Holy</a></li>
+			  <li><a id="StructureMenu" href="javascript:CollapseAll(); toggle('Structures');">Structures</a></li>
+			  <li><a id="EtherealMenu" href="javascript:CollapseAll(); toggle('Ethereal');">Ethereal</a></li>
+			  <li><a id="RelicsMenu" href="javascript:CollapseAll(); toggle('Relics');">Relics</a></li>
+			  <li><a id="BattleMenu" href="javascript:CollapseAll(); toggle('Battle');">Battle</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -106,6 +106,7 @@
 		<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/souls.png"/>
 		Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)
 		
+		<img src = "images/iron.png" alt="Praying Hands">
 		Iron: <span id="iron">0</span>
 	  </div>
 	  
@@ -117,7 +118,7 @@
 		<br />
 		Peasants: <span id="peasants">0</span>
 		<br />
-		Peasant Cost: <span id="PeasantCost">10</span> gold
+		Peasant Cost: <span id="PeasantCost">50</span> gold
 		<br />
 		<br />
 		</div>
@@ -135,12 +136,14 @@
 	  
 	 <div id="Cathedral" class= "jumbotron">
 		<h4>Cathedral</h4>
-		<button id=btnbuyPriest onclick="buyPriest()"	type="button" class="btn btn-primary">Train Priest</button>
-		<br />
-		Priests: <span id="priests">0</span>
-		<br />
-		Priest Cost: <span id="PriestCost">1000</span> gold
-		<br />
+		<div id="PriestTab" class = "container">
+			<button id=btnbuyPriest onclick="buyPriest()"	type="button" class="btn btn-primary">Train Priest</button>
+			<br />
+			Priests: <span id="priests">0</span>
+			<br />
+			Priest Cost: <span id="PriestCost">1000</span> gold
+			<br />
+		</div>
 	 </div>
 	 
 	 <div id="Holy" class = "jumbotron">
@@ -169,9 +172,15 @@
 		Peasants produced by tavern: <span id="tavernpeasants">0</span>
 		<br /><br />
 		
-		<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="buyMines()"	type="button" class="btn btn-warning">Open Mines</button>
+		<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="buildMines()"	type="button" class="btn btn-warning">Open Mines</button>
 		<br />
 		Opening the mine costs 1500 gold.
+		<br /><br />
+		
+		<button id=btnOpenCathedral title="Construct a peaceful stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-warning">Build Cathedral</button>
+		<br />
+		Opening the mine costs 10000 gold and 500 iron.
+		<br />	
 		
 	 </div>
 	 
@@ -190,10 +199,15 @@
 	 
 	 </div>	 
 	 
+	 
+	 <!--- ALERTS ARE HERE --->
 	<div id = openMineAlert class="alert alert-info" role="alert" style="display: none;">
         <strong>New!</strong> You can now hire miners to mine minerals for you!    <a href ="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')">Dismiss</a>
     </div>
-   
+	
+	<div id = openCathAlert class="alert alert-info" role="alert" style="display: none;">
+        <strong>New!</strong> The faithful are attracted to your cathedral.    <a href ="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')">Dismiss</a>
+    </div>   
    
    </div> <!-- /container -->
 

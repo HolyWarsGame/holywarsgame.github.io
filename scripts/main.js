@@ -1,11 +1,26 @@
 
+
+//Currency Variables//
 var souls = 0;
 var gold = 0;
 var faith = 0;
 var iron = 0;
+
+//Statistic Variables//
 var goldpersec = 0;
 var faithpersec = 0;
 var soulspersec = 0;
+
+//Unit Variables//
+var peasants = 0;
+var tavernpeasants = 0;			//Tavern generated peasants
+var miners = 0;
+var tavernminers = 0;			//Tavern generated miners
+var paladins = 0;
+
+//Status Variables//
+var minesOpened=false;
+var cathedralOpened=false;
 
 function goldClick(number){
     gold = gold + number;
@@ -39,22 +54,18 @@ function debugCurrency(){
 	souls = souls + 200;
 }
 
-var peasants = 0;
-var tavernpeasants = 0;																//Tavern generated peasants
 function buyPeasant(){
-    var PeasantCost = Math.floor(10 * Math.pow(1.25,peasants - tavernpeasants));     //works out the cost of this Peasant
+    var PeasantCost = Math.floor(50 * Math.pow(1.25,peasants - tavernpeasants));     //works out the cost of this Peasant
     if(gold >= PeasantCost){                                   //checks that the player can afford the Peasant
         peasants = peasants + 1;                                   //increases number of Peasants
     	gold = gold - PeasantCost;                          //removes the gold spent
         document.getElementById('peasants').innerHTML = peasants;  //updates the number of Peasants for the user
         document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
     };
-    var nextPeasantCost = Math.floor(10 * Math.pow(1.25,peasants - tavernpeasants));       //works out the cost of the next Peasant
+    var nextPeasantCost = Math.floor(50 * Math.pow(1.25,peasants - tavernpeasants));       //works out the cost of the next Peasant
     document.getElementById('PeasantCost').innerHTML = nextPeasantCost;  //updates the Peasant cost for the user
 };
 
-var miners = 0;
-var tavernminers = 0;
 function buyMiner(){
     var MinerCost = Math.floor(250 * Math.pow(1.25,miners - tavernminers));     //works out the cost of this miners
     if(gold >= MinerCost){                                   //checks that the player can afford the miners
@@ -81,7 +92,7 @@ function buyPriest(){
     document.getElementById('PriestCost').innerHTML = nextPriestCost;  //updates the Priest cost for the user
 };
 
-var paladins = 0;
+
 
 function buyPaladin(){
     var PaladinCost = Math.floor(100 * Math.pow(1.1,paladins));     //works out the cost of this Paladin
@@ -109,17 +120,7 @@ function buyWeapon(){
     document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
 };
 
-var minesOpened=false;
 
-function buyMines(){
-	if(gold >= 1500){
-		minesOpened = true;
-		document.getElementById('Mining').style.display = "block";
-		document.getElementById('openMineAlert').style.display = "block";
-		gold = gold - 1500;
-		document.getElementById('gold').innerHTML = gold;
-	}
-};
 
 function UpdateButtons() {
 	//Enable/disables buy peasant button depending on if there is enough currency

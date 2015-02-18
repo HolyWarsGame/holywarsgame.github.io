@@ -10,6 +10,7 @@
 		$.cookie("priests",priests,{expires:365});
 		$.cookie("paladins",paladins,{expires:365});
 		$.cookie("minesOpened",minesOpened,{expires:365});
+		$.cookie("cathedralOpened",cathedralOpened,{expires:365});
 		alert("Your game has been saved!");
 	};
 	
@@ -25,6 +26,7 @@
 		$.removeCookie("priests");
 		$.removeCookie("paladins");
 		$.removeCookie("minesOpened");
+		$.removeCookie("cathedralOpened");
 	};
 	
 	function loadCookie(){
@@ -67,6 +69,15 @@
 		if($.cookie("taverns") != null){
 			taverns = parseInt($.cookie("taverns"));
 			document.getElementById("taverns").innerHTML = taverns;
+		}
+		if($.cookie("cathedralOpened") != null){
+			var myBool = ($.cookie("cathedralOpened") == "true")
+//			console.log(myBool);
+			if(myBool == true){
+				cathedralOpened = true
+				document.getElementById('Cathedral').style.display = "block";
+				document.getElementById('FaithMenu').style.display = "block";
+			}
 		}		
 		if($.cookie("priests") != null){
 			priests = parseInt($.cookie("priests"));

@@ -1,4 +1,7 @@
+//Building variables//
 var taverns = 0;
+
+
 function buyTavern(){
 	var TavernCost = Math.floor(5000 * Math.pow(1.5,taverns));
 		if(gold >= TavernCost){
@@ -11,9 +14,32 @@ function buyTavern(){
 		document.getElementById('TavernCost').innerHTML = nextTavernCost;
 };
 
+function buildMines(){
+	if(gold >= 1500){
+		minesOpened = true;
+		document.getElementById('Mining').style.display = "block";
+		document.getElementById('openMineAlert').style.display = "block";
+		gold = gold - 1500;
+		document.getElementById('gold').innerHTML = gold;
+	}
+};
+
+function buildCathedral(){
+	if(gold >= 10000 && iron >= 500){
+		cathedralOpened = true;
+		document.getElementById('Cathedral').style.display = "block";
+		document.getElementById('FaithMenu').style.display = "block";
+		document.getElementById('openCathAlert').style.display = "block";
+		gold = gold - 10000;
+		iron = iron - 500
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById('iron').innerHTML = iron;
+	}
+};
 
 
-window.setInterval(function(){
+
+window.setInterval(function(){					//Tavern unit generation
 
 	peasantClick(taverns);
 	tavernpeasants = tavernpeasants + taverns;
