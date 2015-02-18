@@ -54,7 +54,7 @@
 		}
 		if($.cookie("minesOpened") != null){
 			var myBool = ($.cookie("minesOpened") == "true")
-			console.log(myBool);
+//			console.log(myBool);
 			if(myBool == true){
 				minesOpened = true
 				document.getElementById("Mining").style.display = "block";
