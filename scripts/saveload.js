@@ -53,7 +53,7 @@
 			document.getElementById("miners").innerHTML = miners;
 		}
 		if($.cookie("minesOpened") != null){
-			if($.cookie("minesOpened") = "true"){
+			if(Boolean($.cookie("minesOpened")) = true{
 				minesOpened = true
 				document.getElementById("Mining").style.display = "block";
 			}
