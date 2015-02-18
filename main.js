@@ -77,7 +77,7 @@ function buyPaladin(){
 
 var weapons = 0;
 
-function buyWeapon(){
+function btnbuyWeapon(){
     var WeaponCost = Math.floor(1000 * Math.pow(1.1,weapons));     //works out the cost of this weapon
     if(faith >= WeaponCost){                                   //checks that the player can afford the weapon
         weapons = weapons + 1;                                   //increases number of weapons
