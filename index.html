@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template -->
     <link href="navbar.css" rel="stylesheet">
+	<link href="currency.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -80,7 +81,7 @@
                   <li class="divider"></li>
 				  <li><a id="hardreset" href="javascript:hardReset()">!Hard reset!</a></li>
 				  <li class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
+                  <li class="dropdown-header"></li>
                   <li><a href="#">About</a></li>
                 </ul>
               </li>
@@ -98,22 +99,22 @@
 	  <div id="Resources" class="container" >
 
 		<div id = "golddiv" class = "container">
-			<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_gold.png"/>
+			<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_goldsmall.png"/>
 			Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
 		</div>		
 		
 		<div id = "irondiv" class = "container">
-			<img src = "images/iron.png" alt="Praying Hands">
+			<img src = "images/ironsmall.png" alt="Praying Hands">
 			Iron: <span id="iron">0</span>      ( <span id="ironpersec">0</span> ips)
 		</div>
 		
 		<div id = "faithdiv" class = "container">
-			<img src = "images/faith.png" alt="Praying Hands">
+			<img src = "images/faithsmall.png" alt="Praying Hands">
 			Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
 		</div>
 		
 		<div id = "soulsdiv" class = "container">
-			<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/souls.png"/>
+			<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/soulssmall.png"/>
 			Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
 		</div>
 	  </div>
