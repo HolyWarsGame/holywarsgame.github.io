@@ -36,28 +36,28 @@ function debugCurrency(){
 var peasants = 0;
 var tavernpeasants = 0;																//Tavern generated peasants
 function buyPeasant(){
-    var PeasantCost = Math.floor(10 * Math.pow(1.1,peasants - tavernpeasants));     //works out the cost of this Peasant
+    var PeasantCost = Math.floor(10 * Math.pow(1.25,peasants - tavernpeasants));     //works out the cost of this Peasant
     if(gold >= PeasantCost){                                   //checks that the player can afford the Peasant
         peasants = peasants + 1;                                   //increases number of Peasants
     	gold = gold - PeasantCost;                          //removes the gold spent
         document.getElementById('peasants').innerHTML = peasants;  //updates the number of Peasants for the user
         document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
     };
-    var nextPeasantCost = Math.floor(10 * Math.pow(1.1,peasants - tavernpeasants));       //works out the cost of the next Peasant
+    var nextPeasantCost = Math.floor(10 * Math.pow(1.25,peasants - tavernpeasants));       //works out the cost of the next Peasant
     document.getElementById('PeasantCost').innerHTML = nextPeasantCost;  //updates the Peasant cost for the user
 };
 
 
 var priests = 0;
 function buyPriest(){
-    var PriestCost = Math.floor(1000 * Math.pow(1.1,priests));     //works out the cost of this Priest
+    var PriestCost = Math.floor(1000 * Math.pow(1.3,priests));     //works out the cost of this Priest
     if(gold >= PriestCost){                                   //checks that the player can afford the Priest
         priests = priests + 1;                                   //increases number of Priests
     	gold = gold - PriestCost;                          //removes the gold spent
         document.getElementById('priests').innerHTML = priests;  //updates the number of Priests for the user
         document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
     };
-    var nextPriestCost = Math.floor(1000 * Math.pow(1.1,priests));       //works out the cost of the next Priest
+    var nextPriestCost = Math.floor(1000 * Math.pow(1.3,priests));       //works out the cost of the next Priest
     document.getElementById('PriestCost').innerHTML = nextPriestCost;  //updates the Priest cost for the user
 };
 
