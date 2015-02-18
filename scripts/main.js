@@ -164,7 +164,7 @@ function UpdateButtons() {
 	
 	if(minesOpened){
 		document.getElementById("btnOpenMines").disabled = true
-		document.getElementById("btnOpenMines").innerHTML = "Mines Purchased");
+		document.getElementById("btnOpenMines").value = "Mines Purchased";
 	}
 	else if(!minesOpened && gold < 1500){
 		document.getElementById("btnOpenMines").disabled = true
