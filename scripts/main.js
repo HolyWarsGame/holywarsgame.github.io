@@ -199,7 +199,7 @@ window.setInterval(function(){					//Faith Generation via priests etc
 }, 1000);
 
 window.setInterval(function(){
-	clickMine(miners);
+	mineClick(miners);
 },1000);
 
 
