@@ -86,11 +86,6 @@
                 </ul>
               </li>
             </ul>
-			<!--
-						<ul class="nav navbar-nav navbar-right">
-						  <li class="active"><a href="">Default <span class="sr-only">(current)</span></a></li>
-						</ul>
-			-->
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
@@ -98,26 +93,26 @@
 	  
 	  <div id="Resources" class="collapse" >
 		<div class = "well">
-		<div id = "golddiv" class = "container">
-			<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_goldsmall.png"/>
-			Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
-		</div>		
-		
-		<div id = "irondiv" class = "container">
-			<img src = "images/ironsmall.png" alt="Praying Hands">
-			Iron: <span id="iron">0</span>      ( <span id="ironpersec">0</span> ips)
+			<div id = "golddiv" class = "container">
+				<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_goldsmall.png"/>
+				Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
+			</div>		
+			
+			<div id = "irondiv" class = "container">
+				<img src = "images/ironsmall.png" alt="Praying Hands">
+				Iron: <span id="iron">0</span>      ( <span id="ironpersec">0</span> ips)
+			</div>
+			
+			<div id = "faithdiv" class = "container">
+				<img src = "images/faithsmall.png" alt="Praying Hands">
+				Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
+			</div>
+			
+			<div id = "soulsdiv" class = "container">
+				<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/soulssmall.png"/>
+				Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
+			</div>
 		</div>
-		
-		<div id = "faithdiv" class = "container">
-			<img src = "images/faithsmall.png" alt="Praying Hands">
-			Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
-		</div>
-		
-		<div id = "soulsdiv" class = "container">
-			<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/soulssmall.png"/>
-			Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
-		</div>
-	  </div>
 	  </div>
 	  
 	  <div id="Production" class= "jumbotron">
@@ -271,6 +266,6 @@
 	
   </body>
   
-  <body onload = "loadCookie(); CollapseAll(); toggle('Production'); Resources.collapse.in();" >
-  <body onload = "loadCookie(); CollapseAll(); toggle('Production'); Resources.collapse();" >
+  <body onload = "loadCookie(); CollapseAll(); toggle('Production');" >
+ 
 </html>
