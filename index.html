@@ -175,12 +175,14 @@
 		function saveCookie(){
 			$.cookie("gold",gold,{expires:365});
 			$.cookie("peasants",peasants,{expires:365});
-			alert("Gold and peasants saved!");
+			$.cookie("taverns",taverns,{expires:365});
+			alert("Gold and peasants and taverns saved!");
 		};
 		
 		function deleteCookie(){
 			$.removeCookie("gold");
 			$.removeCookie("peasants");
+			$.removeCookie("taverns");
 		};
 		
 		function loadCookie(){
@@ -192,6 +194,10 @@
 				peasants = parseInt($.cookie("peasants"));
 				document.getElementById("peasants").innerHTML = peasants;
 			}				
+			if($.cookie("taverns") != null){
+				taverns = parseInt($.cookie("taverns"));
+				document.getElementById("taverns").innerHTML = taverns;
+			}		
 		};
 		
 		function hardReset(){
