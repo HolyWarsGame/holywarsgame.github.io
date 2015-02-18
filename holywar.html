@@ -122,7 +122,7 @@
 		function loadCookie(){
 			console.debug($.cookie("gold"));
 			if($.cookie("gold") != null){
-				gold = $.cookie("gold");
+				gold = parseInt($.cookie("gold"));
 			}
 			
 		};
