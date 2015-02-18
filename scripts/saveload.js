@@ -54,6 +54,7 @@
 		}
 		if($.cookie("minesOpened") != null){
 			var myBool = Boolean($.cookie("minesOpened"))
+			console.log(myBool);
 			if(myBool = true){
 				minesOpened = true
 				document.getElementById("Mining").style.display = "block";
@@ -89,6 +90,7 @@
 			faith = 0;
 			peasants = 0;
 			miners = 0;
+			minesOpened = false;
 			tavernpeasants = 0;
 			paladins = 0;
 			priests = 0;
