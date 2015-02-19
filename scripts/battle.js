@@ -55,66 +55,75 @@ function banditLoot(){
 setTimeout(function() { banditLoot(); }, 30000);//Triggers bandit looting
 
 function battleBandits(){
-	var percentComplete = 0;
-	document.getElementById('BatBanditsProgBarBox').style.display = "block";	  
-  	
-	var $bar = $(document.getElementById('BatBanditsProgBar'));
-    var progress = setInterval(function() {
-      
-      var currWidth = parseInt($bar.attr('aria-valuenow'));
-      var maxWidth = parseInt($bar.attr('aria-valuemax'));
-      	  
-	  //update the progress
-        $bar.width(percentComplete +'%');
-        $bar.attr('aria-valuenow',percentComplete);
-		$bar.text(percentComplete+'%');
-		percentComplete = percentComplete + 5;   
-		
-      //clear timer when max is reach
-      if (currWidth >= maxWidth){
-        clearInterval(progress);
-		$bar.text("Complete!");
-		document.getElementById('unlockCathAlert').style.display = "block";
-		document.getElementById('FaithStructuresTab').style.display = "block";
-		document.getElementById('BatBanditsProgBarBox').style.display = "none";
-		document.getElementById("btnBatBandits").disabled = true;
-		document.getElementById("btnBatBandits").innerHTML = "Bandits Defeated!";
-		defeatedBandits = true;
-      }
-      
-    }, 500);
+	if(BattlePower >= 100){
+		var percentComplete = 0;
+		document.getElementById('BatBanditsProgBarBox').style.display = "block";	  
+		var $bar = $(document.getElementById('BatBanditsProgBar'));
+		var progress = setInterval(function() {
+		  
+		  var currWidth = parseInt($bar.attr('aria-valuenow'));
+		  var maxWidth = parseInt($bar.attr('aria-valuemax'));
+			  
+		  //update the progress
+			$bar.width(percentComplete +'%');
+			$bar.attr('aria-valuenow',percentComplete);
+			$bar.text(percentComplete+'%');
+			percentComplete = percentComplete + 5;   
+			
+		  //clear timer when max is reach
+		  if (currWidth >= maxWidth){
+			clearInterval(progress);
+			$bar.text("Complete!");
+			document.getElementById('unlockCathAlert').style.display = "block";
+			document.getElementById('FaithStructuresTab').style.display = "block";
+			document.getElementById('BatBanditsProgBarBox').style.display = "none";
+			document.getElementById("btnBatBandits").disabled = true;
+			document.getElementById("btnBatBandits").innerHTML = "Bandits Defeated!";
+			defeatedBandits = true;
+		  } 
+		}, 500);
+	}
+	else{
+		alert("Your army is not strong enough to fight this enemy!");
+	}
+	
 };
 
 function battleOgre(){
-	var percentComplete = 0;
-	document.getElementById('BatOgreProgBarBox').style.display = "block";	  
-  	
-	var $bar = $(document.getElementById('BatOgreProgBar'));
-    var progress = setInterval(function() {
-      
-      var currWidth = parseInt($bar.attr('aria-valuenow'));
-      var maxWidth = parseInt($bar.attr('aria-valuemax'));
-      	  
-	  //update the progress
-        $bar.width(percentComplete +'%');
-        $bar.attr('aria-valuenow',percentComplete);
-		$bar.text(percentComplete+'%');
-		percentComplete = percentComplete + 1;   
+	if(BattlePower >= 500){	
+		var percentComplete = 0;
+		document.getElementById('BatOgreProgBarBox').style.display = "block";	  
 		
-      //clear timer when max is reach
-      if (currWidth >= maxWidth){
-        clearInterval(progress);
-		$bar.text("Complete!");
-		document.getElementById('unlockPaladinsAlert').style.display = "block";
-		document.getElementById('PaladinTab').style.display = "block";
-		document.getElementById('PaladinWeaponTab').style.display = "block"; //Until a drop unlocks paladin weapon upgrade
-		document.getElementById('BatOgreProgBarBox').style.display = "none";
-		document.getElementById("btnBatOgre").disabled = true;
-		document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
-		defeatedOgre = true;
-      }
-      
-    }, 500);
+		var $bar = $(document.getElementById('BatOgreProgBar'));
+		var progress = setInterval(function() {
+		  
+		  var currWidth = parseInt($bar.attr('aria-valuenow'));
+		  var maxWidth = parseInt($bar.attr('aria-valuemax'));
+			  
+		  //update the progress
+			$bar.width(percentComplete +'%');
+			$bar.attr('aria-valuenow',percentComplete);
+			$bar.text(percentComplete+'%');
+			percentComplete = percentComplete + 1;   
+			
+		  //clear timer when max is reach
+		  if (currWidth >= maxWidth){
+			clearInterval(progress);
+			$bar.text("Complete!");
+			document.getElementById('unlockPaladinsAlert').style.display = "block";
+			document.getElementById('PaladinTab').style.display = "block";
+			document.getElementById('PaladinWeaponTab').style.display = "block"; //Until a drop unlocks paladin weapon upgrade
+			document.getElementById('BatOgreProgBarBox').style.display = "none";
+			document.getElementById("btnBatOgre").disabled = true;
+			document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
+			defeatedOgre = true;
+		  }
+		  
+		}, 500);
+	}
+	else{
+		alert("Your army is not strong enough to fight this enemy!");		
+	};
 };
 
 window.setInterval(function(){					//Calculates Battle Power 
