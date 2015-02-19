@@ -9,7 +9,7 @@ function calculateBattlePower(){
 function battleOgre(number){
 	var percentComplete = 0;
 	document.getElementById('BatOgreProgBarBox').style.display = "block";	
-	val progressBar = document.getElementById('BatOgreProgBar');
+	var progressBar = document.getElementById('BatOgreProgBar');
 
 	var go = setInterval(function() {
 		if ( percentComplete == 100) {
