@@ -17,11 +17,13 @@ var peasants = 0;
 var tavernpeasants = 0;			//Tavern generated peasants
 var miners = 0;
 var tavernminers = 0;			//Tavern generated miners
+var personPage = 0;
 var paladins = 0;
 
 //Status Variables//
-var minesOpened=false;
-var cathedralOpened=false;
+var minesOpened = false;
+var cathedralOpened = false;
+var barracksOpened = false;
 
 function goldClick(number){
     gold = gold + number;
@@ -94,7 +96,19 @@ function buyPriest(){
     document.getElementById('PriestCost').innerHTML = nextPriestCost;  //updates the Priest cost for the user
 };
 
-
+function buyPage(){
+    var PageCost = Math.floor(500 * Math.pow(1.1,personPage));     //works out the cost of this Page
+    if(gold >= PageCost && iron >= 100){                                   //checks that the player can afford the Page
+        personPage = personPage + 1;                                   //increases number of Pages
+    	gold = gold - PageCost;                                  //removes the gold spent
+        iron = iron - 100; 										 //removes the iron spent
+		document.getElementById('personPage').innerHTML = personPage;  //updates the number of Pages for the user
+        document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
+		document.getElementById('iron').innerHTML = gold;  //updates the number of iron for the user
+    };
+    var nextPageCost = Math.floor(500 * Math.pow(1.1,personPage));       //works out the cost of the next Page
+    document.getElementById('PageCost').innerHTML = nextPageCost;  //updates the Page cost for the user
+};
 
 function buyPaladin(){
     var PaladinCost = Math.floor(100 * Math.pow(1.1,paladins));     //works out the cost of this Paladin
@@ -175,6 +189,18 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnOpenMines").disabled = false
+	}
+
+	//Changes status of the building barracks button
+	if(barracksOpened){
+		document.getElementById("btnOpenBarracks").disabled = true
+		document.getElementById("btnOpenBarracks").innerHTML = "Barracks built";
+	}
+	else if(!cathedralOpened && (gold < 10000 || iron < 250)){
+		document.getElementById("btnOpenBarracks").disabled = true
+	}
+	else{
+		document.getElementById("btnOpenBarracks").disabled = false
 	}
 	
 	//Changes status of the building cathedral button

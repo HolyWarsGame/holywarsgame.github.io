@@ -1,7 +1,6 @@
 //Building variables//
 var taverns = 0;
 
-
 function buyTavern(){
 	var TavernCost = Math.floor(5000 * Math.pow(1.5,taverns));
 		if(gold >= TavernCost){
@@ -21,6 +20,19 @@ function buildMines(){
 		document.getElementById('openMineAlert').style.display = "block";
 		gold = gold - 1500;
 		document.getElementById('gold').innerHTML = gold;
+	}
+};
+
+function buildBarracks(){
+	if(gold >= 10000 && iron >= 250){
+		barracksOpened = true;
+//		document.getElementById('Cathedral').style.display = "block";
+		document.getElementById('BarracksMenu').style.display = "block";
+		document.getElementById('openBarracksAlert').style.display = "block";
+		gold = gold - 10000;
+		iron = iron - 250
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById('iron').innerHTML = iron;
 	}
 };
 
