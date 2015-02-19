@@ -30,7 +30,7 @@ function banditLoot(){
 			gold = gold - justStole;
 			document.getElementById("goldStolen").innerHTML = goldStolen;
 			document.getElementById("justStolen").innerHTML = justStolen;
-			document.getElementById("banditLootAlert").style.display = block";
+			document.getElementById("banditLootAlert").style.display = "block";
 			banditLoot();
 		  }
 		}, 1000);				
