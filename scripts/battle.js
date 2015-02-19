@@ -27,7 +27,7 @@ function banditLoot(){
 			goldStolen = goldStolen + Math.ceil(gold*1/3);
 			gold = Math.ceil(gold*2/3);
 			document.getElementById("goldStolen").innerHTML = goldStolen;
-			document.getElementById('banditLootAlert').style.display == "block";
+			document.getElementById("banditLootAlert").style.display = block";
 			banditLoot();
 		  }
 		}, 1000);				
