@@ -5,7 +5,8 @@
 		$.cookie("iron",iron,{expires:365});
 		$.cookie("peasants",peasants,{expires:365});
 		$.cookie("miners",miners,{expires:365});
-		$.cookie("tavernpeasants",tavernpeasants,{expires:365});			
+		$.cookie("personPage",personPage,{expires:365});
+		$.cookie("tavernpeasants",tavernpeasants,{expires:365});
 		$.cookie("taverns",taverns,{expires:365});
 		$.cookie("priests",priests,{expires:365});
 		$.cookie("paladins",paladins,{expires:365});
@@ -22,6 +23,7 @@
 		$.removeCookie("iron");		
 		$.removeCookie("peasants");
 		$.removeCookie("miners");
+		$.removeCookie("personPage")
 		$.removeCookie("tavernpeasants");			
 		$.removeCookie("taverns");
 		$.removeCookie("priests");

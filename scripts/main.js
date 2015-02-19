@@ -153,7 +153,15 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnbuyPriest").disabled = false;
-	}	
+	}
+
+	//Enable/disables buy page button depending on if there is enough currency
+	if(gold < document.getElementById('PageCost').innerHTML || iron < 100){	
+		document.getElementById("btnbuyPage").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyPage").disabled = false;
+	}		
 	
 	//Enable/disables buy paladin button depending on if there is enough currency
 	if(faith < document.getElementById('PaladinCost').innerHTML){	
