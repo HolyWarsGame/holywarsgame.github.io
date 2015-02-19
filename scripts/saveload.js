@@ -56,6 +56,10 @@
 			miners = parseInt($.cookie("miners"));
 			document.getElementById("miners").innerHTML = miners;
 		}
+		if($.cookie("personPage") != null){
+			personPage = parseInt($.cookie("personPage"));
+			document.getElementById("personPage").innerHTML = personPage;
+		}			
 		if($.cookie("minesOpened") != null){
 			var myBool = ($.cookie("minesOpened") == "true")
 			if(myBool == true){

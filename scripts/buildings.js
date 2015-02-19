@@ -26,7 +26,6 @@ function buildMines(){
 function buildBarracks(){
 	if(gold >= 10000 && iron >= 250){
 		barracksOpened = true;
-//		document.getElementById('Cathedral').style.display = "block";
 		document.getElementById('BarracksMenu').style.display = "block";
 		document.getElementById('openBarracksAlert').style.display = "block";
 		gold = gold - 10000;
@@ -39,7 +38,6 @@ function buildBarracks(){
 function buildCathedral(){
 	if(gold >= 10000 && iron >= 500){
 		cathedralOpened = true;
-//		document.getElementById('Cathedral').style.display = "block";
 		document.getElementById('FaithMenu').style.display = "block";
 		document.getElementById('openCathAlert').style.display = "block";
 		gold = gold - 10000;
