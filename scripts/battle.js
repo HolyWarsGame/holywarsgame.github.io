@@ -22,9 +22,8 @@ function battleOgre(number){
 		// console.log(progressBar.get);
 		// progressBar.style.width= percentComplete+'%'+';';
 	// }, 500);
-	$('.progress-bar').each(function() {
   
-  	var $bar = $(this);
+  	var $bar = $('BatOgreProgBar');
     var progress = setInterval(function() {
       
       var currWidth = parseInt($bar.attr('aria-valuenow'));
@@ -41,7 +40,7 @@ function battleOgre(number){
       
     }, 500);
   
-	});
+
 };
 
 //function incrementProgBar(elem, percentComplete){
