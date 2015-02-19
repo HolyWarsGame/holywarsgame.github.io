@@ -268,7 +268,7 @@ window.setInterval(function(){					//Automatically dismisses saved message
 	if(document.getElementById('openCathAlert').style.display == "block"){
 		document.getElementById('openCathAlert').style.display = "display: none;";
 	}
-},1000);
+},3000);
 
 window.setInterval(function(){					//Enables/disables buttons 
 	UpdateButtons();
