@@ -20,9 +20,9 @@ function battleOgre(number){
 			console.log(percentComplete);
 		}
 		progressBar.setAttribute("aria-valuenow", percentComplete);
-		var setStyle = percentComplete + "%;";
+		var setStyle = "width: " + percentComplete + "%;";
 		console.log(setStyle);
-		progressBar.style.width = setStyle;
+		progressBar.style = setStyle;
 //		console.log(progress);
 	}, 500);
 };
