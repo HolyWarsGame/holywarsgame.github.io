@@ -24,12 +24,14 @@ function battleOgre(number){
         $bar.width(percentComplete +'%');
         $bar.attr('aria-valuenow',percentComplete);
 		$bar.text(percentComplete+'%');
-		percentComplete = percentComplete + 1;   
+		percentComplete = percentComplete + 5;   
 		
       //clear timer when max is reach
       if (currWidth >= maxWidth){
         clearInterval(progress);
 		$bar.text("Complete!");
+		document.getElementById('unlockPaladinsAlert').style.display = "none";
+		document.getElementById('PaladinTab').style.display = "block";		
 		document.getElementById('BatOgreProgBarBox').style.display = "none";
 		document.getElementById("btnBatOgre").disabled = true;
 		document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";

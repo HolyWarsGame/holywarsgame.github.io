@@ -64,7 +64,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-			  <li><a id="ProductionMenu" href="javascript:CollapseAll(); toggle('Production');">Production</a></li>
+			  <li><a id="ProductionMenu" href="javascript:CollapseAll(); toggle('Production');">Village</a></li>
 			  <li><a id="StructureMenu" href="javascript:CollapseAll(); toggle('Structures');">Structures</a></li>
               <li><a id="FaithMenu" href="javascript:CollapseAll(); toggle('Cathedral');" style="display: none;">Cathedral</a></li>
 			  <li><a id="BarracksMenu" href="javascript:CollapseAll(); toggle('Barracks');" style="display: none; ">Barracks</a></li>
@@ -119,7 +119,7 @@
 	  </div>
 	  
 	  <div id="Production" class= "jumbotron">
-		<h4>Production</h4>
+		<h4>Village</h4>
 		<hr>
 		<div id="PeasantTab" class = "container">
 		<button id=btnbuyPeasant onclick="buyPeasant()"	type="button" class="btn btn-primary">Recruit Peasant</button>
@@ -167,7 +167,9 @@
 			<br /><br />			
 		</div>
 		
-		<div id = "PaladinTab" class = "container">
+		<div id = "PaladinTab" class = "container" style="display: none;>
+			<hr>
+			<br />
 			<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-primary">Train Paladin</button>
 			<br />
 			Paladins: <span id="paladins">0</span>
@@ -209,7 +211,6 @@
 		</div>
 		
 		<div id = "FaithStructuresTab" class = "container">
-		
 			<button id=btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-warning">Build Cathedral</button>
 			<br />
 			Opening the mine costs 10000 gold and 500 iron.
@@ -256,21 +257,27 @@
 	<div id = openMineAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
-		<!---<a href ="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')">Go!</a>-->
     </div>
+	
 	
 	<div id = openBarracksAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> You can now <a href="javascript: toggle('openBarracksAlert');CollapseAll();toggle('Barracks')" class="alert-link">train</a> units to fight against the Evil One and his minions.   
-		<!--<a href ="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')">Dismiss</a>-->
     </div>  
+	
 	
 	<div id = openCathAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
-		<!--<a href ="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')">Dismiss</a>-->
-    </div>   
+    </div>
 
+	
+	<div id = unlockPaladinsAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
+    </div>	
+
+	
 	<div id = saveAlert class="alert alert-success fade in" role="alert" style="display: none;">
 	<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
         <strong>Save!</strong> Your game has been saved!   
@@ -304,6 +311,13 @@
 		  <div class="modal-body">
 			This is an incremental game developed by CursedAnubis and LadyUndine. Thank you for playing!
 			Please note that this game is still in development and is constantly rebalanced. Feedback is appreciated!
+			
+			Things to be added:
+			More Relics
+			More Battle
+			Magic System
+			Priestiege System
+			
 		  </div>
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
