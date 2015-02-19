@@ -130,4 +130,21 @@
 window.setInterval(function(){					//Autosaves every minute
 	saveCookie();
 }, 60000);
+
+var clearSave = setInterval(function() {
+  var ticker = 0     	  
+  //update the progress
+  //$bar.width(percentComplete +'%');
+  //	$bar.attr('aria-valuenow',percentComplete);
+  //	$bar.text(percentComplete+'%');
+	ticker = ticker + 1;   
+	
+  //clear timer when max is reach
+  if (ticker == 5){
+	clearInterval(progress);
+	if(document.getElementById('saveAlert').style.display == "block"){
+		document.getElementById("saveAlert").style.display = "none";
+	}	
+  }
+}, 1000);
 			

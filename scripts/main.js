@@ -84,8 +84,6 @@ function buyMiner(){
     document.getElementById('MinerCost').innerHTML = nextMinerCost;  //updates the Peasant cost for the user
 };
 
-
-
 function buyPriest(){
     var PriestCost = Math.floor(1000 * Math.pow(1.3,priests));     //works out the cost of this Priest
     if(gold >= PriestCost){                                   //checks that the player can afford the Priest
@@ -266,11 +264,14 @@ window.setInterval(function(){					//Iron Generation via minors etc every second
 	mineClick(miners);
 },1000);
 
-window.setInterval(function(){					//Automatically dismisses saved message
+/* window.setInterval(function(){					//Automatically dismisses saved message
 	if(document.getElementById('saveAlert').style.display == "block"){
 		document.getElementById("saveAlert").style.display = "none";
 	}
-},5000);
+},5000); */
+
+
+
 
 window.setInterval(function(){					//Enables/disables buttons 
 	UpdateButtons();
