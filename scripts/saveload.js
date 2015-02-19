@@ -32,6 +32,7 @@
 		$.removeCookie("minesOpened");
 		$.removeCookie("barracksOpened");
 		$.removeCookie("cathedralOpened");
+		console.log("Your cookies have been cleared.")
 	};
 	
 	function loadCookie(){
@@ -102,7 +103,7 @@
 			paladins = parseInt($.cookie("paladins"));
 			document.getElementById("paladins").innerHTML = paladins;
 		}
-		console.log("Your cookies have been cleared.")
+		console.log("Your cookies have been loaded.")
 	};
 	
 	function hardReset(){
