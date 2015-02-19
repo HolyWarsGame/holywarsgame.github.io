@@ -273,7 +273,7 @@ window.setInterval(function(){					//Enables/disables buttons
 
 window.setInterval(function(){					//Increases totalTimePlayed by 1 second per second 
 	totalTimePlayed = totalTimePlayed + 1;
-	tTPinHHMMSS = totalTimePlayed.toHHMMSS();
+	tTPinHHMMSS = dhms(totalTimePlayed,"d:h:m:s");
 	document.getElementById("tTPinHHMMSS").innerHTML = tTPinHHMMSS;
 }, 1000);
 
@@ -283,16 +283,32 @@ Number.prototype.toFixedDown = function(digits) {
     return m ? parseFloat(m[1]) : this.valueOf();
 };
 
-String.prototype.toHHMMSS = function () {
-    var sec_num = parseInt(this, 10); // don't forget the second param
-    var hours   = Math.floor(sec_num / 3600);
-    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-    var seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-    if (hours   < 10) {hours   = "0"+hours;}
-    if (minutes < 10) {minutes = "0"+minutes;}
-    if (seconds < 10) {seconds = "0"+seconds;}
-    var time    = hours+':'+minutes+':'+seconds;
-    return time;
+function dhms(s, f) { // seconds, format
+  var d=h=m=0;
+  switch (true) {
+  case (s>86400):
+    d=Math.floor(s/86400);
+    s-=d*86400;
+  case (s>3600):
+    h=Math.floor(s/3600);
+    s-=h*3600;
+  case (s>60):
+    m=Math.floor(s/60);
+    s-=m*60;
+  } 
+  if (f != null) {
+    var f = f.replace('dd', (d<10)?"0"+d:d);
+    f = f.replace('d', d);
+    f = f.replace('hh', (h<10)?"0"+h:h);
+    f = f.replace('h', h);
+    f = f.replace('mm', (m<10)?"0"+m:m);
+    f = f.replace('m', m);
+    f = f.replace('ss', (s<10)?"0"+s:s);
+    f = f.replace('s', s);
+  } 
+  else {
+    f = d + ':' + h + ':' + m + ':' + s;
+  }
+  return f; // :) omg...
 }
 
