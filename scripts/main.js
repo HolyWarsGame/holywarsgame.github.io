@@ -1,4 +1,4 @@
-
+//Main Script for HW //
 
 //Currency Variables//
 var souls = 0;

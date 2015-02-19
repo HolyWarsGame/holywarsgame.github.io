@@ -96,22 +96,22 @@
 	  
 	  <div id="Resources" class="collapse in" >
 		<div class = "well well-sm">
-			<div id = "golddiv" class = "container">
+			<div id = "golddiv" >
 				<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_goldsmall.png"/>
 				Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
 			</div>		
 			
-			<div id = "irondiv" class = "container" >
+			<div id = "irondiv">
 				<img src = "images/ironsmall.png" alt="Praying Hands">
 				Iron: <span id="iron">0</span>      ( <span id="ironpersec">0</span> ips)
 			</div>
 			
-			<div id = "faithdiv" class = "container">
+			<div id = "faithdiv" >
 				<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">
 				Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
 			</div>
 			
-			<div id = "soulsdiv" class = "container" >
+			<div id = "soulsdiv" >
 				<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/soulssmall.png"/>
 				Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
 			</div>
@@ -232,6 +232,22 @@
 	 <div id="Battle" class = "jumbotron">
 	   <h4>Battle</h4>
 	   <hr>
+	   
+	   <div id="BattleStrength" class = "container">
+		 <p> This is where your battle strength will be calculated </br>
+				Current Army strength: <span id = "BattlePower">0</span> power
+	   </div>
+	   
+	   <div id="BatOgre" class = "container">
+			A dangerous Ogre is threatening your village! Send your troops to eliminate this threat.</br>
+			Suggested army power: 500 </br></br>
+				<div id="BatOgreProgBar" class="progress" style="display: none;">
+				  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+					0%
+				  </div>
+				</div>
+			<button id=btnBatOgre onclick="battleOgre()"	type="button" class="btn btn-danger">Battle!</button>
+	   </div>
 	 
 	 </div>	 
 	 
@@ -304,8 +320,9 @@
     <script src="dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
  <!--   <script src="assets/js/ie10-viewport-bug-workaround.js"></script>-->
- 	<script type="text/javascript" src="scripts/buildings.js"></script>
-	<script type="text/javascript" src="scripts/main.js"></script>
+	<script type="text/javascript" src="scripts/main.js"></script>         <!--Load main script -->      
+ 	<script type="text/javascript" src="scripts/buildings.js"></script>    <!--Load building script -->
+	<script type="text/javascript" src="scripts/battle.js"></script>       <!--Load Battle script -->
 	
   </body>
   

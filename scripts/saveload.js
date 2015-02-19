@@ -1,3 +1,5 @@
+//Save and Loading Script for HW //
+
 	function saveCookie(){
 		$.cookie("gold",gold,{expires:365});
 		$.cookie("faith",faith,{expires:365});

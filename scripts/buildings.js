@@ -1,3 +1,5 @@
+//Building Script for HW//
+
 //Building variables//
 var taverns = 0;
 
