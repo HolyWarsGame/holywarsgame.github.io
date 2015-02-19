@@ -17,12 +17,11 @@ function battleOgre(number){
 			progressBar.style.display = "none";
 		} else {
 			percentComplete = percentComplete + 1;
-			console.log(percentComplete);
+//			console.log(percentComplete);
 		}
 		progressBar.setAttribute("aria-valuenow", percentComplete);
-		var setStyle = "width: " + percentComplete + "%;";
-		console.log(setStyle);
-		progressBar.style = setStyle;
+		console.log(progressBar.get);
+		progressBar.width = percentComplete+'%";
 //		console.log(progress);
 	}, 500);
 };
