@@ -266,7 +266,7 @@ window.setInterval(function(){					//Iron Generation via minors etc every second
 
 window.setInterval(function(){					//Automatically dismisses saved message
 	if(document.getElementById('saveAlert').style.display == "block"){
-		document.getElementById('saveAlert').style.display = "display: none;";
+		document.getElementById("saveAlert").style.display = "none";
 	}
 },3000);
 
