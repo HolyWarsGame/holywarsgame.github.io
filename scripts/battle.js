@@ -9,12 +9,13 @@ function calculateBattlePower(){
 function battleOgre(number){
 	var progress = 0;
 	document.getElementById('BatOgreProgBar').style.display = "block";
-	while(progress <= 99){
-		window.setInterval(function(){
-			progress = progress + 1;
-			console.log(progress);
-		}, 1000);	
-	}
+//	while(progress <= 99){
+//		window.setInterval(function(){
+//			progress = progress + 1;
+//			console.log(progress);
+//		}, 1000);	
+//	}
+
 };
 
 
