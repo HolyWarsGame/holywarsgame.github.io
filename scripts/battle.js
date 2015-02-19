@@ -10,7 +10,6 @@ function battleOgre(number){
 	var progress = 0;
 	document.getElementById('BatOgreProgBarBox').style.display = "block";
 	var go = setInterval(function() {
-		
 		if ( progress!=100) {
 			clearInterval(go);
 			document.getElementById('BatOgreProgBar').style.display = "block";
@@ -19,6 +18,7 @@ function battleOgre(number){
 			console.log(progress);
 		}
 		document.getElementById('BatOgreProgBar').setAttribute("aria-valuenow", progress);
+		console.log(progress);
 	}, 1000);
 	
 
