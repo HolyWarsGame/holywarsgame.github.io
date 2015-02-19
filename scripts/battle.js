@@ -15,7 +15,7 @@ function battleOgre(number){
 			document.getElementById('BatOgreProgBar').style.display = "block";
 		} else {
 			progress = progress + 1;
-//			console.log(progress);
+			console.log(progress);
 		}
 		document.getElementById('BatOgreProgBar').setAttribute("aria-valuenow", progress);
 //		console.log(progress);
