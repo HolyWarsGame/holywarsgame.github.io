@@ -33,6 +33,18 @@ function banditLoot(){
 				document.getElementById("justStolen").innerHTML = justStolen;
 				document.getElementById("banditLootAlert").style.display = "block";
 				banditLoot();
+				//Dismisses Save Alert
+				var ticker2 = 0 ;
+				var clearLootAlert = setInterval(function() {
+					ticker2 = ticker2 + 1;   
+						if (ticker2 == 20){
+							clearInterval(clearLootAlert);
+							if(document.getElementById('banditLootAlert').style.display == "block"){
+							document.getElementById("banditLootAlert").style.display = "none";
+						}	
+					}
+				}, 1000);	
+	    //End Dismisses Save Alert
 			}
 		  }
 		}, 1000);				
