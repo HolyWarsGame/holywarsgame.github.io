@@ -168,7 +168,6 @@
 		</div>
 		
 		<div id = "PaladinTab" class = "container" style="display: none;">
-			<hr>
 			<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-primary">Train Paladin</button>
 			<br />
 			Paladins: <span id="paladins">0</span>
@@ -177,7 +176,7 @@
 			<br /><br />
 		</div>
 		
-		<div id = "PaladinWeaponTab" class = "container">
+		<div id = "PaladinWeaponTab" class = "container" style="display: none;">
 			<button id=btnbuyWeapon onclick="btnbuyWeapon()"	type="button" class="btn btn-primary">Imbue Weapon</button>		
 			<br />
 			Weapons: <span id="weapons">0</span>
@@ -253,25 +252,25 @@
 	 
 	 
 	 <!--- ALERTS ARE HERE --->
-	<div id = openMineAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
+	<div id = openMineAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
     </div>
 	
 	
-	<div id = openBarracksAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
+	<div id = openBarracksAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> You can now <a href="javascript: toggle('openBarracksAlert');CollapseAll();toggle('Barracks')" class="alert-link">train</a> units to fight against the Evil One and his minions.   
     </div>  
 	
 	
-	<div id = openCathAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
+	<div id = openCathAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
     </div>
 
 	
-	<div id = unlockPaladinsAlert class="alert alert-warning alert-dismissible fade in" role="alert" style="display: none;">
+	<div id = unlockPaladinsAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
     </div>	

@@ -107,6 +107,7 @@
 			if(myBool == true){
 				defeatedOgre = true;
 				document.getElementById('PaladinTab').style.display = "block";
+				document.getElementById('PaladinWeaponTab').style.display = "block";   //Until a drop unlocks paladin weapon upgrade
 				document.getElementById('BatOgreProgBarBox').style.display = "none";
 				document.getElementById("btnBatOgre").disabled = true;
 				document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
