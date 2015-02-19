@@ -8,30 +8,19 @@ function calculateBattlePower(){
 
 function battleOgre(number){
 	var percentComplete = 0;
-	document.getElementById('BatOgreProgBarBox').style.display = "block";	
-	var progressBar = document.getElementById('BatOgreProgBar');
-
-	// var go = setInterval(function() {
-		// if ( percentComplete == 100) {
-			// clearInterval(go);
-			// progressBar.style.display = "none";
-		// } else {
-			// percentComplete = percentComplete + 1;
-		// }
-		// progressBar.setAttribute("aria-valuenow", percentComplete);
-		// console.log(progressBar.get);
-		// progressBar.style.width= percentComplete+'%'+';';
-	// }, 500);
-  
-  	var $bar = $(progressBar);
+	document.getElementById('BatOgreProgBarBox').style.display = "block";	  
+  	
+	var $bar = $(document.getElementById('BatOgreProgBar'));
     var progress = setInterval(function() {
       
       var currWidth = parseInt($bar.attr('aria-valuenow'));
       var maxWidth = parseInt($bar.attr('aria-valuemax'));
       
+	  percentComplete = percentComplete + 1;
+	  
 	  //update the progress
-        $bar.width(currWidth+'%');
-        $bar.attr('aria-valuenow',currWidth+10);
+        $bar.width(percentComplete +'%');
+        $bar.attr('aria-valuenow',percentComplete);
       
       //clear timer when max is reach
       if (currWidth >= maxWidth){
