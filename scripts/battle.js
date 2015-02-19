@@ -23,7 +23,7 @@ function battleOgre(number){
 		// progressBar.style.width= percentComplete+'%'+';';
 	// }, 500);
   
-  	var $bar = $('BatOgreProgBar');
+  	var $bar = $(progressBar);
     var progress = setInterval(function() {
       
       var currWidth = parseInt($bar.attr('aria-valuenow'));
