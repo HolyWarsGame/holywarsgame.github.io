@@ -132,8 +132,8 @@
 			var myBool = ($.cookie("defeatedBandits") == "true")
 			if(myBool == true){
 				defeatedBandits = true;
-//				document.getElementById('unlockCathAlert').style.display = "block";
 				document.getElementById('BatBanditsProgBarBox').style.display = "none";
+				document.getElementById('FaithStructuresTab').style.display = "block";				
 				document.getElementById("btnBatBandits").disabled = true;
 				document.getElementById("btnBatBandits").innerHTML = "Bandits Defeated!";
 				defeatedBandits = true;
