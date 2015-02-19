@@ -12,6 +12,7 @@ var faithpersec = 0;
 var soulspersec = 0;
 var ironpersec = 0;
 var totalTimePlayed = 0;
+var tTPinHHMMSS = 0;
 
 //Unit Variables//
 var peasants = 0;
@@ -272,6 +273,8 @@ window.setInterval(function(){					//Enables/disables buttons
 
 window.setInterval(function(){					//Increases totalTimePlayed by 1 second per second 
 	totalTimePlayed = totalTimePlayed + 1;
+	tTPinHHMMSS = totalTimePlayed.toHHMMSS();
+	document.getElementById("tTPinHHMMSS").innerHTML = tTPinHHMMSS;
 }, 1000);
 
 Number.prototype.toFixedDown = function(digits) {
@@ -279,4 +282,17 @@ Number.prototype.toFixedDown = function(digits) {
         m = this.toString().match(re);
     return m ? parseFloat(m[1]) : this.valueOf();
 };
+
+String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    var time    = hours+':'+minutes+':'+seconds;
+    return time;
+}
 
