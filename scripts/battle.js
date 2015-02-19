@@ -21,6 +21,7 @@ function battleOgre(number){
 	  //update the progress
         $bar.width(percentComplete +'%');
         $bar.attr('aria-valuenow',percentComplete);
+		$bar.text(percentComplete+'%');
       
       //clear timer when max is reach
       if (currWidth >= maxWidth){
