@@ -15,18 +15,19 @@ function calculateBattlePower(){
 
 function banditLoot(){
 	if(defeatedBandits == false){
-		var raidtime = Math.floor((Math.random() * 90) + 60); ;
+		var raidtime = Math.floor((Math.random() * 90) + 30); ;
 		console.log("Raidtime in: " + raidtime)
-		var ticker = 0;
+		var ticker = raidtime;
+		
 		var raid = setInterval(function() {
-			ticker = ticker + 1;  
+			ticker = ticker - 1;  
 			console.log(ticker);
-		  if (ticker == raidtime){
+		  if (ticker == 0){
 			clearInterval(raid);
 			goldStolen = goldStolen + Math.ceil(gold*1/3);
 			gold = Math.ceil(gold*2/3);
 			document.getElementById("goldStolen").innerHTML = goldStolen;
-			document.getElementById('banditLootAlert').style.display == "block"
+			document.getElementById('banditLootAlert').style.display == "block";
 			banditLoot();
 		  }
 		}, 1000);				
