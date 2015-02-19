@@ -6,8 +6,7 @@ var defeatedOgre = false;
 var BattlePower = 0;
 
 function calculateBattlePower(){
-	BattlePower = BattlePower + personPage * 10;
-	BattlePower = BattlePower + paladins * 1000;
+	BattlePower =  (personPage * 10) + (paladins * 1000) * (1.5*weapons);
 	document.getElementById("BattlePower").innerHTML = BattlePower;
 };
 

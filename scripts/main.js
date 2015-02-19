@@ -18,7 +18,9 @@ var tavernpeasants = 0;			//Tavern generated peasants
 var miners = 0;
 var tavernminers = 0;			//Tavern generated miners
 var personPage = 0;
+var priests = 0;
 var paladins = 0;
+var weapons = 0;
 
 //Status Variables//
 var minesOpened = false;
@@ -83,7 +85,7 @@ function buyMiner(){
 };
 
 
-var priests = 0;
+
 function buyPriest(){
     var PriestCost = Math.floor(1000 * Math.pow(1.3,priests));     //works out the cost of this Priest
     if(gold >= PriestCost){                                   //checks that the player can afford the Priest
@@ -122,7 +124,7 @@ function buyPaladin(){
     document.getElementById('PaladinCost').innerHTML = nextPaladinCost;  //updates the Paladin cost for the user
 };
 
-var weapons = 0;
+
 
 function buyWeapon(){
     var WeaponCost = Math.floor(1000 * Math.pow(1.1,weapons));     //works out the cost of this weapon
