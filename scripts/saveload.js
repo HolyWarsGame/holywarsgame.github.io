@@ -101,6 +101,7 @@
 			paladins = parseInt($.cookie("paladins"));
 			document.getElementById("paladins").innerHTML = paladins;
 		}
+		console.log("Your cookies have been cleared.")
 	};
 	
 	function hardReset(){
@@ -125,4 +126,8 @@
 			location.reload(false);
 		}
 	};
+	
+window.setInterval(function(){					//Autosaves every minute
+	saveCookie();
+}, 60000);
 			
