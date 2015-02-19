@@ -33,9 +33,8 @@ function banditLoot(){
 	};
 };
 
-window.setInterval(function(){					//Triggers bandit looting
-	banditLoot();
-}, 30000);
+
+setTimeout(function() { banditLoot(); }, 30000);//Triggers bandit looting
 
 function battleBandits(){
 	var percentComplete = 0;
