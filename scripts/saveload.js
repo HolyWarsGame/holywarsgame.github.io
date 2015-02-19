@@ -133,7 +133,7 @@
 			if(myBool == true){
 				defeatedBandits = true;
 				document.getElementById('unlockCathAlert').style.display = "block";
-				document.getElementById('BatBanditProgBarBox').style.display = "none";
+				document.getElementById('BatBanditsProgBarBox').style.display = "none";
 				document.getElementById("btnBatBandits").disabled = true;
 				document.getElementById("btnBatBandits").innerHTML = "Bandits Defeated!";
 				defeatedBandits = true;
