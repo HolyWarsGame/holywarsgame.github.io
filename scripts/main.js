@@ -11,6 +11,7 @@ var goldpersec = 0;
 var faithpersec = 0;
 var soulspersec = 0;
 var ironpersec = 0;
+var totalTimePlayed = 0;
 
 //Unit Variables//
 var peasants = 0;
@@ -269,6 +270,9 @@ window.setInterval(function(){					//Enables/disables buttons
 	UpdateButtons();
 }, 10);
 
+window.setInterval(function(){					//Increases totalTimePlayed by 1 second per second 
+	totalTimePlayed = totalTimePlayed + 1;
+}, 1000);
 
 Number.prototype.toFixedDown = function(digits) {
     var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),

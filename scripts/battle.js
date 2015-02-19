@@ -25,13 +25,15 @@ function banditLoot(){
 			console.log(ticker);
 		  if (ticker == 0){
 			clearInterval(raid);
-			justStolen =  Math.ceil(gold*1/3);
-			goldStolen = goldStolen + justStolen;
-			gold = gold - justStolen;
-			document.getElementById("goldStolen").innerHTML = goldStolen;
-			document.getElementById("justStolen").innerHTML = justStolen;
-			document.getElementById("banditLootAlert").style.display = "block";
-			banditLoot();
+			if(defeatedBandits == false){
+				justStolen =  Math.ceil(gold*1/3);
+				goldStolen = goldStolen + justStolen;
+				gold = gold - justStolen;
+				document.getElementById("goldStolen").innerHTML = goldStolen;
+				document.getElementById("justStolen").innerHTML = justStolen;
+				document.getElementById("banditLootAlert").style.display = "block";
+				banditLoot();
+			}
 		  }
 		}, 1000);				
 	};

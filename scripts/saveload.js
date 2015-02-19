@@ -7,6 +7,7 @@
 		$.cookie("souls",souls,{expires:365});
 		$.cookie("iron",iron,{expires:365});
 		$.cookie("goldStolen",goldStolen,{expires:365});
+		$.cookie("totalTimePlayed",totalTimePlayed,{expires:365});
 		//Unit variables
 		$.cookie("peasants",peasants,{expires:365});
 		$.cookie("miners",miners,{expires:365});
@@ -70,7 +71,12 @@
 		if($.cookie("iron") != null){
 			iron = parseInt($.cookie("iron"));
 			document.getElementById("iron").innerHTML = iron;
-		}			
+		}
+		if($.cookie("totalTimePlayed") != null){
+			totalTimePlayed = parseInt($.cookie("totalTimePlayed"));
+			document.getElementById("totalTimePlayed").innerHTML = totalTimePlayed;
+		}
+		
 		if($.cookie("peasants") != null){
 			peasants = parseInt($.cookie("peasants"));
 			document.getElementById("peasants").innerHTML = peasants;
