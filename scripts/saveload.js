@@ -106,6 +106,7 @@
 			var myBool = ($.cookie("defeatedOgre") == "true")
 			if(myBool == true){
 				defeatedOgre = true;
+				document.getElementById('PaladinTab').style.display = "block";
 				document.getElementById('BatOgreProgBarBox').style.display = "none";
 				document.getElementById("btnBatOgre").disabled = true;
 				document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
