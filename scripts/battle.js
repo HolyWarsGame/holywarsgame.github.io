@@ -17,7 +17,7 @@ function battleOgre(number){
 		} else {
 			progress = progress + 1;
 		}
-		document.getElementById(elem).setAttribute("aria-valuenow", progress);
+		document.getElementById('BatOgreProgBar').setAttribute("aria-valuenow", progress);
 	}, 1000);
 	
 
