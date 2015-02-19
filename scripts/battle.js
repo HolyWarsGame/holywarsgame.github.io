@@ -30,7 +30,7 @@ function battleOgre(number){
       if (currWidth >= maxWidth){
         clearInterval(progress);
 		$bar.text("Complete!");
-		document.getElementById('unlockPaladinsAlert').style.display = "none";
+		document.getElementById('unlockPaladinsAlert').style.display = "block";
 		document.getElementById('PaladinTab').style.display = "block";		
 		document.getElementById('BatOgreProgBarBox').style.display = "none";
 		document.getElementById("btnBatOgre").disabled = true;
