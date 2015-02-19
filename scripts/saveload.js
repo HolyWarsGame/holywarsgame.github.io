@@ -41,6 +41,7 @@
 	//	console.debug($.cookie("gold"));
 		if($.cookie("gold") != null){
 			gold = parseInt($.cookie("gold"));
+			document.getElementById("gold").innerHTML = gold;
 		}
 		if($.cookie("faith") != null){
 			faith = parseInt($.cookie("faith"));

@@ -8,18 +8,20 @@ function calculateBattlePower(){
 
 function battleOgre(number){
 	var progress = 0;
+	val progressBar = document.getElementById('BatOgreProgBar');
 	document.getElementById('BatOgreProgBarBox').style.display = "block";
+	
 	var go = setInterval(function() {
 		if ( progress == 100) {
 			clearInterval(go);
-			document.getElementById('BatOgreProgBar').style.display = "block";
+			progressBar.style.display = "none";
 		} else {
 			progress = progress + 1;
 			console.log(progress);
 		}
-		document.getElementById('BatOgreProgBar').setAttribute("aria-valuenow", progress);
+		progressBar.setAttribute("aria-valuenow", progress);
 //		console.log(progress);
-	}, 1000);
+	}, 500);
 	
 
 };
