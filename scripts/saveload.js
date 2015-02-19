@@ -13,7 +13,8 @@
 		$.cookie("minesOpened",minesOpened,{expires:365});
 		$.cookie("cathedralOpened",cathedralOpened,{expires:365});
 		$.cookie("barracksOpened",barracksOpened,{expires:365});
-		alert("Your game has been saved!");
+//		alert("Your game has been saved!");
+		document.getElementById('saveAlert').style.display = "block";
 	};
 	
 	function deleteCookie(){
