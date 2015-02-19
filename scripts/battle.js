@@ -27,7 +27,7 @@ function banditLoot(){
 			clearInterval(raid);
 			justStolen =  Math.ceil(gold*1/3);
 			goldStolen = goldStolen + justStolen;
-			gold = gold - justStole;
+			gold = gold - justStolen;
 			document.getElementById("goldStolen").innerHTML = goldStolen;
 			document.getElementById("justStolen").innerHTML = justStolen;
 			document.getElementById("banditLootAlert").style.display = "block";
