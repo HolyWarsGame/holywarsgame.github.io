@@ -1,9 +1,14 @@
 //Battle script for HW//
+
+//Battle variables needed to be saved//
+var defeatedOgre = false;
+
 var BattlePower = 0;
 
 function calculateBattlePower(){
 	BattlePower = BattlePower + personPage * 10;
 	BattlePower = BattlePower + paladins * 1000;
+	document.getElementById("BattlePower").innerHTML = BattlePower;
 };
 
 function battleOgre(number){
@@ -26,8 +31,10 @@ function battleOgre(number){
       if (currWidth >= maxWidth){
         clearInterval(progress);
 		$bar.text("Complete!");
-		document.getElementById("btnBatOgre").disabled = false;
+		document.getElementById('BatOgreProgBarBox').style.display = "none";
+		document.getElementById("btnBatOgre").disabled = true;
 		document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
+		defeatedOgre = true;
       }
       
     }, 500);
@@ -35,8 +42,8 @@ function battleOgre(number){
 
 };
 
-//function incrementProgBar(elem, percentComplete){
-//	document.getElementById(elem).setAttribute("aria-valuenow", percentComplete);
-//};
+window.setInterval(function(){					//Enables/disables buttons 
+	calculateBattlePower();
+}, 100);
 
 

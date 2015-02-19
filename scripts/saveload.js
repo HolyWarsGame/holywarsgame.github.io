@@ -1,10 +1,12 @@
 //Save and Loading Script for HW //
 
 	function saveCookie(){
+		//Currency variables
 		$.cookie("gold",gold,{expires:365});
 		$.cookie("faith",faith,{expires:365});
 		$.cookie("souls",souls,{expires:365});
 		$.cookie("iron",iron,{expires:365});
+		//Unit variables
 		$.cookie("peasants",peasants,{expires:365});
 		$.cookie("miners",miners,{expires:365});
 		$.cookie("personPage",personPage,{expires:365});
@@ -12,28 +14,21 @@
 		$.cookie("taverns",taverns,{expires:365});
 		$.cookie("priests",priests,{expires:365});
 		$.cookie("paladins",paladins,{expires:365});
+		//Building flags
 		$.cookie("minesOpened",minesOpened,{expires:365});
 		$.cookie("cathedralOpened",cathedralOpened,{expires:365});
 		$.cookie("barracksOpened",barracksOpened,{expires:365});
-//		alert("Your game has been saved!");
+		//Battle flags
+		$.cookie("defeatedOgre",defeatedOgre,{expires:365});
+		
 		document.getElementById('saveAlert').style.display = "block";
 	};
 	
 	function deleteCookie(){
-		$.removeCookie("gold");
-		$.removeCookie("faith");			
-		$.removeCookie("souls");
-		$.removeCookie("iron");		
-		$.removeCookie("peasants");
-		$.removeCookie("miners");
-		$.removeCookie("personPage")
-		$.removeCookie("tavernpeasants");			
-		$.removeCookie("taverns");
-		$.removeCookie("priests");
-		$.removeCookie("paladins");
-		$.removeCookie("minesOpened");
-		$.removeCookie("barracksOpened");
-		$.removeCookie("cathedralOpened");
+		var cookies = $.cookie();
+		for(var cookie in cookies) {
+		   $.removeCookie(cookie);
+		}
 		console.log("Your cookies have been cleared.")
 	};
 	
@@ -106,6 +101,17 @@
 			paladins = parseInt($.cookie("paladins"));
 			document.getElementById("paladins").innerHTML = paladins;
 		}
+		
+		if($.cookie("defeatedOgre") != null){
+			var myBool = ($.cookie("defeatedOgre") == "true")
+			if(myBool == true){
+				defeatedOgre = true;
+				document.getElementById('BatOgreProgBarBox').style.display = "none";
+				document.getElementById("btnBatOgre").disabled = true;
+				document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
+			}
+		}	
+		
 		console.log("Your cookies have been loaded.")
 	};
 	
@@ -115,19 +121,6 @@
 		answer = confirm("Are you sure you want to hard reset? You will LOSE ALL YOUR DATA!");
 		if(answer == true){
 			deleteCookie();
-			gold = 0;
-			souls = 0;
-			iron = 0;
-			faith = 0;
-			peasants = 0;
-			miners = 0;
-			minesOpened = false;
-			barracksOpened = false;
-			cathedralOpened = false;
-			tavernpeasants = 0;
-			paladins = 0;
-			priests = 0;
-			weapons = 0;
 			location.reload(false);
 		}
 	};
