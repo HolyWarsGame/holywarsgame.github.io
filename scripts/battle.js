@@ -7,23 +7,21 @@ function calculateBattlePower(){
 };
 
 function battleOgre(number){
-	var progress = 0;
+	var percentComplete = 0;
+	document.getElementById('BatOgreProgBarBox').style.display = "block";	
 	val progressBar = document.getElementById('BatOgreProgBar');
-	document.getElementById('BatOgreProgBarBox').style.display = "block";
-	
+
 	var go = setInterval(function() {
-		if ( progress == 100) {
+		if ( percentComplete == 100) {
 			clearInterval(go);
 			progressBar.style.display = "none";
 		} else {
-			progress = progress + 1;
-			console.log(progress);
+			percentComplete = percentComplete + 1;
+			console.log(percentComplete);
 		}
-		progressBar.setAttribute("aria-valuenow", progress);
+		progressBar.setAttribute("aria-valuenow", percentComplete);
 //		console.log(progress);
 	}, 500);
-	
-
 };
 
 //function incrementProgBar(elem, percentComplete){
