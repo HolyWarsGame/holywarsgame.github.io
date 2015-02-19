@@ -6,6 +6,7 @@
 		$.cookie("faith",faith,{expires:365});
 		$.cookie("souls",souls,{expires:365});
 		$.cookie("iron",iron,{expires:365});
+		$.cookie("goldStolen",goldStolen,{expires:365});
 		//Unit variables
 		$.cookie("peasants",peasants,{expires:365});
 		$.cookie("miners",miners,{expires:365});
@@ -52,6 +53,12 @@
 			gold = parseInt($.cookie("gold"));
 			document.getElementById("gold").innerHTML = gold;
 		}
+		
+		if($.cookie("goldStolen") != null){
+			goldStolen = parseInt($.cookie("goldStolen"));
+			document.getElementById("goldStolen").innerHTML = goldStolen;
+		}
+		
 		if($.cookie("faith") != null){
 			faith = parseInt($.cookie("faith"));
 			document.getElementById("faith").innerHTML = faith;

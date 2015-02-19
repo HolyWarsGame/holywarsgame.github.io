@@ -3,6 +3,7 @@
 //Battle variables needed to be saved//
 var defeatedBandits = false;
 var defeatedOgre = false;
+var goldStolen = 0;
 
 var BattlePower = 0;
 
@@ -10,6 +11,29 @@ function calculateBattlePower(){
 	BattlePower =  (personPage * 10) + (paladins * 1000) * (1.5*(weapons+1));
 	document.getElementById("BattlePower").innerHTML = BattlePower;
 };
+
+function banditLoot(){
+	if(defeatedBandits == false){
+		var raidtime = Math.floor((Math.random() * 90) + 60); ;
+		console.log("Raidtime in: " + raidtime)
+		var ticker = 0;
+		var raid = setInterval(function() {
+			ticker = ticker + 1;  
+			console.log(ticker);
+		  if (ticker == raidtime){
+			clearInterval(raid);
+			goldStolen = goldStolen + Math.ceil(gold*1/3);
+			gold = Math.ceil(gold*2/3);
+			document.getElementById("goldStolen").innerHTML = goldStolen;
+			document.getElementById('banditLootAlert').style.display == "block"	
+		  }
+		}, 1000);				
+	};
+};
+
+window.setInterval(function(){					//Triggers bandit looting
+	banditLoot();
+}, 30000);
 
 function battleBandits(){
 	var percentComplete = 0;
@@ -74,7 +98,7 @@ function battleOgre(){
     }, 500);
 };
 
-window.setInterval(function(){					//Enables/disables buttons 
+window.setInterval(function(){					//Calculates Battle Power 
 	calculateBattlePower();
 }, 100);
 

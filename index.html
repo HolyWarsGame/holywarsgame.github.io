@@ -76,9 +76,9 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a id="displayResourceOpt" data-toggle="collapse" href="#Resources" aria-expanded="true" aria-controls="Resources">Toggle Resources</a></li>
-                  <li><a id="save" href="javascript:saveCookie();">Save Cookie</a></li>
-                  <li><a id="load" href="javascript:loadCookie()">Load Cookie</a></li>
-				  <li><a id="delete" href="javascript:deleteCookie()">Delete Cookie</a></li>
+                  <li><a id="save" href="javascript:saveCookie();">Save</a></li>
+                  <li><a id="load" href="javascript:loadCookie()">Load</a></li>
+				  <li><a id="delete" href="javascript:deleteCookie()">Clear Cookies</a></li>
 				  <li class="divider"></li>
 				  <li><a id="debugmoney" href="javascript:debugCurrency()">Add debugging currency</a></li>
                   <li class="divider"></li>
@@ -208,8 +208,8 @@
 			<br /><br />
 		</div>
 		
-		<div id = "FaithStructuresTab" class = "container" style="display: none;"">
-			<button id=btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-warning">Build Cathedral</button>
+		<div id = "FaithStructuresTab" class = "container" style="display: none;">
+			<button id = btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-warning">Build Cathedral</button>
 			<br />
 			Opening the mine costs 10000 gold and 500 iron.
 			<br />	
@@ -295,6 +295,11 @@
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
     </div>	
+	
+	<div id = banditLootAlert class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;">
+<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+        <strong>Oh No!!</strong> Bandits come and raid <span id="goldStolen">0</span>g from your gold supply! Maybe you should try getting <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">rid!</a> of them?   
+    </div>		
 
 	
 	<div id = saveAlert class="alert alert-success fade in" role="alert" style="display: none;">
