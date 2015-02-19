@@ -15,17 +15,19 @@ function battleOgre(number){
       
       var currWidth = parseInt($bar.attr('aria-valuenow'));
       var maxWidth = parseInt($bar.attr('aria-valuemax'));
-      
-	  percentComplete = percentComplete + 1;
-	  
+      	  
 	  //update the progress
         $bar.width(percentComplete +'%');
         $bar.attr('aria-valuenow',percentComplete);
 		$bar.text(percentComplete+'%');
-      
+		percentComplete = percentComplete + 1;   
+		
       //clear timer when max is reach
       if (currWidth >= maxWidth){
         clearInterval(progress);
+		$bar.text("Complete!");
+		document.getElementById("btnBatOgre").disabled = false;
+		document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
       }
       
     }, 500);
