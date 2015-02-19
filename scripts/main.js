@@ -146,6 +146,13 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnbuyPeasant").disabled = false;
 	}
+
+	if(gold < document.getElementById('MinerCost').innerHTML){	
+		document.getElementById("btnbuyMiner").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyMiner").disabled = false;
+	}
 	
 	//Enable/disables buy priest button depending on if there is enough currency
 	if(gold < document.getElementById('PriestCost').innerHTML){	
@@ -198,7 +205,7 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnOpenMines").disabled = false
 	}
-
+	
 	//Changes status of the building barracks button
 	if(barracksOpened){
 		document.getElementById("btnOpenBarracks").disabled = true
