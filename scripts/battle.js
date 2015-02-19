@@ -21,7 +21,7 @@ function battleOgre(number){
 		}
 		progressBar.setAttribute("aria-valuenow", percentComplete);
 		console.log(progressBar.get);
-		progressBar.width(percentComplete+'%");
+		progressBar.width(percentComplete+'%');
 //		console.log(progress);
 	}, 500);
 };
