@@ -4,6 +4,7 @@
 var defeatedBandits = false;
 var defeatedOgre = false;
 var goldStolen = 0;
+var justStolen = 0;
 
 var Raidtime = 0;
 var BattlePower = 0;
@@ -24,9 +25,11 @@ function banditLoot(){
 			console.log(ticker);
 		  if (ticker == 0){
 			clearInterval(raid);
-			goldStolen = goldStolen + Math.ceil(gold*1/3);
-			gold = Math.ceil(gold*2/3);
+			justStolen =  Math.ceil(gold*1/3);
+			goldStolen = goldStolen + justStolen;
+			gold = gold - justStole;
 			document.getElementById("goldStolen").innerHTML = goldStolen;
+			document.getElementById("justStolen").innerHTML = justStolen;
 			document.getElementById("banditLootAlert").style.display = block";
 			banditLoot();
 		  }
