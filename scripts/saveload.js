@@ -19,13 +19,14 @@
 		$.cookie("cathedralOpened",cathedralOpened,{expires:365});
 		$.cookie("barracksOpened",barracksOpened,{expires:365});
 		//Battle flags
-		$.cookie("defeatedOgre",defeatedOgre,{expires:365});
+		$.cookie("defeatedOgre",defeatedOgre,{expires:365}); 
+		$.cookie("defeatedBandits",defeatedBandits,{expires:365});
 		
-		document.getElementById('saveAlert').style.display = "block";
+		document.getElementById('saveAlert').style.display = "block";  //Displays saved alert
 		
+		//Dismisses Save Alert
 		var ticker = 0 ;
 		var clearSave = setInterval(function() {
-    	  
 			ticker = ticker + 1;   
 		  if (ticker == 5){
 			clearInterval(clearSave);
@@ -33,8 +34,8 @@
 				document.getElementById("saveAlert").style.display = "none";
 			}	
 		  }
-		  console.log(ticker);
-		}, 1000);			
+		}, 1000);	
+	    //End Dismisses Save Alert
 	};
 	
 	function deleteCookie(){
@@ -126,6 +127,18 @@
 				document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
 			}
 		}	
+
+		if($.cookie("defeatedBandits") != null){
+			var myBool = ($.cookie("defeatedBandits") == "true")
+			if(myBool == true){
+				defeatedBandits = true;
+				document.getElementById('unlockCathAlert').style.display = "block";
+				document.getElementById('BatBanditProgBarBox').style.display = "none";
+				document.getElementById("btnBatBandits").disabled = true;
+				document.getElementById("btnBatBandits").innerHTML = "Bandits Defeated!";
+				defeatedBandits = true;
+			}
+		}			
 		
 		console.log("Your cookies have been loaded.")
 	};

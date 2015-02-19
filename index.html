@@ -208,7 +208,7 @@
 			<br /><br />
 		</div>
 		
-		<div id = "FaithStructuresTab" class = "container">
+		<div id = "FaithStructuresTab" class = "container" style="display: none;"">
 			<button id=btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-warning">Build Cathedral</button>
 			<br />
 			Opening the mine costs 10000 gold and 500 iron.
@@ -234,6 +234,18 @@
 	   
 	   <div id="BattleStrength" class = "container">
 			<p> Current Army strength: <span id = "BattlePower">0</span> power </p> <br /><br />
+	   </div>
+
+	   <div id="BatBandits" class = "container">
+		<p>A Pack of Bandits</p>
+		A bandit camp sits on the outskirts of your village. Bandits occasionally raid your village and do dastardly things like looting and pillaging your poor peasants. You should probably stop them.<br />
+		Suggested army power: 100 <br /><br />
+			<div id="BatBanditsProgBarBox" class="progress" style="display: none;">
+			  <div id="BatBanditsProgBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+				0%
+			  </div>
+			</div>
+		<button id=btnBatBandits onclick="battleBandits()"	type="button" class="btn btn-danger">Battle!</button>
 	   </div>
 	   
 	   <div id="BatOgre" class = "container">
@@ -269,6 +281,11 @@
         <strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
     </div>
 
+	<div id = unlockCathAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>New!</strong> You successfully chase out the bandits hounding your village. As you raze their camp to make sure they don't return, you find plans for an elaborate  <a href="javascript: toggle('unlockCathAlert');CollapseAll();toggle('Structures')" class="alert-link">Cathedral</a>. 
+		 These bandits sure do have funny taste in loot.
+    </div>		
 	
 	<div id = unlockPaladinsAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

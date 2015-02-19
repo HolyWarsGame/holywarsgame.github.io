@@ -264,14 +264,6 @@ window.setInterval(function(){					//Iron Generation via minors etc every second
 	mineClick(miners);
 },1000);
 
-/* window.setInterval(function(){					//Automatically dismisses saved message
-	if(document.getElementById('saveAlert').style.display == "block"){
-		document.getElementById("saveAlert").style.display = "none";
-	}
-},5000); */
-
-
-
 
 window.setInterval(function(){					//Enables/disables buttons 
 	UpdateButtons();
