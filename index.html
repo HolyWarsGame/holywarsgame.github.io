@@ -246,7 +246,6 @@
 			  </div>
 			</div>
 		<button id=btnBatBandits onclick="battleBandits()"	type="button" class="btn btn-danger">Battle!</button>
-		<button id=togglebanditalert onclick="toggle(banditLootAlert)"	type="button" class="btn btn-danger">ToggleAlert!</button>
 		<br />
 		<br />
 	   </div>
@@ -297,7 +296,7 @@
         <strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
     </div>	
 	
-	<div id = banditLootAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+	<div id = banditLootAlert class="alert alert-danger fade in" role="alert" style="display: block;">
 <!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
         <strong>Oh No!!</strong> Bandits come and raid from your gold supply! Maybe you should try getting <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">getting rid</a> of them?   
     </div>		
