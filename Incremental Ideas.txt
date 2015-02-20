@@ -96,12 +96,14 @@ Everytime Evil One is defeated - you get one purified essence and unlocks presti
 Prestige Shop - uses boss currency
 
 
-Issues to Address Later:
+Issues:
+========================
 
-Saving Data
-Collection of gold/minerals for upgrades (i.e. weapons, armor, boss drops)
+- Collection of gold/minerals for upgrades (i.e. weapons, armor, boss drops)
 
-Magic casting unit collects gold
+- Magic casting unit collects gold
+
+- Training page button causing iron currency to briefly change to gold amount
 
 
 
