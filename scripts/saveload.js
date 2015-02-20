@@ -158,7 +158,7 @@
 			var myBool = ($.cookie("squiresUnlocked") == "true")
 			if(myBool == true){
 				squiresUnlocked = true;
-				document.getElementById("squiresUnlocked").disabled = true;
+				document.getElementById("btnSquireUpgrade").disabled = true;
 				document.getElementById('SquireTab').style.display = "block";
 			}
 		}		
