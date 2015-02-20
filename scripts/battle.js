@@ -6,7 +6,7 @@ var defeatedOgre = false;
 var defeatedHhounds = false;
 var goldStolen = 0;
 var justStolen = 0;
-var typeKilled		//HHound statistic
+var typeKilled = "none"	//HHound statistic
 var justKilled = 0;		//HHound statistic
 var peasantsKilled = 0; //HHound statistic
 var minersKilled = 0;
@@ -173,7 +173,7 @@ function hellHoundRaid(){
 
 function hellhoundCull(){
 	var flipCoin = Math.floor(Math.random()*10+1);    //Determining which unit gets killed
-	console.log(flipCoin);
+//	console.log(flipCoin);
 		if(flipCoin%2 == 0){
 			typeKilled = "peasants";
 			document.getElementById("typeKilled").innerHTML = typeKilled;
