@@ -161,8 +161,8 @@
 				defeatedBandits = true;
 				document.getElementById('BatBanditsProgBarBox').style.display = "none";
 				document.getElementById('FaithStructuresTab').style.display = "block";				
-				document.getElementById("btnBatBandits").disabled = true;
 				document.getElementById("btnBatBandits").innerHTML = "Bandits Defeated!";
+				document.getElementById("btnBatBandits").disabled = true;
 				defeatedBandits = true;
 			}
 		}			

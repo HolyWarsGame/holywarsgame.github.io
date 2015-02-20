@@ -253,9 +253,9 @@ function UpdateButtons() {
 	
 	//Changes status of Battle Buttons
 		//Bandit Button
-	if(BattlePower < 100){
+	if(BattlePower < 100 || defeatedBandits == true){
 		document.getElementById("btnBatBandits").disabled = true;		
-	}
+	}		
 	else{
 		document.getElementById("btnBatBandits").disabled = false;
 	}
