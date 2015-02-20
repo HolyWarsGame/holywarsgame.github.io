@@ -307,10 +307,8 @@ function UpdateButtons() {
 		document.getElementById("btnbuyWeapon").disabled = false;
 	}
 	
-	
-	
 	//Unlock Squire Button
-	if(squiresUnlocked == false || (BattlePower < 120|| gold < 4000)){	
+	if(squiresUnlocked == true || (BattlePower < 120|| gold < 4000)){	
 		document.getElementById("btnPageUpgrade1").disabled = true;
 	}
 	else{
