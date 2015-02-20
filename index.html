@@ -28,6 +28,10 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="scripts/saveload.js"></script>
+	
 	<script language="javascript"> 
 	function toggle(elementId) {
 		var ele = document.getElementById(elementId);
@@ -39,12 +43,11 @@
 		}
 	} 
 	
-	$('a[data-toggle=popover]').popover();
-	
+	$(function () { 
+		$("[data-toggle='popover']").popover(); 
+	});
 	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
-	<script type="text/javascript" src="scripts/saveload.js"></script>
+	
   </head>
 
   <body>
