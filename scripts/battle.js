@@ -135,7 +135,8 @@ function battleOgre(){
 
 function triggerHellhound(){
 	document.getElementById('hellhoundUnlockAlert').style.display = "block";
-	helHoundRaid();
+	document.getElementById('BatHellhound').style.display = "block";
+	hellHoundRaid();
 }
 
 function hellHoundRaid(){
