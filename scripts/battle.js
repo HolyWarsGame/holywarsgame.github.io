@@ -173,7 +173,6 @@ function hellHoundRaid(){
 
 function hellhoundCull(){
 	var flipCoin = Math.floor(Math.random()*10+1);    //Determining which unit gets killed
-//	console.log(flipCoin);
 		if(flipCoin%2 == 0){
 			typeKilled = "peasants";
 			document.getElementById("typeKilled").innerHTML = typeKilled;
@@ -193,7 +192,8 @@ function hellhoundCull(){
 			minersKilled = minersKilled + justKilled;
 			document.getElementById("miners").innerHTML = miners;
 			document.getElementById('hellHoundAttackAlert').style.display = "block"
-		}	
+		}
+		recalculateCosts();
 };
 
 function battleHellhound(){
