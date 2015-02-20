@@ -173,7 +173,7 @@ function hellHoundRaid(){
 
 function hellhoundCull(){
 	var flipCoin = Math.random()*10+1;    //Determining which unit gets killed
-	console.log(flipCoin))
+	console.log(flipCoin);
 		if(flipCoin%2 == 0){
 			typeKilled = "peasants";
 			document.getElementById("typeKilled").innerHTML = typeKilled;
