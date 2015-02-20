@@ -25,7 +25,8 @@ var paladins = 0;
 var weapons = 0;
 
 //Status Variables//
-var pGoldClickUpgrade = false;
+var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade 
+var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
 var minesOpened = false;
 var cathedralOpened = false;
 var barracksOpened = false;
@@ -142,7 +143,17 @@ function upgradeClickGoldMultiplier(){
 		document.getElementById('gold').innerHTML = gold;
 		document.getElementById("clickGoldUpgrade").disabled = true;
 	}
+};
 
+function minerUpgradePanning(){
+	if(gold >= 3500 && iron >= 1000){
+		gold = gold - 3500;
+		iron = iron - 1000;
+		mPanningUpgrade = true;	
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById('iron').innerHTML = gold;
+		document.getElementById("btnminerUpgrade1").disabled = true;
+	}	
 };
 
 function buyWeapon(){
@@ -160,6 +171,8 @@ function buyWeapon(){
 
 
 function UpdateButtons() {
+	
+	//Unit Buttons //
 	//Enable/disables buy peasant button depending on if there is enough currency
 	if(gold < document.getElementById('PeasantCost').innerHTML){	
 		document.getElementById("btnbuyPeasant").disabled = true;
@@ -167,7 +180,7 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnbuyPeasant").disabled = false;
 	}
-
+	//Enable/disables buy miner button depending on if there is enough currency
 	if(gold < document.getElementById('MinerCost').innerHTML){	
 		document.getElementById("btnbuyMiner").disabled = true;
 	}
@@ -198,15 +211,10 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnbuyPaladin").disabled = false;
 	}	
-	
-	//Enable/disables buy imbue weapon button depending on if there is enough currency
-	if(faith < document.getElementById('WeaponCost').innerHTML){	
-		document.getElementById("btnbuyWeapon").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyWeapon").disabled = false;
-	}
 
+	// End of Unit Buttons//
+	
+	//Structure Buttons
 	//Enable/disables buy tavern button depending on if there is enough currency
 	if(gold < document.getElementById('TavernCost').innerHTML){	
 		document.getElementById("btnbuyTavern").disabled = true;
@@ -250,6 +258,21 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnOpenCathedral").disabled = false
 	}
+	//End of Structure Buttons
+	
+	
+	//Upgrade Buttons//
+	//Enable/disables buy imbue weapon button depending on if there is enough currency
+	if(faith < document.getElementById('WeaponCost').innerHTML){	
+		document.getElementById("btnbuyWeapon").disabled = true;
+	}
+	else{
+		document.getElementById("btnbuyWeapon").disabled = false;
+	}
+	
+	
+	//End of Upgrade Buttons//
+	
 	
 	//Changes status of Battle Buttons
 		//Bandit Button
@@ -266,7 +289,7 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnBatOgre").disabled = false;
 	}
-
+	//End of Battle Buttons
 }
 
 window.setInterval(function(){                                 //Update per second counts
@@ -290,7 +313,12 @@ window.setInterval(function(){					//Soul generation via paladins etc every seco
 }, 1000);
 
 window.setInterval(function(){					//Gold generation via peasants etc every second
-	goldClick(peasants);
+	var number = peasants;
+	if(mPanningUpgrade == true)
+	{
+		number = number + miners;
+	}
+	goldClick(number);
 }, 1000);
 
 window.setInterval(function(){					//Faith Generation via priests etc every second

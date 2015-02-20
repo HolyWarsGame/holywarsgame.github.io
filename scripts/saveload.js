@@ -24,7 +24,8 @@
 		$.cookie("defeatedOgre",defeatedOgre,{expires:365}); 
 		$.cookie("defeatedBandits",defeatedBandits,{expires:365});
 		//Upgradeflags
-		$.cookie("pGoldClickUpgrade",pGoldClickUpgrade,{expires:365}); 
+		$.cookie("pGoldClickUpgrade",pGoldClickUpgrade,{expires:365});
+		$.cookie("mPanningUpgrade",mPanningUpgrade,{expires:365});
 		
 		document.getElementById('saveAlert').style.display = "block";  //Displays saved alert
 		
@@ -140,7 +141,13 @@
 				document.getElementById("clickGoldUpgrade").disabled = true;
 			}
 		}		
-		
+		if($.cookie("mPanningUpgrade") != null){
+			var myBool = ($.cookie("mPanningUpgrade") == "true")
+			if(myBool == true){
+				mPanningUpgrade = true;
+				document.getElementById("btnminerUpgrade1").disabled = true;
+			}
+		}				
 		
 		if($.cookie("defeatedOgre") != null){
 			var myBool = ($.cookie("defeatedOgre") == "true")

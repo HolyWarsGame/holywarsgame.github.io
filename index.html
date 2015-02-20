@@ -177,7 +177,10 @@
 			<div id ="MinerUpgradeTab" class = "collapse">
 				<div class = "well">
 					<br />
-					No Upgrades implemented for miners yet.
+					<button id=btnminerUpgrade1 onclick="minerUpgradePanning()"	type="button" class="btn btn-default" title = "Your miners now pan for gold in their spare time. Miners now generate 1 gold per second.">Learn Panning</button>
+					<br />
+					Upgrade Cost: 3500 gold and 1000 iron
+					<br />
 				</div>
 			</div>			
 			<br />
@@ -314,7 +317,7 @@
 	   <div id="BatBandits" class = "container">
 <!--		<h4>A Pack of Bandits</h4> -->
 		<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Bandits"
-		data-content="A bandit camp sits on the outskirts of your village. Bandits occasionally come your village and do dastardly things like looting and pillaging your poor peasants.  <br><br> You should probably stop them.">A Pack of Bandits </a>
+		data-content="A bandit camp sits on the outskirts of your village. Bandits occasionally come your village and do dastardly things like looting and pillaging your poor peasants.  <br><br> You should probably stop them.">A Pack of Bandits</a>
 				<button id=btnBatBandits onclick="battleBandits()"	type="button" class="btn btn-danger">Battle!</button>
 				<br />They have stolen <span id='goldStolen'>0</span> gold from you.
 				<br />Requires army power: 100 <br />
@@ -330,7 +333,7 @@
 	   <div id="BatOgre" class = "container">
 		<!--			<h4>Ogre</h4> -->
 		<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Smelly Ogre"
-		data-content="A large and particularly odorous Ogre is threatening your village! Take it out before it tries to eat any more of your cattle or decides to pass wind in your direction.">A Smelly Ogre </a>
+		data-content="A large and particularly odorous Ogre is threatening your village! Take it out before it tries to eat any more of your cattle or decides to pass wind in your direction.">A Smelly Ogre</a>
 			<button id=btnBatOgre onclick="battleOgre()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
 			Requires army power: 500 <br />
@@ -339,11 +342,9 @@
 					0%
 				  </div>
 				</div>
-			
 			<br />
 			<br />
 	   </div>
-	 
 	 </div>	 
 	 
 	 
