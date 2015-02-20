@@ -155,10 +155,10 @@ function hellHoundRaid(){
 				hellHoundRaid();
 				//Dismisses Raid Alert
 				var ticker2 = 0 ;
-				var clearLootAlert = setInterval(function() {
+				var clearAttackAlert = setInterval(function() {
 					ticker2 = ticker2 + 1;   
 						if (ticker2 == 20){
-							clearInterval(clearLootAlert);
+							clearInterval(clearAttackAlert);
 							if(document.getElementById('hellHoundAttackAlert').style.display == "block"){
 							document.getElementById("hellHoundAttackAlert").style.display = "none";
 						}	
