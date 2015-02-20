@@ -355,7 +355,7 @@ function UpdateButtons() {
 		document.getElementById("btnBatBandits").disabled = false;
 	}
 		//Ogre Button
-	if(BattlePower < 500){
+	if(BattlePower < 500 || defeatedOgre == true){
 		document.getElementById("btnBatOgre").disabled = true;		
 	}
 	else{
