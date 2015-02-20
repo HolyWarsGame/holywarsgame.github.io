@@ -221,6 +221,7 @@ function battleHellhound(){
 			$bar.text("Complete!");
 			document.getElementById('Ethereal').style.display = "block";
 			document.getElementById('EtherealMenu').style.display = "block";
+			document.getElementById('openEtherealAlert').style.display = "block";
 			document.getElementById('BatHhoundProgBarBox').style.display = "none";
 			document.getElementById("btnBatHellhound").disabled = true;
 			document.getElementById("btnBatHellhound").innerHTML = "Hellhounds Defeated!";
