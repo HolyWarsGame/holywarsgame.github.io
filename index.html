@@ -95,7 +95,7 @@
 		
 	  
 	  <div id="Resources" class="collapse in">
-		<ul class = "well well-sm">
+		<div class = "well well-sm">
 			<div id = "golddiv" >
 				<input type="image"  id="clickmoney" onclick="mouseGoldClick(1)" src = "images/money_goldsmall.png"/>
 				Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
@@ -115,7 +115,7 @@
 				<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/soulssmall.png"/>
 				Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
 			</div>
-		</ul>
+		</div>
 	  </div>
 	  
 	  <div id="Production" class= "panel panel-default">
@@ -123,7 +123,7 @@
 			<div class="panel-title">Village</div>
 		</div>
 		
-		<div id="PeasantTab" class = "container">
+		<div id="PeasantTab" class = "panel panel-default">
 		<br />
 		<button id=btnbuyPeasant onclick="buyPeasant()"	type="button" class="btn btn-primary">Recruit Peasant</button>
 		<button id=btnPeasantUpgrade class="btn btn-primary" type="button" data-toggle="collapse" data-target="#PeasantUpgradeTab" aria-expanded="false" aria-controls="PeasantUpgradeTab">Upgrades</button>		
@@ -250,7 +250,7 @@
 	   
 	 </div>
 
-	 <div id="Battle" class = "panel panel-default">
+	 <div id="Battle" class = "panel panel-default" style="display: none;">
 		<div class = "panel-heading">
 			<div class="panel-title">Battle</div>
 		</div>
