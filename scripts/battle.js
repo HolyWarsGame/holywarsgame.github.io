@@ -129,6 +129,6 @@ function battleOgre(){
 
 window.setInterval(function(){					//Calculates Battle Power 
 	calculateBattlePower();
-}, 100);
+}, 10);
 
 
