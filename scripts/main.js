@@ -65,6 +65,11 @@ function peasantClick(number){
 	document.getElementById("peasants").innerHTML = peasants;
 };
 
+function minerClick(number){
+	miners = miners + number;
+	document.getElementById("miners").innerHTML = miners;
+};
+
 function mineClick(number){
 	iron = iron + number;
 	document.getElementById("iron").innerHTML = iron;
@@ -382,7 +387,9 @@ window.setInterval(function(){                                 //Update per seco
 	ironpersec = miners;
 	document.getElementById("ironpersec").innerHTML = ironpersec;
     
-},10);
+	document.getElementById("peasants").innerHTML = peasants;		//For testing
+	document.getElementById("miners").innerHTML = miners;			//For Testing
+},100);
 
 window.setInterval(function(){					//Soul generation via paladins etc every second
 	demonClick(paladins*(weapons+1));
