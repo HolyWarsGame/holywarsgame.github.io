@@ -181,6 +181,7 @@ function hellhoundCull(){
 			peasants = peasants - justKilled;
 			document.getElementById("justKilled").innerHTML = justKilled;
 			peasantsKilled = peasantsKilled + justKilled;
+			document.getElementById("peasants").innerHTML = peasants;
 			document.getElementById('hellHoundAttackAlert').style.display = "block"
 		}
 		else{
@@ -190,6 +191,7 @@ function hellhoundCull(){
 			miners = miners - justKilled;
 			document.getElementById("justKilled").innerHTML = justKilled;
 			minersKilled = minersKilled + justKilled;
+			document.getElementById("miners").innerHTML = miners;
 			document.getElementById('hellHoundAttackAlert').style.display = "block"
 		}	
 };
