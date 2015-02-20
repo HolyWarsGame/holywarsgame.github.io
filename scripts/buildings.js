@@ -31,6 +31,7 @@ function buildBarracks(){
 		barracksOpened = true;
 		document.getElementById('BarracksMenu').style.display = "block";
 		document.getElementById('openBarracksAlert').style.display = "block";
+		document.getElementById('armystrdiv').style.display = "block";
 		gold = gold - 10000;
 		iron = iron - 250
 		document.getElementById('gold').innerHTML = gold;
