@@ -3,8 +3,13 @@
 //Battle variables needed to be saved//
 var defeatedBandits = false;
 var defeatedOgre = false;
+var defeatedHhounds = false;
 var goldStolen = 0;
 var justStolen = 0;
+var typeKilled = 0;		//HHound statistic
+var justKilled = 0;		//HHound statistic
+var peasantsKilled = 0; //HHound statistic
+var minersKilled = 0;
 
 var Raidtime = 0;
 var BattlePower = 0;
@@ -51,7 +56,6 @@ function banditLoot(){
 		}, 1000);				
 	};
 };
-
 
 setTimeout(function() { banditLoot(); }, 30000);//Triggers bandit looting
 
@@ -119,6 +123,7 @@ function battleOgre(){
 			document.getElementById("btnBatOgre").disabled = true;
 			document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
 			defeatedOgre = true;
+			setTimeout(function() { triggerHellhound(); }, 30000);
 		  }
 		  
 		}, 500);
@@ -128,8 +133,99 @@ function battleOgre(){
 	};
 };
 
+function triggerHellhound(){
+	document.getElementById('hellhoundUnlockAlert').style.display = "block";
+	helHoundRaid();
+}
+
+function hellHoundRaid(){
+	if(defeatedHhounds == false){
+		var raidtime = Math.floor((Math.random() * 90) + 45); ;
+//		console.log("Raidtime in: " + raidtime)
+		var ticker = raidtime;
+		
+		var raid = setInterval(function() {
+			ticker = ticker - 1;  
+//			console.log(ticker);
+		  if (ticker == 0){
+			clearInterval(raid);
+			if(defeatedHhounds == false){
+				var flipCoin = Math.random();    //Determining which unit gets killed
+					if(flipCoin = 0){
+						typeKilled = "peasants";
+						document.getElementById("typeKilled").innerHTML = typeKilled;
+						justKilled = floor(peasants / 10);
+						peasants = peasants - justKilled;
+						document.getElementById("justKilled").innerHTML = typeKilled;
+						peasantsKilled = peasantsKilled + justKilled;
+						document.getElementById('hellHoundAttackAlert').style.display = "block"
+					}
+					else{
+						typeKilled = "miners";
+						document.getElementById("typeKilled").innerHTML = typeKilled;
+						justKilled = floor(miners / 10);
+						miners = miners - justKilled;
+						document.getElementById("justKilled").innerHTML = typeKilled;
+						peasantsKilled = peasantsKilled + justKilled;
+						document.getElementById('hellHoundAttackAlert').style.display = "block"
+					}
+					
+				
+				hellHoundRaid();
+				//Dismisses Raid Alert
+				var ticker2 = 0 ;
+				var clearLootAlert = setInterval(function() {
+					ticker2 = ticker2 + 1;   
+						if (ticker2 == 20){
+							clearInterval(clearLootAlert);
+							if(document.getElementById('hellHoundAttackAlert').style.display == "block"){
+							document.getElementById("hellHoundAttackAlert").style.display = "none";
+						}	
+					}
+				}, 1000);	
+				//End Dismisses Raid Alert
+			}
+		  }
+		}, 1000);				
+	};	
+}
+
+function battleHellhound(){
+	if(BattlePower >= 200){	
+		var percentComplete = 0;
+		document.getElementById('BatHhoundProgBarBox').style.display = "block";	  
+		
+		var $bar = $(document.getElementById('BatHhoundProgBar'));
+		var progress = setInterval(function() {
+		  
+		  var currWidth = parseInt($bar.attr('aria-valuenow'));
+		  var maxWidth = parseInt($bar.attr('aria-valuemax'));
+			  
+		  //update the progress
+			$bar.width(percentComplete +'%');
+			$bar.attr('aria-valuenow',percentComplete);
+			$bar.text(percentComplete+'%');
+			percentComplete = percentComplete + 1;   
+			
+		  //clear timer when max is reach
+		  if (currWidth >= maxWidth){
+			clearInterval(progress);
+			$bar.text("Complete!");
+			document.getElementById('Ethereal').style.display = "block";
+			document.getElementById('BatHhoundProgBarBox').style.display = "none";
+			document.getElementById("btnBatHellhound").disabled = true;
+			document.getElementById("btnBatHellhound").innerHTML = "Hellhounds Defeated!";
+			defeatedHhounds = true;
+		  } 
+		}, 1000);
+	}
+	else{
+//		alert("Your army is not strong enough to fight this enemy!");		
+	};
+};
+
 window.setInterval(function(){					//Calculates Battle Power 
 	calculateBattlePower();
-}, 10);
+}, 100);
 
 

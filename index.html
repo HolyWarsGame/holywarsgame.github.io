@@ -369,6 +369,23 @@
 			<br />
 			<br />
 	   </div>
+
+	   <div id="BatHellhound" class = "container" style="display: none;>
+		<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Hellhounds"
+		data-content="The Evil One has released these fiery hounds to stalk your village. Occasionally the are able to slip past your defences and kill some of your peasants and miners.">A Pack of Hellhounds</a>
+			<button id=btnBatHellhound onclick="battleHellhound()"	type="button" class="btn btn-danger">Battle!</button>
+			<br />
+			Requires army power: 2000 <br />
+			Peasants Killed: <span id = "peasantsKilled">0</span> <br />
+			Miners Killed: <span id = "minersKilled">0</span> <br />
+				<div id="BatHhoundProgBarBox" class="progress" style="display: none;">
+				  <div id="BatHhoundProgBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+					0%
+				  </div>
+				</div>
+			<br />
+			<br />
+	   </div>	   
 	 </div>	 
 	 
 	 
@@ -400,12 +417,26 @@
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
     </div>	
-	
+		
 	<div id = banditLootAlert class="alert alert-danger fade in" role="alert" style="display: none;">
-<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
         <strong>Oh No!!</strong> Bandits come and raid <span id = "justStolen">0</span> gold from your gold supply! Maybe you should try getting <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">getting rid</a> of them?   
     </div>		
 
+	<div id = hellhoundUnlockAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Oh No!!</strong> The Evil One has noticed your presence, and has decided to start sending <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">hellhounds</a> to attack you.  
+    </div>	
+	
+	<div id = hellHoundAttackAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+        <strong>Oh No!!</strong>The Evil One's hellhounds break through your defenses and kill <span id = "justKilled">0</span> of your <span id = "typeKilled">x</span>. Build up your strength and <a href="javascript: toggle('hellHoundAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">fight</a> them off!   
+    </div>		
+
+	<div id = openEtherealAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>New!</strong> After the hellhounds explode in a cloud of blood and fire, you sift through the ashes of their remains. One of them was wearing a collar,
+							 which upon closer observation is actually a map. When you arrive at the marked destination on the map, you realize there is a 
+							 almost <a href="javascript: toggle('openEtherealAlert');CollapseAll();toggle('Ethereal')" class="alert-link">otherworldly tear</a> floating in front of you.   
+    </div>	
 	
 	<div id = saveAlert class="alert alert-success fade in" role="alert" style="display: none;">
 	<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->

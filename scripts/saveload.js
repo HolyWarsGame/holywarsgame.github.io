@@ -24,6 +24,9 @@
 		//Battle flags
 		$.cookie("defeatedOgre",defeatedOgre,{expires:365}); 
 		$.cookie("defeatedBandits",defeatedBandits,{expires:365});
+		$.cookie("defeatedHhounds",defeatedHhounds,{expires:365});
+		$.cookie("peasantsKilled"), peasantsKilled,{expires:365});
+		$.cookie("minersKilled"), peasantsKilled,{expires:365});
 		//Upgradeflags
 		$.cookie("pGoldClickUpgrade",pGoldClickUpgrade,{expires:365});
 		$.cookie("mPanningUpgrade",mPanningUpgrade,{expires:365});
@@ -165,18 +168,6 @@
 			}
 		}		
 		
-		if($.cookie("defeatedOgre") != null){
-			var myBool = ($.cookie("defeatedOgre") == "true")
-			if(myBool == true){
-				defeatedOgre = true;
-				document.getElementById('soulsdiv').style.display = "block";
-				document.getElementById('PaladinTab').style.display = "block";
-//				document.getElementById('PaladinWeaponTab').style.display = "block";   //Until a drop unlocks paladin weapon upgrade
-				document.getElementById('BatOgreProgBarBox').style.display = "none";
-				document.getElementById("btnBatOgre").disabled = true;
-				document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
-			}
-		}	
 
 		if($.cookie("defeatedBandits") != null){
 			var myBool = ($.cookie("defeatedBandits") == "true")
@@ -190,6 +181,44 @@
 			}
 		}			
 
+		if($.cookie("defeatedOgre") != null){
+			var myBool = ($.cookie("defeatedOgre") == "true")
+			if(myBool == true){
+				defeatedOgre = true;
+				document.getElementById('soulsdiv').style.display = "block";
+				document.getElementById('PaladinTab').style.display = "block";
+//				document.getElementById('PaladinWeaponTab').style.display = "block";   //Until a drop unlocks paladin weapon upgrade
+				document.getElementById('BatOgreProgBarBox').style.display = "none";
+				document.getElementById("btnBatOgre").disabled = true;
+				document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
+			}
+		}
+
+		if($.cookie("defeatedHhounds") != null){
+			var myBool = ($.cookie("defeatedHhounds") == "true")
+				if(myBool == true){
+					defeatedHhounds = true;
+					document.getElementById('Ethereal').style.display = "block";
+					document.getElementById('BatHhoundProgBarBox').style.display = "none";
+					document.getElementById("btnBatHellhound").disabled = true;
+					document.getElementById("btnBatHellhound").innerHTML = "Hellhounds Defeated!";
+					defeatedHhounds = true;
+				}
+				else if(defeatedOgre == true){
+					setTimeout(function() { hellHoundRaid(); }, 30000);			//killed ogre but haven't defeated hhounds yet, start raids again
+				}
+		};
+		
+		if($.cookie("peasantsKilled") != null){
+			peasantsKilled = parseInt($.cookie("peasantsKilled"));
+			document.getElementById("peasantsKilled").innerHTML = peasantsKilled;
+		}			
+
+		if($.cookie("minersKilled") != null){
+			minersKilled = parseInt($.cookie("minersKilled"));
+			document.getElementById("minersKilled").innerHTML = peasantsKilled;
+		}			
+		
 		if($.cookie("lastPage") != null){
 			lastPage = $.cookie("lastPage");
 		}
