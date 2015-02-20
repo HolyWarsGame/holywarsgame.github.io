@@ -294,6 +294,10 @@ function UpdateButtons() {
 
 window.setInterval(function(){                                 //Update per second counts
     goldpersec = peasants;
+	if(mPanningUpgrade == true)
+	{
+		goldpersec = goldpersec + miners;
+	}
     document.getElementById("goldpersec").innerHTML = goldpersec;
     
     faithpersec = priests*0.1
