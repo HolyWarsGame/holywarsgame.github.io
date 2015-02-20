@@ -188,6 +188,7 @@
 			}
 		}			
 		
+		recalculateCosts();
 		console.log("Your cookies have been loaded.")
 	};
 	

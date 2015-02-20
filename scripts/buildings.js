@@ -11,8 +11,8 @@ function buyTavern(){
 			document.getElementById('taverns').innerHTML = taverns;
 			document.getElementById('gold').innerHTML = gold;
 		};
-		var nextTavernCost = Math.floor(5000 * Math.pow(1.5, taverns));
-		document.getElementById('TavernCost').innerHTML = nextTavernCost;
+		var nextTavernCost = Math.floor(5000 * Math.pow(1.5, taverns));		//Calculates the cost of the next tavern
+		document.getElementById('TavernCost').innerHTML = nextTavernCost;   //Updates page with cost of next tavern
 };
 
 function buildMines(){

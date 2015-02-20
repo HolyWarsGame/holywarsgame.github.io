@@ -94,8 +94,8 @@ function buyMiner(){
         document.getElementById('miners').innerHTML = miners;  //updates the number of miners for the user
         document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
     };
-    var nextMinerCost = Math.floor(250 * Math.pow(1.25,miners - tavernminers));       //works out the cost of the next Peasant
-    document.getElementById('MinerCost').innerHTML = nextMinerCost;  //updates the Peasant cost for the user
+    var nextMinerCost = Math.floor(250 * Math.pow(1.25,miners - tavernminers));       //works out the cost of the next Miner
+    document.getElementById('MinerCost').innerHTML = nextMinerCost;  //updates the Miner cost for the user
 };
 
 function buyPriest(){
@@ -196,7 +196,31 @@ function buyWeapon(){
     document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
 };
 
+function recalculateCosts(){
+	 var nextPeasantCost = Math.floor(50 * Math.pow(1.25,peasants - tavernpeasants));       //works out the cost of the next Peasant
+	 document.getElementById('PeasantCost').innerHTML = nextPeasantCost;	
+	 
+	 var nextMinerCost = Math.floor(250 * Math.pow(1.25,miners - tavernminers));       //works out the cost of the next Miner
+	 document.getElementById('MinerCost').innerHTML = nextMinerCost;  //updates the Miner cost for the user
+	 
+    var nextPriestCost = Math.floor(1000 * Math.pow(1.3,priests));       //works out the cost of the next Priest
+    document.getElementById('PriestCost').innerHTML = nextPriestCost;  //updates the Priest cost for the user	 
 
+	var nextPageCost = Math.floor(500 * Math.pow(1.1,personPage));       //works out the cost of the next Page
+    document.getElementById('PageCost').innerHTML = nextPageCost;  //updates the Page cost for the user
+	
+    var nextSquireCost = Math.floor(1200 * Math.pow(1.1,personPage));       //works out the cost of the next Squire
+    document.getElementById('SquireCost').innerHTML = nextSquireCost;  //updates the Squire cost for the user		
+	
+    var nextPaladinCost = Math.floor(100 * Math.pow(1.1,paladins));       //works out the cost of the next Paladin
+    document.getElementById('PaladinCost').innerHTML = nextPaladinCost;  //updates the Paladin cost for the user
+
+    var nextWeapCost = Math.floor(1000 * Math.pow(1.1,weapons));       //works out the cost of the next weapon
+    document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user	
+
+	var nextTavernCost = Math.floor(5000 * Math.pow(1.5, taverns));		//Calculates the cost of the next tavern
+	document.getElementById('TavernCost').innerHTML = nextTavernCost;   //Updates page with cost of next tavern	
+};
 
 function UpdateButtons() {
 	
