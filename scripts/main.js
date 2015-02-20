@@ -249,7 +249,24 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnOpenCathedral").disabled = false
-	}	
+	}
+	
+	//Changes status of Battle Buttons
+		//Bandit Button
+	if(BattlePower < 100){
+		document.getElementById("btnBatBandits").disabled = true;		
+	}
+	else{
+		document.getElementById("btnBatBandits").disabled = false;
+	}
+		//Ogre Button
+	if(BattlePower < 500){
+		document.getElementById("btnBatOgre").disabled = true;		
+	}
+	else{
+		document.getElementById("btnBatOgre").disabled = false;
+	}
+
 }
 
 window.setInterval(function(){                                 //Update per second counts

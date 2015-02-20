@@ -84,7 +84,7 @@ function battleBandits(){
 		}, 500);
 	}
 	else{
-		alert("Your army is not strong enough to fight this enemy!");
+//		alert("Your army is not strong enough to fight this enemy!");
 	}
 	
 };
@@ -123,7 +123,7 @@ function battleOgre(){
 		}, 500);
 	}
 	else{
-		alert("Your army is not strong enough to fight this enemy!");		
+//		alert("Your army is not strong enough to fight this enemy!");		
 	};
 };
 
