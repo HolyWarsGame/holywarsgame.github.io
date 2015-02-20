@@ -33,6 +33,9 @@ var minesOpened = false;
 var cathedralOpened = false;
 var barracksOpened = false;
 
+//Etc Variables//
+var lastPage;
+
 function goldClick(number){
     gold = gold + number;
     document.getElementById("gold").innerHTML = gold;

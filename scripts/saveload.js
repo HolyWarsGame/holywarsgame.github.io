@@ -28,6 +28,8 @@
 		$.cookie("pGoldClickUpgrade",pGoldClickUpgrade,{expires:365});
 		$.cookie("mPanningUpgrade",mPanningUpgrade,{expires:365});
 		$.cookie("squiresUnlocked",squiresUnlocked,{expires:365});
+		//MiscFlags
+		$.cookie("lastPage",lastPage,{expires:365});
 		
 		document.getElementById('saveAlert').style.display = "block";  //Displays saved alert
 		
@@ -187,6 +189,13 @@
 				defeatedBandits = true;
 			}
 		}			
+
+		if($.cookie("lastPage") != null){
+			lastPage = $.cookie("lastPage");
+		}
+		else{
+			lastPage = 'Production';
+		}
 		
 		recalculateCosts();
 		console.log("Your cookies have been loaded.")
