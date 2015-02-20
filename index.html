@@ -152,7 +152,7 @@
 		<div id="Mining" class = "container" style="display: none;">
 			<br />
 		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Miners"
-    		data-content="These hard-working mine excavate minerals from the mine you have built. They bring canaries in with them to warn them of disasters. Also as lunch. <br> Generates 1 iron per second">Miners(<span id="miners">0</span>)</a>		
+    		data-content="These hard-working mine excavate minerals from the mine you have built. They bring canaries in with them to warn them of disasters. Also as lunch. <br> Generates 1 iron per second">Miners (<span id="miners">0</span>)</a>		
 			<br />
 			<br />
 			<button id=btnbuyMiner onclick="buyMiner()"	type="button" class="btn btn-default">Hire Miner</button>
@@ -163,7 +163,7 @@
 			<div id ="MinerUpgradeTab" class = "collapse">
 				<div class = "well">
 					<br />
-					No Upgrades implmented for miners yet.
+					No Upgrades implemented for miners yet.
 				</div>
 			</div>			
 			<br />
@@ -177,11 +177,21 @@
 		
 		<div id="PriestTab" class = "container">
 			<br />
-			<button id=btnbuyPriest onclick="buyPriest()"	type="button" class="btn btn-default">Train Priest</button>
+		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Priests"
+    		data-content="Men of the cloth. Their piety helps them channel the holy energy from the universe.  <br> Generates 0.1 faith per second">Priests (<span id="priests">0</span>)</a>
 			<br />
-			Priests: <span id="priests">0</span>
+			<br />
+			<button id=btnbuyPriest onclick="buyPriest()"	type="button" class="btn btn-default">Train Priest</button>
+			<button id=btnPriestUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
 			<br />
 			Priest Cost: <span id="PriestCost">1000</span> gold
+			<br />
+			<div id ="PriestUpgradeTab" class = "collapse">
+				<div class = "well">
+					<br />
+					No Upgrades implemented for priests yet.
+				</div>
+			</div>
 			<br />
 		</div>
 	 </div>
@@ -192,26 +202,37 @@
 		</div>
 		
 		<div id ="PageTab" class = "container">
+		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Pages"
+    		data-content="Young men in training to become knights. Not too great with weapons yet, but they're learning.  <br> Provides 10 army strength">Pages (<span id="personPage">0</span>)</a>
 			<br />
 			<button id=btnbuyPage onclick="buyPage()"	type="button" class="btn btn-default">Train Page</button>
-			<br />
-			Page: <span id="personPage">0</span>
+			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PageUpgradeTab" aria-expanded="false" aria-controls="PageUpgradeTab">Upgrades</button>
 			<br />
 			Page Cost: <span id="PageCost">500</span> gold and 100 iron
-			<br /><br />			
+			<br />
+			<div id ="PageUpgradeTab" class = "collapse">
+				<div class = "well">
+					<br />
+					No Upgrades implemented for pages yet.
+				</div>
+			</div>			
+			<br />
+			
 		</div>
 		
 		<div id = "PaladinTab" class = "container" style="display: none;">
 			<br />
-			<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-default">Train Paladin</button>
+		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Paladins"
+    		data-content="Holy warriors that channel their faith into their weapons. They are quite adept at slaying monsters, both magical and not.  <br> Provides 1000 army strength">Paladins (<span id="paladins">0</span>)</a>
 			<br />
-			Paladins: <span id="paladins">0</span>
+			<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-default">Train Paladin</button>
+			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
 			<br />
 			Paladin Cost: <span id="PaladinCost">100</span> faith
 			<br /><br />
 		</div>
 		
-		<div id = "PaladinWeaponTab" class = "container" style="display: none;">
+		<div id = "PaladinUpgradeTab" class = "container" style="display: none;">
 			<button id=btnbuyWeapon onclick="buyWeapon()"	type="button" class="btn btn-default">Imbue Weapon</button>		
 			<br />
 			Weapons: <span id="weapons">0</span>
