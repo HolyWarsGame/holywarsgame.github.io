@@ -70,12 +70,12 @@
             <ul class="nav navbar-nav">
 			  <li><a id="displayGatherOpt" data-toggle="collapse" href="#Gathering" aria-expanded="true" aria-controls="Gathering">Gather</a></li>	
 			  <li><a id="ProductionMenu" href="javascript:CollapseAll(); toggle('Production');">Village</a></li>
-			  <li><a id="StructureMenu" href="javascript:CollapseAll(); toggle('Structures'); lastPage = "Production";">Structures</a></li>
-              <li><a id="FaithMenu" href="javascript:CollapseAll(); toggle('Cathedral'); lastPage = "Production";" style="display: none;">Cathedral</a></li>
-			  <li><a id="BarracksMenu" href="javascript:CollapseAll(); toggle('Barracks'); lastPage = "Production";" style="display: none; ">Barracks</a></li>
-			  <li><a id="EtherealMenu" href="javascript:CollapseAll(); toggle('Ethereal');lastPage = "Production";" style="display: none;">Ethereal</a></li>
-			  <li><a id="BattleMenu" href="javascript:CollapseAll(); toggle('Battle');lastPage = "Production";">Battle</a></li>
-			  <li><a id="RelicsMenu" href="javascript:CollapseAll(); toggle('Relics');lastPage = "Production";" style="display: none;">Relics</a></li>
+			  <li><a id="StructureMenu" href="javascript:CollapseAll(); toggle('Structures'); setLastPage('Structures');>Structures</a></li>
+              <li><a id="FaithMenu" href="javascript:CollapseAll(); toggle('Cathedral'); setLastPage('Cathedral');" style="display: none;">Cathedral</a></li>
+			  <li><a id="BarracksMenu" href="javascript:CollapseAll(); toggle('Barracks'); setLastPage('Barracks');;" style="display: none; ">Barracks</a></li>
+			  <li><a id="EtherealMenu" href="javascript:CollapseAll(); toggle('Ethereal'); setLastPage('Ethereal');" style="display: none;">Ethereal</a></li>
+			  <li><a id="BattleMenu" href="javascript:CollapseAll(); toggle('Battle'); setLastPage('Battle');;">Battle</a></li>
+			  <li><a id="RelicsMenu" href="javascript:CollapseAll(); toggle('Relics'); setLastPage('Relics');;" style="display: none;">Relics</a></li>
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
@@ -422,6 +422,10 @@
 			document.getElementById("Cathedral").style.display = "none";
 			document.getElementById("Production").style.display = "none";
 		};
+		
+		function SetLastPage(name){
+			lastPage = name;
+		}
 	</script>
 	
 	
