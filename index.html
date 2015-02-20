@@ -105,17 +105,17 @@
 				Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
 			</div>		
 			
-			<div id = "irondiv">
+			<div id = "irondiv" style="display: none;">
 				<img src = "images/ironsmall.png" alt="Praying Hands">
 				Iron: <span id="iron">0</span>      ( <span id="ironpersec">0</span> ips)
 			</div>
 			
-			<div id = "faithdiv" >
+			<div id = "faithdiv" style="display: none;">
 				<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">
 				Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
 			</div>
 			
-			<div id = "soulsdiv" >
+			<div id = "soulsdiv" style="display: none;">
 				<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/soulssmall.png"/>
 				Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
 			</div>
@@ -223,7 +223,7 @@
 		<div id = "PaladinTab" class = "container" style="display: none;">
 			<br />
 		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Paladins"
-    		data-content="Holy warriors that channel their faith into their weapons. They are quite adept at slaying monsters, both magical and not.  <br> Provides 1000 army strength">Paladins (<span id="paladins">0</span>)</a>
+    		data-content="Holy warriors that channel their faith into their weapons. They are quite adept at slaying monsters, both magical and not. Paladins go out into the field, slaying minions of The Evil One. <br>Provides 1 soul per second.<br> Provides 1000 army strength.">Paladins (<span id="paladins">0</span>)</a>
 			<br /> <br />
 			<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-default">Train Paladin</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
@@ -293,7 +293,7 @@
 		</div>
 	   
 	   <div id="BattleStrength" class = "container">
-			<h2> Current Army Strength: <span id = "BattlePower">0</span> power </h2> <br /><br />
+			<h2> Current Army Strength: <span id = "BattlePower">0</span> power </h2><hr> <br /><br />
 	   </div>
 
 	   <div id="BatBandits" class = "container">
@@ -314,8 +314,8 @@
 	   </div>
 	   
 	   <div id="BatOgre" class = "container">
-<!--			<h4>Ogre</h4> -->
-<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Bandits"
+		<!--			<h4>Ogre</h4> -->
+		<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Smelly Ogre"
 		data-content="A large and particularly odorous Ogre is threatening your village! Take it out before it tries to eat any more of your cattle or decides to pass wind in your direction.">A Smelly Ogre </a>
 			<br />
 			Requires army power: 500 <br />

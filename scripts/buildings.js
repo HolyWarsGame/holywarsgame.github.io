@@ -18,6 +18,7 @@ function buyTavern(){
 function buildMines(){
 	if(gold >= 1500){
 		minesOpened = true;
+		document.getElementById('irondiv').style.display = "block";
 		document.getElementById('Mining').style.display = "block";
 		document.getElementById('openMineAlert').style.display = "block";
 		gold = gold - 1500;
@@ -40,12 +41,14 @@ function buildBarracks(){
 function buildCathedral(){
 	if(gold >= 10000 && iron >= 500){
 		cathedralOpened = true;
+		document.getElementById('faithdiv').style.display = "block";
 		document.getElementById('FaithMenu').style.display = "block";
 		document.getElementById('openCathAlert').style.display = "block";
 		gold = gold - 10000;
 		iron = iron - 500
 		document.getElementById('gold').innerHTML = gold;
 		document.getElementById('iron').innerHTML = iron;
+		
 	}
 };
 

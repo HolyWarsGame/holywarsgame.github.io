@@ -111,6 +111,7 @@ function battleOgre(){
 			clearInterval(progress);
 			$bar.text("Complete!");
 			document.getElementById('unlockPaladinsAlert').style.display = "block";
+			document.getElementById('soulsdiv').style.display = "block";			
 			document.getElementById('PaladinTab').style.display = "block";
 			document.getElementById('PaladinWeaponTab').style.display = "block"; //Until a drop unlocks paladin weapon upgrade
 			document.getElementById('BatOgreProgBarBox').style.display = "none";

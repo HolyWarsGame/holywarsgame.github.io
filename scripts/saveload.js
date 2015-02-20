@@ -94,6 +94,7 @@
 			var myBool = ($.cookie("minesOpened") == "true")
 			if(myBool == true){
 				minesOpened = true
+				document.getElementById('irondiv').style.display = "block";
 				document.getElementById("Mining").style.display = "block";
 			}
 		}			
@@ -119,6 +120,7 @@
 				cathedralOpened = true
 				document.getElementById('Cathedral').style.display = "block";
 				document.getElementById('FaithMenu').style.display = "block";
+				document.getElementById('faithdiv').style.display = "block";
 			}
 		}		
 		if($.cookie("priests") != null){
@@ -143,6 +145,7 @@
 			var myBool = ($.cookie("defeatedOgre") == "true")
 			if(myBool == true){
 				defeatedOgre = true;
+				document.getElementById('soulsdiv').style.display = "block";
 				document.getElementById('PaladinTab').style.display = "block";
 				document.getElementById('PaladinWeaponTab').style.display = "block";   //Until a drop unlocks paladin weapon upgrade
 				document.getElementById('BatOgreProgBarBox').style.display = "none";
