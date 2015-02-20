@@ -106,7 +106,7 @@ function buyPage(){
         iron = iron - 100; 										 //removes the iron spent
 		document.getElementById('personPage').innerHTML = personPage;  //updates the number of Pages for the user
         document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
-		document.getElementById('iron').innerHTML = gold;  //updates the number of iron for the user
+		document.getElementById('iron').innerHTML = iron;  //updates the number of iron for the user
     };
     var nextPageCost = Math.floor(500 * Math.pow(1.1,personPage));       //works out the cost of the next Page
     document.getElementById('PageCost').innerHTML = nextPageCost;  //updates the Page cost for the user

@@ -103,7 +103,7 @@ Issues:
 
 - Magic casting unit collects gold
 
-- Training page button causing iron currency to briefly change to gold amount
+- Training page button causing iron currency to briefly change to gold amount - Fixed
 
 
 
