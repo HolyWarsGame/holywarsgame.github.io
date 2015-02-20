@@ -314,6 +314,7 @@
 <!--		<h4>A Pack of Bandits</h4> -->
 		<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Bandits"
 		data-content="A bandit camp sits on the outskirts of your village. Bandits occasionally come your village and do dastardly things like looting and pillaging your poor peasants.  <br><br> You should probably stop them.">A Pack of Bandits </a>
+				<button id=btnBatBandits onclick="battleBandits()"	type="button" class="btn btn-danger">Battle!</button>
 				<br />They have stolen <span id='goldStolen'>0</span> gold from you.
 				<br />Requires army power: 100 <br />
 			<div id="BatBanditsProgBarBox" class="progress" style="display: none;">
@@ -321,8 +322,6 @@
 				0%
 			  </div>
 			</div>
-		<button id=btnBatBandits onclick="battleBandits()"	type="button" class="btn btn-danger">Battle!</button>
-		<br />
 		<br />
 		<br />
 	   </div>
@@ -331,6 +330,7 @@
 		<!--			<h4>Ogre</h4> -->
 		<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Smelly Ogre"
 		data-content="A large and particularly odorous Ogre is threatening your village! Take it out before it tries to eat any more of your cattle or decides to pass wind in your direction.">A Smelly Ogre </a>
+			<button id=btnBatOgre onclick="battleOgre()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
 			Requires army power: 500 <br />
 				<div id="BatOgreProgBarBox" class="progress" style="display: none;">
@@ -338,7 +338,7 @@
 					0%
 				  </div>
 				</div>
-			<button id=btnBatOgre onclick="battleOgre()"	type="button" class="btn btn-danger">Battle!</button>
+			
 			<br />
 			<br />
 	   </div>
