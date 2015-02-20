@@ -188,7 +188,7 @@ function hellhoundCull(){
 			justKilled = Math.floor(miners / 10);
 			miners = miners - justKilled;
 			document.getElementById("justKilled").innerHTML = justKilled;
-			peasantsKilled = peasantsKilled + justKilled;
+			minersKilled = minersKilled + justKilled;
 			document.getElementById('hellHoundAttackAlert').style.display = "block"
 		}	
 };
