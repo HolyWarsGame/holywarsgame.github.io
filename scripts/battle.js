@@ -142,12 +142,12 @@ function triggerHellhound(){
 function hellHoundRaid(){
 	if(defeatedHhounds == false){
 		var raidtime = Math.floor((Math.random() * 90) + 45); ;
-		console.log("Raidtime in: " + raidtime)
+//		console.log("Raidtime in: " + raidtime)
 		var ticker = raidtime;
 		
 		var raid = setInterval(function() {
 			ticker = ticker - 1;  
-			console.log(ticker);
+//			console.log(ticker);
 		  if (ticker == 0){
 			clearInterval(raid);
 			if(defeatedHhounds == false){
