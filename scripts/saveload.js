@@ -26,7 +26,7 @@
 		$.cookie("defeatedBandits",defeatedBandits,{expires:365});
 		$.cookie("defeatedHhounds",defeatedHhounds,{expires:365});
 		$.cookie("peasantsKilled",peasantsKilled,{expires:365});
-		$.cookie("minersKilled"), peasantsKilled,{expires:365});
+		$.cookie("minersKilled"), minersKilled,{expires:365});
 		//Upgradeflags
 		$.cookie("pGoldClickUpgrade",pGoldClickUpgrade,{expires:365});
 		$.cookie("mPanningUpgrade",mPanningUpgrade,{expires:365});
