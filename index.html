@@ -124,6 +124,7 @@
 		</div>
 		
 		<div id="PeasantTab" class = "container">
+		<br />
 		<button id=btnbuyPeasant onclick="buyPeasant()"	type="button" class="btn btn-primary">Recruit Peasant</button>
 		<button id=btnPeasantUpgrade class="btn btn-primary" type="button" data-toggle="collapse" data-target="#PeasantUpgradeTab" aria-expanded="false" aria-controls="PeasantUpgradeTab">Upgrades</button>		
 		<br />
@@ -153,10 +154,13 @@
 		</div>
 	  </div>
 	  
-	 <div id="Cathedral" class= "jumbotron">
-		<h4>Cathedral</h4>
-		<hr>
+	 <div id="Cathedral" class= "panel panel-default">
+		<div class = "panel-heading">
+			<div class="panel-title">Cathedral</div>
+		</div>
+		
 		<div id="PriestTab" class = "container">
+			<br />
 			<button id=btnbuyPriest onclick="buyPriest()"	type="button" class="btn btn-primary">Train Priest</button>
 			<br />
 			Priests: <span id="priests">0</span>
@@ -166,10 +170,13 @@
 		</div>
 	 </div>
 	 
-	 <div id="Barracks" class = "jumbotron">
-		<h4>Barracks</h4>
-		<hr>
+	 <div id="Barracks" class= "panel panel-default">
+		<div class = "panel-heading">
+			<div class="panel-title">Barracks</div>
+		</div>
+		
 		<div id ="PageTab" class = "container">
+			<br />
 			<button id=btnbuyPage onclick="buyPage()"	type="button" class="btn btn-primary">Train Page</button>
 			<br />
 			Page: <span id="personPage">0</span>
@@ -179,6 +186,7 @@
 		</div>
 		
 		<div id = "PaladinTab" class = "container" style="display: none;">
+			<br />
 			<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-primary">Train Paladin</button>
 			<br />
 			Paladins: <span id="paladins">0</span>
@@ -196,9 +204,11 @@
 		</div>
 	 </div>
 	 
-	 <div id="Structures" class = "jumbotron">
-	    <h4>Structures</h4>
-		<hr>
+	 <div id="Structures" class = "panel panel-default">
+		<div class = "panel-heading">
+			<div class="panel-title">Structures</div>
+		</div>
+		
 		<div id = "DefaultStructuresTab" class = "container">
 			<button id=btnbuyTavern title="A peasant joins your forces every few seconds" onclick="buyTavern()"	type="button" class="btn btn-primary">Build Tavern</button>	
 			<br />
@@ -227,21 +237,22 @@
 		</div>
 	 </div>
 	 
-	 <div id="Ethereal" class = "jumbotron" style="display: none;">
+	 <div id="Ethereal" class = "panel panel-default" style="display: none;">
 	   <h4>Ethereal</h4>
 	   <hr>
 		
 	 </div>
 	
-	 <div id="Relics" class = "jumbotron" style="display: none;">
+	 <div id="Relics" class = "panel panel-default" style="display: none;">
 	   <h4>Relics</h4>
 	   <hr>
 	   
 	 </div>
 
-	 <div id="Battle" class = "jumbotron">
-	   <h4>Battle</h4>
-	   <hr>
+	 <div id="Battle" class = "panel panel-default">
+		<div class = "panel-heading">
+			<div class="panel-title">Battle</div>
+		</div>
 	   
 	   <div id="BattleStrength" class = "container">
 			<p> Current Army strength: <span id = "BattlePower">0</span> power </p> <br /><br />
