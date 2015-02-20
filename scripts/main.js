@@ -22,11 +22,13 @@ var tavernminers = 0;			//Tavern generated miners
 var personPage = 0;
 var priests = 0;
 var paladins = 0;
+var squires = 0;
 var weapons = 0;
 
 //Status Variables//
 var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade 
 var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
+var squiresUnlocked = false;	
 var minesOpened = false;
 var cathedralOpened = false;
 var barracksOpened = false;
@@ -122,6 +124,22 @@ function buyPage(){
     document.getElementById('PageCost').innerHTML = nextPageCost;  //updates the Page cost for the user
 };
 
+function buySquire(){
+    var SquireCost = Math.floor(1200 * Math.pow(1.1,personPage));     //works out the cost of this Squire
+    if(gold >= SquireCost && iron >= 250 && personPage >= 1){          //checks that the player can afford the Squire
+        personPage = personPage - 1;                                   //decreases number of Pages
+    	squires = squires + 1;										 //increases number of Squires
+		gold = gold - SquireCost;                                  //removes the gold spent
+        iron = iron - 250; 										 //removes the iron spent
+		document.getElementById('personPage').innerHTML = personPage;  //updates the number of Pages for the user
+		document.getElementById('squires').innerHTML = squires;		// updates the number of squires for the user
+	    document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
+		document.getElementById('iron').innerHTML = iron;  //updates the number of iron for the user
+    };
+    var nextSquireCost = Math.floor(1200 * Math.pow(1.1,personPage));       //works out the cost of the next Squire
+    document.getElementById('SquireCost').innerHTML = nextSquireCost;  //updates the Squire cost for the user	
+};
+
 function buyPaladin(){
     var PaladinCost = Math.floor(100 * Math.pow(1.1,paladins));     //works out the cost of this Paladin
     if(faith >= PaladinCost){                                   //checks that the player can afford the Paladin
@@ -151,10 +169,19 @@ function minerUpgradePanning(){
 		iron = iron - 1000;
 		mPanningUpgrade = true;	
 		document.getElementById('gold').innerHTML = gold;
-		document.getElementById('iron').innerHTML = gold;
+		document.getElementById('iron').innerHTML = iron;
 		document.getElementById("btnminerUpgrade1").disabled = true;
 	}	
 };
+			
+function UnlockSquire(){
+	if(gold >= 4000 && BattlePower >= 120){
+		gold = gold - 400;
+		document.getElementById('gold').innerHTML = gold;
+		squiresUnlocked = true;
+		document.getElementById("btnPageUpgrade1").disabled = true;
+	}
+}
 
 function buyWeapon(){
     var WeaponCost = Math.floor(1000 * Math.pow(1.1,weapons));     //works out the cost of this weapon
@@ -203,6 +230,16 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnbuyPage").disabled = false;
 	}		
+
+	//Enable/disables buy squire button depending on if there is enough currency
+	if(gold < document.getElementById('SquireCost').innerHTML || iron < 200 || personPage < 1){	
+		document.getElementById("btnBuySquire").disabled = true;
+	}
+	else{
+		document.getElementById("btnBuySquire").disabled = false;
+	}		
+	
+	
 	
 	//Enable/disables buy paladin button depending on if there is enough currency
 	if(faith < document.getElementById('PaladinCost').innerHTML){	
@@ -270,6 +307,15 @@ function UpdateButtons() {
 		document.getElementById("btnbuyWeapon").disabled = false;
 	}
 	
+	
+	
+	//Unlock Squire Button
+	if(squiresUnlocked == false || (BattlePower < 120|| gold < 4000)){	
+		document.getElementById("btnPageUpgrade1").disabled = true;
+	}
+	else{
+		document.getElementById("btnPageUpgrade1").disabled = false;
+	}	
 	
 	//End of Upgrade Buttons//
 	

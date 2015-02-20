@@ -26,6 +26,7 @@
 		//Upgradeflags
 		$.cookie("pGoldClickUpgrade",pGoldClickUpgrade,{expires:365});
 		$.cookie("mPanningUpgrade",mPanningUpgrade,{expires:365});
+		$.cookie("squiresUnlocked",squiresUnlocked,{expires:365});
 		
 		document.getElementById('saveAlert').style.display = "block";  //Displays saved alert
 		

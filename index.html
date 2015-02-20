@@ -231,11 +231,31 @@
 			<div id ="PageUpgradeTab" class = "collapse">
 				<div class = "well">
 					<br />
-					No Upgrades implemented for pages yet.
+					<button id=btnPageUpgrade1 onclick="UnlockSquire()"	type="button" class="btn btn-default" title = "Your squires become more knowledgeable and skilled. Unlocks the Squire.">Unlock Squire</button>
+					<br />
+					Requires: 120 Army strength
+					Upgrade Cost: 4000 gold
+					<br />
 				</div>
 			</div>			
 			<br />
 		</div>
+
+		<div id = "SquireTab" class = "container" style="display: none;">
+			<br />
+		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Squires"
+    		data-content="Pages that have gained enough experience are promoted to Squires. They are semi-capable warriors. Provides 50 army strength.">Squires (<span id="paladins">0</span>)</a>
+			<br /> <br />
+			<button id=btnBuySquire onclick="buySquire()"	type="button" class="btn btn-default">Promote Squire</button>
+			<button id=btnSquireUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#SquireUpgradeTab" aria-expanded="false" aria-controls="SquireUpgradeTab">Upgrades</button>
+			<br />
+			Squire Cost: <span id="SquireCost">1200</span> gold, 250 iron, and 1 Page
+			<br /><br />
+		</div>		
+			<div id = "SquireUpgradeTab" class = "collapse" style="display: none;">
+				No Upgrades implemented for Squires yet.
+		</div>
+		
 		
 		<div id = "PaladinTab" class = "container" style="display: none;">
 			<br />
