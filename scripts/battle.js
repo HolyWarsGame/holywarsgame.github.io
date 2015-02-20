@@ -154,7 +154,7 @@ function hellHoundRaid(){
 					if(flipCoin = 0){
 						typeKilled = "peasants";
 						document.getElementById("typeKilled").innerHTML = typeKilled;
-						justKilled = floor(peasants / 10);
+						justKilled = Math.floor(peasants / 10);
 						peasants = peasants - justKilled;
 						document.getElementById("justKilled").innerHTML = typeKilled;
 						peasantsKilled = peasantsKilled + justKilled;
@@ -163,7 +163,7 @@ function hellHoundRaid(){
 					else{
 						typeKilled = "miners";
 						document.getElementById("typeKilled").innerHTML = typeKilled;
-						justKilled = floor(miners / 10);
+						justKilled = Math.floor(miners / 10);
 						miners = miners - justKilled;
 						document.getElementById("justKilled").innerHTML = typeKilled;
 						peasantsKilled = peasantsKilled + justKilled;
