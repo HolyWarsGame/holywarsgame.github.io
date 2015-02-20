@@ -25,11 +25,20 @@ var paladins = 0;
 var weapons = 0;
 
 //Status Variables//
+var pGoldClickUpgrade = false;
 var minesOpened = false;
 var cathedralOpened = false;
 var barracksOpened = false;
 
 function goldClick(number){
+    gold = gold + number;
+    document.getElementById("gold").innerHTML = gold;
+};
+
+function mouseGoldClick(number){
+	if(pGoldClickUpgrade == true){
+			number = number * 2;
+	}
     gold = gold + number;
     document.getElementById("gold").innerHTML = gold;
 };
@@ -124,7 +133,17 @@ function buyPaladin(){
     document.getElementById('PaladinCost').innerHTML = nextPaladinCost;  //updates the Paladin cost for the user
 };
 
+//UPGRADES
 
+function upgradeClickGoldMultiplier(){
+	if(gold >= 1500){
+		gold = gold - 1500;
+		pGoldClickUpgrade = true;	
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById("clickGoldUpgrade").disabled = true;
+	}
+
+};
 
 function buyWeapon(){
     var WeaponCost = Math.floor(1000 * Math.pow(1.1,weapons));     //works out the cost of this weapon

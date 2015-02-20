@@ -23,6 +23,8 @@
 		//Battle flags
 		$.cookie("defeatedOgre",defeatedOgre,{expires:365}); 
 		$.cookie("defeatedBandits",defeatedBandits,{expires:365});
+		//Upgradeflags
+		$.cookie("pGoldClickUpgrade",pGoldClickUpgrade,{expires:365}); 
 		
 		document.getElementById('saveAlert').style.display = "block";  //Displays saved alert
 		
@@ -127,6 +129,15 @@
 			paladins = parseInt($.cookie("paladins"));
 			document.getElementById("paladins").innerHTML = paladins;
 		}
+		
+		if($.cookie("pGoldClickUpgrade") != null){
+			var myBool = ($.cookie("pGoldClickUpgrade") == "true")
+			if(myBool == true){
+				pGoldClickUpgrade = true;
+				document.getElementById("clickGoldUpgrade").disabled = true;
+			}
+		}		
+		
 		
 		if($.cookie("defeatedOgre") != null){
 			var myBool = ($.cookie("defeatedOgre") == "true")

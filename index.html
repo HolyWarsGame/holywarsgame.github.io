@@ -97,7 +97,7 @@
 	  <div id="Resources" class="collapse in" >
 		<div class = "well well-sm">
 			<div id = "golddiv" >
-				<input type="image"  id="clickmoney" onclick="goldClick(1)" src = "images/money_goldsmall.png"/>
+				<input type="image"  id="clickmoney" onclick="mouseGoldClick(1)" src = "images/money_goldsmall.png"/>
 				Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
 			</div>		
 			
@@ -132,7 +132,9 @@
 		<br />
 			<div id ="PeasantUpgradeTab" class = "collapse">
 				<div class = "well">
-				blah blah
+					<button id=clickGoldUpgrade onclick="upgradeClickGoldMultiplier()"	type="button" class="btn btn-primary" title = "Your peasants learn to assist your gold collection. Doubles gold collected when clicking.">Group Begging</button>
+					Upgrade Cost: 1500 gold
+					<br />
 				</div>
 			</div>
 		</div>
