@@ -202,6 +202,7 @@
 		</div>
 		
 		<div id ="PageTab" class = "container">
+			<br />
 		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Pages"
     		data-content="Young men in training to become knights. Not too great with weapons yet, but they're learning.  <br> Provides 10 army strength">Pages (<span id="personPage">0</span>)</a>
 			<br />
@@ -217,14 +218,14 @@
 				</div>
 			</div>			
 			<br />
-			
+			<hr>
 		</div>
 		
 		<div id = "PaladinTab" class = "container" style="display: none;">
 			<br />
 		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Paladins"
     		data-content="Holy warriors that channel their faith into their weapons. They are quite adept at slaying monsters, both magical and not.  <br> Provides 1000 army strength">Paladins (<span id="paladins">0</span>)</a>
-			<br />
+			<br /> <br />
 			<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-default">Train Paladin</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
 			<br />
@@ -232,7 +233,7 @@
 			<br /><br />
 		</div>
 		
-		<div id = "PaladinUpgradeTab" class = "container" style="display: none;">
+		<div id = "PaladinUpgradeTab" class = "collapse" style="display: none;">
 			<button id=btnbuyWeapon onclick="buyWeapon()"	type="button" class="btn btn-default">Imbue Weapon</button>		
 			<br />
 			Weapons: <span id="weapons">0</span>
