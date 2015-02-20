@@ -150,27 +150,7 @@ function hellHoundRaid(){
 		  if (ticker == 0){
 			clearInterval(raid);
 			if(defeatedHhounds == false){
-				var flipCoin = Math.random();    //Determining which unit gets killed
-					if(flipCoin = 0){
-						typeKilled = "peasants";
-						document.getElementById("typeKilled").innerHTML = typeKilled;
-						justKilled = Math.floor(peasants / 10);
-						peasants = peasants - justKilled;
-						document.getElementById("justKilled").innerHTML = typeKilled;
-						peasantsKilled = peasantsKilled + justKilled;
-						document.getElementById('hellHoundAttackAlert').style.display = "block"
-					}
-					else{
-						typeKilled = "miners";
-						document.getElementById("typeKilled").innerHTML = typeKilled;
-						justKilled = Math.floor(miners / 10);
-						miners = miners - justKilled;
-						document.getElementById("justKilled").innerHTML = typeKilled;
-						peasantsKilled = peasantsKilled + justKilled;
-						document.getElementById('hellHoundAttackAlert').style.display = "block"
-					}
-					
-				
+				hellhoundCull();
 				hellHoundRaid();
 				//Dismisses Raid Alert
 				var ticker2 = 0 ;
@@ -189,6 +169,28 @@ function hellHoundRaid(){
 		}, 1000);				
 	};	
 }
+
+function hellhoundCull(){
+	var flipCoin = Math.random();    //Determining which unit gets killed
+		if(flipCoin = 0){
+			typeKilled = "peasants";
+			document.getElementById("typeKilled").innerHTML = typeKilled;
+			justKilled = Math.floor(peasants / 10);
+			peasants = peasants - justKilled;
+			document.getElementById("justKilled").innerHTML = typeKilled;
+			peasantsKilled = peasantsKilled + justKilled;
+			document.getElementById('hellHoundAttackAlert').style.display = "block"
+		}
+		else{
+			typeKilled = "miners";
+			document.getElementById("typeKilled").innerHTML = typeKilled;
+			justKilled = Math.floor(miners / 10);
+			miners = miners - justKilled;
+			document.getElementById("justKilled").innerHTML = typeKilled;
+			peasantsKilled = peasantsKilled + justKilled;
+			document.getElementById('hellHoundAttackAlert').style.display = "block"
+		}	
+};
 
 function battleHellhound(){
 	if(BattlePower >= 200){	
