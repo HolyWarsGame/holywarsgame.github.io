@@ -144,7 +144,7 @@ function buySquire(){
 	    document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
 		document.getElementById('iron').innerHTML = iron;  //updates the number of iron for the user
     };
-    var nextSquireCost = Math.floor(1200 * Math.pow(1.1,personPage));       //works out the cost of the next Squire
+    var nextSquireCost = Math.floor(1200 * Math.pow(1.1,squires));       //works out the cost of the next Squire
     document.getElementById('SquireCost').innerHTML = nextSquireCost;  //updates the Squire cost for the user	
 };
 
@@ -217,7 +217,7 @@ function recalculateCosts(){
 	var nextPageCost = Math.floor(500 * Math.pow(1.1,personPage));       //works out the cost of the next Page
     document.getElementById('PageCost').innerHTML = nextPageCost;  //updates the Page cost for the user
 	
-    var nextSquireCost = Math.floor(1200 * Math.pow(1.1,personPage));       //works out the cost of the next Squire
+    var nextSquireCost = Math.floor(1200 * Math.pow(1.1,squires));       //works out the cost of the next Squire
     document.getElementById('SquireCost').innerHTML = nextSquireCost;  //updates the Squire cost for the user		
 	
     var nextPaladinCost = Math.floor(100 * Math.pow(1.1,paladins));       //works out the cost of the next Paladin

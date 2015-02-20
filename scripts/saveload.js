@@ -191,6 +191,7 @@
 				document.getElementById('BatOgreProgBarBox').style.display = "none";
 				document.getElementById("btnBatOgre").disabled = true;
 				document.getElementById("btnBatOgre").innerHTML = "Ogre Defeated!";
+				document.getElementById('BatHellhound').style.display = "block";
 			}
 		}
 
