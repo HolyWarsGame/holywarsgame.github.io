@@ -182,6 +182,7 @@ function hellhoundCull(){
 			peasantsKilled = peasantsKilled + justKilled;
 			document.getElementById("peasants").innerHTML = peasants;
 			document.getElementById('hellHoundAttackAlert').style.display = "block"
+			document.getElementById("peasantsKilled").innerHTML = peasantsKilled;
 		}
 		else{
 			typeKilled = "miners";
@@ -192,6 +193,7 @@ function hellhoundCull(){
 			minersKilled = minersKilled + justKilled;
 			document.getElementById("miners").innerHTML = miners;
 			document.getElementById('hellHoundAttackAlert').style.display = "block"
+			document.getElementById("minersKilled").innerHTML = minersKilled;
 		}
 		recalculateCosts();
 };
