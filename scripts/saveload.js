@@ -74,7 +74,6 @@
 		}
 		if($.cookie("totalTimePlayed") != null){
 			totalTimePlayed = parseInt($.cookie("totalTimePlayed"));
-			document.getElementById("totalTimePlayed").innerHTML = totalTimePlayed;
 		}
 		
 		if($.cookie("peasants") != null){
