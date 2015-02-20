@@ -12,6 +12,7 @@
 		$.cookie("peasants",peasants,{expires:365});
 		$.cookie("miners",miners,{expires:365});
 		$.cookie("personPage",personPage,{expires:365});
+		$.cookie("squires",squires,{expires:365});
 		$.cookie("tavernpeasants",tavernpeasants,{expires:365});
 		$.cookie("taverns",taverns,{expires:365});
 		$.cookie("priests",priests,{expires:365});
@@ -91,7 +92,11 @@
 		if($.cookie("personPage") != null){
 			personPage = parseInt($.cookie("personPage"));
 			document.getElementById("personPage").innerHTML = personPage;
-		}			
+		}
+		if($.cookie("squires") != null){
+			squires = parseInt($.cookie("squires"));
+			document.getElementById("squires").innerHTML = squires;
+		}		
 		if($.cookie("minesOpened") != null){
 			var myBool = ($.cookie("minesOpened") == "true")
 			if(myBool == true){
@@ -148,7 +153,15 @@
 				mPanningUpgrade = true;
 				document.getElementById("btnminerUpgrade1").disabled = true;
 			}
-		}				
+		}
+		if($.cookie("squiresUnlocked") != null){
+			var myBool = ($.cookie("squiresUnlocked") == "true")
+			if(myBool == true){
+				squiresUnlocked = true;
+				document.getElementById("squiresUnlocked").disabled = true;
+				document.getElementById('SquireTab').style.display = "block";
+			}
+		}		
 		
 		if($.cookie("defeatedOgre") != null){
 			var myBool = ($.cookie("defeatedOgre") == "true")

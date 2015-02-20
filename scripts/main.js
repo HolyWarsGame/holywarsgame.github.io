@@ -180,6 +180,7 @@ function UnlockSquire(){
 		document.getElementById('gold').innerHTML = gold;
 		squiresUnlocked = true;
 		document.getElementById("btnPageUpgrade1").disabled = true;
+		document.getElementById('SquireTab').style.display = "block";
 	}
 }
 
