@@ -42,6 +42,9 @@
 			ele.style.display = "block";
 		}
 	} 
+	function SetLastPage(name){
+		lastPage = name;
+	}	
 	
 	$(function () { 
 		$("[data-toggle='popover']").popover(); 
@@ -422,10 +425,7 @@
 			document.getElementById("Cathedral").style.display = "none";
 			document.getElementById("Production").style.display = "none";
 		};
-		
-		function SetLastPage(name){
-			lastPage = name;
-		}
+
 	</script>
 	
 	
