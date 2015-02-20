@@ -17,12 +17,12 @@ function calculateBattlePower(){
 function banditLoot(){
 	if(defeatedBandits == false){
 		var raidtime = Math.floor((Math.random() * 90) + 30); ;
-		console.log("Raidtime in: " + raidtime)
+//		console.log("Raidtime in: " + raidtime)
 		var ticker = raidtime;
 		
 		var raid = setInterval(function() {
 			ticker = ticker - 1;  
-			console.log(ticker);
+//			console.log(ticker);
 		  if (ticker == 0){
 			clearInterval(raid);
 			if(defeatedBandits == false){
@@ -33,7 +33,7 @@ function banditLoot(){
 				document.getElementById("justStolen").innerHTML = justStolen;
 				document.getElementById("banditLootAlert").style.display = "block";
 				banditLoot();
-				//Dismisses Save Alert
+				//Dismisses Raid Alert
 				var ticker2 = 0 ;
 				var clearLootAlert = setInterval(function() {
 					ticker2 = ticker2 + 1;   
@@ -44,7 +44,7 @@ function banditLoot(){
 						}	
 					}
 				}, 1000);	
-	    //End Dismisses Save Alert
+				//End Dismisses Raid Alert
 			}
 		  }
 		}, 1000);				
