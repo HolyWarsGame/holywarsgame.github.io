@@ -81,7 +81,7 @@ function setEnemyDescription(Enemy, element){
 
 var banditsDesc = "A bandit camp sits on the outskirts of your village. Bandits occasionally ride into your village and do dastardly things like looting and pillaging your poor peasants.  <br><br> You should probably stop them."
 var Bandits = new Enemy("bandits", banditsDesc, 'BatBanditsProgBarBox', 'BatBanditsProgBar', 'btnBatBandits','unlockCathAlert',100,0,5,500);
-//setEnemyDescription(Bandits, btnDescBandits);
+setEnemyDescription(Bandits, 'btnDescBandits');
 
 function GoFightBandits(){
 	var win = Bandits.fight();
@@ -136,7 +136,7 @@ setTimeout(function() { banditLoot(); }, 30000);//Triggers bandit looting
 
 var ogreDesc = "A large and particularly odorous Ogre is threatening your village! Take it out before it tries to eat any more of your cattle or decides to pass wind in your direction.";
 var Ogre = new Enemy("ogre", ogreDesc, 'BatOgreProgBarBox','BatOgreProgBar','btnBatOgre','unlockPaladinsAlert',100,0,1,500);
-//setEnemyDescription(Ogre, btnDescOgre);
+setEnemyDescription(Ogre, 'btnDescOgre');
 
 function GoFightOgre(){
 	var win = Ogre.fight();
