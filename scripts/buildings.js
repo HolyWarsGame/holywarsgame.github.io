@@ -69,4 +69,4 @@ window.setInterval(function(){					//Tavern unit generation
 	document.getElementById('tavernminers').innerHTML = tavernminers;	
 	}
 
-}, 10000);
+}, 30000);

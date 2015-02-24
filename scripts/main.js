@@ -24,6 +24,7 @@ var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade
 var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
 var tavernUpgrade = false;
 var squiresUnlocked = false;	
+var knightsUnlocked = false;
 var minesOpened = false;
 var cathedralOpened = false;
 var barracksOpened = false;
@@ -115,6 +116,16 @@ function UnlockSquire(){
 	}
 }
 
+function UnlockKnight(){
+	if(gold >= 8000 && BattlePower >= 500){
+		gold = gold - 8000;
+		document.getElementById('gold').innerHTML = gold;
+		knightsUnlocked = true;
+		document.getElementById("btnSquireUpgrade1").disabled = true;
+		document.getElementById('KnightTab').style.display = "block";
+	}
+}
+
 function buyWeapon(){
     var WeaponCost = Math.floor(1000 * Math.pow(1.1,weapons));     //works out the cost of this weapon
     if(faith >= WeaponCost){                                   //checks that the player can afford the weapon
@@ -135,60 +146,33 @@ function recalculateCosts(){
 	Priest.recalcCost();
 	Page.recalcCost();
 	Squire.recalcCost();
+	Knight.recalcCost();
 	Paladin.recalcCost();
 };
 
 function UpdateButtons() {
 	
 	//Unit Buttons //
-	//Enable/disables buy peasant button depending on if there is enough currency
-	if(gold < document.getElementById('PeasantCost').innerHTML){	
-		document.getElementById("btnbuyPeasant").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyPeasant").disabled = false;
-	}
+	//Enable/disables buy peasant button depending on if there is enough currency	
+	Peasant.canBuy();
+	
 	//Enable/disables buy miner button depending on if there is enough currency
-	if(gold < document.getElementById('MinerCost').innerHTML){	
-		document.getElementById("btnbuyMiner").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyMiner").disabled = false;
-	}
+	Miner.canBuy();
 	
 	//Enable/disables buy priest button depending on if there is enough currency
-	if(gold < document.getElementById('PriestCost').innerHTML){	
-		document.getElementById("btnbuyPriest").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyPriest").disabled = false;
-	}
+	Priest.canBuy();
 
 	//Enable/disables buy page button depending on if there is enough currency
-	if(gold < document.getElementById('PageCost').innerHTML || iron < 100){	
-		document.getElementById("btnbuyPage").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyPage").disabled = false;
-	}		
+	Page.canBuy();	
 
 	//Enable/disables buy squire button depending on if there is enough currency
-	if(gold < document.getElementById('SquireCost').innerHTML || iron < 200 || Page.returnNumber() < 1){	
-		document.getElementById("btnBuySquire").disabled = true;
-	}
-	else{
-		document.getElementById("btnBuySquire").disabled = false;
-	}		
+	Squire.canBuy();	
 	
-	
+	//Enable/disables buy squire button depending on if there is enough currency
+	Knight.canBuy();	
 	
 	//Enable/disables buy paladin button depending on if there is enough currency
-	if(faith < document.getElementById('PaladinCost').innerHTML){	
-		document.getElementById("btnbuyPaladin").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyPaladin").disabled = false;
-	}	
+	Paladin.canBuy();
 
 	// End of Unit Buttons//
 	
@@ -268,7 +252,7 @@ function UpdateButtons() {
 	
 	
 	//Changes status of Battle Buttons
-		//Bandit Button
+	//Bandit Button
 	if(BattlePower < 100 || defeatedBandits == true){
 		document.getElementById("btnBatBandits").disabled = true;		
 	}		
@@ -281,6 +265,14 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnBatOgre").disabled = false;
+	}
+	
+		//Ogre Button
+	if(BattlePower < 2000 || defeatedHhounds == true){
+		document.getElementById("btnBatHellhound").disabled = true;		
+	}
+	else{
+		document.getElementById("btnBatHellhound").disabled = false;
 	}
 	//End of Battle Buttons
 }
@@ -303,7 +295,7 @@ window.setInterval(function(){                                 //Update per seco
 	ironpersec = Miner.number;
 	document.getElementById("ironpersec").innerHTML = ironpersec;
     
-	document.getElementById("peasants").innerHTML = Peasant.number ;		//For testing
+	document.getElementById("peasants").innerHTML = Peasant.number ;	//For testing
 	document.getElementById("miners").innerHTML = Miner.number;			//For Testing
 },100);
 

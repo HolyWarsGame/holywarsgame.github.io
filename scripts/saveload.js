@@ -12,30 +12,37 @@
 		
 		//Unit variables
 
- 		localStorage.setItem("peasants",Peasant.returnNumber());
-		localStorage.setItem("miners",Miner.returnNumber());
-		localStorage.setItem("personPage",Page.returnNumber());
-		localStorage.setItem("squires",Squire.returnNumber());
+ 		localStorage.setItem("peasants",Peasant.number);
+		localStorage.setItem("miners",Miner.number);
+		localStorage.setItem("personPage",Page.number);
+		localStorage.setItem("squires",Squire.number);
+		localStorage.setItem("knights",Knight.number);
 		localStorage.setItem("tavernpeasants",tavernpeasants);
+		localStorage.setItem("tavernminers",tavernminers);
 		localStorage.setItem("taverns",taverns);
-		localStorage.setItem("priests",Priest.returnNumber());
-		localStorage.setItem("paladins",Paladin.returnNumber()); 	
+		localStorage.setItem("priests",Priest.number);
+		localStorage.setItem("paladins",Paladin.number); 	
 		
 		//Building flags
 		localStorage.setItem("minesOpened",minesOpened);
 		localStorage.setItem("cathedralOpened",cathedralOpened);
 		localStorage.setItem("barracksOpened",barracksOpened);
+		
 		//Battle flags
-		localStorage.setItem("defeatedOgre",defeatedOgre); 
+		localStorage.setItem("defeatedGoblins",defeatedGoblins);
 		localStorage.setItem("defeatedBandits",defeatedBandits);
+		localStorage.setItem("defeatedOgre",defeatedOgre); 
 		localStorage.setItem("defeatedHhounds",defeatedHhounds);
 		localStorage.setItem("peasantsKilled",peasantsKilled);
 		localStorage.setItem("minersKilled", minersKilled);
+		
 		//Upgradeflags
 		localStorage.setItem("pGoldClickUpgrade",pGoldClickUpgrade);
 		localStorage.setItem("mPanningUpgrade",mPanningUpgrade);
 		localStorage.setItem("squiresUnlocked",squiresUnlocked);
+		localStorage.setItem("knightsUnlocked",knightsUnlocked);
 		localStorage.setItem("tavernUpgrade",tavernUpgrade);
+		
 		//MiscFlags
 		localStorage.setItem("lastPage",lastPage);
 		
@@ -107,7 +114,11 @@
 		if(localStorage.squires != null){
 			Squire.number = parseInt(localStorage.squires);
 			document.getElementById("squires").innerHTML = Squire.number;
-		}		
+		}
+		if(localStorage.knights != null){
+			Knight.number = parseInt(localStorage.knights);
+			document.getElementById("knights").innerHTML = Knight.number;
+		}			
 		if(localStorage.minesOpened != null){
 			var myBool = localStorage.minesOpened == "true"
 			if(myBool == true){
@@ -120,7 +131,14 @@
 			tavernpeasants = parseInt(localStorage.tavernpeasants);
 			document.getElementById("tavernpeasants").innerHTML = tavernpeasants;
 			document.getElementById("peasants").innerHTML = Peasant.number;
-		}					
+		}		
+
+		if(localStorage.tavernminers != null){
+			tavernminers = parseInt(localStorage.tavernminers);
+			document.getElementById("tavernminers").innerHTML = tavernminers;
+			document.getElementById("miners").innerHTML = Miner.number;
+		}			
+		
 		if(localStorage.taverns != null){
 			taverns = parseInt(localStorage.taverns);
 			document.getElementById("taverns").innerHTML = taverns;
@@ -134,6 +152,7 @@
 				document.getElementById('armystrdiv').style.display = "block";
 			}
 		}			
+		
 		if(localStorage.cathedralOpened != null){
 			var myBool = (localStorage.cathedralOpened == "true")
 			if(myBool == true){
@@ -143,13 +162,15 @@
 				document.getElementById('faithdiv').style.display = "block";
 			}
 		}		
+		
 		if(localStorage.priests != null){
-			priests = parseInt(localStorage.priests);
-			document.getElementById("priests").innerHTML = priests;
-		}			
+			 Priest.number = parseInt(localStorage.priests);
+			document.getElementById("priests").innerHTML = Priest.number;
+		}	
+		
 		if(localStorage.paladins != null){
-			paladins = parseInt(localStorage.paladins);
-			document.getElementById("paladins").innerHTML = paladins;
+			Paladin.number = parseInt(localStorage.paladins);
+			document.getElementById("paladins").innerHTML = Paladin.number;
 		}
 		
 		if(localStorage.pGoldClickUpgrade != null){
@@ -182,9 +203,28 @@
 				document.getElementById("btnPageUpgrade1").disabled = true;
 				document.getElementById('SquireTab').style.display = "block";
 			}
-		}		
+		}	
 		
-
+		if(localStorage.knightsUnlocked != null){
+			var myBool = (localStorage.knightsUnlocked == "true")
+			if(myBool == true){
+				knightsUnlocked = true;
+				document.getElementById("btnSquireUpgrade1").disabled = true;
+				document.getElementById('KnightTab').style.display = "block";
+			}
+		}	
+		
+		if(localStorage.defeatedGoblins != null){
+			var myBool = (localStorage.defeatedGoblins == "true")
+			if(myBool == true){
+				defeatedGoblins = true;
+				document.getElementById('BatGoblinsProgBarBox').style.display = "none";			
+				document.getElementById("btnBatGoblins").innerHTML = "Goblins Defeated!";
+				document.getElementById("btnBatGoblins").disabled = true;
+				defeatedGoblins = true;
+			}
+		}
+			
 		if(localStorage.defeatedBandits != null){
 			var myBool = (localStorage.defeatedBandits == "true")
 			if(myBool == true){
@@ -195,8 +235,8 @@
 				document.getElementById("btnBatBandits").disabled = true;
 				defeatedBandits = true;
 			}
-		}			
-
+		}				
+		
 		if(localStorage.defeatedOgre != null){
 			var myBool = (localStorage.defeatedOgre == "true")
 			if(myBool == true){
@@ -243,7 +283,6 @@
 		else{
 			lastPage = 'Production';
 		}
-		
 		recalculateCosts();
 	};
 	

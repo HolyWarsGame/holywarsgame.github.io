@@ -107,32 +107,39 @@
 	  
 	  <div id="Resources" class="collapse in">
 		<div class = "well well-sm">
+		<ul id = "ResourceList">
+		<li>
 			<div id = "golddiv" >
 <!--				<input type="image"  id="clickmoney" onclick="mouseGoldClick(1)" src = "images/money_goldsmall.png"/> -->
 				<img src = "images/money_goldsmall.png" alt="Gold Coins">
 				Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
 			</div>		
-			
+		</li>
+		<li>
 			<div id = "irondiv" style="display: none;">
 				<img src = "images/ironsmall.png" alt="Praying Hands">
 				Iron: <span id="iron">0</span>      ( <span id="ironpersec">0</span> ips)
 			</div>
-			
+		</li>
+		<li>
 			<div id = "armystrdiv" style="display: none;">
 			<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
 				<img src = "images/armsmall.png" alt="Praying Hands">
 				Army: <span id="BattlePower">0</span> 
 			</div>
-			
+		</li>
+		<li>			
 			<div id = "faithdiv" style="display: none;">
 				<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">
 				Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
 			</div>
-			
+		</li>
+		<li>			
 			<div id = "soulsdiv" style="display: none;">
 				<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/soulssmall.png"/>
 				Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
 			</div>
+		</li>
 		</div>
 	  </div>
 	  
@@ -141,6 +148,67 @@
 			<input type="image"  id="clickmoney" onclick="clickThing(1,'goldMouse')" src = "images/money_gold.png"/ title = "Click to gather gold yourself.">			
 		</div>
 	  </div>
+
+	 <!--- ALERTS ARE HERE --->
+
+		<div id = openMineAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
+		</div>
+		
+		
+		<div id = openBarracksAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> You can now <a href="javascript: toggle('openBarracksAlert');CollapseAll();toggle('Barracks')" class="alert-link">train</a> units to fight against the Evil One and his minions.   
+		</div>  
+
+		<div id = goblinDefeatAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> You chase the defeated horde of goblins back to their mound. They put up a last ditch effort, but your forces make quick work out of them. Inside their mound you find a stash of 2000 gold!   
+		</div>	
+		
+		<div id = openCathAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
+		</div>
+
+		<div id = unlockCathAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> You successfully chase out the bandits raiding your village. As you raze their camp to make sure they don't return, you find plans for an elaborate  <a href="javascript: toggle('unlockCathAlert');CollapseAll();toggle('Structures')" class="alert-link">Cathedral</a>. 
+			 These bandits sure do have funny taste in loot. You also find a portion of the gold that they have stolen from you.
+		</div>		
+		
+		<div id = unlockPaladinsAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
+		</div>	
+			
+		<div id = banditLootAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+			<strong>Oh No!!</strong> Bandits come and raid <span id = "justStolen">0</span> gold from your gold supply! Maybe you should try getting <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">getting rid</a> of them?   
+		</div>		
+
+		<div id = hellhoundUnlockAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Oh No!!</strong> The Evil One has noticed your presence, and has decided to start sending <a href="javascript: toggle('hellhoundUnlockAlert');CollapseAll();toggle('Battle')" class="alert-link">hellhounds</a> to attack you.  
+		</div>	
+		
+		<div id = hellHoundAttackAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+			<strong>Oh No!!</strong>The Evil One's hellhounds break through your defenses and kill <span id = "justKilled">0</span> of your <span id = "typeKilled">x</span>. Build up your strength and <a href="javascript: toggle('hellHoundAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">fight</a> them off!   
+		</div>		
+
+		<div id = openEtherealAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> After the hellhounds explode in a cloud of blood and fire, you sift through the ashes of their remains. One of them was wearing a collar,
+								 which upon closer observation is actually a map. When you arrive at the marked destination on the map, you realize there is a 
+								 almost <a href="javascript: toggle('openEtherealAlert');CollapseAll();toggle('Ethereal')" class="alert-link">otherworldly tear</a> floating in front of you.   
+		</div>	
+		
+		<div id = saveAlert class="alert alert-success fade in" role="alert" style="display: none;">
+		<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+			<strong>Save!</strong> Your game has been saved!   
+		</div> 
+
+	  	  
 	  
 	  <div id="Production" class= "panel panel-default">
 		<div class = "panel-heading">
@@ -156,10 +224,9 @@
 		<button id=btnPeasantUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PeasantUpgradeTab" aria-expanded="false" aria-controls="PeasantUpgradeTab">Upgrades</button>		
 		<br />
 		 Peasant Cost: <span id="PeasantCost">50</span> gold
-		<br />
 			<div id ="PeasantUpgradeTab" class = "collapse">
 				<div class = "well">
-					<button id=clickGoldUpgrade onclick="upgradeClickGoldMultiplier()"	type="button" class="btn btn-default" title = "Your peasants learn to assist your gold collection. Doubles gold collected when clicking.">Group Begging</button>
+					<button id=clickGoldUpgrade onclick="upgradeClickGoldMultiplier()"	type="button" class="btn btn-default" title = "Your peasants learn to assist your gold collection. Doubles gold collected when clicking.">Power of the People</button>
 					<br />
 					Upgrade Cost: 1500 gold
 					<br />
@@ -169,7 +236,6 @@
 		</div>
 		
 		<div id="Mining" class = "container" style="display: none;">
-			<br />
 		<a id = 'BtnMinerDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Miners"
     		data-content="">Miners (<span id="miners">0</span>)</a>	
 			<br /><br />
@@ -180,7 +246,6 @@
 			<br />
 			<div id ="MinerUpgradeTab" class = "collapse">
 				<div class = "well">
-					<br />
 					<button id=btnminerUpgrade1 onclick="minerUpgradePanning()"	type="button" class="btn btn-default" title = "Your miners now pan for gold in their spare time. Miners now generate 1 gold per second.">Learn Panning</button>
 					<br />
 					Upgrade Cost: 3500 gold and 1000 iron
@@ -226,14 +291,14 @@
 		<a id = 'BtnPageDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Pages"
     		data-content="">Pages (<span id="personPage">0</span>)</a>
 			<br /><br />
-			<button id=btnbuyPage onclick="Page.buyOne()"	type="button" class="btn btn-default">Train Page</button>
+			<button id=btnBuyPage onclick="Page.buyOne()"	type="button" class="btn btn-default">Train Page</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PageUpgradeTab" aria-expanded="false" aria-controls="PageUpgradeTab">Upgrades</button>
 			<br />
 			Page Cost: <span id="PageCost">500</span> gold and 100 iron
 			<br />
+			<hr>
 			<div id ="PageUpgradeTab" class = "collapse">
 				<div class = "well">
-					<br />
 					<button id=btnPageUpgrade1 onclick="UnlockSquire()"	type="button" class="btn btn-default" title = "Your squires become more knowledgeable and skilled. Unlocks the Squire.">Unlock Squire</button>
 					<br />
 					Requires: 120 Army strength <br />
@@ -241,11 +306,10 @@
 					<br />
 				</div>
 			</div>			
-			<br />
 		</div>
 
+		
 		<div id = "SquireTab" class = "container" style="display: none;">
-			<br />
 		<a id = 'BtnSquireDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Squires"
     		data-content="">Squires (<span id="squires">0</span>)</a>
 			<br /><br />
@@ -253,24 +317,47 @@
 			<button id=btnSquireUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#SquireUpgradeTab" aria-expanded="false" aria-controls="SquireUpgradeTab">Upgrades</button>
 			<br />
 			Squire Cost: <span id="SquireCost">1200</span> gold, 250 iron, and 1 Page
-			<br /><br />
+			<br />
+			<hr>	
 		</div>		
 		<div id = "SquireUpgradeTab" class = "collapse">
 			<div class = "well">
-				No Upgrades implemented for Squires yet.
+					<button id=btnSquireUpgrade1 onclick="UnlockKnight()"	type="button" class="btn btn-default" title = "Your squires become more knowledgeable and skilled. Unlocks the Knight.">Unlock Knight</button>
+					<br />
+					Requires: 500 Army strength <br />
+					Upgrade Cost: 8000 gold
+					<br />
+			</div>
+
+		</div>
+
+
+		<div id = "KnightTab" class = "container" style="display: none;">
+		<a id = 'BtnKnightDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Knights"
+    		data-content="">Knights (<span id="knights">0</span>)</a>
+			<br /><br />
+			<button id=btnBuyKnight onclick="Knight.buyOne()"	type="button" class="btn btn-default">Promote Knight</button>
+			<button id=btnKnightUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#KnightUpgradeTab" aria-expanded="false" aria-controls="KnightUpgradeTab">Upgrades</button>
+			<br />
+			Knight Cost: <span id="KnightCost">3000</span> gold, 350 iron, and 1 Squire
+			<br />
+			<hr>
+		</div>		
+		<div id = "KnightUpgradeTab" class = "collapse">
+			<div class = "well">
+				No Upgrades implemented for Knights yet.
 			</div>
 		</div>
 		
 		
 		<div id = "PaladinTab" class = "container" style="display: none;">
-			<br />
 		<a id = 'BtnPaladinDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Paladins"
     		data-content="">Paladins (<span id="paladins">0</span>)</a>
 			<br /><br />
-			<button id=btnbuyPaladin onclick="Paladin.buyOne()"	type="button" class="btn btn-default">Train Paladin</button>
+			<button id=btnBuyPaladin onclick="Paladin.buyOne()"	type="button" class="btn btn-default">Train Paladin</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
 			<br />
-			Paladin Cost: <span id="PaladinCost">100</span> faith
+			Paladin Cost: <span id="PaladinCost">10000</span> gold, 500 iron, 100 faith, 1 Knight
 			<br /><br />
 		</div>
 		
@@ -290,10 +377,10 @@
 			<div class="panel-title">Structures</div>
 		</div>
 			<div id = "TavernTab" class = "container">
-				<br /><br />
-				<a id = 'BtnTavernDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Taverns"
-				data-content="A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 10 seconds.">Taverns (<span id="taverns">0</span>)</a>			
 				<br />
+				<a id = 'BtnTavernDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Taverns"
+				data-content="A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 30 seconds.">Taverns (<span id="taverns">0</span>)</a>			
+				<br /><br />
 				<button id=btnbuyTavern title="A peasant joins your forces every few seconds" onclick="buyTavern()"	type="button" class="btn btn-default">Build Tavern</button>	
 				<button id=btnTavernUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#TavernUpgradeTab" aria-expanded="false" aria-controls="TavernUpgradeTab">Upgrades</button>
 				<br />
@@ -328,7 +415,8 @@
 			<button id = btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-default">Build Cathedral</button>
 			<br />
 			Opening the cathedral costs 10000 gold and 500 iron.
-			<br />	
+			<br />
+			<br />
 		</div>
 	 </div>
 	 
@@ -351,14 +439,29 @@
 	   
 	   <div id="BattleStrength" class = "container">
 			<h2> Current Army Strength: <span id = "BattlePower2">0</span> power </h2>
-			<hr> <br /><br />
+			<hr>
 	   </div>
 
+	   <div id="BatGoblins" class = "container">
+		<a id = btnDescGoblins tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Horde of Goblins"
+		data-content="" >A Horde of Goblins</a>
+		<br />
+				<button id=btnBatGoblins onclick="Goblins.fight()"	type="button" class="btn btn-danger">Battle!</button>
+				<br />Requires army power: 75 <br />
+			<div id="BatGoblinsProgBarBox" class="progress" style="display: none;">
+			  <div id="BatGoblinsProgBar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+				0%
+			  </div>
+			</div>
+		<br />
+		<br />
+	   </div>	   
+	   
 	   <div id="BatBandits" class = "container">
 		<a id = btnDescBandits tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Bandits"
 		data-content="" >Bunch of Bandits</a>
 		<br />
-				<button id=btnBatBandits onclick="GoFightBandits()"	type="button" class="btn btn-danger">Battle!</button>
+				<button id=btnBatBandits onclick="Bandits.fight()"	type="button" class="btn btn-danger">Battle!</button>
 				<br />They have stolen <span id='goldStolen'>0</span> gold from you.
 				<br />Requires army power: 100 <br />
 			<div id="BatBanditsProgBarBox" class="progress" style="display: none;">
@@ -375,7 +478,7 @@
 		<a id = 'btnDescOgre' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Smelly Ogre"
 		data-content="">Smelly Ogre</a>
 		<br />
-			<button id=btnBatOgre onclick="GoFightOgre()"	type="button" class="btn btn-danger">Battle!</button>
+			<button id=btnBatOgre onclick="Ogre.fight()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
 			Requires army power: 500 <br />
 				<div id="BatOgreProgBarBox" class="progress" style="display: none;">
@@ -388,10 +491,10 @@
 	   </div>
 
 	   <div id="BatHellhound" class = "container" style="display: none;">
-		<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Hellhounds"
-		data-content="The Evil One has released these fiery hounds to stalk your village. Occasionally the are able to slip past your defences and kill some of your peasants and miners.">Pack of Hellhounds</a>
+		<a id = 'btnDescHellhounds' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Hellhounds"
+		data-content="">Pack of Hellhounds</a>
 			<br />
-			<button id=btnBatHellhound onclick="battleHellhound()"	type="button" class="btn btn-danger">Battle!</button>
+			<button id=btnBatHellhound onclick="Hellhounds.fight()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
 			Requires army power: 2000 <br />
 			Peasants Killed: <span id = "peasantsKilled">0</span> <br />
@@ -407,59 +510,7 @@
 	 </div>	 
 	 
 	 
-	 <!--- ALERTS ARE HERE --->
-	<div id = openMineAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
-    </div>
-	
-	
-	<div id = openBarracksAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>New!</strong> You can now <a href="javascript: toggle('openBarracksAlert');CollapseAll();toggle('Barracks')" class="alert-link">train</a> units to fight against the Evil One and his minions.   
-    </div>  
-	
-	
-	<div id = openCathAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
-    </div>
-
-	<div id = 'unlockCathAlert' class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>New!</strong> You successfully chase out the bandits raiding your village. As you raze their camp to make sure they don't return, you find plans for an elaborate  <a href="javascript: toggle('unlockCathAlert');CollapseAll();toggle('Structures')" class="alert-link">Cathedral</a>. 
-		 These bandits sure do have funny taste in loot. You also find a portion of the gold that they have stolen from you.
-    </div>		
-	
-	<div id = unlockPaladinsAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
-    </div>	
-		
-	<div id = banditLootAlert class="alert alert-danger fade in" role="alert" style="display: none;">
-        <strong>Oh No!!</strong> Bandits come and raid <span id = "justStolen">0</span> gold from your gold supply! Maybe you should try getting <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">getting rid</a> of them?   
-    </div>		
-
-	<div id = hellhoundUnlockAlert class="alert alert-danger fade in" role="alert" style="display: none;">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Oh No!!</strong> The Evil One has noticed your presence, and has decided to start sending <a href="javascript: toggle('hellhoundUnlockAlert');CollapseAll();toggle('Battle')" class="alert-link">hellhounds</a> to attack you.  
-    </div>	
-	
-	<div id = hellHoundAttackAlert class="alert alert-danger fade in" role="alert" style="display: none;">
-        <strong>Oh No!!</strong>The Evil One's hellhounds break through your defenses and kill <span id = "justKilled">0</span> of your <span id = "typeKilled">x</span>. Build up your strength and <a href="javascript: toggle('hellHoundAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">fight</a> them off!   
-    </div>		
-
-	<div id = openEtherealAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>New!</strong> After the hellhounds explode in a cloud of blood and fire, you sift through the ashes of their remains. One of them was wearing a collar,
-							 which upon closer observation is actually a map. When you arrive at the marked destination on the map, you realize there is a 
-							 almost <a href="javascript: toggle('openEtherealAlert');CollapseAll();toggle('Ethereal')" class="alert-link">otherworldly tear</a> floating in front of you.   
-    </div>	
-	
-	<div id = saveAlert class="alert alert-success fade in" role="alert" style="display: none;">
-	<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-        <strong>Save!</strong> Your game has been saved!   
-    </div>  
+ 
  </div> <!-- /container -->
 
 	
