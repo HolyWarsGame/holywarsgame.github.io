@@ -78,12 +78,12 @@ function setDescription(Unit, element){
 };
 
 
-var peasdesc = "A lowly denizen of your realm. They are adept at farming and scrounging for gold but completely useless at fighting. <br> Generates 1 gold per second"
-var Peasant = new Unit("peasant",'peasants','PeasantCost',50,0,0,0,1.25, peasdesc, tavernpeasants,false,"none");
+var peasDesc = "A lowly denizen of your realm. They are adept at farming and scrounging for gold but completely useless at fighting. <br> Generates 1 gold per second"
+var Peasant = new Unit("peasant",'peasants','PeasantCost',50,0,0,0,1.25, peasDesc, tavernpeasants,false,"none");
 setDescription(Peasant, 'BtnPeasantDesc');
 
-var minerdesc = "These hard-working mine excavate minerals from the mine you have built. They bring canaries in with them to warn them of disasters. Also as lunch. <br> Generates 1 iron per second"
-var Miner = new Unit("miner",'miners','MinerCost',250,0,0,0,1.25,minerdesc,tavernminers, false, "none")
+var minerDesc = "These hard-working mine excavate minerals from the mine you have built. They bring canaries in with them to warn them of disasters. Also as lunch. <br> Generates 1 iron per second"
+var Miner = new Unit("miner",'miners','MinerCost',250,0,0,0,1.25,minerDesc,tavernminers, false, "none")
 setDescription(Miner, 'BtnMinerDesc');
 
 var pageDesc = "Young men in training to become knights. Not too great with weapons yet, but they're learning.  <br> Provides 10 army strength"

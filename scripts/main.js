@@ -129,6 +129,7 @@ function buyWeapon(){
 
 function recalculateCosts(){
 	Peasant.costAdj = tavernpeasants;
+	Peasant.recalcCost();
 	Miner.costAdj = tavernminers;
 	Miner.recalcCost();
 	Priest.recalcCost();
