@@ -1,38 +1,43 @@
 //Save and Loading Script for HW //
 
 	function saveCookie(){
+		if(typeof(Storage) !== "undefined"){
 		//Currency variables
-		$.cookie("gold",gold,{expires:365});
-		$.cookie("faith",faith,{expires:365});
-		$.cookie("souls",souls,{expires:365});
-		$.cookie("iron",iron,{expires:365});
-		$.cookie("goldStolen",goldStolen,{expires:365});
-		$.cookie("totalTimePlayed",totalTimePlayed,{expires:365});
+		localStorage.setItem("gold",gold);
+		localStorage.setItem("faith",faith);
+		localStorage.setItem("souls",souls);
+		localStorage.setItem("iron",iron);
+		localStorage.setItem("goldStolen",goldStolen);
+		localStorage.setItem("totalTimePlayed",totalTimePlayed);
+		
 		//Unit variables
-		$.cookie("peasants",peasants,{expires:365});
-		$.cookie("miners",miners,{expires:365});
-		$.cookie("personPage",personPage,{expires:365});
-		$.cookie("squires",squires,{expires:365});
-		$.cookie("tavernpeasants",tavernpeasants,{expires:365});
-		$.cookie("taverns",taverns,{expires:365});
-		$.cookie("priests",priests,{expires:365});
-		$.cookie("paladins",paladins,{expires:365});
+
+ 		localStorage.setItem("peasants",Peasant.returnNumber());
+		localStorage.setItem("miners",Miner.returnNumber());
+		localStorage.setItem("personPage",Page.returnNumber());
+		localStorage.setItem("squires",Squire.returnNumber());
+		localStorage.setItem("tavernpeasants",tavernpeasants);
+		localStorage.setItem("taverns",taverns);
+		localStorage.setItem("priests",Priest.returnNumber());
+		localStorage.setItem("paladins",Paladin.returnNumber()); 	
+		
 		//Building flags
-		$.cookie("minesOpened",minesOpened,{expires:365});
-		$.cookie("cathedralOpened",cathedralOpened,{expires:365});
-		$.cookie("barracksOpened",barracksOpened,{expires:365});
+		localStorage.setItem("minesOpened",minesOpened);
+		localStorage.setItem("cathedralOpened",cathedralOpened);
+		localStorage.setItem("barracksOpened",barracksOpened);
 		//Battle flags
-		$.cookie("defeatedOgre",defeatedOgre,{expires:365}); 
-		$.cookie("defeatedBandits",defeatedBandits,{expires:365});
-		$.cookie("defeatedHhounds",defeatedHhounds,{expires:365});
-		$.cookie("peasantsKilled",peasantsKilled,{expires:365});
-		$.cookie("minersKilled", minersKilled,{expires:365});
+		localStorage.setItem("defeatedOgre",defeatedOgre); 
+		localStorage.setItem("defeatedBandits",defeatedBandits);
+		localStorage.setItem("defeatedHhounds",defeatedHhounds);
+		localStorage.setItem("peasantsKilled",peasantsKilled);
+		localStorage.setItem("minersKilled", minersKilled);
 		//Upgradeflags
-		$.cookie("pGoldClickUpgrade",pGoldClickUpgrade,{expires:365});
-		$.cookie("mPanningUpgrade",mPanningUpgrade,{expires:365});
-		$.cookie("squiresUnlocked",squiresUnlocked,{expires:365});
+		localStorage.setItem("pGoldClickUpgrade",pGoldClickUpgrade);
+		localStorage.setItem("mPanningUpgrade",mPanningUpgrade);
+		localStorage.setItem("squiresUnlocked",squiresUnlocked);
+		localStorage.setItem("tavernUpgrade",tavernUpgrade);
 		//MiscFlags
-		$.cookie("lastPage",lastPage,{expires:365});
+		localStorage.setItem("lastPage",lastPage);
 		
 		document.getElementById('saveAlert').style.display = "block";  //Displays saved alert
 		
@@ -48,78 +53,80 @@
 		  }
 		}, 1000);	
 	    //End Dismisses Save Alert
-	};
+	}
+	else{
+		alert("Sorry! Your web browser does not support local saving. Please try a newer version of your browser.")
+	}
+};
 	
 	function deleteCookie(){
-		var cookies = $.cookie();
-		for(var cookie in cookies) {
-		   $.removeCookie(cookie);
-		}
+		localStorage.clear();
 		console.log("Your cookies have been cleared.")
 	};
 	
 	function loadCookie(){
 	//	console.debug($.cookie("gold"));
-		if($.cookie("gold") != null){
-			gold = parseInt($.cookie("gold"));
+		if(localStorage.gold != null){
+			gold = parseInt(localStorage.gold);
 			document.getElementById("gold").innerHTML = gold;
 		}
 		
-		if($.cookie("goldStolen") != null){
-			goldStolen = parseInt($.cookie("goldStolen"));
+		if(localStorage.goldStolen != null){
+			goldStolen = parseInt(localStorage.goldStolen);
 			document.getElementById("goldStolen").innerHTML = goldStolen;
 		}
 		
-		if($.cookie("faith") != null){
-			faith = parseInt($.cookie("faith"));
+		if(localStorage.faith != null){
+			faith = parseInt(localStorage.faith);
 			document.getElementById("faith").innerHTML = faith;
 		}			
-		if($.cookie("souls") != null){
-			souls = parseInt($.cookie("souls"));
+		if(localStorage.souls != null){
+			souls = parseInt(localStorage.souls);
 			document.getElementById("souls").innerHTML = souls;
 		}		
-		if($.cookie("iron") != null){
-			iron = parseInt($.cookie("iron"));
+		if(localStorage.iron != null){
+			iron = parseInt(localStorage.iron);
 			document.getElementById("iron").innerHTML = iron;
 		}
-		if($.cookie("totalTimePlayed") != null){
-			totalTimePlayed = parseInt($.cookie("totalTimePlayed"));
+		if(localStorage.totalTimePlayed != null){
+			totalTimePlayed = parseInt(localStorage.totalTimePlayed);
 		}
 		
-		if($.cookie("peasants") != null){
-			peasants = parseInt($.cookie("peasants"));
-			document.getElementById("peasants").innerHTML = peasants;
+		if(localStorage.peasants != null){
+			Peasant.number = parseInt(localStorage.peasants);
+			document.getElementById("peasants").innerHTML = Peasant.number;
 		}	
-		if($.cookie("miners") != null){
-			miners = parseInt($.cookie("miners"));
-			document.getElementById("miners").innerHTML = miners;
+		if(localStorage.miners != null){
+			Miner.number = parseInt(localStorage.miners);
+			document.getElementById("miners").innerHTML = Miner.number;
 		}
-		if($.cookie("personPage") != null){
-			personPage = parseInt($.cookie("personPage"));
-			document.getElementById("personPage").innerHTML = personPage;
+		if(localStorage.personPage != null){
+			Page.number = parseInt(localStorage.personPage);
+			document.getElementById("personPage").innerHTML = Page.number;
 		}
-		if($.cookie("squires") != null){
-			squires = parseInt($.cookie("squires"));
-			document.getElementById("squires").innerHTML = squires;
+		if(localStorage.squires != null){
+			Squire.number = parseInt(localStorage.squires);
+			document.getElementById("squires").innerHTML = Squire.number;
 		}		
-		if($.cookie("minesOpened") != null){
-			var myBool = ($.cookie("minesOpened") == "true")
+		if(localStorage.minesOpened != null){
+			var myBool = localStorage.minesOpened == "true"
 			if(myBool == true){
 				minesOpened = true
 				document.getElementById('irondiv').style.display = "block";
 				document.getElementById("Mining").style.display = "block";
 			}
 		}			
-		if($.cookie("tavernpeasants") != null){
-			tavernpeasants = parseInt($.cookie("tavernpeasants"));
+		if(localStorage.tavernpeasants != null){
+			tavernpeasants = parseInt(localStorage.tavernpeasants);
 			document.getElementById("tavernpeasants").innerHTML = tavernpeasants;
+			document.getElementById("peasants").innerHTML = Peasant.number;
 		}					
-		if($.cookie("taverns") != null){
-			taverns = parseInt($.cookie("taverns"));
+		if(localStorage.taverns != null){
+			taverns = parseInt(localStorage.taverns);
 			document.getElementById("taverns").innerHTML = taverns;
 		}
-		if($.cookie("barracksOpened") != null){
-			var myBool = ($.cookie("barracksOpened") == "true")
+		if(localStorage.barracksOpened != null){
+			var myBool = localStorage.barracksOpened == "true"
 			if(myBool == true){
 				barracksOpened = true
 				document.getElementById('Barracks').style.display = "block";
@@ -127,8 +134,8 @@
 				document.getElementById('armystrdiv').style.display = "block";
 			}
 		}			
-		if($.cookie("cathedralOpened") != null){
-			var myBool = ($.cookie("cathedralOpened") == "true")
+		if(localStorage.cathedralOpened != null){
+			var myBool = (localStorage.cathedralOpened == "true")
 			if(myBool == true){
 				cathedralOpened = true
 				document.getElementById('Cathedral').style.display = "block";
@@ -136,31 +143,40 @@
 				document.getElementById('faithdiv').style.display = "block";
 			}
 		}		
-		if($.cookie("priests") != null){
-			priests = parseInt($.cookie("priests"));
+		if(localStorage.priests != null){
+			priests = parseInt(localStorage.priests);
 			document.getElementById("priests").innerHTML = priests;
 		}			
-		if($.cookie("paladins") != null){
-			paladins = parseInt($.cookie("paladins"));
+		if(localStorage.paladins != null){
+			paladins = parseInt(localStorage.paladins);
 			document.getElementById("paladins").innerHTML = paladins;
 		}
 		
-		if($.cookie("pGoldClickUpgrade") != null){
-			var myBool = ($.cookie("pGoldClickUpgrade") == "true")
+		if(localStorage.pGoldClickUpgrade != null){
+			var myBool = (localStorage.pGoldClickUpgrade == "true")
 			if(myBool == true){
 				pGoldClickUpgrade = true;
 				document.getElementById("clickGoldUpgrade").disabled = true;
 			}
 		}		
-		if($.cookie("mPanningUpgrade") != null){
-			var myBool = ($.cookie("mPanningUpgrade") == "true")
+		if(localStorage.mPanningUpgrade != null){
+			var myBool = (localStorage.mPanningUpgrade == "true")
 			if(myBool == true){
 				mPanningUpgrade = true;
 				document.getElementById("btnminerUpgrade1").disabled = true;
 			}
 		}
-		if($.cookie("squiresUnlocked") != null){
-			var myBool = ($.cookie("squiresUnlocked") == "true")
+
+		if(localStorage.tavernUpgrade != null){
+			var myBool = (localStorage.tavernUpgrade == "true")
+			if(myBool == true){
+				tavernUpgrade = true;
+				document.getElementById("btnUpgradeTavern").disabled = true;
+			}
+		}		
+		
+		if(localStorage.squiresUnlocked != null){
+			var myBool = (localStorage.squiresUnlocked == "true")
 			if(myBool == true){
 				squiresUnlocked = true;
 				document.getElementById("btnPageUpgrade1").disabled = true;
@@ -169,8 +185,8 @@
 		}		
 		
 
-		if($.cookie("defeatedBandits") != null){
-			var myBool = ($.cookie("defeatedBandits") == "true")
+		if(localStorage.defeatedBandits != null){
+			var myBool = (localStorage.defeatedBandits == "true")
 			if(myBool == true){
 				defeatedBandits = true;
 				document.getElementById('BatBanditsProgBarBox').style.display = "none";
@@ -181,8 +197,8 @@
 			}
 		}			
 
-		if($.cookie("defeatedOgre") != null){
-			var myBool = ($.cookie("defeatedOgre") == "true")
+		if(localStorage.defeatedOgre != null){
+			var myBool = (localStorage.defeatedOgre == "true")
 			if(myBool == true){
 				defeatedOgre = true;
 				document.getElementById('soulsdiv').style.display = "block";
@@ -195,8 +211,8 @@
 			}
 		}
 
-		if($.cookie("defeatedHhounds") != null){
-			var myBool = ($.cookie("defeatedHhounds") == "true")
+		if(localStorage.defeatedHhounds != null){
+			var myBool = (localStorage.defeatedHhounds == "true")
 				if(myBool == true){
 					defeatedHhounds = true;
 					document.getElementById('Ethereal').style.display = "block";
@@ -211,25 +227,24 @@
 				}
 		};
 		
-		if($.cookie("peasantsKilled") != null){
-			peasantsKilled = parseInt($.cookie("peasantsKilled"));
+		if(localStorage.peasantsKilled != null){
+			peasantsKilled = parseInt(localStorage.peasantsKilled);
 			document.getElementById("peasantsKilled").innerHTML = peasantsKilled;
 		}			
 
-		if($.cookie("minersKilled") != null){
-			minersKilled = parseInt($.cookie("minersKilled"));
+		if(localStorage.minersKilled != null){
+			minersKilled = parseInt(localStorage.minersKilled);
 			document.getElementById("minersKilled").innerHTML = peasantsKilled;
 		}			
 		
-		if($.cookie("lastPage") != null){
-			lastPage = $.cookie("lastPage");
+		if(localStorage.lastPage != null){
+			lastPage = localStorage.lastPage;
 		}
 		else{
 			lastPage = 'Production';
 		}
 		
 		recalculateCosts();
-		console.log("Your cookies have been loaded.")
 	};
 	
 	function hardReset(){
@@ -242,9 +257,8 @@
 		}
 	};
 	
+	
 window.setInterval(function(){					//Autosaves every minute
 	saveCookie();
 }, 60000);
-
-
 			

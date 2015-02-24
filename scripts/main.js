@@ -15,19 +15,14 @@ var totalTimePlayed = 0;
 var tTPinHHMMSS = 0;
 
 //Unit Variables//
-var peasants = 0;
 var tavernpeasants = 0;			//Tavern generated peasants
-var miners = 0;
 var tavernminers = 0;			//Tavern generated miners
-var personPage = 0;
-var priests = 0;
-var paladins = 0;
-var squires = 0;
 var weapons = 0;
 
 //Status Variables//
 var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade 
 var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
+var tavernUpgrade = false;
 var squiresUnlocked = false;	
 var minesOpened = false;
 var cathedralOpened = false;
@@ -36,132 +31,60 @@ var barracksOpened = false;
 //Etc Variables//
 var lastPage;
 
-function goldClick(number){
-    gold = gold + number;
-    document.getElementById("gold").innerHTML = gold;
-};
+function clickThing(number, type)
+{
+	switch(type){
+		case "gold":
+			gold = gold + number;
+			document.getElementById("gold").innerHTML = gold;			
+			break;
+			
+		case "goldMouse":
+			if(pGoldClickUpgrade == true){
+					number = number * 2;
+			}
+			gold = gold + number;
+			document.getElementById("gold").innerHTML = gold;
+			break;
+			
+		case "iron":
+			iron = iron + number;
+			document.getElementById("iron").innerHTML = iron;
+			break;
+			
+		case "faith":
+			faith = faith + number;
+			faith = faith.toFixedDown(2);
+			document.getElementById("faith").innerHTML = faith;		
+			break;
+		
+		case "peasant":
+			Peasant.number = Peasant.number + number;
+			document.getElementById("peasants").innerHTML = Peasant.number;		
+			break;
 
-function mouseGoldClick(number){
-	if(pGoldClickUpgrade == true){
-			number = number * 2;
+		case "miner":
+			Miner.number = Miner.number + number;
+			document.getElementById("miners").innerHTML = Miner.number + tavernminers;		
+			break;			
+		
+		case "soul":
+			souls = souls + number;
+			document.getElementById("souls").innerHTML = souls;		
+			break;
+		
+		default:
 	}
-    gold = gold + number;
-    document.getElementById("gold").innerHTML = gold;
-};
-
-function clickFaith(number){
-    faith = faith + number;
-	faith = faith.toFixedDown(2);
-    document.getElementById("faith").innerHTML = faith;
-};
-
-function demonClick(number){
-    souls = souls + number;
-    document.getElementById("souls").innerHTML = souls;
-};
-
-function peasantClick(number){
-	peasants = peasants + number;
-	document.getElementById("peasants").innerHTML = peasants;
-};
-
-function minerClick(number){
-	miners = miners + number;
-	document.getElementById("miners").innerHTML = miners;
-};
-
-function mineClick(number){
-	iron = iron + number;
-	document.getElementById("iron").innerHTML = iron;
-};
-
-function debugCurrency(){
-	gold = gold + 10000;
-	faith = faith + 1000;
-	souls = souls + 200;
-	iron = iron + 500;
 }
 
-function buyPeasant(){
-    var PeasantCost = Math.floor(50 * Math.pow(1.25,peasants - tavernpeasants));     //works out the cost of this Peasant
-    if(gold >= PeasantCost){                                   //checks that the player can afford the Peasant
-        peasants = peasants + 1;                                   //increases number of Peasants
-    	gold = gold - PeasantCost;                          //removes the gold spent
-        document.getElementById('peasants').innerHTML = peasants;  //updates the number of Peasants for the user
-        document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
-    };
-    var nextPeasantCost = Math.floor(50 * Math.pow(1.25,peasants - tavernpeasants));       //works out the cost of the next Peasant
-    document.getElementById('PeasantCost').innerHTML = nextPeasantCost;  //updates the Peasant cost for the user
-};
-
-function buyMiner(){
-    var MinerCost = Math.floor(250 * Math.pow(1.25,miners - tavernminers));     //works out the cost of this miners
-    if(gold >= MinerCost){                                   //checks that the player can afford the miners
-        miners = miners + 1;                                   //increases number of miners
-    	gold = gold - MinerCost;                          //removes the gold spent
-        document.getElementById('miners').innerHTML = miners;  //updates the number of miners for the user
-        document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
-    };
-    var nextMinerCost = Math.floor(250 * Math.pow(1.25,miners - tavernminers));       //works out the cost of the next Miner
-    document.getElementById('MinerCost').innerHTML = nextMinerCost;  //updates the Miner cost for the user
-};
-
-function buyPriest(){
-    var PriestCost = Math.floor(1000 * Math.pow(1.3,priests));     //works out the cost of this Priest
-    if(gold >= PriestCost){                                   //checks that the player can afford the Priest
-        priests = priests + 1;                                   //increases number of Priests
-    	gold = gold - PriestCost;                          //removes the gold spent
-        document.getElementById('priests').innerHTML = priests;  //updates the number of Priests for the user
-        document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
-    };
-    var nextPriestCost = Math.floor(1000 * Math.pow(1.3,priests));       //works out the cost of the next Priest
-    document.getElementById('PriestCost').innerHTML = nextPriestCost;  //updates the Priest cost for the user
-};
-
-function buyPage(){
-    var PageCost = Math.floor(500 * Math.pow(1.1,personPage));     //works out the cost of this Page
-    if(gold >= PageCost && iron >= 100){                                   //checks that the player can afford the Page
-        personPage = personPage + 1;                                   //increases number of Pages
-    	gold = gold - PageCost;                                  //removes the gold spent
-        iron = iron - 100; 										 //removes the iron spent
-		document.getElementById('personPage').innerHTML = personPage;  //updates the number of Pages for the user
-        document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
-		document.getElementById('iron').innerHTML = iron;  //updates the number of iron for the user
-    };
-    var nextPageCost = Math.floor(500 * Math.pow(1.1,personPage));       //works out the cost of the next Page
-    document.getElementById('PageCost').innerHTML = nextPageCost;  //updates the Page cost for the user
-};
-
-function buySquire(){
-    var SquireCost = Math.floor(1200 * Math.pow(1.1,personPage));     //works out the cost of this Squire
-    if(gold >= SquireCost && iron >= 250 && personPage >= 1){          //checks that the player can afford the Squire
-        personPage = personPage - 1;                                   //decreases number of Pages
-    	squires = squires + 1;										 //increases number of Squires
-		gold = gold - SquireCost;                                  //removes the gold spent
-        iron = iron - 250; 										 //removes the iron spent
-		document.getElementById('personPage').innerHTML = personPage;  //updates the number of Pages for the user
-		document.getElementById('squires').innerHTML = squires;		// updates the number of squires for the user
-	    document.getElementById('gold').innerHTML = gold;  //updates the number of gold for the user
-		document.getElementById('iron').innerHTML = iron;  //updates the number of iron for the user
-    };
-    var nextSquireCost = Math.floor(1200 * Math.pow(1.1,squires));       //works out the cost of the next Squire
-    document.getElementById('SquireCost').innerHTML = nextSquireCost;  //updates the Squire cost for the user	
-};
-
-function buyPaladin(){
-    var PaladinCost = Math.floor(100 * Math.pow(1.1,paladins));     //works out the cost of this Paladin
-    if(faith >= PaladinCost){                                   //checks that the player can afford the Paladin
-        paladins = paladins + 1;                                   //increases number of Paladins
-    	faith = faith - PaladinCost;                          //removes the souls spent
-        document.getElementById('paladins').innerHTML = paladins;  //updates the number of Paladins for the user
-        document.getElementById('faith').innerHTML = faith;  //updates the number of souls for the user
-    };
-    var nextPaladinCost = Math.floor(100 * Math.pow(1.1,paladins));       //works out the cost of the next Paladin
-    document.getElementById('PaladinCost').innerHTML = nextPaladinCost;  //updates the Paladin cost for the user
+function debugCurrency(){
+	gold = gold + 100000;
+	faith = faith + 1000;
+	souls = souls + 200;
+	iron = iron + 5000;
 };
 
 //UPGRADES
-
 function upgradeClickGoldMultiplier(){
 	if(gold >= 1500){
 		gold = gold - 1500;
@@ -205,29 +128,13 @@ function buyWeapon(){
 };
 
 function recalculateCosts(){
-	 var nextPeasantCost = Math.floor(50 * Math.pow(1.25,peasants - tavernpeasants));       //works out the cost of the next Peasant
-	 document.getElementById('PeasantCost').innerHTML = nextPeasantCost;	
-	 
-	 var nextMinerCost = Math.floor(250 * Math.pow(1.25,miners - tavernminers));       //works out the cost of the next Miner
-	 document.getElementById('MinerCost').innerHTML = nextMinerCost;  //updates the Miner cost for the user
-	 
-    var nextPriestCost = Math.floor(1000 * Math.pow(1.3,priests));       //works out the cost of the next Priest
-    document.getElementById('PriestCost').innerHTML = nextPriestCost;  //updates the Priest cost for the user	 
-
-	var nextPageCost = Math.floor(500 * Math.pow(1.1,personPage));       //works out the cost of the next Page
-    document.getElementById('PageCost').innerHTML = nextPageCost;  //updates the Page cost for the user
-	
-    var nextSquireCost = Math.floor(1200 * Math.pow(1.1,squires));       //works out the cost of the next Squire
-    document.getElementById('SquireCost').innerHTML = nextSquireCost;  //updates the Squire cost for the user		
-	
-    var nextPaladinCost = Math.floor(100 * Math.pow(1.1,paladins));       //works out the cost of the next Paladin
-    document.getElementById('PaladinCost').innerHTML = nextPaladinCost;  //updates the Paladin cost for the user
-
-    var nextWeapCost = Math.floor(1000 * Math.pow(1.1,weapons));       //works out the cost of the next weapon
-    document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user	
-
-	var nextTavernCost = Math.floor(5000 * Math.pow(1.5, taverns));		//Calculates the cost of the next tavern
-	document.getElementById('TavernCost').innerHTML = nextTavernCost;   //Updates page with cost of next tavern	
+	Peasant.costAdj = tavernpeasants;
+	Miner.costAdj = tavernminers;
+	Miner.recalcCost();
+	Priest.recalcCost();
+	Page.recalcCost();
+	Squire.recalcCost();
+	Paladin.recalcCost();
 };
 
 function UpdateButtons() {
@@ -265,7 +172,7 @@ function UpdateButtons() {
 	}		
 
 	//Enable/disables buy squire button depending on if there is enough currency
-	if(gold < document.getElementById('SquireCost').innerHTML || iron < 200 || personPage < 1){	
+	if(gold < document.getElementById('SquireCost').innerHTML || iron < 200 || Page.returnNumber() < 1){	
 		document.getElementById("btnBuySquire").disabled = true;
 	}
 	else{
@@ -291,7 +198,15 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnbuyTavern").disabled = false;
-	}	
+	}
+	
+	//Enable/disables tavern upgrade
+	if(tavernUpgrade == true || gold < 10000 || iron < 5000){
+		document.getElementById("btnUpgradeTavern").disabled = true;
+	}
+	else{
+		document.getElementById("btnUpgradeTavern").disabled = false;
+	}
 	
 	//Changes status of the building mines button
 	if(minesOpened){
@@ -370,48 +285,51 @@ function UpdateButtons() {
 }
 
 window.setInterval(function(){                                 //Update per second counts
-    goldpersec = peasants;
+    goldpersec = Peasant.number;
 	if(mPanningUpgrade == true)
 	{
 		goldpersec = goldpersec + miners;
 	}
     document.getElementById("goldpersec").innerHTML = goldpersec;
     
-    faithpersec = priests*0.1
+    faithpersec = Priest.number*0.1
 	faithpersec = faithpersec.toFixedDown(2)
     document.getElementById("faithpersec").innerHTML = faithpersec;
     
-    soulspersec = paladins*(weapons+1);
+    soulspersec = Paladin.number*(weapons+1);
     document.getElementById("soulspersec").innerHTML = soulspersec;
 	
-	ironpersec = miners;
+	ironpersec = Miner.number;
 	document.getElementById("ironpersec").innerHTML = ironpersec;
     
-	document.getElementById("peasants").innerHTML = peasants;		//For testing
-	document.getElementById("miners").innerHTML = miners;			//For Testing
+	document.getElementById("peasants").innerHTML = Peasant.number ;		//For testing
+	document.getElementById("miners").innerHTML = Miner.number;			//For Testing
 },100);
 
-window.setInterval(function(){					//Soul generation via paladins etc every second
-	demonClick(paladins*(weapons+1));
-}, 1000);
 
-window.setInterval(function(){					//Gold generation via peasants etc every second
-	var number = peasants;
+window.setInterval(function(){	
+
+	//Gold generation via peasants etc every second
+	var number = Peasant.returnNumber();
 	if(mPanningUpgrade == true)
 	{
-		number = number + miners;
+		number = number + Miner.number;
 	}
-	goldClick(number);
-}, 1000);
-
-window.setInterval(function(){					//Faith Generation via priests etc every second
-	clickFaith(priests*0.1);
+	clickThing(number, "gold");
+	
+	
+	 //Faith Generation via priests etc every second
+	clickThing(Priest.returnNumber()*0.1, "faith");          
 	faith = faith.toFixedDown(2);
+	
+	
+	//Iron Generation via minors etc every second
+	clickThing(Miner.number, "iron")
+	
+	//Soul generation via paladins etc every second
+	clickThing(Paladin.number*(weapons+1),"souls");
+	
 }, 1000);
-
-window.setInterval(function(){					//Iron Generation via minors etc every second
-	mineClick(miners);
-},1000);
 
 
 window.setInterval(function(){					//Enables/disables buttons 

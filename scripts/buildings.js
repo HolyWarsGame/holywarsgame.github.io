@@ -15,6 +15,10 @@ function buyTavern(){
 		document.getElementById('TavernCost').innerHTML = nextTavernCost;   //Updates page with cost of next tavern
 };
 
+function upgradeTavern(){
+	tavernUpgrade = true;
+};
+
 function buildMines(){
 	if(gold >= 1500){
 		minesOpened = true;
@@ -48,17 +52,21 @@ function buildCathedral(){
 		gold = gold - 10000;
 		iron = iron - 500
 		document.getElementById('gold').innerHTML = gold;
-		document.getElementById('iron').innerHTML = iron;
-		
+		document.getElementById('iron').innerHTML = iron;	
 	}
 };
 
 
 
 window.setInterval(function(){					//Tavern unit generation
-
-	peasantClick(taverns);
+	clickThing(taverns,"peasant");
 	tavernpeasants = tavernpeasants + taverns;
 	document.getElementById('tavernpeasants').innerHTML = tavernpeasants;
+	
+	if(tavernUpgrade == true){
+	clickThing(taverns,"miner");
+	tavernminers = tavernminers + taverns;
+	document.getElementById('tavernminers').innerHTML = tavernminers;	
+	}
 
 }, 10000);

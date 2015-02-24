@@ -29,7 +29,10 @@
     <![endif]-->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+	<!--
+	<script src="//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>-->
+
+	
 	<script type="text/javascript" src="scripts/saveload.js"></script>
 	
 	<script language="javascript"> 
@@ -41,12 +44,15 @@
 		else {
 			ele.style.display = "block";
 		}
-	} 
+	}; 
 
 	$(function () { 
 		$("[data-toggle='popover']").popover(); 
 	});
+
+	
 	</script>
+
 	
   </head>
 
@@ -132,7 +138,7 @@
 	  
 	  <div id="Gathering" class="collapse in">
 		<div class = "well well-sm">
-			<input type="image"  id="clickmoney" onclick="mouseGoldClick(1)" src = "images/money_gold.png"/ title = "Click to gather gold yourself.">			
+			<input type="image"  id="clickmoney" onclick="clickThing(1,'goldMouse')" src = "images/money_gold.png"/ title = "Click to gather gold yourself.">			
 		</div>
 	  </div>
 	  
@@ -143,11 +149,10 @@
 		
 		<div id="PeasantTab" class = "container">
 		<br />
-		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover" data-trigger="focus" data-html="true" title="Peasants" 
-    		data-content="A lowly denizen of your realm. They are adept at farming and scrounging for gold. <br> Generates 1 gold per second">Peasants (<span id="peasants">0</span>)</a>
+		<a id ="BtnPeasantDesc" tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover" data-trigger="focus" data-html="true" title="Peasants" 
+    		data-content="";>Peasants (<span id="peasants">0</span>)</a>
 		<br />
-		<br />
-		<button id=btnbuyPeasant onclick="buyPeasant()"	type="button" class="btn btn-default">Recruit Peasant</button>
+		<button id=btnbuyPeasant onclick="Peasant.buyOne()"	type="button" class="btn btn-default">Recruit Peasant</button>
 		<button id=btnPeasantUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PeasantUpgradeTab" aria-expanded="false" aria-controls="PeasantUpgradeTab">Upgrades</button>		
 		<br />
 		 Peasant Cost: <span id="PeasantCost">50</span> gold
@@ -165,11 +170,10 @@
 		
 		<div id="Mining" class = "container" style="display: none;">
 			<br />
-		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Miners"
-    		data-content="These hard-working mine excavate minerals from the mine you have built. They bring canaries in with them to warn them of disasters. Also as lunch. <br> Generates 1 iron per second">Miners (<span id="miners">0</span>)</a>		
+		<a id = 'BtnMinerDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Miners"
+    		data-content="">Miners (<span id="miners">0</span>)</a>	
 			<br />
-			<br />
-			<button id=btnbuyMiner onclick="buyMiner()"	type="button" class="btn btn-default">Hire Miner</button>
+			<button id=btnbuyMiner onclick="Miner.buyOne()"	type="button" class="btn btn-default">Hire Miner</button>
 			<button id=btnMinerUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#MinerUpgradeTab" aria-expanded="false" aria-controls="MinerUpgradeTab">Upgrades</button>
 			<br />
 			 Miner Cost: <span id="MinerCost">250</span> gold
@@ -194,11 +198,10 @@
 		
 		<div id="PriestTab" class = "container">
 			<br />
-		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Priests"
-    		data-content="Men of the cloth. Their piety helps them channel the holy energy from the universe.  <br> Generates 0.1 faith per second">Priests (<span id="priests">0</span>)</a>
+		<a id = 'BtnPriestDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Priests"
+    		data-content="">Priests (<span id="priests">0</span>)</a>
 			<br />
-			<br />
-			<button id=btnbuyPriest onclick="buyPriest()"	type="button" class="btn btn-default">Train Priest</button>
+			<button id=btnbuyPriest onclick="Priest.buyOne()"	type="button" class="btn btn-default">Train Priest</button>
 			<button id=btnPriestUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
 			<br />
 			Priest Cost: <span id="PriestCost">1000</span> gold
@@ -220,10 +223,10 @@
 		
 		<div id ="PageTab" class = "container">
 			<br />
-		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Pages"
-    		data-content="Young men in training to become knights. Not too great with weapons yet, but they're learning.  <br> Provides 10 army strength">Pages (<span id="personPage">0</span>)</a>
-			<br /> <br />
-			<button id=btnbuyPage onclick="buyPage()"	type="button" class="btn btn-default">Train Page</button>
+		<a id = 'BtnPageDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Pages"
+    		data-content="">Pages (<span id="personPage">0</span>)</a>
+			<br />
+			<button id=btnbuyPage onclick="Page.buyOne()"	type="button" class="btn btn-default">Train Page</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PageUpgradeTab" aria-expanded="false" aria-controls="PageUpgradeTab">Upgrades</button>
 			<br />
 			Page Cost: <span id="PageCost">500</span> gold and 100 iron
@@ -243,10 +246,10 @@
 
 		<div id = "SquireTab" class = "container" style="display: none;">
 			<br />
-		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Squires"
-    		data-content="Pages that have gained enough experience are promoted to Squires. They are semi-capable warriors. Provides 50 army strength.">Squires (<span id="squires">0</span>)</a>
-			<br /> <br />
-			<button id=btnBuySquire onclick="buySquire()"	type="button" class="btn btn-default">Promote Squire</button>
+		<a id = 'BtnSquireDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Squires"
+    		data-content="">Squires (<span id="squires">0</span>)</a>
+			<br />
+			<button id=btnBuySquire onclick="Squire.buyOne()"	type="button" class="btn btn-default">Promote Squire</button>
 			<button id=btnSquireUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#SquireUpgradeTab" aria-expanded="false" aria-controls="SquireUpgradeTab">Upgrades</button>
 			<br />
 			Squire Cost: <span id="SquireCost">1200</span> gold, 250 iron, and 1 Page
@@ -261,10 +264,10 @@
 		
 		<div id = "PaladinTab" class = "container" style="display: none;">
 			<br />
-		<a tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Paladins"
-    		data-content="Holy warriors that channel their faith into their weapons. They are quite adept at slaying monsters, both magical and not. Paladins go out into the field, slaying minions of The Evil One. <br>Provides 1 soul per second.<br> Provides 500 army strength.">Paladins (<span id="paladins">0</span>)</a>
-			<br /> <br />
-			<button id=btnbuyPaladin onclick="buyPaladin()"	type="button" class="btn btn-default">Train Paladin</button>
+		<a id = 'BtnPaladinDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Paladins"
+    		data-content="">Paladins (<span id="paladins">0</span>)</a>
+			<br />
+			<button id=btnbuyPaladin onclick="Paladin.buyOne()"	type="button" class="btn btn-default">Train Paladin</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
 			<br />
 			Paladin Cost: <span id="PaladinCost">100</span> faith
@@ -286,17 +289,30 @@
 		<div class = "panel-heading">
 			<div class="panel-title">Structures</div>
 		</div>
-		
-		<div id = "DefaultStructuresTab" class = "container">
+			<div id = "TavernTab" class = "container">
+				<br />
+				<a id = 'BtnTavernDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Taverns"
+				data-content="A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 10 seconds.">Taverns (<span id="taverns">0</span>)</a>			
+				<br />
+				<button id=btnbuyTavern title="A peasant joins your forces every few seconds" onclick="buyTavern()"	type="button" class="btn btn-default">Build Tavern</button>	
+				<button id=btnTavernUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#TavernUpgradeTab" aria-expanded="false" aria-controls="TavernUpgradeTab">Upgrades</button>
+				<br />
+				
+				Tavern Cost: <span id="TavernCost">5000</span> gold
+				<br />
+				Peasants recruited by tavern: <span id="tavernpeasants">0</span>
+				<br />
+				<div id = "TavernUpgradeTab" class = "collapse" >
+					<div class = "well">
+					<button id=btnUpgradeTavern onclick="upgradeTavern()" title="Your tavern is now also recruiting miners using ladies of the night and handing out hip-flasks to new miners."	type="button" class="btn btn-default">Mining Initiative</button>		
+					<br />
+					Mining Initiative Cost: 10000 gold and 5000 iron
+					<br />
+					Miners recruited by tavern: <span id="tavernminers">0</span>
+					</div>
+				</div>				
+
 			<br />
-			<button id=btnbuyTavern title="A peasant joins your forces every few seconds" onclick="buyTavern()"	type="button" class="btn btn-default">Build Tavern</button>	
-			<br />
-			Taverns: <span id="taverns">0</span>
-			<br />
-			Tavern Cost: <span id="TavernCost">5000</span> gold
-			<br />
-			Peasants produced by tavern: <span id="tavernpeasants">0</span>
-			<br /><br />
 			<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="buildMines()"	type="button" class="btn btn-warning">Open Mines</button>
 			<br />
 			Opening the mine costs 1500 gold.
@@ -340,9 +356,9 @@
 
 	   <div id="BatBandits" class = "container">
 <!--		<h4>A Pack of Bandits</h4> -->
-		<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Bandits"
-		data-content="A bandit camp sits on the outskirts of your village. Bandits occasionally come your village and do dastardly things like looting and pillaging your poor peasants.  <br><br> You should probably stop them.">Bunch of Bandits</a>
-				<button id=btnBatBandits onclick="battleBandits()"	type="button" class="btn btn-danger">Battle!</button>
+		<a id = btnDescBandits tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Bandits"
+		data-content="" >Bunch of Bandits</a>
+				<button id=btnBatBandits onclick="GoFightBandits()"	type="button" class="btn btn-danger">Battle!</button>
 				<br />They have stolen <span id='goldStolen'>0</span> gold from you.
 				<br />Requires army power: 100 <br />
 			<div id="BatBanditsProgBarBox" class="progress" style="display: none;">
@@ -356,9 +372,9 @@
 	   
 	   <div id="BatOgre" class = "container">
 		<!--			<h4>Ogre</h4> -->
-		<a tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Smelly Ogre"
-		data-content="A large and particularly odorous Ogre is threatening your village! Take it out before it tries to eat any more of your cattle or decides to pass wind in your direction.">Smelly Ogre</a>
-			<button id=btnBatOgre onclick="battleOgre()"	type="button" class="btn btn-danger">Battle!</button>
+		<a id = 'btnDescOgre' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Smelly Ogre"
+		data-content="">Smelly Ogre</a>
+			<button id=btnBatOgre onclick="GoFightOgre()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
 			Requires army power: 500 <br />
 				<div id="BatOgreProgBarBox" class="progress" style="display: none;">
@@ -407,7 +423,7 @@
         <strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
     </div>
 
-	<div id = unlockCathAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
+	<div id = 'unlockCathAlert' class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <strong>New!</strong> You successfully chase out the bandits hounding your village. As you raze their camp to make sure they don't return, you find plans for an elaborate  <a href="javascript: toggle('unlockCathAlert');CollapseAll();toggle('Structures')" class="alert-link">Cathedral</a>. 
 		 These bandits sure do have funny taste in loot.
@@ -454,11 +470,12 @@
 			document.getElementById("Barracks").style.display = "none";
 			document.getElementById("Cathedral").style.display = "none";
 			document.getElementById("Production").style.display = "none";
+
 		};
 		function setLastPage(name){
 			lastPage = name;
 		}	
-	
+				
 	</script>
 	
 	
@@ -494,7 +511,10 @@
 	  </div>
 	</div>	
 
-
+	<script type="text/javascript" src="scripts/main.js"></script>         <!--Load main script --> 
+	<script type="text/javascript" src="scripts/units.js"></script>
+	<script type="text/javascript" src="scripts/buildings.js"></script>    <!--Load building script -->
+	<script type="text/javascript" src="scripts/battle.js"></script>       <!--Load Battle script -->	
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -502,9 +522,6 @@
     <script src="dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
  <!--   <script src="assets/js/ie10-viewport-bug-workaround.js"></script>-->
-	<script type="text/javascript" src="scripts/main.js"></script>         <!--Load main script -->      
- 	<script type="text/javascript" src="scripts/buildings.js"></script>    <!--Load building script -->
-	<script type="text/javascript" src="scripts/battle.js"></script>       <!--Load Battle script -->
 	
   </body>
   
