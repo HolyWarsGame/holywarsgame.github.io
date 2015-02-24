@@ -20,6 +20,7 @@
 		localStorage.setItem("tavernpeasants",tavernpeasants);
 		localStorage.setItem("tavernminers",tavernminers);
 		localStorage.setItem("taverns",taverns);
+		localStorage.setItem("acolytes",Acolyte.number);
 		localStorage.setItem("priests",Priest.number);
 		localStorage.setItem("paladins",Paladin.number); 	
 		
@@ -162,6 +163,11 @@
 				document.getElementById('faithdiv').style.display = "block";
 			}
 		}		
+
+		if(localStorage.acolytes != null){
+			 Acolyte.number = parseInt(localStorage.acolytes);
+			document.getElementById("acolytes").innerHTML = Acolyte.number;
+		}			
 		
 		if(localStorage.priests != null){
 			 Priest.number = parseInt(localStorage.priests);

@@ -260,16 +260,34 @@
 		<div class = "panel-heading">
 			<div class="panel-title">Cathedral</div>
 		</div>
+
+		<div id="AcolyteTab" class = "container">
+			<br />
+		<a id = 'BtnAcolyteDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Acolytes"
+    		data-content="">Acolytes (<span id="acolytes">0</span>)</a>
+			<br /><br />
+			<button id=btnbuyAcolyte onclick="Acolyte.buyOne()"	type="button" class="btn btn-default">Recruit Acolyte</button>
+			<button id=btnAcolyteUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#AcolyteUpgradeTab" aria-expanded="false" aria-controls="AcolyteUpgradeTab">Upgrades</button>
+			<br />
+			Acolyte Cost: <span id="AcolyteCost">500</span> gold
+			<br />
+			<div id ="AcolyteUpgradeTab" class = "collapse">
+				<div class = "well">
+					<br />
+					No Upgrades implemented for Acolytes yet.
+				</div>
+			</div>
+			<hr>
+		</div>		
 		
 		<div id="PriestTab" class = "container">
-			<br />
 		<a id = 'BtnPriestDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Priests"
     		data-content="">Priests (<span id="priests">0</span>)</a>
 			<br /><br />
 			<button id=btnbuyPriest onclick="Priest.buyOne()"	type="button" class="btn btn-default">Train Priest</button>
 			<button id=btnPriestUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
 			<br />
-			Priest Cost: <span id="PriestCost">1000</span> gold
+			Priest Cost: <span id="PriestCost">1000</span> gold, 50 faith , and 1 acolyte
 			<br />
 			<div id ="PriestUpgradeTab" class = "collapse">
 				<div class = "well">

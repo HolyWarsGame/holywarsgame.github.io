@@ -9,4 +9,6 @@ margin-right: auto;
 #ResourceList div
 {
 display: inline;
+margin-top: 1px;
+margin-bottom: 1px;
 }

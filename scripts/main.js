@@ -158,6 +158,9 @@ function UpdateButtons() {
 	
 	//Enable/disables buy miner button depending on if there is enough currency
 	Miner.canBuy();
+
+	//Enable/disables buy priest button depending on if there is enough currency
+	Acolyte.canBuy();	
 	
 	//Enable/disables buy priest button depending on if there is enough currency
 	Priest.canBuy();
@@ -285,7 +288,7 @@ window.setInterval(function(){                                 //Update per seco
 	}
     document.getElementById("goldpersec").innerHTML = goldpersec;
     
-    faithpersec = Priest.number*0.1
+    faithpersec = Priest.number*0.5 + Acolyte.number*0.1;
 	faithpersec = faithpersec.toFixedDown(2)
     document.getElementById("faithpersec").innerHTML = faithpersec;
     
@@ -312,7 +315,7 @@ window.setInterval(function(){
 	
 	
 	 //Faith Generation via priests etc every second
-	clickThing(Priest.returnNumber()*0.1, "faith");          
+	clickThing(Priest.number*0.5 + Acolyte.number*0.1, "faith");          
 	faith = faith.toFixedDown(2);
 	
 	

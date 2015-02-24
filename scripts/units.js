@@ -120,7 +120,11 @@ var paladinDesc = "Holy warriors that channel their faith into their weapons. Th
 var Paladin = new Unit("Paladin",'paladins','PaladinCost','btnBuyPaladin',10000,500,100,0,1.1, paladinDesc, 0, true, Knight);		
 setDescription(Paladin, 'BtnPaladinDesc')
 
-var priestDesc = "Men of the cloth. Their piety helps them channel the holy energy from the universe.  <br> Generates 0.1 faith per second"
-var Priest = new Unit("Priest",'priests','PriestCost','btnbuyPriest',1000,0,0,0,1.1, priestDesc, 0, false, null);	
+var acolyteDesc = "Trainees in the world of the holy. Over time they may become mighty pillars of Holiness.  <br> Generates 0.1 faith per second"
+var Acolyte = new Unit("Acolyte",'acolytes','AcolyteCost','btnbuyAcolyte',500,0,0,0,1.1, acolyteDesc, 0, false, null);	
+setDescription(Acolyte, 'BtnAcolyteDesc');
+
+var priestDesc = "Men of the cloth. Their piety helps them channel the holy energy from the universe.  <br> Generates 0.5 faith per second"
+var Priest = new Unit("Priest",'priests','PriestCost','btnbuyPriest',1000,0,0,0,1.1, priestDesc, 0, true, Acolyte);	
 setDescription(Priest, 'BtnPriestDesc');
 
