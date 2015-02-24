@@ -20,7 +20,7 @@ function calculateBattlePower(){
 	document.getElementById("BattlePower2").innerHTML = BattlePower;
 };
 
-var Enemy = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, htmlAlertRef, BPReq, percentComplete, percentIncrement,speed){
+var Enemy = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, htmlAlertRef, BPReq, percentComplete, percentIncrement,speed,flag){
 	this.name = name;
 	this.description = description;
 	this.htmlBoxRef = htmlBoxRef;
@@ -59,6 +59,7 @@ Enemy.prototype.fight = function(){
 		  if (currWidth >= maxWidth){
 			clearInterval(progress);
 			$bar.text("Complete!");
+			flag = false;
 			document.getElementById(alert).style.display = "block";			//Displays alert related to this battle
 			document.getElementById(box).style.display = "none";			//Hides progress bar box
 			document.getElementById(btn).innerHTML = "Enemy Defeated!";     //Changes button text
@@ -80,7 +81,7 @@ function setEnemyDescription(Enemy, element){
 
 
 var banditsDesc = "A bandit camp sits on the outskirts of your village. Bandits occasionally ride into your village and do dastardly things like looting and pillaging your poor peasants.  <br><br> You should probably stop them."
-var Bandits = new Enemy("bandits", banditsDesc, 'BatBanditsProgBarBox', 'BatBanditsProgBar', 'btnBatBandits','unlockCathAlert',100,0,5,500);
+var Bandits = new Enemy("bandits", banditsDesc, 'BatBanditsProgBarBox', 'BatBanditsProgBar', 'btnBatBandits','unlockCathAlert',100,0,5,500,defeatedBandits);
 setEnemyDescription(Bandits, 'btnDescBandits');
 
 function GoFightBandits(){
@@ -88,7 +89,8 @@ function GoFightBandits(){
 	
 	if (win == true){
 		document.getElementById('FaithStructuresTab').style.display = "block";
-		defeatedBandits = true;
+//		defeatedBandits = true;
+		gold = gold + Math.floor(goldStolen/2);
 	}
 	else
 		defeatedBandits = false;
@@ -135,7 +137,7 @@ function banditLoot(){
 setTimeout(function() { banditLoot(); }, 30000);//Triggers bandit looting
 
 var ogreDesc = "A large and particularly odorous Ogre is threatening your village! Take it out before it tries to eat any more of your cattle or decides to pass wind in your direction.";
-var Ogre = new Enemy("ogre", ogreDesc, 'BatOgreProgBarBox','BatOgreProgBar','btnBatOgre','unlockPaladinsAlert',100,0,1,500);
+var Ogre = new Enemy("ogre", ogreDesc, 'BatOgreProgBarBox','BatOgreProgBar','btnBatOgre','unlockPaladinsAlert',100,0,1,500, defeatedOgre);
 setEnemyDescription(Ogre, 'btnDescOgre');
 
 function GoFightOgre(){
@@ -149,7 +151,7 @@ function GoFightOgre(){
 		setTimeout(function() { triggerHellhound(); }, 30000);
 	}
 	else
-		defeatedBandits = false;	
+		defeatedOgre = false;	
 };
 
 function triggerHellhound(){
