@@ -28,12 +28,15 @@
 		localStorage.setItem("minesOpened",minesOpened);
 		localStorage.setItem("cathedralOpened",cathedralOpened);
 		localStorage.setItem("barracksOpened",barracksOpened);
+		localStorage.setItem("towerUnlocked",towerUnlocked);
+		localStorage.setItem("towerBuilt",towerBuilt);
 		
 		//Battle flags
 		localStorage.setItem("defeatedGoblins",defeatedGoblins);
 		localStorage.setItem("defeatedBandits",defeatedBandits);
 		localStorage.setItem("defeatedOgre",defeatedOgre); 
 		localStorage.setItem("defeatedHhounds",defeatedHhounds);
+		localStorage.setItem("defeatedArchmage",defeatedArchmage);
 		localStorage.setItem("peasantsKilled",peasantsKilled);
 		localStorage.setItem("minersKilled", minersKilled);
 		
@@ -42,6 +45,7 @@
 		localStorage.setItem("mPanningUpgrade",mPanningUpgrade);
 		localStorage.setItem("squiresUnlocked",squiresUnlocked);
 		localStorage.setItem("knightsUnlocked",knightsUnlocked);
+		localStorage.setItem("paladinWepUpgrade",paladinWepUpgrade);
 		localStorage.setItem("tavernUpgrade",tavernUpgrade);
 		
 		//MiscFlags
@@ -162,7 +166,24 @@
 				document.getElementById('FaithMenu').style.display = "block";
 				document.getElementById('faithdiv').style.display = "block";
 			}
-		}		
+		}
+
+		if(localStorage.towerUnlocked != null){
+			var myBool = (localStorage.towerUnlocked == "true")
+			if(myBool == true){
+				towerUnlocked = true
+				document.getElementById('buildTowerTab').style.display = "block";
+			}
+		}
+
+		if(localStorage.towerBuilt != null){
+			var myBool = (localStorage.towerBuilt == "true")
+			if(myBool == true){
+				towerBuilt = true
+				document.getElementById('Magic').style.display = "block";
+				document.getElementById('TowerMenu').style.display = "block";
+			}
+		}	
 
 		if(localStorage.acolytes != null){
 			 Acolyte.number = parseInt(localStorage.acolytes);
@@ -193,6 +214,14 @@
 				document.getElementById("btnminerUpgrade1").disabled = true;
 			}
 		}
+		
+		if(localStorage.paladinWepUpgrade != null){
+			var myBool = (localStorage.paladinWepUpgrade == "true")
+			if(myBool == true){
+				paladinWepUpgrade = true;
+				document.getElementById("paladinUpgrade1").disabled = true;
+			}
+		}		
 
 		if(localStorage.tavernUpgrade != null){
 			var myBool = (localStorage.tavernUpgrade == "true")
@@ -272,6 +301,17 @@
 					setTimeout(function() { hellHoundRaid(); }, 30000);			//killed ogre but haven't defeated hhounds yet, start raids again
 				}
 		};
+		
+		if(localStorage.defeatedArchmage != null){
+			var myBool = (localStorage.defeatedArchmage == "true")
+				if(myBool == true){
+					document.getElementById('buildTowerTab').style.display = "block";
+					document.getElementById('BatMageProgBarBox').style.display = "none";
+					document.getElementById("btnBatMage").disabled = true;
+					document.getElementById("btnBatMage").innerHTML = "Archmage Defeated!";					
+					defeatedArchmage = true;
+				}
+		};		
 		
 		if(localStorage.peasantsKilled != null){
 			peasantsKilled = parseInt(localStorage.peasantsKilled);

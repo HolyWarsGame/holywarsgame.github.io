@@ -5,6 +5,7 @@ var defeatedGoblins = false;
 var defeatedBandits = false;
 var defeatedOgre = false;
 var defeatedHhounds = false;
+var defeatedArchmage = false;
 var goldStolen = 0;
 var justStolen = 0;
 var typeKilled = "none"	//HHound statistic
@@ -15,8 +16,14 @@ var minersKilled = 0;
 var Raidtime = 0;
 var BattlePower = 0;
 
+
 function calculateBattlePower(){
-	BattlePower =  (Page.number * 10) + (Squire.number*50) + (Knight.number*150) + (Paladin.number * 500) * (1.5*(weapons+1));
+	var weapmult = 1;
+	if(paladinWepUpgrade == true)
+	{
+		weapmult = 2;
+	}
+	BattlePower =  (Page.number * 10) + (Squire.number*50) + (Knight.number*150) + (Paladin.number * 500 * weapmult);
 	document.getElementById("BattlePower").innerHTML = BattlePower;
 	document.getElementById("BattlePower2").innerHTML = BattlePower;
 };
@@ -114,6 +121,12 @@ function setDefeatEvents(name){
 			document.getElementById('EtherealMenu').style.display = "block";
 			defeatedHhounds = true;
 		break;
+		
+		case 'Archmage':
+			document.getElementById('buildTowerTab').style.display = "block";
+			defeatedArchmage = false;
+		break;
+		
 		default:
 	}
 		
@@ -168,6 +181,11 @@ var ogreDesc = "A large and particularly odorous Ogre is threatening your villag
 var Ogre = new Enemy("Ogre", ogreDesc, 'BatOgreProgBarBox','BatOgreProgBar','btnBatOgre','unlockPaladinsAlert',100,0,1,500);
 setEnemyDescription(Ogre, 'btnDescOgre');
 
+var hellhoundsDesc = "The Evil One has released these fiery hounds to stalk your village. Occasionally the are able to slip past your defences and kill some of your peasants and miners.";
+var Hellhounds = new Enemy("Hellhounds", hellhoundsDesc, 'BatHhoundProgBarBox','BatHhoundProgBar','btnBatHellhound','openEtherealAlert',2000,0,1,1000);
+setEnemyDescription(Hellhounds, 'btnDescHellhounds');
+
+
 function triggerHellhound(){
 	document.getElementById('hellhoundUnlockAlert').style.display = "block";
 	document.getElementById('BatHellhound').style.display = "block";
@@ -206,11 +224,6 @@ function hellHoundRaid(){
 	};	
 }
 
-var hellhoundsDesc = "The Evil One has released these fiery hounds to stalk your village. Occasionally the are able to slip past your defences and kill some of your peasants and miners.";
-var Hellhounds = new Enemy("Hellhounds", hellhoundsDesc, 'BatHhoundProgBarBox','BatHhoundProgBar','btnBatHellhound','openEtherealAlert',2000,0,1,1000);
-setEnemyDescription(Hellhounds, 'btnDescHellhounds');
-
-
 //Hellhounds killing peasants or Miners
 function hellhoundCull(){
 	var flipCoin = Math.floor(Math.random()*10+1);    //Determining which unit gets killed
@@ -238,6 +251,10 @@ function hellhoundCull(){
 		}
 		recalculateCosts();
 };
+
+var archmageDesc = "One of The Evil One's lieutenants, capable of casting nasty and powerful spells.";
+var Archmage = new Enemy("Archmage", archmageDesc, 'BatMageProgBarBox','BatMageProgBar','btnBatMage','unlockWizardTowerAlert',20000,0,1,20);
+setEnemyDescription(Archmage, 'btnDescMage');
 
 
 window.setInterval(function(){					//Calculates Battle Power 

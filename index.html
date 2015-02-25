@@ -80,14 +80,16 @@
               <li><a id="FaithMenu" href="javascript:CollapseAll(); toggle('Cathedral'); setLastPage('Cathedral');" style="display: none;">Cathedral</a></li>
 			  <li><a id="BarracksMenu" href="javascript:CollapseAll(); toggle('Barracks'); setLastPage('Barracks');;" style="display: none; ">Barracks</a></li>
 			  <li><a id="EtherealMenu" href="javascript:CollapseAll(); toggle('Ethereal'); setLastPage('Ethereal');" style="display: none;">Ethereal</a></li>
-			  <li><a id="BattleMenu" href="javascript:CollapseAll(); toggle('Battle'); setLastPage('Battle');;">Battle</a></li>
+			  <li><a id="TowerMenu" href="javascript:CollapseAll(); toggle('Magic'); setLastPage('Magic');" style="display: none;">Tower</a></li>
+    		  <li><a id="BattleMenu" href="javascript:CollapseAll(); toggle('Battle'); setLastPage('Battle');;">Battle</a></li>
 			  <li><a id="RelicsMenu" href="javascript:CollapseAll(); toggle('Relics'); setLastPage('Relics');;" style="display: none;">Relics</a></li>
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a id="displayResourceOpt" data-toggle="collapse" href="#Resources" aria-expanded="true" aria-controls="Resources">Toggle Resources</a></li>
-                  <li><a id="save" href="javascript:saveCookie();">Save</a></li>
+                  <li><a id="displayGatheringOpt" data-toggle="collapse" href="#Gathering" aria-expanded="true" aria-controls="Gathering">Toggle Gathering</a></li>
+				  <li><a id="save" href="javascript:saveCookie();">Save</a></li>
                   <li><a id="load" href="javascript:loadCookie()">Load</a></li>
 				  <li><a id="delete" href="javascript:deleteCookie()">Clear Cookies</a></li>
 				  <li class="divider"></li>
@@ -148,67 +150,6 @@
 			<input type="image"  id="clickmoney" onclick="clickThing(1,'goldMouse')" src = "images/money_gold.png"/ title = "Click to gather gold yourself.">			
 		</div>
 	  </div>
-
-	 <!--- ALERTS ARE HERE --->
-
-		<div id = openMineAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
-		</div>
-		
-		
-		<div id = openBarracksAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You can now <a href="javascript: toggle('openBarracksAlert');CollapseAll();toggle('Barracks')" class="alert-link">train</a> units to fight against the Evil One and his minions.   
-		</div>  
-
-		<div id = goblinDefeatAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You chase the defeated horde of goblins back to their mound. They put up a last ditch effort, but your forces make quick work out of them. Inside their mound you find a stash of 2000 gold!   
-		</div>	
-		
-		<div id = openCathAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
-		</div>
-
-		<div id = unlockCathAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You successfully chase out the bandits raiding your village. As you raze their camp to make sure they don't return, you find plans for an elaborate  <a href="javascript: toggle('unlockCathAlert');CollapseAll();toggle('Structures')" class="alert-link">Cathedral</a>. 
-			 These bandits sure do have funny taste in loot. You also find a portion of the gold that they have stolen from you.
-		</div>		
-		
-		<div id = unlockPaladinsAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
-		</div>	
-			
-		<div id = banditLootAlert class="alert alert-danger fade in" role="alert" style="display: none;">
-			<strong>Oh No!!</strong> Bandits come and raid <span id = "justStolen">0</span> gold from your gold supply! Maybe you should try getting <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">getting rid</a> of them?   
-		</div>		
-
-		<div id = hellhoundUnlockAlert class="alert alert-danger fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Oh No!!</strong> The Evil One has noticed your presence, and has decided to start sending <a href="javascript: toggle('hellhoundUnlockAlert');CollapseAll();toggle('Battle')" class="alert-link">hellhounds</a> to attack you.  
-		</div>	
-		
-		<div id = hellHoundAttackAlert class="alert alert-danger fade in" role="alert" style="display: none;">
-			<strong>Oh No!!</strong>The Evil One's hellhounds break through your defenses and kill <span id = "justKilled">0</span> of your <span id = "typeKilled">x</span>. Build up your strength and <a href="javascript: toggle('hellHoundAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">fight</a> them off!   
-		</div>		
-
-		<div id = openEtherealAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> After the hellhounds explode in a cloud of blood and fire, you sift through the ashes of their remains. One of them was wearing a collar,
-								 which upon closer observation is actually a map. When you arrive at the marked destination on the map, you realize there is a 
-								 almost <a href="javascript: toggle('openEtherealAlert');CollapseAll();toggle('Ethereal')" class="alert-link">otherworldly tear</a> floating in front of you.   
-		</div>	
-		
-		<div id = saveAlert class="alert alert-success fade in" role="alert" style="display: none;">
-		<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-			<strong>Save!</strong> Your game has been saved!   
-		</div> 
-
-	  	  
 	  
 	  <div id="Production" class= "panel panel-default">
 		<div class = "panel-heading">
@@ -381,11 +322,9 @@
 		
 		<div id = "PaladinUpgradeTab" class = "collapse" >
 			<div class = "well">
-			<button id=btnbuyWeapon onclick="buyWeapon()"	type="button" class="btn btn-default">Imbue Weapon</button>		
+			<button id=paladinUpgrade1 onclick="paladinUpgradeWeapon()" title= "Your paladins imbue their weapons with their faith, doubling their battle power and soul collection rate."	type="button" class="btn btn-default">Imbue Weapon</button>		
 			<br />
-			Weapons: <span id="weapons">0</span>
-			<br />
-			Weapon Cost: <span id="WeaponCost">1000</span> faith
+			Imbue weapon costs 20,000 gold, 5,000 iron, and 2500 faith.
 			</div>
 		</div>
 	 </div>
@@ -427,6 +366,13 @@
 			<br />
 			Building the barracks will cost 10000 gold and 250 iron.
 			<br /><br />
+			
+			<div id = buildTowerTab class = container>
+			<button id=btnOpenTower title="Build a glorious tower for your Archmage to channel his energies and cast spells from." onclick="buildTower()"	type="button" class="btn btn-default">Construct Tower</button>
+			<br />
+			Building the barracks will cost 1,000,000 gold, 10,000 iron, 1,000 faith.
+			<br /><br />
+			</div>
 		</div>
 		
 		<div id = "FaithStructuresTab" class = "container" style="display: none;">
@@ -450,6 +396,12 @@
 	   
 	 </div>
 
+	 <div id="Magic" class = "panel panel-default" style="display: none;">
+		<div class = "panel-heading">
+			<div class="panel-title">Archmage's Tower</div>
+		</div>		
+	 </div>	 
+	 
 	 <div id="Battle" class = "panel panel-default" style="display: none;">
 		<div class = "panel-heading">
 			<div class="panel-title">Battle</div>
@@ -524,10 +476,104 @@
 				</div>
 			<br />
 			<br />
-	   </div>	   
+	   </div>
+
+	   <div id="BatArchMage" class = "container">
+		<a id = 'btnDescMage' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Corrupted Archmage"
+		data-content="">Corrupted Archmage</a>
+			<br />
+			<button id=btnBatMage onclick="Archmage.fight()"	type="button" class="btn btn-danger">Battle!</button>
+			<br />
+			Requires army power: 20,000 <br />
+
+				<div id="BatMageProgBarBox" class="progress" style="display: none;">
+				  <div id="BatMageProgBar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+					0%
+				  </div>
+				</div>
+			<br />
+			<br />
+	   </div>		   
+	   
 	 </div>	 
 	 
-	 
+
+	 <!--- ALERTS ARE HERE --->
+
+		<div id = openMineAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
+		</div>
+		
+		
+		<div id = openBarracksAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> You can now <a href="javascript: toggle('openBarracksAlert');CollapseAll();toggle('Barracks')" class="alert-link">train</a> units to fight against the Evil One and his minions.   
+		</div>  
+
+		<div id = goblinDefeatAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> You chase the defeated horde of goblins back to their mound. They put up a last ditch effort, but your forces make quick work out of them. Inside their mound you find a stash of 2000 gold!   
+		</div>	
+		
+		<div id = openCathAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
+		</div>
+
+		<div id = unlockCathAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> You successfully chase out the bandits raiding your village. As you raze their camp to make sure they don't return, you find plans for an elaborate  <a href="javascript: toggle('unlockCathAlert');CollapseAll();toggle('Structures')" class="alert-link">Cathedral</a>. 
+			 These bandits sure do have funny taste in loot. You also find a portion of the gold that they have stolen from you.
+		</div>		
+		
+		<div id = unlockPaladinsAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
+		</div>	
+			
+		<div id = banditLootAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+			<strong>Oh No!!</strong> Bandits come and raid <span id = "justStolen">0</span> gold from your gold supply! Maybe you should try getting <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">getting rid</a> of them?   
+		</div>		
+
+		<div id = hellhoundUnlockAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Oh No!!</strong> The Evil One has noticed your presence, and has decided to start sending <a href="javascript: toggle('hellhoundUnlockAlert');CollapseAll();toggle('Battle')" class="alert-link">hellhounds</a> to attack you.  
+		</div>	
+		
+		<div id = hellHoundAttackAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+			<strong>Oh No!!</strong>The Evil One's hellhounds break through your defenses and kill <span id = "justKilled">0</span> of your <span id = "typeKilled">x</span>. Build up your strength and <a href="javascript: toggle('hellHoundAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">fight</a> them off!   
+		</div>		
+
+		<div id = openEtherealAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> After the hellhounds explode in a cloud of blood and fire, you sift through the ashes of their remains. One of them was wearing a collar,
+								 which upon closer observation is actually a map. When you arrive at the marked destination on the map, you realize there is a 
+								 almost <a href="javascript: toggle('openEtherealAlert');CollapseAll();toggle('Ethereal')" class="alert-link">otherworldly tear</a> floating in front of you.   
+		</div>	
+
+		<div id = unlockWizardTowerAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> Your forces corner the Archmage. He has run out of mana but still tries to curse you anyway. A few feeble sparks
+					sputter from his fingertips, but nothing happens. One of your paladins has been studying purification techniques, and performs
+					the ritual on the Archmage. After a few minutes, the Archmage's complextion takes on a healthier glow, and he awakens.
+					He thanks you for removing him from the control of The Evil One, and offers to join your forces. 
+					The Archmage suggests you build him a <a href="javascript: toggle('unlockWizardTowerAlert');CollapseAll();toggle('Structures')" class="alert-link">tower</a>
+					where he can channel his energies.   
+		</div>
+
+		<div id = builtTowerAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong>Using massive amounts of resources, you build the Archmage the <a href="javascript: toggle('unlockWizardTowerAlert');CollapseAll();toggle('Magic')" class="alert-link">tower</a>
+					where he can cast magic to help your forces.
+		</div>		
+		
+		<div id = saveAlert class="alert alert-success fade in" role="alert" style="display: none;">
+		<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+			<strong>Save!</strong> Your game has been saved!   
+		</div> 
+
+	  	  	 
  
  </div> <!-- /container -->
 
@@ -541,6 +587,7 @@
 			document.getElementById("Barracks").style.display = "none";
 			document.getElementById("Cathedral").style.display = "none";
 			document.getElementById("Production").style.display = "none";
+			document.getElementById("Magic").style.display = "none";
 
 		};
 		function setLastPage(name){

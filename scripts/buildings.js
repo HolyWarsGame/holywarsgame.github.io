@@ -56,6 +56,21 @@ function buildCathedral(){
 	}
 };
 
+function buildTower(){
+	if(gold >= 1000000 && iron >= 10000 && faith >= 1000){
+		towerBuilt = true;
+		document.getElementById('Magic').style.display = "block";
+		document.getElementById('TowerMenu').style.display = "block";
+		document.getElementById('builtTowerAlert').style.display = "block";
+		gold = gold - 1000000;
+		iron = iron - 10000;
+		faith = faith - 1000;
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById('iron').innerHTML = iron;
+		document.getElementById('faith').innerHTML = faith;
+	}
+};
+
 
 
 window.setInterval(function(){					//Tavern unit generation

@@ -17,17 +17,20 @@ var tTPinHHMMSS = 0;
 //Unit Variables//
 var tavernpeasants = 0;			//Tavern generated peasants
 var tavernminers = 0;			//Tavern generated miners
-var weapons = 0;
+
 
 //Status Variables//
 var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade 
 var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
+var paladinWepUpgrade = false;
 var tavernUpgrade = false;
 var squiresUnlocked = false;	
 var knightsUnlocked = false;
 var minesOpened = false;
 var cathedralOpened = false;
 var barracksOpened = false;
+var towerUnlocked = false;
+var towerBuilt = false;
 
 //Etc Variables//
 var lastPage;
@@ -69,7 +72,7 @@ function clickThing(number, type)
 			document.getElementById("miners").innerHTML = Miner.number + tavernminers;		
 			break;			
 		
-		case "soul":
+		case "souls":
 			souls = souls + number;
 			document.getElementById("souls").innerHTML = souls;		
 			break;
@@ -126,7 +129,21 @@ function UnlockKnight(){
 	}
 }
 
-function buyWeapon(){
+function paladinUpgradeWeapon(){
+	if(gold >= 20000 && iron >= 5000 && faith >=2500){
+		gold = gold - 20000;
+		iron = iron - 5000;
+		faith = faith - 2500;
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById('iron').innerHTML = iron;
+		document.getElementById('faith').innerHTML = faith;
+		paladinWepUpgrade = true;
+		document.getElementById("paladinUpgrade1").disabled = true;
+	}
+}
+
+
+/* function buyWeapon(){
     var WeaponCost = Math.floor(1000 * Math.pow(1.1,weapons));     //works out the cost of this weapon
     if(faith >= WeaponCost){                                   //checks that the player can afford the weapon
         weapons = weapons + 1;                                   //increases number of weapons
@@ -136,7 +153,7 @@ function buyWeapon(){
     };
     var nextWeapCost = Math.floor(1000 * Math.pow(1.1,weapons));       //works out the cost of the next weapon
     document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
-};
+}; */
 
 function recalculateCosts(){
 	Peasant.costAdj = tavernpeasants;
@@ -236,12 +253,12 @@ function UpdateButtons() {
 	
 	//Upgrade Buttons//
 	//Enable/disables buy imbue weapon button depending on if there is enough currency
-	if(faith < document.getElementById('WeaponCost').innerHTML){	
+/* 	if(faith < document.getElementById('WeaponCost').innerHTML){	
 		document.getElementById("btnbuyWeapon").disabled = true;
 	}
 	else{
 		document.getElementById("btnbuyWeapon").disabled = false;
-	}
+	} */
 	
 	//Unlock Squire Button
 	if(squiresUnlocked == true || (BattlePower < 120|| gold < 4000)){	
@@ -270,14 +287,23 @@ function UpdateButtons() {
 		document.getElementById("btnBatOgre").disabled = false;
 	}
 	
-		//Ogre Button
+		//Hellhound Button
 	if(BattlePower < 2000 || defeatedHhounds == true){
 		document.getElementById("btnBatHellhound").disabled = true;		
 	}
 	else{
 		document.getElementById("btnBatHellhound").disabled = false;
 	}
+	
+	//Archmage Button
+	if(BattlePower < 20000 || defeatedArchmage == true){
+		document.getElementById("btnBatMage").disabled = true;		
+	}
+	else{
+		document.getElementById("btnBatMage").disabled = false;
+	}	
 	//End of Battle Buttons
+	
 }
 
 window.setInterval(function(){                                 //Update per second counts
@@ -292,7 +318,11 @@ window.setInterval(function(){                                 //Update per seco
 	faithpersec = faithpersec.toFixedDown(2)
     document.getElementById("faithpersec").innerHTML = faithpersec;
     
-    soulspersec = Paladin.number*(weapons+1);
+	
+    soulspersec = Paladin.number;
+	if(paladinWepUpgrade == true){
+		soulspersec = soulspersec * 2;
+	}
     document.getElementById("soulspersec").innerHTML = soulspersec;
 	
 	ironpersec = Miner.number;
@@ -323,7 +353,13 @@ window.setInterval(function(){
 	clickThing(Miner.number, "iron")
 	
 	//Soul generation via paladins etc every second
-	clickThing(Paladin.number*(weapons+1),"souls");
+	if(paladinWepUpgrade == true){
+		clickThing(Paladin.number*2,"souls");	
+	}
+	else{
+		clickThing(Paladin.number,"souls");	
+	}
+
 	
 }, 1000);
 
