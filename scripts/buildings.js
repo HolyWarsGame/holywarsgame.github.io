@@ -60,6 +60,7 @@ function buildTower(){
 	if(gold >= 1000000 && iron >= 10000 && faith >= 1000){
 		towerBuilt = true;
 		document.getElementById('Magic').style.display = "block";
+		document.getElementById('manadiv').style.display = "block";
 		document.getElementById('TowerMenu').style.display = "block";
 		document.getElementById('builtTowerAlert').style.display = "block";
 		gold = gold - 1000000;

@@ -7,6 +7,7 @@
 		localStorage.setItem("faith",faith);
 		localStorage.setItem("souls",souls);
 		localStorage.setItem("iron",iron);
+		localStorage.setItem("mana",mana);
 		localStorage.setItem("goldStolen",goldStolen);
 		localStorage.setItem("totalTimePlayed",totalTimePlayed);
 		
@@ -100,6 +101,10 @@
 			iron = parseInt(localStorage.iron);
 			document.getElementById("iron").innerHTML = iron;
 		}
+		if(localStorage.mana != null){
+			mana = parseInt(localStorage.mana);
+			document.getElementById("mana").innerHTML = mana;
+		}		
 		if(localStorage.totalTimePlayed != null){
 			totalTimePlayed = parseInt(localStorage.totalTimePlayed);
 		}
@@ -181,6 +186,7 @@
 			if(myBool == true){
 				towerBuilt = true
 				document.getElementById('Magic').style.display = "block";
+				document.getElementById('manadiv').style.display = "block";
 				document.getElementById('TowerMenu').style.display = "block";
 			}
 		}	

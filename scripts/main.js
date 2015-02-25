@@ -5,12 +5,14 @@ var souls = 0;
 var gold = 0;
 var faith = 0;
 var iron = 0;
+var mana = 0;
 
 //Statistic Variables//
 var goldpersec = 0;
 var faithpersec = 0;
 var soulspersec = 0;
 var ironpersec = 0;
+var manapersec = 0;
 var totalTimePlayed = 0;
 var tTPinHHMMSS = 0;
 
@@ -76,7 +78,10 @@ function clickThing(number, type)
 			souls = souls + number;
 			document.getElementById("souls").innerHTML = souls;		
 			break;
-		
+			
+		case "mana":
+			mana = mana + number;
+			document.getElementById("souls").innerHTML = souls;		
 		default:
 	}
 }
@@ -141,19 +146,6 @@ function paladinUpgradeWeapon(){
 		document.getElementById("paladinUpgrade1").disabled = true;
 	}
 }
-
-
-/* function buyWeapon(){
-    var WeaponCost = Math.floor(1000 * Math.pow(1.1,weapons));     //works out the cost of this weapon
-    if(faith >= WeaponCost){                                   //checks that the player can afford the weapon
-        weapons = weapons + 1;                                   //increases number of weapons
-    	faith = faith - WeaponCost;                          //removes the souls spent
-        document.getElementById('weapons').innerHTML = weapons;  //updates the number of weapons for the user
-        document.getElementById('souls').innerHTML = souls;  //updates the number of souls for the user
-    };
-    var nextWeapCost = Math.floor(1000 * Math.pow(1.1,weapons));       //works out the cost of the next weapon
-    document.getElementById('WeaponCost').innerHTML = nextWeapCost;  //updates the weapon cost for the user
-}; */
 
 function recalculateCosts(){
 	Peasant.costAdj = tavernpeasants;
@@ -252,14 +244,7 @@ function UpdateButtons() {
 	
 	
 	//Upgrade Buttons//
-	//Enable/disables buy imbue weapon button depending on if there is enough currency
-/* 	if(faith < document.getElementById('WeaponCost').innerHTML){	
-		document.getElementById("btnbuyWeapon").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyWeapon").disabled = false;
-	} */
-	
+
 	//Unlock Squire Button
 	if(squiresUnlocked == true || (BattlePower < 120|| gold < 4000)){	
 		document.getElementById("btnPageUpgrade1").disabled = true;
@@ -327,7 +312,10 @@ window.setInterval(function(){                                 //Update per seco
 	
 	ironpersec = Miner.number;
 	document.getElementById("ironpersec").innerHTML = ironpersec;
-    
+	
+	manapersec = 1;
+	document.getElementById("manapersec").innerHTML = manapersec;
+   
 	document.getElementById("peasants").innerHTML = Peasant.number ;	//For testing
 	document.getElementById("miners").innerHTML = Miner.number;			//For Testing
 },100);
@@ -360,6 +348,10 @@ window.setInterval(function(){
 		clickThing(Paladin.number,"souls");	
 	}
 
+	//Mana generation per second
+	if(towerBuilt == true){
+		clickThing(1,"mana");
+	}
 	
 }, 1000);
 

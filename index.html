@@ -142,6 +142,12 @@
 				Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
 			</div>
 		</li>
+		<li>			
+			<div id = "manadiv" style="display: none;">
+				<img src = "images/manasmall.png" alt="Mana Crystal" style="display: inline-block">
+				Mana: <span id="mana">0</span>    ( <span id="manapersec">0</span> mps)		
+			</div>
+		</li>		
 		</div>
 	  </div>
 	  
@@ -333,7 +339,7 @@
 		<div class = "panel-heading">
 			<div class="panel-title">Structures</div>
 		</div>
-			<div id = "TavernTab" class = "container">
+		<div id = "TavernTab" class = "container">
 				<br />
 				<a id = 'BtnTavernDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Taverns"
 				data-content="A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 30 seconds.">Taverns (<span id="taverns">0</span>)</a>			
@@ -355,33 +361,38 @@
 					Miners recruited by tavern: <span id="tavernminers">0</span>
 					</div>
 				</div>				
-
+		</div>
 			<br />
-			<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="buildMines()"	type="button" class="btn btn-default">Open Mines</button>
-			<br />
-			Opening the mine costs 1500 gold.
-			<br /><br />
 			
+			<div id = "OpenMinesTab" class = "container">
+				<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="buildMines()"	type="button" class="btn btn-default">Open Mines</button>
+				<br />
+				Opening the mine costs 1500 gold.
+				<br /><br />
+			</div>
+			
+			<div id = "OpenBarracksTab" class = "container">
 			<button id=btnOpenBarracks title="Build a structure to train units ready to battle evil" onclick="buildBarracks()"	type="button" class="btn btn-default">Construct Barracks</button>
 			<br />
 			Building the barracks will cost 10000 gold and 250 iron.
 			<br /><br />
+			</div>
 			
 			<div id = buildTowerTab class = container>
 			<button id=btnOpenTower title="Build a glorious tower for your Archmage to channel his energies and cast spells from." onclick="buildTower()"	type="button" class="btn btn-default">Construct Tower</button>
 			<br />
-			Building the barracks will cost 1,000,000 gold, 10,000 iron, 1,000 faith.
+			Building the tower will cost 1,000,000 gold, 10,000 iron, 1,000 faith.
 			<br /><br />
 			</div>
-		</div>
+
 		
-		<div id = "FaithStructuresTab" class = "container" style="display: none;">
-			<button id = btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-default">Build Cathedral</button>
-			<br />
-			Opening the cathedral costs 10000 gold and 500 iron.
-			<br />
-			<br />
-		</div>
+			<div id = "FaithStructuresTab" class = "container" style="display: none;">
+				<button id = btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="buildCathedral()"	type="button" class="btn btn-default">Build Cathedral</button>
+				<br />
+				Opening the cathedral costs 10000 gold and 500 iron.
+				<br />
+				<br />
+			</div>
 	 </div>
 	 
 	 <div id="Ethereal" class = "panel panel-default" style="display: none;">
@@ -444,7 +455,6 @@
 	   </div>
 	   
 	   <div id="BatOgre" class = "container">
-		<!--			<h4>Ogre</h4> -->
 		<a id = 'btnDescOgre' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Smelly Ogre"
 		data-content="">Smelly Ogre</a>
 		<br />
@@ -564,7 +574,7 @@
 
 		<div id = builtTowerAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong>Using massive amounts of resources, you build the Archmage the <a href="javascript: toggle('unlockWizardTowerAlert');CollapseAll();toggle('Magic')" class="alert-link">tower</a>
+			<strong>New!</strong>Using massive amounts of resources, you build the Archmage the <a href="javascript: toggle('builtTowerAlert');CollapseAll();toggle('Magic')" class="alert-link">tower</a>
 					where he can cast magic to help your forces.
 		</div>		
 		
