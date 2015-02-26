@@ -312,7 +312,7 @@ function hellhoundCull(){
 };
 
 var archmageDesc = "One of The Evil One's lieutenants, capable of casting nasty and powerful spells.";
-var Archmage = new Enemy("Archmage", archmageDesc, 'BatMageProgBarBox','BatMageProgBar','btnBatMage','unlockWizardTowerAlert',20000,0,1,20);
+var Archmage = new Enemy("Archmage", archmageDesc, 'BatMageProgBarBox','BatMageProgBar','btnBatMage','unlockWizardTowerAlert',20000,0,1,2000);
 setEnemyDescription(Archmage, 'btnDescMage');
 
 
