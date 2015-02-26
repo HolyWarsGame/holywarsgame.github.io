@@ -15,6 +15,7 @@ var Building = function(name, htmlBuyBtn, goldCost, ironCost, faithCost, soulCos
 	this.description = description;
 	this.costAdj = costAdj;	
 	this.flag = flag;
+	buyable = false;
 };
 
 Building.prototype.returnName = function(){
@@ -23,56 +24,63 @@ Building.prototype.returnName = function(){
 
 Building.prototype.canBuy = function(){
 	var myButton = this.htmlBuyBtn;
+
 	
 	if(gold >= this.goldCost && iron >= this.ironCost && faith >= this.faithCost && souls >= this.soulCost){
-		document.getElementById(myButton).disabled = false;	
+		document.getElementById(myButton).disabled = false;
+		this.checkBtnFlag();
 		return true;
 	}
 	else{
-		document.getElementById(myButton).disabled = true;	
+		document.getElementById(myButton).disabled = true;
+		this.checkBtnFlag();
 		return false;
 	}
-	this.checkBtnFlag();
+	
 }
 
 Building.prototype.checkBtnFlag = function(){
 		var myButton = this.htmlBuyBtn;
-
+//		console.log(this.flag)
  			switch(this.flag){
 				case "minesOpened":
 					if(minesOpened == true){
-						document.getElementById(myButton).html = "Mines Opened";	
+						document.getElementById(myButton).innerHTML = "Mines Opened";
+						document.getElementById(myButton).disabled = true;	
 					}
 				break; 
 				case "barracksOpened":
 					if(barracksOpened == true){
-						document.getElementById(myButton).html = "Barracks Opened";	
+						document.getElementById(myButton).innerHTML = "Barracks Opened";	
+						document.getElementById(myButton).disabled = true;	
 					}
-
+			
 				break;
 				case "cathedralOpened":
 					if(cathedralOpened == true){
-						document.getElementById(myButton).html = "Cathedral Built";	
+						document.getElementById(myButton).innerHTML = "Cathedral Built";
+						document.getElementById(myButton).disabled = true;							
 					}
-
+					return false;
 				break;
 				case "towerBuilt":
 					if(towerBuilt == true){
-						document.getElementById(myButton).html = "Tower Built";	
+						document.getElementById(myButton).innerHTML = "Tower Built";
+						document.getElementById(myButton).disabled = true;	
 					}
 				default:
+					return false;
 			}
-		return myBool
 };
 
 Building.prototype.buy = function(){
 
-		if(this.canBuy = true ){    //checks that the player can afford the Unit
+		if(this.canBuy() == true ){    //checks that the player can afford the Unit
 			this.number = this.number + 1;                                  							 	  //increases number of Unit
 			gold = gold - this.goldCost;                     										          //removes the gold spent
-			iron = iron - this.ironCost;
-			faith = faith - this.faithCost;
-			souls = souls - this.soulCost;
+			iron = iron - this.ironCost;																	  //removes the iron spent
+			faith = faith - this.faithCost;																	  //removes the faith spent
+			souls = souls - this.soulCost;																	  //removes the souls spent
 			document.getElementById('gold').innerHTML = gold;  										          //updates the number of gold for the user
 			document.getElementById('iron').innerHTML = iron;  										          //updates the number of gold for the user
 			document.getElementById('faith').innerHTML = faith;  										          //updates the number of gold for the user
@@ -126,27 +134,47 @@ function MultBuilding(name, htmlNumRef, htmlNextCostRef, htmlBuyBtn, goldCost, i
 	this.number = 0;	
 };
 
+MultBuilding.prototype.canBuy = function(){
+	var myButton = this.htmlBuyBtn;
+	
+	this.curCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));
+	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.returnNumber() > 0)){
+		if(gold >= this.curCost && iron >= this.ironCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Building
+			document.getElementById(myButton).disabled = false;
+		}
+		else
+		{
+			document.getElementById(myButton).disabled = true;
+		}
+	}
+	else{
+		document.getElementById(myButton).disabled = true;	
+	}
+	this.nextCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Building
+    document.getElementById(this.htmlNextCostRef).innerHTML = this.nextCost;  						      //updates the Building cost for the user	
+}
+
 MultBuilding.prototype.buyOne = function(){
 	this.curCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));
 	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.returnNumber() > 0)){
-		if(gold >= this.curCost && iron >= this.ironCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Unit
-			this.number = this.number + 1;                                  							 	  //increases number of Unit
+		if(gold >= this.curCost && iron >= this.ironCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Building
+			this.number = this.number + 1;                                  							 	  //increases number of Building
 			gold = gold - this.curCost;                     										          //removes the gold spent
-			iron = iron - this.ironCost;
-			faith = faith - this.faithCost;
-			souls = souls - this.soulCost;
-			document.getElementById(this.htmlNumRef).innerHTML = this.number;  							      //updates the number of Unit for the user
+			iron = iron - this.ironCost;																	  //removes the iron spent
+			faith = faith - this.faithCost;																	  //removes the faith spent
+			souls = souls - this.soulCost;																	  //removes the souls spent
+			document.getElementById(this.htmlNumRef).innerHTML = this.number;  							      //updates the number of Building for the user
 			document.getElementById('gold').innerHTML = gold;  										          //updates the number of gold for the user
-			document.getElementById('iron').innerHTML = iron;  										          //updates the number of gold for the user
-			document.getElementById('faith').innerHTML = faith;  										          //updates the number of gold for the user
-			document.getElementById('souls').innerHTML = souls;  										          //updates the number of gold for the user
-			if(this.hasReqUnit == true){
-				this.reqUnit.removeOne();
-			}
+			document.getElementById('iron').innerHTML = iron;  										          //updates the number of iron for the user
+			document.getElementById('faith').innerHTML = faith;  										          //updates the number of faith for the user
+			document.getElementById('souls').innerHTML = souls;  										          //updates the number of souls for the user
+//			if(this.hasReqUnit == true){
+//				this.reqUnit.removeOne();
+//			}
 		};
 	}
-	this.nextCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Unit
-    document.getElementById(this.htmlNextCostRef).innerHTML = this.nextCost;  						      //updates the Unit cost for the user
+	this.nextCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Building
+    document.getElementById(this.htmlNextCostRef).innerHTML = this.nextCost;  						      //updates the Building cost for the user
 };
 
 var minesDesc = "Opening the mines lets you collect minerals";

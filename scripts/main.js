@@ -162,6 +162,7 @@ function recalculateCosts(){
 
 function UpdateButtons() {
 	
+	
 	//Unit Buttons //
 	//Enable/disables buy peasant button depending on if there is enough currency	
 	Peasant.canBuy();
@@ -186,18 +187,12 @@ function UpdateButtons() {
 	
 	//Enable/disables buy paladin button depending on if there is enough currency
 	Paladin.canBuy();
-
 	// End of Unit Buttons//
+	
 	
 	//Structure Buttons
 	//Enable/disables buy tavern button depending on if there is enough currency
-/* 	if(gold < document.getElementById('TavernCost').innerHTML){	
-		document.getElementById("btnbuyTavern").disabled = true;
-	}
-	else{
-		document.getElementById("btnbuyTavern").disabled = false;
-	} */
-	//Tavern.canBuy();
+	Tavern.canBuy();
 	
 	//Enable/disables tavern upgrade
 	if(tavernUpgrade == true || gold < 10000 || iron < 5000){
@@ -208,43 +203,16 @@ function UpdateButtons() {
 	}
 	
 	//Changes status of the building mines button
-/* 	if(minesOpened){
-		document.getElementById("btnOpenMines").disabled = true
-		document.getElementById("btnOpenMines").innerHTML = "Mines built";
-	}
-	else if(!minesOpened && gold < 1500){
-		document.getElementById("btnOpenMines").disabled = true
-	}
-	else{
-		document.getElementById("btnOpenMines").disabled = false
-	} */
-	Mines.canBuy;
+	Mines.canBuy();
 	
 	//Changes status of the building barracks button
-/* 	if(barracksOpened){
-		document.getElementById("btnOpenBarracks").disabled = true
-		document.getElementById("btnOpenBarracks").innerHTML = "Barracks built";
-	}
-	else if(!cathedralOpened && (gold < 10000 || iron < 250)){
-		document.getElementById("btnOpenBarracks").disabled = true
-	}
-	else{
-		document.getElementById("btnOpenBarracks").disabled = false
-	} */
-	Barracks.canBuy;
+	Barracks.canBuy();
 	
 	//Changes status of the building cathedral button
-/* 	if(cathedralOpened){
-		document.getElementById("btnOpenCathedral").disabled = true
-		document.getElementById("btnOpenCathedral").innerHTML = "Cathedral built";
-	}
-	else if(!cathedralOpened && (gold < 10000 || iron < 500)){
-		document.getElementById("btnOpenCathedral").disabled = true
-	}
-	else{
-		document.getElementById("btnOpenCathedral").disabled = false
-	} */
-	Cathedral.canBuy;
+	Cathedral.canBuy();
+
+	//Changes status of the building tower button
+	Tower.canBuy();
 	//End of Structure Buttons
 	
 	
@@ -257,41 +225,25 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnPageUpgrade1").disabled = false;
 	}	
-	
 	//End of Upgrade Buttons//
 	
 	
-	//Changes status of Battle Buttons
-	//Bandit Button
-	if(BattlePower < 100 || defeatedBandits == true){
-		document.getElementById("btnBatBandits").disabled = true;		
-	}		
-	else{
-		document.getElementById("btnBatBandits").disabled = false;
-	}
-		//Ogre Button
-	if(BattlePower < 500 || defeatedOgre == true){
-		document.getElementById("btnBatOgre").disabled = true;		
-	}
-	else{
-		document.getElementById("btnBatOgre").disabled = false;
-	}
 	
-		//Hellhound Button
-	if(BattlePower < 2000 || defeatedHhounds == true){
-		document.getElementById("btnBatHellhound").disabled = true;		
-	}
-	else{
-		document.getElementById("btnBatHellhound").disabled = false;
-	}
+	//Changes status of Battle Buttons
+	//Goblin Button
+	Goblins.canFight();
+	
+	//Bandit Button
+	Bandits.canFight();
+
+	//Ogre Button
+	Ogre.canFight();
+	
+	//Hellhound Button
+	Hellhounds.canFight();
 	
 	//Archmage Button
-	if(BattlePower < 20000 || defeatedArchmage == true){
-		document.getElementById("btnBatMage").disabled = true;		
-	}
-	else{
-		document.getElementById("btnBatMage").disabled = false;
-	}	
+	Archmage.canFight();
 	//End of Battle Buttons
 	
 }

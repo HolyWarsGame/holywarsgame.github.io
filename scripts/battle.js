@@ -39,7 +39,7 @@ var Enemy = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, html
 	this.percentComplete = percentComplete;
 	this.percentIncrement = percentIncrement;
 	this.speed = speed;
-	this.inCombat = false;
+	this.fightable = false;
 };
 
 //Fighting enemy function prototype
@@ -50,9 +50,9 @@ Enemy.prototype.fight = function(){
 	var btn = this.htmlBtnRef;
 	var box = this.htmlBoxRef;
 	var bar = this.htmlBarRef;
-	var EnemyName = 	this.name;
+	var EnemyName = this.name;
 	
-	if(BattlePower >= this.BPReq){
+	if(this.fightable == true){
 		document.getElementById(this.htmlBoxRef).style.display = "block";
 		var $bar = $(document.getElementById(this.htmlBarRef));
 		var progress = setInterval(function() {
@@ -82,6 +82,65 @@ Enemy.prototype.fight = function(){
 		//Your army isn't strong enough to fight this enemy.
 	}
 }
+
+Enemy.prototype.canFight = function(){
+	
+	var myButton = this.htmlBtnRef
+	
+	if(BattlePower >= this.BPReq ){
+		this.fightable = true;
+		document.getElementById(myButton).disabled = false;
+		this.checkFlag();
+	}
+	else{
+		this.fightable = false;
+		document.getElementById(myButton).disabled = true;
+		this.checkFlag();
+	}	
+};
+
+Enemy.prototype.checkFlag = function(){
+	var myButton = this.htmlBtnRef
+	switch(this.name){
+		case 'Goblins':
+			if(defeatedGoblins == true){
+				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
+				document.getElementById(myButton).disabled = true;	
+			}
+						
+		break;	
+	
+		case 'Bandits':
+			if(defeatedBandits = true){
+				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
+				document.getElementById(myButton).disabled = true;	
+			}
+		break;
+		
+		case 'Ogre':
+			if(defeatedOgre = true){
+				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
+				document.getElementById(myButton).disabled = true;	
+			}
+			break;
+		
+		case 'hellhounds':
+			if(defeatedHhounds = true){
+				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
+				document.getElementById(myButton).disabled = true;	
+			}			
+		break;
+		
+		case 'Archmage':
+			if(defeatedArchmage == true){
+				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
+				document.getElementById(myButton).disabled = true;	
+			}							
+		break;
+		
+		default:		
+	}
+};
 
 Enemy.prototype.setPercent = function(previousPercent){
 	this.percentComplete = previousPercent;
@@ -124,7 +183,7 @@ function setDefeatEvents(name){
 		
 		case 'Archmage':
 			document.getElementById('buildTowerTab').style.display = "block";
-			defeatedArchmage = false;
+			defeatedArchmage = true;
 		break;
 		
 		default:

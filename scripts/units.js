@@ -76,18 +76,14 @@ Unit.prototype.recalcCost = function(){
 
 Unit.prototype.canBuy = function(){
 	btn = this.htmlBuyBtn
-	this.curCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));
-	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.number > 0)){
-		if(gold >= this.curCost && iron >= this.ironCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Unit
+//	this.curCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));
+
+		if(gold >= this.goldCost && iron >= this.ironCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Unit
 			document.getElementById(btn).disabled = false;					//enables the buy button
 		}
 		else{
 			document.getElementById(btn).disabled = true;					//disables the buy button
 		}
-	}
-	else{
-		document.getElementById(btn).disabled = true;					//disables the buy button
-	}
 };
 
 function setDescription(Unit, element){
