@@ -20,7 +20,7 @@
 		localStorage.setItem("knights",Knight.number);
 		localStorage.setItem("tavernpeasants",tavernpeasants);
 		localStorage.setItem("tavernminers",tavernminers);
-		localStorage.setItem("taverns",taverns);
+		localStorage.setItem("taverns", Tavern.number);
 		localStorage.setItem("acolytes",Acolyte.number);
 		localStorage.setItem("priests",Priest.number);
 		localStorage.setItem("paladins",Paladin.number); 	
@@ -150,9 +150,10 @@
 		}			
 		
 		if(localStorage.taverns != null){
-			taverns = parseInt(localStorage.taverns);
-			document.getElementById("taverns").innerHTML = taverns;
+			Tavern.number = parseInt(localStorage.taverns);
+			document.getElementById("taverns").innerHTML = Tavern.number;
 		}
+		
 		if(localStorage.barracksOpened != null){
 			var myBool = localStorage.barracksOpened == "true"
 			if(myBool == true){

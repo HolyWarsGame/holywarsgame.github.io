@@ -81,7 +81,7 @@ function clickThing(number, type)
 			
 		case "mana":
 			mana = mana + number;
-			document.getElementById("souls").innerHTML = souls;		
+			document.getElementById("mana").innerHTML = mana;		
 		default:
 	}
 }
@@ -91,6 +91,7 @@ function debugCurrency(){
 	faith = faith + 1000;
 	souls = souls + 200;
 	iron = iron + 5000;
+	mana = mana + 10000;
 };
 
 //UPGRADES
@@ -190,12 +191,13 @@ function UpdateButtons() {
 	
 	//Structure Buttons
 	//Enable/disables buy tavern button depending on if there is enough currency
-	if(gold < document.getElementById('TavernCost').innerHTML){	
+/* 	if(gold < document.getElementById('TavernCost').innerHTML){	
 		document.getElementById("btnbuyTavern").disabled = true;
 	}
 	else{
 		document.getElementById("btnbuyTavern").disabled = false;
-	}
+	} */
+	//Tavern.canBuy();
 	
 	//Enable/disables tavern upgrade
 	if(tavernUpgrade == true || gold < 10000 || iron < 5000){
@@ -206,7 +208,7 @@ function UpdateButtons() {
 	}
 	
 	//Changes status of the building mines button
-	if(minesOpened){
+/* 	if(minesOpened){
 		document.getElementById("btnOpenMines").disabled = true
 		document.getElementById("btnOpenMines").innerHTML = "Mines built";
 	}
@@ -215,10 +217,11 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnOpenMines").disabled = false
-	}
+	} */
+	Mines.canBuy;
 	
 	//Changes status of the building barracks button
-	if(barracksOpened){
+/* 	if(barracksOpened){
 		document.getElementById("btnOpenBarracks").disabled = true
 		document.getElementById("btnOpenBarracks").innerHTML = "Barracks built";
 	}
@@ -227,10 +230,11 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnOpenBarracks").disabled = false
-	}
+	} */
+	Barracks.canBuy;
 	
 	//Changes status of the building cathedral button
-	if(cathedralOpened){
+/* 	if(cathedralOpened){
 		document.getElementById("btnOpenCathedral").disabled = true
 		document.getElementById("btnOpenCathedral").innerHTML = "Cathedral built";
 	}
@@ -239,7 +243,8 @@ function UpdateButtons() {
 	}
 	else{
 		document.getElementById("btnOpenCathedral").disabled = false
-	}
+	} */
+	Cathedral.canBuy;
 	//End of Structure Buttons
 	
 	
@@ -295,7 +300,7 @@ window.setInterval(function(){                                 //Update per seco
     goldpersec = Peasant.number;
 	if(mPanningUpgrade == true)
 	{
-		goldpersec = goldpersec + miners;
+		goldpersec = goldpersec + Miner.number;
 	}
     document.getElementById("goldpersec").innerHTML = goldpersec;
     
@@ -324,7 +329,7 @@ window.setInterval(function(){                                 //Update per seco
 window.setInterval(function(){	
 
 	//Gold generation via peasants etc every second
-	var number = Peasant.returnNumber();
+	var number = Peasant.number;
 	if(mPanningUpgrade == true)
 	{
 		number = number + Miner.number;
