@@ -79,7 +79,7 @@ Unit.prototype.recalcCost = function(){
 Unit.prototype.canBuy = function(){
 	btn = this.htmlBuyBtn
 	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.returnNumber() > 0)){	
-		if(gold >= this.goldCost && iron >= this.ironCost && silver >= this.silverCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Unit
+		if(gold >= this.nextCost && iron >= this.ironCost && silver >= this.silverCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Unit
 			document.getElementById(btn).disabled = false;					//enables the buy button
 		}
 		else{
@@ -98,7 +98,7 @@ function setDescription(Unit, element){
 
 
 var peasDesc = "A lowly denizen of your realm. They are adept at farming and scrounging for gold but completely useless at fighting. <br> Generates 1 gold per second"
-var Peasant = new Unit("Peasant",'peasants','PeasantCost','btnbuyPeasant',50,0,0,0,0,1.25, peasDesc, tavernpeasants,false,"none");
+var Peasant = new Unit("Peasant",'peasants','PeasantCost','btnbuyPeasant',50,0,0,0,0,1.15, peasDesc, tavernpeasants,false,"none");
 setDescription(Peasant, 'BtnPeasantDesc');
 
 var minerDesc = "These hard-working mine excavate minerals from the mine you have built. They bring canaries in with them to warn them of disasters. Also as lunch. <br> Generates 1 iron per second"

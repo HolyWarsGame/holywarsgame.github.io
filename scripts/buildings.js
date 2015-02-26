@@ -142,7 +142,7 @@ MultBuilding.prototype.canBuy = function(){
 	
 	this.curCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));
 	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.returnNumber() > 0)){
-		if(gold >= this.curCost && iron >= this.ironCost && silver >= this.silverCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Building
+		if(gold >= this.nextCost && iron >= this.ironCost && silver >= this.silverCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Building
 			document.getElementById(myButton).disabled = false;
 		}
 		else
