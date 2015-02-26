@@ -124,7 +124,7 @@ Enemy.prototype.checkFlag = function(){
 			}
 			break;
 		
-		case 'hellhounds':
+		case 'Hellhounds':
 			if(defeatedHhounds == true){
 				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
 				document.getElementById(myButton).disabled = true;	
