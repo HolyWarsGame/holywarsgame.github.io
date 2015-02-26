@@ -111,21 +111,21 @@ Enemy.prototype.checkFlag = function(){
 		break;	
 	
 		case 'Bandits':
-			if(defeatedBandits = true){
+			if(defeatedBandits == true){
 				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
 				document.getElementById(myButton).disabled = true;	
 			}
 		break;
 		
 		case 'Ogre':
-			if(defeatedOgre = true){
+			if(defeatedOgre == true){
 				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
 				document.getElementById(myButton).disabled = true;	
 			}
 			break;
 		
 		case 'hellhounds':
-			if(defeatedHhounds = true){
+			if(defeatedHhounds == true){
 				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
 				document.getElementById(myButton).disabled = true;	
 			}			
