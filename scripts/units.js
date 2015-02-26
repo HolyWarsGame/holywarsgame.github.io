@@ -102,7 +102,7 @@ var Peasant = new Unit("Peasant",'peasants','PeasantCost','btnbuyPeasant',50,0,0
 setDescription(Peasant, 'BtnPeasantDesc');
 
 var minerDesc = "These hard-working mine excavate minerals from the mine you have built. They bring canaries in with them to warn them of disasters. Also as lunch. <br> Generates 1 iron per second"
-var Miner = new Unit("Miner",'miners','MinerCost','btnbuyMiner',250,0,0,0,0,1.25, minerDesc, tavernminers, false, "none")
+var Miner = new Unit("Miner",'miners','MinerCost','btnbuyMiner',250,0,0,0,0,1.15, minerDesc, tavernminers, false, "none")
 setDescription(Miner, 'BtnMinerDesc');
 
 var pageDesc = "Young men in training to become knights. Not too great with weapons yet, but they're learning.  <br> Provides 10 army strength"

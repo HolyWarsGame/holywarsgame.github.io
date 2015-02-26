@@ -181,7 +181,7 @@ MultBuilding.prototype.buyOne = function(){
 };
 
 var minesDesc = "Opening the mines lets you collect minerals";
-var Mines = new Building('Mines','btnOpenMines',1500,0,0,0,0,minesDesc,"none",'minesOpened');
+var Mines = new Building('Mines','btnOpenMines',1250,0,0,0,0,minesDesc,"none",'minesOpened');
 
 
 var tavernDesc = "A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 30 seconds."
@@ -192,7 +192,7 @@ function upgradeTavern(){
 };
 
 var barracksDesc = ""
-var Barracks = new Building('Barracks','btnOpenBarracks',10000,250,0,0,0,barracksDesc,"none",'barracksOpened');
+var Barracks = new Building('Barracks','btnOpenBarracks',5000,250,0,0,0,barracksDesc,"none",'barracksOpened');
 
 var cathDesc = ""
 var Cathedral = new Building('Cathedral','btnOpenCathedral',15000,500,100,0,0,cathDesc,"none",'cathedralOpened');

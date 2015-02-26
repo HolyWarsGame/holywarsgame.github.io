@@ -208,7 +208,7 @@ function banditLoot(){
 		  if (ticker == 0){
 			clearInterval(raid);
 			if(defeatedBandits == false){
-				justStolen =  Math.ceil(gold*1/3);
+				justStolen =  Math.ceil(gold*1/5);
 				goldStolen = goldStolen + justStolen;
 				gold = gold - justStolen;
 				document.getElementById("gold").innerHTML = gold;
@@ -253,7 +253,7 @@ function triggerHellhound(){
 
 function hellHoundRaid(){
 	if(defeatedHhounds == false){
-		var raidtime = Math.floor((Math.random() * 90) + 45); ;
+		var raidtime = Math.floor((Math.random() * 120) + 60); ;
 //		console.log("Raidtime in: " + raidtime)
 		var ticker = raidtime;
 		
