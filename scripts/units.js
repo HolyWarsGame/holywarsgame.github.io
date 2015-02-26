@@ -47,7 +47,8 @@ Unit.prototype.buyOne = function(){
 			this.number = this.number + 1;                                  							 	  //increases number of Unit
 			gold = gold - this.curCost;                     										          //removes the gold spent
 			iron = iron - this.ironCost;
-			silver = silver - this.silverCost											
+			silver = silver - this.silverCost
+				console.log(this.faithCost);
 			faith = faith - this.faithCost;
 			souls = souls - this.soulCost;
 			document.getElementById(this.htmlNumRef).innerHTML = this.number;  							      //updates the number of Unit for the user
@@ -96,7 +97,7 @@ function setDescription(Unit, element){
 	popover.setAttribute("data-content", Unit.description);		
 };
 
-
+//Unit constructor  new Unit(name, htmlNumRef, htmlNextCostRef, htmlBuyBtn, goldCost, ironCost, silverCost, faithCost, soulCost, costMult,description, costAdj, hasReqUnit, reqUnit)
 var peasDesc = "A lowly denizen of your realm. They are adept at farming and scrounging for gold but completely useless at fighting. <br> Generates 1 gold per second"
 var Peasant = new Unit("Peasant",'peasants','PeasantCost','btnbuyPeasant',50,0,0,0,0,1.15, peasDesc, tavernpeasants,false,"none");
 setDescription(Peasant, 'BtnPeasantDesc');
@@ -126,6 +127,10 @@ var Acolyte = new Unit("Acolyte",'acolytes','AcolyteCost','btnbuyAcolyte',500,0,
 setDescription(Acolyte, 'BtnAcolyteDesc');
 
 var priestDesc = "Men of the cloth. Their piety helps them channel the holy energy from the universe.  <br> Generates 0.5 faith per second"
-var Priest = new Unit("Priest",'priests','PriestCost','btnbuyPriest',1000,0,10,0,0,1.1, priestDesc, 0, true, Acolyte);	
+var Priest = new Unit("Priest",'priests','PriestCost','btnbuyPriest',1000,0,10,50,0,1.1, priestDesc, 0, true, Acolyte);	
 setDescription(Priest, 'BtnPriestDesc');
+
+var shadeDesc = "This spirits are but a barely present in our world, but they are still capable of damaging demonic beings. <br>Provides 5 army strength. <br>Provides 10 spiritual strength."
+var Shade = new Unit("Benevolent Shade",'shades','shadeCost','btnBuyShade',10000,0,50,0,75,1.1, shadeDesc, 0, false, "none");
+setDescription(Shade, 'BtnShadeDesc');
 
