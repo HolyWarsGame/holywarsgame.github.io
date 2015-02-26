@@ -175,7 +175,7 @@ function setDefeatEvents(name){
 			setTimeout(function() { triggerHellhound(); }, 30000);		
 		break;
 		
-		case 'hellhounds':
+		case 'Hellhounds':
 			document.getElementById('Ethereal').style.display = "block";
 			document.getElementById('EtherealMenu').style.display = "block";
 			defeatedHhounds = true;
