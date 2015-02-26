@@ -13,7 +13,7 @@
 		localStorage.setItem("totalTimePlayed",totalTimePlayed);
 		
 		//Unit variables
- 		localStorage.setItem("peasants",Peasant.number);
+ 		localStorage.setItem("peasants",Peasant.number - tavernpeasants);
 		localStorage.setItem("miners",Miner.number);
 		localStorage.setItem("personPage",Page.number);
 		localStorage.setItem("squires",Squire.number);
@@ -147,6 +147,7 @@
 		}			
 		if(localStorage.tavernpeasants != null){
 			tavernpeasants = parseInt(localStorage.tavernpeasants);
+			Peasant.number = Peasant.number + tavernpeasants;
 			document.getElementById("tavernpeasants").innerHTML = tavernpeasants;
 			document.getElementById("peasants").innerHTML = Peasant.number;
 		}		
@@ -344,7 +345,7 @@
 
 		if(localStorage.minersKilled != null){
 			minersKilled = parseInt(localStorage.minersKilled);
-			document.getElementById("minersKilled").innerHTML = peasantsKilled;
+			document.getElementById("minersKilled").innerHTML = minersKilled;
 		}			
 		
 		if(localStorage.lastPage != null){
