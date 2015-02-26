@@ -5,11 +5,12 @@ var taverns = 0;
 
 
 //Prototype for buildings 
-var Building = function(name, htmlBuyBtn, goldCost, ironCost, faithCost, soulCost, description, costAdj, flag){
+var Building = function(name, htmlBuyBtn, goldCost, ironCost, silverCost, faithCost, soulCost, description, costAdj, flag){
 	this.name = name;
 	this.htmlBuyBtn = htmlBuyBtn;
 	this.goldCost = goldCost;
 	this.ironCost = ironCost;
+	this.silverCost = silverCost;
 	this.faithCost = faithCost;
 	this.soulCost = soulCost;
 	this.description = description;
@@ -26,7 +27,7 @@ Building.prototype.canBuy = function(){
 	var myButton = this.htmlBuyBtn;
 
 	
-	if(gold >= this.goldCost && iron >= this.ironCost && faith >= this.faithCost && souls >= this.soulCost){
+	if(gold >= this.goldCost && iron >= this.ironCost && silver >= this.silverCost && faith >= this.faithCost && souls >= this.soulCost){
 		document.getElementById(myButton).disabled = false;
 		this.checkBtnFlag();
 		return true;
@@ -79,6 +80,7 @@ Building.prototype.buy = function(){
 			this.number = this.number + 1;                                  							 	  //increases number of Unit
 			gold = gold - this.goldCost;                     										          //removes the gold spent
 			iron = iron - this.ironCost;																	  //removes the iron spent
+			silver = silver - this.silverCost;                                                                //removes the silver spent
 			faith = faith - this.faithCost;																	  //removes the faith spent
 			souls = souls - this.soulCost;																	  //removes the souls spent
 			document.getElementById('gold').innerHTML = gold;  										          //updates the number of gold for the user
@@ -116,13 +118,14 @@ Building.prototype.buy = function(){
 		}
 }
 
-function MultBuilding(name, htmlNumRef, htmlNextCostRef, htmlBuyBtn, goldCost, ironCost, faithCost, soulCost, costMult, description, costAdj, hasReqUnit, reqUnit){
+function MultBuilding(name, htmlNumRef, htmlNextCostRef, htmlBuyBtn, goldCost, ironCost, silverCost,faithCost, soulCost, costMult, description, costAdj, hasReqUnit, reqUnit){
 	this.name = name;
 	this.htmlNumRef = htmlNumRef;	
 	this.htmlNextCostRef = htmlNextCostRef;
 	this.htmlBuyBtn = htmlBuyBtn;
 	this.goldCost = goldCost;
 	this.ironCost = ironCost;
+	this.silverCost = silverCost;
 	this.faithCost = faithCost;
 	this.soulCost = soulCost;
 	this.description = description;
@@ -139,7 +142,7 @@ MultBuilding.prototype.canBuy = function(){
 	
 	this.curCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));
 	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.returnNumber() > 0)){
-		if(gold >= this.curCost && iron >= this.ironCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Building
+		if(gold >= this.curCost && iron >= this.ironCost && silver >= this.silverCost && faith >= this.faithCost && souls >= this.soulCost ){    //checks that the player can afford the Building
 			document.getElementById(myButton).disabled = false;
 		}
 		else
@@ -178,26 +181,25 @@ MultBuilding.prototype.buyOne = function(){
 };
 
 var minesDesc = "Opening the mines lets you collect minerals";
-var Mines = new Building('Mines','btnOpenMines',1500,0,0,0,minesDesc,"none",'minesOpened');
+var Mines = new Building('Mines','btnOpenMines',1500,0,0,0,0,minesDesc,"none",'minesOpened');
 
 
 var tavernDesc = "A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 30 seconds."
-var Tavern = new MultBuilding('Tavern','taverns','TavernCost','btnbuyTavern',5000,0,0,0,2,tavernDesc,0,false,0);
+var Tavern = new MultBuilding('Tavern','taverns','TavernCost','btnbuyTavern',5000,0,0,0,0,2,tavernDesc,0,false,0);
 
 function upgradeTavern(){
 	tavernUpgrade = true;
 };
 
-
 var barracksDesc = ""
-var Barracks = new Building('Barracks','btnOpenBarracks',10000,250,0,0,barracksDesc,"none",'barracksOpened');
+var Barracks = new Building('Barracks','btnOpenBarracks',10000,250,0,0,0,barracksDesc,"none",'barracksOpened');
 
 var cathDesc = ""
-var Cathedral = new Building('Cathedral','btnOpenCathedral',15000,500,0,0,cathDesc,"none",'cathedralOpened');
+var Cathedral = new Building('Cathedral','btnOpenCathedral',15000,500,100,0,0,cathDesc,"none",'cathedralOpened');
 
 
 var towerDesc = ""
-var Tower = new Building('Tower','btnOpenTower',1000000,10000,1000,0,towerDesc,"none",'towerBuilt');
+var Tower = new Building('Tower','btnOpenTower',1000000,10000,500,1000,0,towerDesc,"none",'towerBuilt');
 
 
 window.setInterval(function(){					//Tavern unit generation

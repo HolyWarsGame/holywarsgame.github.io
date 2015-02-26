@@ -1,17 +1,19 @@
 //Main Script for HW //
 
 //Currency Variables//
-var souls = 0;
 var gold = 0;
-var faith = 0;
 var iron = 0;
+var silver = 0;
+var faith = 0;
+var souls = 0;
 var mana = 0;
 
 //Statistic Variables//
 var goldpersec = 0;
 var faithpersec = 0;
-var soulspersec = 0;
 var ironpersec = 0;
+var silverpersec = 0;
+var soulspersec = 0;
 var manapersec = 0;
 var totalTimePlayed = 0;
 var tTPinHHMMSS = 0;
@@ -24,10 +26,13 @@ var tavernminers = 0;			//Tavern generated miners
 //Status Variables//
 var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade 
 var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
-var paladinWepUpgrade = false;
-var tavernUpgrade = false;
-var squiresUnlocked = false;	
-var knightsUnlocked = false;
+var mSilverUpgrade = false;		//Miner - Silver Mining upgrade
+var paladinWepUpgrade = false;  //Paladin - Weapon Upgrade
+var tavernUpgrade = false;		//Tavern - Weapon Upgrade
+
+var squiresUnlocked = false;	//Page - Squire Tier unlock
+var knightsUnlocked = false;    //Squire - Page Tier unlock
+
 var minesOpened = false;
 var cathedralOpened = false;
 var barracksOpened = false;
@@ -57,6 +62,11 @@ function clickThing(number, type)
 			iron = iron + number;
 			document.getElementById("iron").innerHTML = iron;
 			break;
+		
+		case "silver":
+			silver = silver + number;
+			document.getElementById("silver").innerHTML = silver;
+			break;		
 			
 		case "faith":
 			faith = faith + number;
@@ -88,9 +98,10 @@ function clickThing(number, type)
 
 function debugCurrency(){
 	gold = gold + 100000;
+	iron = iron + 5000;	
+	silver = silver + 1000;
 	faith = faith + 1000;
 	souls = souls + 200;
-	iron = iron + 5000;
 	mana = mana + 10000;
 };
 
@@ -112,6 +123,18 @@ function minerUpgradePanning(){
 		document.getElementById('gold').innerHTML = gold;
 		document.getElementById('iron').innerHTML = iron;
 		document.getElementById("btnminerUpgrade1").disabled = true;
+	}	
+};
+
+function minerUpgradeSilver(){
+	if(gold >= 7500 && iron >= 2500){
+		gold = gold - 7500;
+		iron = iron - 2500;
+		mSilverUpgrade = true;	
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById('iron').innerHTML = iron;
+		document.getElementById('silverdiv').style.display = "block";
+		document.getElementById("btnminerUpgrade2").disabled = true;
 	}	
 };
 			
@@ -254,24 +277,39 @@ window.setInterval(function(){                                 //Update per seco
 	{
 		goldpersec = goldpersec + Miner.number;
 	}
-    document.getElementById("goldpersec").innerHTML = goldpersec;
-    
+//	document.getElementById("goldpersec").innerHTML = goldpersec;	
+	 document.getElementById("resgoldimage").title = "Gold per second: " + goldpersec ; 
+
+	ironpersec = Miner.number;
+//	document.getElementById("ironpersec").innerHTML = ironpersec;
+	document.getElementById("resironimage").title = "Iron per second: " + ironpersec ; 	 
+	 
+	if(mSilverUpgrade == true)
+	{
+		silverpersec = Miner.number*0.5
+	}
+	document.getElementById("ressilverimage").title = "Silver per second: " + silverpersec ; 	 	
+	
+//	document.getElementById("silverpersec").innerHTML = silverpersec;	
+  
+  
     faithpersec = Priest.number*0.5 + Acolyte.number*0.1;
 	faithpersec = faithpersec.toFixedDown(2)
-    document.getElementById("faithpersec").innerHTML = faithpersec;
-    
+ //   document.getElementById("faithpersec").innerHTML = faithpersec;
+    document.getElementById("resfaithimage").title = "Faith per second: " + faithpersec ; 
 	
     soulspersec = Paladin.number;
 	if(paladinWepUpgrade == true){
 		soulspersec = soulspersec * 2;
 	}
-    document.getElementById("soulspersec").innerHTML = soulspersec;
+//   document.getElementById("soulspersec").innerHTML = soulspersec;
+	document.getElementById("ressoulsimage").title = "Souls per second: " + soulspersec ; 
 	
-	ironpersec = Miner.number;
-	document.getElementById("ironpersec").innerHTML = ironpersec;
-	
+
 	manapersec = 1;
-	document.getElementById("manapersec").innerHTML = manapersec;
+//	document.getElementById("manapersec").innerHTML = manapersec;
+	document.getElementById("resmanaimage").title = "Mana per second: " + manapersec ; 	
+	
    
 	document.getElementById("peasants").innerHTML = Peasant.number ;	//For testing
 	document.getElementById("miners").innerHTML = Miner.number;			//For Testing
@@ -287,15 +325,20 @@ window.setInterval(function(){
 		number = number + Miner.number;
 	}
 	clickThing(number, "gold");
-	
+
+	//Iron Generation via miners etc every second
+	clickThing(Miner.number, "iron")
+
+	//Silver Generation via miners etc every second
+	if(mSilverUpgrade == true)
+	{
+		clickThing(Miner.number*0.5, "silver")
+	}	
+	silver = silver.toFixedDown(2);
 	
 	 //Faith Generation via priests etc every second
 	clickThing(Priest.number*0.5 + Acolyte.number*0.1, "faith");          
 	faith = faith.toFixedDown(2);
-	
-	
-	//Iron Generation via minors etc every second
-	clickThing(Miner.number, "iron")
 	
 	//Soul generation via paladins etc every second
 	if(paladinWepUpgrade == true){

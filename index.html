@@ -90,8 +90,7 @@
 				  <li><a id="save" href="javascript:saveCookie();">Save</a></li>
                   <li><a id="load" href="javascript:loadCookie()">Load</a></li>
 				  <li><a id="delete" href="javascript:deleteCookie()">Clear Cookies</a></li>
-				  <li class="divider"></li>
-				  <li><a id="debugmoney" href="javascript:debugCurrency()">Add debugging currency</a></li>
+<!--				  <li><a id="debugmoney" href="javascript:debugCurrency()">Add debugging currency</a></li> -->
                   <li class="divider"></li>
 				  <li><a id="hardreset" href="javascript:hardReset()">!Hard reset!</a></li>
 				  <li class="divider"></li>
@@ -110,40 +109,45 @@
 		<ul id = "ResourceList">
 		<li>
 			<div id = "golddiv" >
-<!--				<input type="image"  id="clickmoney" onclick="mouseGoldClick(1)" src = "images/money_goldsmall.png"/> -->
-				<img src = "images/money_goldsmall.png" alt="Gold Coins">
-				Gold: <span id="gold">0</span>  ( <span id="goldpersec">0</span> gps)
+				<img src = "images/money_goldsmall.png" alt="Gold Coins" title ="" data-html="true" id="resgoldimage">
+				Gold: <span id="gold">0</span>  <!--( <span id="goldpersec">0</span> gps)-->
 			</div>		
 		</li>
 		<li>
 			<div id = "irondiv" style="display: none;">
-				<img src = "images/ironsmall.png" alt="Praying Hands">
-				Iron: <span id="iron">0</span>      ( <span id="ironpersec">0</span> ips)
+				<img src = "images/ironsmall.png" alt="Iron bar" id="resironimage">
+				Iron: <span id="iron">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
 			</div>
 		</li>
 		<li>
+			<div id = "silverdiv" style="display: none;">
+				<img src = "images/silverOresmall.png" alt="Silver Ore" id="ressilverimage"> 
+				Silver: <span id="silver">0</span>     <!--( <span id="silverpersec">0</span> silps)-->	
+			</div>
+		</li>		
+		<li>
 			<div id = "armystrdiv" style="display: none;">
 			<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
-				<img src = "images/armsmall.png" alt="Praying Hands">
+				<img src = "images/armsmall.png" alt="Army Power">
 				Army: <span id="BattlePower">0</span> 
 			</div>
 		</li>
 		<li>			
 			<div id = "faithdiv" style="display: none;">
-				<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">
-				Faith: <span id="faith">0</span>   ( <span id="faithpersec">0</span> fps)
+				<img src = "images/faithsmall.png" alt="Praying Hands"  id="resfaithimage">
+				Faith: <span id="faith">0</span>   <!-- ( <span id="faithpersec">0</span> fps)-->	
 			</div>
 		</li>
 		<li>			
 			<div id = "soulsdiv" style="display: none;">
-				<input type="image"  id="clickmoney" onclick="demonClick(1)"  src = "images/soulssmall.png"/>
-				Souls: <span id="souls">0</span>    ( <span id="soulspersec">0</span> sps)		
+				<img src = "images/soulssmall.png" alt="Souls"  id="ressoulsimage">
+				Souls: <span id="souls">0</span>  <!-- ( <span id="soulspersec">0</span> sps)	-->	
 			</div>
 		</li>
 		<li>			
 			<div id = "manadiv" style="display: none;">
-				<img src = "images/manasmall.png" alt="Mana Crystal" style="display: inline-block">
-				Mana: <span id="mana">0</span>    ( <span id="manapersec">0</span> mps)		
+				<img src = "images/manasmall.png" alt="Mana Crystal" id="resmanaimage">
+				Mana: <span id="mana">0</span>    <!--( <span id="manapersec">0</span> mps)	-->	
 			</div>
 		</li>		
 		</div>
@@ -195,6 +199,11 @@
 					<br />
 					Upgrade Cost: 3500 gold and 1000 iron
 					<br />
+					
+					<button id=btnminerUpgrade2 onclick="minerUpgradeSilver()"	type="button" class="btn btn-default" title = "Better mining techniques and tools allow your miner to find silver veins. Miners now find 0.5 silver per second.">Silver Studies</button>
+					<br />
+					Upgrade Cost: 7500 gold and 2500 iron
+					<br />					
 				</div>
 			</div>			
 			<br />
@@ -232,7 +241,7 @@
 			<button id=btnbuyPriest onclick="Priest.buyOne()"	type="button" class="btn btn-default">Train Priest</button>
 			<button id=btnPriestUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
 			<br />
-			Priest Cost: <span id="PriestCost">1000</span> gold, 50 faith , and 1 acolyte
+			Priest Cost: <span id="PriestCost">1000</span> gold, 10 silver, 50 faith, and 1 acolyte
 			<br />
 			<div id ="PriestUpgradeTab" class = "collapse">
 				<div class = "well">
@@ -320,7 +329,7 @@
 			<button id=btnBuyPaladin onclick="Paladin.buyOne()"	type="button" class="btn btn-default">Train Paladin</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
 			<br />
-			Paladin Cost: <span id="PaladinCost">10000</span> gold, 500 iron, 100 faith, 1 Knight
+			Paladin Cost: <span id="PaladinCost">10,000</span> gold, 500 iron, 50 silver, 100 faith, 1 Knight
 			<br /><br />
 		</div>
 		
@@ -328,7 +337,7 @@
 			<div class = "well">
 			<button id=paladinUpgrade1 onclick="paladinUpgradeWeapon()" title= "Your paladins imbue their weapons with their faith, doubling their battle power and soul collection rate."	type="button" class="btn btn-default">Imbue Weapon</button>		
 			<br />
-			Imbue weapon costs 20,000 gold, 5,000 iron, and 2500 faith.
+			Imbue weapon costs 20,000 gold, 5,000 iron, and 2,500 faith.
 			</div>
 		</div>
 	 </div>
@@ -346,7 +355,7 @@
 				<button id=btnTavernUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#TavernUpgradeTab" aria-expanded="false" aria-controls="TavernUpgradeTab">Upgrades</button>
 				<br />
 				
-				Tavern Cost: <span id="TavernCost">5000</span> gold
+				Tavern Cost: <span id="TavernCost">5,000</span> gold
 				<br />
 				Peasants recruited by tavern: <span id="tavernpeasants">0</span>
 				<br />
@@ -354,7 +363,7 @@
 					<div class = "well">
 					<button id=btnUpgradeTavern onclick="upgradeTavern()" title="Your tavern is now also recruiting miners using ladies of the night and handing out hip-flasks to new miners."	type="button" class="btn btn-default">Mining Initiative</button>		
 					<br />
-					Mining Initiative Cost: 10000 gold and 5000 iron
+					Mining Initiative Cost: 10,000 gold and 5,000 iron
 					<br />
 					Miners recruited by tavern: <span id="tavernminers">0</span>
 					</div>
@@ -365,21 +374,21 @@
 			<div id = "OpenMinesTab" class = "container">
 				<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="Mines.buy()"	type="button" class="btn btn-default">Open Mines</button>
 				<br />
-				Opening the mine costs 1500 gold.
+				Opening the mine costs 1,500 gold.
 				<br /><br />
 			</div>
 			
 			<div id = "OpenBarracksTab" class = "container">
 			<button id=btnOpenBarracks title="Build a structure to train units ready to battle evil" onclick="Barracks.buy()"	type="button" class="btn btn-default">Construct Barracks</button>
 			<br />
-			Building the barracks will cost 10000 gold and 250 iron.
+			Building the barracks will cost 10,000 gold and 250 iron.
 			<br /><br />
 			</div>
 			
-			<div id = buildTowerTab class = container>
+			<div id = buildTowerTab class = container style="display: none;">
 			<button id=btnOpenTower title="Build a glorious tower for your Archmage to channel his energies and cast spells from." onclick="Tower.buy()"	type="button" class="btn btn-default">Construct Tower</button>
 			<br />
-			Building the tower will cost 1,000,000 gold, 10,000 iron, 1,000 faith.
+			Building the tower will cost 1,000,000 gold, 10,000 iron, 500 silver, and 1,000 faith.
 			<br /><br />
 			</div>
 
@@ -387,7 +396,7 @@
 			<div id = "FaithStructuresTab" class = "container" style="display: none;">
 				<button id=btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="Cathedral.buy()"	type="button" class="btn btn-default">Build Cathedral</button>
 				<br />
-				Opening the cathedral costs 15,000 gold and 500 iron.
+				Opening the cathedral costs 15,000 gold, 500 iron, 100 silver.
 				<br />
 				<br />
 			</div>
@@ -579,7 +588,11 @@
 		<div id = saveAlert class="alert alert-success fade in" role="alert" style="display: none;">
 		<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
 			<strong>Save!</strong> Your game has been saved!   
-		</div> 
+		</div>
+		<div id = loadAlert class="alert alert-success fade in" role="alert" style="display: none;">
+		<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+			<strong>Load!</strong> Your game save has been loaded!   
+		</div> 		
 
  </div> <!-- /container -->
 

@@ -4,15 +4,15 @@
 		if(typeof(Storage) !== "undefined"){
 		//Currency variables
 		localStorage.setItem("gold",gold);
+		localStorage.setItem("iron",iron);
+		localStorage.setItem("silver",silver);			
 		localStorage.setItem("faith",faith);
 		localStorage.setItem("souls",souls);
-		localStorage.setItem("iron",iron);
 		localStorage.setItem("mana",mana);
 		localStorage.setItem("goldStolen",goldStolen);
 		localStorage.setItem("totalTimePlayed",totalTimePlayed);
 		
 		//Unit variables
-
  		localStorage.setItem("peasants",Peasant.number);
 		localStorage.setItem("miners",Miner.number);
 		localStorage.setItem("personPage",Page.number);
@@ -44,6 +44,7 @@
 		//Upgradeflags
 		localStorage.setItem("pGoldClickUpgrade",pGoldClickUpgrade);
 		localStorage.setItem("mPanningUpgrade",mPanningUpgrade);
+		localStorage.setItem("mSilverUpgrade",mSilverUpgrade);
 		localStorage.setItem("squiresUnlocked",squiresUnlocked);
 		localStorage.setItem("knightsUnlocked",knightsUnlocked);
 		localStorage.setItem("paladinWepUpgrade",paladinWepUpgrade);
@@ -89,6 +90,16 @@
 			document.getElementById("goldStolen").innerHTML = goldStolen;
 		}
 		
+		if(localStorage.iron != null){
+			iron = parseInt(localStorage.iron);
+			document.getElementById("iron").innerHTML = iron;
+		}
+
+		if(localStorage.silver != null){
+			silver = parseInt(localStorage.silver);
+			document.getElementById("silver").innerHTML = silver;
+		}		
+		
 		if(localStorage.faith != null){
 			faith = parseInt(localStorage.faith);
 			document.getElementById("faith").innerHTML = faith;
@@ -97,10 +108,7 @@
 			souls = parseInt(localStorage.souls);
 			document.getElementById("souls").innerHTML = souls;
 		}		
-		if(localStorage.iron != null){
-			iron = parseInt(localStorage.iron);
-			document.getElementById("iron").innerHTML = iron;
-		}
+
 		if(localStorage.mana != null){
 			mana = parseInt(localStorage.mana);
 			document.getElementById("mana").innerHTML = mana;
@@ -213,7 +221,16 @@
 				pGoldClickUpgrade = true;
 				document.getElementById("clickGoldUpgrade").disabled = true;
 			}
+		}
+
+		if(localStorage.mSilverUpgrade != null){
+			var myBool = (localStorage.mSilverUpgrade == "true")
+			if(myBool == true){
+				mSilverUpgrade = true;
+				document.getElementById('silverdiv').style.display = "block";
+			}
 		}		
+		
 		if(localStorage.mPanningUpgrade != null){
 			var myBool = (localStorage.mPanningUpgrade == "true")
 			if(myBool == true){
@@ -337,6 +354,24 @@
 			lastPage = 'Production';
 		}
 		recalculateCosts();
+		
+		if(window.localStorage.length != 0){
+			console.log("Save loaded.")
+			document.getElementById('loadAlert').style.display = "block";  //Displays saved alert
+			
+			//Dismisses Save Alert
+			var ticker = 0 ;
+			var clearSave = setInterval(function() {
+				ticker = ticker + 1;   
+			  if (ticker == 3){
+				clearInterval(clearSave);
+				if(document.getElementById('loadAlert').style.display == "block"){
+					document.getElementById("loadAlert").style.display = "none";
+				}	
+			  }
+			}, 1000);	
+			//End Dismisses Save Alert			
+		}
 	};
 	
 	function hardReset(){
