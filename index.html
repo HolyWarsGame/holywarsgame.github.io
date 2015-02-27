@@ -68,7 +68,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Holy Wars v0.6.1</a>
+            <a class="navbar-brand" href="#">Holy Wars</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -95,6 +95,7 @@
 				  <li><a id="hardreset" href="javascript:hardReset()">!Hard reset!</a></li>
 				  <li class="divider"></li>
                   <li class="dropdown-header"></li>
+				  <li><a href="#" data-toggle="modal" data-target="#versionmodal">Version</a></li>
                   <li><a href="#" data-toggle="modal" data-target="#aboutmodal">About</a></li>
                 </ul>
               </li>
@@ -170,7 +171,7 @@
     		data-content="";>Peasants (<span id="peasants">0</span>)</a>
 		<br /><br />
 		<button id=btnbuyPeasant onclick="Peasant.buyOne()"	type="button" class="btn btn-default">Recruit Peasant</button>
-		<button id=btnPeasantUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PeasantUpgradeTab" aria-expanded="false" aria-controls="PeasantUpgradeTab">Upgrades</button>		
+		<button id=btnPeasantUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PeasantUpgradeTab" aria-expanded="false" aria-controls="PeasantUpgradeTab">Upgrades</button>		
 		<br />
 		 Peasant Cost: <span id="PeasantCost">50</span> gold
 			<div id ="PeasantUpgradeTab" class = "collapse">
@@ -189,7 +190,7 @@
     		data-content="">Miners (<span id="miners">0</span>)</a>	
 			<br /><br />
 			<button id=btnbuyMiner onclick="Miner.buyOne()"	type="button" class="btn btn-default">Hire Miner</button>
-			<button id=btnMinerUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#MinerUpgradeTab" aria-expanded="false" aria-controls="MinerUpgradeTab">Upgrades</button>
+			<button id=btnMinerUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#MinerUpgradeTab" aria-expanded="false" aria-controls="MinerUpgradeTab">Upgrades</button>
 			<br />
 			 Miner Cost: <span id="MinerCost">250</span> gold
 			<br />
@@ -221,7 +222,7 @@
     		data-content="">Acolytes (<span id="acolytes">0</span>)</a>
 			<br /><br />
 			<button id=btnbuyAcolyte onclick="Acolyte.buyOne()"	type="button" class="btn btn-default">Recruit Acolyte</button>
-			<button id=btnAcolyteUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#AcolyteUpgradeTab" aria-expanded="false" aria-controls="AcolyteUpgradeTab">Upgrades</button>
+			<button id=btnAcolyteUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#AcolyteUpgradeTab" aria-expanded="false" aria-controls="AcolyteUpgradeTab">Upgrades</button>
 			<br />
 			Acolyte Cost: <span id="AcolyteCost">500</span> gold
 			<br />
@@ -239,7 +240,7 @@
     		data-content="">Priests (<span id="priests">0</span>)</a>
 			<br /><br />
 			<button id=btnbuyPriest onclick="Priest.buyOne()"	type="button" class="btn btn-default">Train Priest</button>
-			<button id=btnPriestUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
+			<button id=btnPriestUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
 			<br />
 			Priest Cost: <span id="PriestCost">1000</span> gold, 10 silver, 50 faith, and 1 acolyte
 			<br />
@@ -264,7 +265,7 @@
     		data-content="">Pages (<span id="personPage">0</span>)</a>
 			<br /><br />
 			<button id=btnBuyPage onclick="Page.buyOne()"	type="button" class="btn btn-default">Train Page</button>
-			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PageUpgradeTab" aria-expanded="false" aria-controls="PageUpgradeTab">Upgrades</button>
+			<button id=btnPageUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PageUpgradeTab" aria-expanded="false" aria-controls="PageUpgradeTab">Upgrades</button>
 			<br />
 			Page Cost: <span id="PageCost">500</span> gold and 100 iron
 			<br />
@@ -286,7 +287,7 @@
     		data-content="">Squires (<span id="squires">0</span>)</a>
 			<br /><br />
 			<button id=btnBuySquire onclick="Squire.buyOne()"	type="button" class="btn btn-default">Promote Squire</button>
-			<button id=btnSquireUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#SquireUpgradeTab" aria-expanded="false" aria-controls="SquireUpgradeTab">Upgrades</button>
+			<button id=btnSquireUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#SquireUpgradeTab" aria-expanded="false" aria-controls="SquireUpgradeTab">Upgrades</button>
 			<br />
 			Squire Cost: <span id="SquireCost">1200</span> gold, 250 iron, and 1 Page
 			<br />
@@ -309,7 +310,7 @@
     		data-content="">Knights (<span id="knights">0</span>)</a>
 			<br /><br />
 			<button id=btnBuyKnight onclick="Knight.buyOne()"	type="button" class="btn btn-default">Promote Knight</button>
-			<button id=btnKnightUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#KnightUpgradeTab" aria-expanded="false" aria-controls="KnightUpgradeTab">Upgrades</button>
+			<button id=btnKnightUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#KnightUpgradeTab" aria-expanded="false" aria-controls="KnightUpgradeTab">Upgrades</button>
 			<br />
 			Knight Cost: <span id="KnightCost">3000</span> gold, 350 iron, and 1 Squire
 			<br />
@@ -327,7 +328,7 @@
     		data-content="">Paladins (<span id="paladins">0</span>)</a>
 			<br /><br />
 			<button id=btnBuyPaladin onclick="Paladin.buyOne()"	type="button" class="btn btn-default">Train Paladin</button>
-			<button id=btnPageUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
+			<button id=btnPageUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
 			<br />
 			Paladin Cost: <span id="PaladinCost">10,000</span> gold, 500 iron, 50 silver, 100 faith, 1 Knight
 			<br /><br />
@@ -352,7 +353,7 @@
 				data-content="A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 30 seconds.">Taverns (<span id="taverns">0</span>)</a>			
 				<br /><br />
 				<button id=btnbuyTavern title="A peasant joins your forces every few seconds" onclick="Tavern.buyOne()"	type="button" class="btn btn-default">Build Tavern</button>	
-				<button id=btnTavernUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#TavernUpgradeTab" aria-expanded="false" aria-controls="TavernUpgradeTab">Upgrades</button>
+				<button id=btnTavernUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#TavernUpgradeTab" aria-expanded="false" aria-controls="TavernUpgradeTab">Upgrades</button>
 				<br />
 				
 				Tavern Cost: <span id="TavernCost">5,000</span> gold
@@ -386,7 +387,7 @@
 			</div>
 			
 			<div id = buildTowerTab class = container style="display: none;">
-			<button id=btnOpenTower title="Build a glorious tower for your Archmage to channel his energies and cast spells from." onclick="Tower.buy()"	type="button" class="btn btn-default">Construct Tower</button>
+			<button id=btnOpenTower title="Build a glorious tower for your Archmage to channel his energies and cast spells from." onclick="Tower.buy()" type="button" class="btn btn-default">Construct Tower</button>
 			<br />
 			Building the tower will cost 1,000,000 gold, 10,000 iron, 500 silver, and 1,000 faith.
 			<br /><br />
@@ -413,7 +414,7 @@
     		data-content="">Shades (<span id="shades">0</span>)</a>
 			<br /><br />
 			<button id=btnBuyShade onclick="Shade.buyOne()"	type="button" class="btn btn-default">Summon Shade</button>
-			<button id=btnShadeUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#ShadeUpgradeTab" aria-expanded="false" aria-controls="ShadeUpgradeTab">Upgrades</button>
+			<button id=btnShadeUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#ShadeUpgradeTab" aria-expanded="false" aria-controls="ShadeUpgradeTab">Upgrades</button>
 			<br />
 			Shade Cost: <span id="shadeCost">10,000</span> gold, 50 silver, 75 souls.
 			<br />
@@ -432,7 +433,7 @@
     		data-content="">Aspect of Justices (<span id="aspects">0</span>)</a>
 			<br /><br />
 			<button id=btnBuyAspect onclick="Aspect.buyOne()"	type="button" class="btn btn-default">Upgrade Shade</button>
-			<button id=btnAspectUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#AspectUpgradeTab" aria-expanded="false" aria-controls="AspectUpgradeTab">Upgrades</button>
+			<button id=btnAspectUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#AspectUpgradeTab" aria-expanded="false" aria-controls="AspectUpgradeTab">Upgrades</button>
 			<br />
 			Aspect Cost: <span id="aspectCost">15,000</span> gold, 1000 iron, 150 silver, 100 souls.
 			<br />
@@ -734,6 +735,26 @@
 		</div>
 	  </div>
 	</div>	
+	
+	<!-- Version Modal -->
+	<div class="modal fade" id="versionmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Holy Wars v. 0.6.1</h4>
+		  </div>
+		  <div class="modal-body">
+				
+				<iframe src="changelog.html"></iframe>
+				
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	  </div>
+	</div>		
 
 	<script type="text/javascript" src="scripts/main.js"></script>         <!--Load main script --> 
 	<script type="text/javascript" src="scripts/units.js"></script>

@@ -1,2 +1,2 @@
 # HolyWar
-Blahlblah incremental
+An incremental game about you fighting a Holy War against The Evil One.

@@ -105,7 +105,7 @@ Issues:
 
 - Training page button causing iron currency to briefly change to gold amount - Fixed
 
-
+https://github.com/MikeMcl/decimal.js/
 
 
 
