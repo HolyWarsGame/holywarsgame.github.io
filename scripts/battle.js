@@ -26,13 +26,13 @@ function calculateBattlePower(){
 	{
 		weapmult = 2;
 	}
-	BattlePower =  (Page.number * 10) + (Squire.number*50) + (Knight.number*150) + (Paladin.number * 500 * weapmult);
+	BattlePower =  (Page.number * 10) + (Squire.number*50) + (Knight.number*150) + (Paladin.number * 500 * weapmult) + (Shade.number * 5) + (Aspect.number * 100);
 	document.getElementById("BattlePower").innerHTML = BattlePower;
 	document.getElementById("BattlePower2").innerHTML = BattlePower;
 };
 
 function calculateSpiritPower(){
-	SpiritPower =  (Shade.number*10);
+	SpiritPower =  ((Shade.number*10) + (Aspect.number * 50) );
 //	document.getElementById("SpiritPower").innerHTML = SpiritPower;
 	document.getElementById("SpiritPower2").innerHTML = SpiritPower;
 };
