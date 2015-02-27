@@ -150,6 +150,10 @@ var peasDesc = "A lowly denizen of your realm. They are adept at farming and scr
 var Peasant = new Unit("Peasant",'peasants','PeasantCost','none','none','none','none','btnbuyPeasant',50,0,0,0,0,1.15, peasDesc, tavernpeasants,false,"none");
 setDescription(Peasant, 'BtnPeasantDesc');
 
+var lumberjackDesc = "These brawny men fell trees for you. <br> Generates 1 wood per second"
+var Lumberjack = new Unit("Lumberjack",'lumberjacks','LumberjackCost','none','none','none','none','btnbuyLumberjack',150,0,0,0,0,1.15, minerDesc, 0, false, "none")
+setDescription(Lumberjack, 'BtnLumberjackDesc');
+
 var minerDesc = "These hard-working mine excavate minerals from the mine you have built. They bring canaries in with them to warn them of disasters. Also as lunch. <br> Generates 1 iron per second"
 var Miner = new Unit("Miner",'miners','MinerCost','none','none','none','none','btnbuyMiner',250,0,0,0,0,1.15, minerDesc, tavernminers, false, "none")
 setDescription(Miner, 'BtnMinerDesc');

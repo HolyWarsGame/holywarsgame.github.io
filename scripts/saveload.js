@@ -4,6 +4,7 @@
 		if(typeof(Storage) !== "undefined"){
 		//Currency variables
 		localStorage.setItem("gold",gold);
+		localStorage.setItem("wood", wood);
 		localStorage.setItem("iron",iron);
 		localStorage.setItem("silver",silver);			
 		localStorage.setItem("faith",faith);
@@ -28,6 +29,7 @@
 		localStorage.setItem("aspects", Aspect.number);
 		
 		//Building flags
+		localStorage.setItem("lumbermillOpened",lumbermillOpened);
 		localStorage.setItem("minesOpened",minesOpened);
 		localStorage.setItem("cathedralOpened",cathedralOpened);
 		localStorage.setItem("barracksOpened",barracksOpened);
@@ -48,6 +50,7 @@
 		//Upgradeflags
 		localStorage.setItem("pGoldUpgrade",pGoldUpgrade);
 		localStorage.setItem("pGoldClickUpgrade",pGoldClickUpgrade);
+		localStorage.setItem("lwoodClickUpgrade",lwoodClickUpgrade);
 		localStorage.setItem("mPanningUpgrade",mPanningUpgrade);
 		localStorage.setItem("mSilverUpgrade",mSilverUpgrade);
 		localStorage.setItem("squiresUnlocked",squiresUnlocked);
@@ -95,6 +98,11 @@
 			document.getElementById("goldStolen").innerHTML = goldStolen;
 		}
 		
+		if(localStorage.wood != null){
+			wood = parseInt(localStorage.wood);
+			document.getElementById("wood").innerHTML = wood;
+		}		
+		
 		if(localStorage.iron != null){
 			iron = parseInt(localStorage.iron);
 			document.getElementById("iron").innerHTML = iron;
@@ -141,6 +149,13 @@
 		if(localStorage.knights != null){
 			Knight.number = parseInt(localStorage.knights);
 			document.getElementById("knights").innerHTML = Knight.number;
+		}
+		if(localStorage.lumbermillOpened != null){
+			var myBool = localStorage.lumbermillOpened == "true"
+			if(myBool == true){
+				lumbermillOpened = true
+				document.getElementById('WoodcuttingTab').style.display = "block";
+			}
 		}			
 		if(localStorage.minesOpened != null){
 			var myBool = localStorage.minesOpened == "true"
@@ -246,7 +261,14 @@
 				document.getElementById("clickGoldUpgrade").disabled = true;
 			}
 		}
-
+		
+		if(localStorage.lwoodClickUpgrade != null){
+			var myBool = (localStorage.lwoodClickUpgrade == "true")
+			if(myBool == true){
+				lwoodClickUpgrade = true;
+				document.getElementById("btnljackUpgrade1").disabled = true;
+			}
+		}
 		if(localStorage.mSilverUpgrade != null){
 			var myBool = (localStorage.mSilverUpgrade == "true")
 			if(myBool == true){

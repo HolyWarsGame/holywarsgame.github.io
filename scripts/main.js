@@ -2,6 +2,7 @@
 
 //Currency Variables//
 var gold = 0;
+var wood = 0;
 var iron = 0;
 var silver = 0;
 var faith = 0;
@@ -10,6 +11,7 @@ var mana = 0;
 
 //Statistic Variables//
 var goldpersec = 0;
+var woodpersec = 0;
 var faithpersec = 0;
 var ironpersec = 0;
 var silverpersec = 0;
@@ -25,7 +27,8 @@ var tavernminers = 0;			//Tavern generated miners
 
 //Status Variables//
 var pGoldUpgrade = false;		//Peasant - Collection rate upgrade
-var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade 
+var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade
+var lwoodClickUpgrade = false;  //LJack - Wood collection rate upgrade 
 var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
 var mSilverUpgrade = false;		//Miner - Silver Mining upgrade
 var paladinWepUpgrade = false;  //Paladin - Weapon Upgrade
@@ -34,6 +37,7 @@ var tavernUpgrade = false;		//Tavern - Weapon Upgrade
 var squiresUnlocked = false;	//Page - Squire Tier unlock
 var knightsUnlocked = false;    //Squire - Page Tier unlock
 
+var lumbermillOpened = false;
 var minesOpened = false;
 var cathedralOpened = false;
 var barracksOpened = false;
@@ -58,6 +62,16 @@ function clickThing(number, type)
 			gold = gold + number;
 			document.getElementById("gold").innerHTML = gold;
 			break;
+
+		case "wood":
+			wood = wood + number;
+			document.getElementById("wood").innerHTML = wood;			
+			break;	
+
+		case "woodMouse":
+			wood = wood + number;
+			document.getElementById("wood").innerHTML = wood;
+			break;			
 			
 		case "iron":
 			iron = iron + number;
@@ -117,13 +131,24 @@ function peasantUpgradeCollection(){
 	}	
 };
 
-function upgradeClickGoldMultiplier(){
-	if(gold >= 1500){
+function lumberjackUpgradeCollection(){
+	if(gold >= 2500 && iron >= 1500){
 		gold = gold - 1500;
-		pGoldClickUpgrade = true;	
+		iron = iron - 1500;
+		lwoodClickUpgrade = true;	
 		document.getElementById('gold').innerHTML = gold;
-		document.getElementById("clickGoldUpgrade").disabled = true;
+		document.getElementById('iron').innerHTML = iron;
+		document.getElementById("btnljackUpgrade1").disabled = true;
 	}
+};
+
+function peasantUpgradeCollection(){
+	if(gold >= 2000){
+		gold = gold - 2000;
+		pGoldUpgrade = true;	
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById("btnPeasantUpgrade1").disabled = true;
+	}	
 };
 
 function minerUpgradePanning(){
@@ -203,6 +228,9 @@ function UpdateButtons() {
 	//Unit Buttons //
 	//Enable/disables buy peasant button depending on if there is enough currency	
 	Peasant.canBuy();
+
+	//Enable/disables buy miner button depending on if there is enough currency
+	Lumberjack.canBuy();
 	
 	//Enable/disables buy miner button depending on if there is enough currency
 	Miner.canBuy();
@@ -244,6 +272,9 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnUpgradeTavern").disabled = false;
 	}
+
+	//Changes status of the building mines button
+	Lumbermill.canBuy();
 	
 	//Changes status of the building mines button
 	Mines.canBuy();
@@ -307,6 +338,7 @@ function UpdateButtons() {
 
 window.setInterval(function(){                                 //Update per second counts
     
+	
 	if(pGoldUpgrade == true){
 		goldpersec = Peasant.number * 2;
 	}
@@ -321,6 +353,14 @@ window.setInterval(function(){                                 //Update per seco
 //	document.getElementById("goldpersec").innerHTML = goldpersec;	
 	 document.getElementById("resgoldimage").title = "Gold per second: " + goldpersec ; 
 
+	if(lwoodClickUpgrade == true){
+		woodpersec = Lumberjack.number*2;		
+	}
+	else{
+		woodpersec = Lumberjack.number;	
+	}
+	document.getElementById("reswoodimage").title = "Wood per second: " + woodpersec ; 	 
+	 
 	ironpersec = Miner.number;
 //	document.getElementById("ironpersec").innerHTML = ironpersec;
 	document.getElementById("resironimage").title = "Iron per second: " + ironpersec ; 	 
@@ -370,6 +410,9 @@ window.setInterval(function(){
 	}
 	clickThing(number, "gold");
 
+	//Wood Generation via lumberjacks etc every second
+	clickThing(Lumberjack.number, "wood")	
+	
 	//Iron Generation via miners etc every second
 	clickThing(Miner.number, "iron")
 

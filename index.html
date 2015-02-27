@@ -80,13 +80,14 @@
                   <li><a id="displayGatheringOpt" data-toggle="collapse" href="#Gathering" aria-expanded="true" aria-controls="Gathering">Toggle Gathering</a></li>
 				  <li><a id="save" href="javascript:saveCookie();">Save</a></li>
                   <li><a id="load" href="javascript:loadCookie()">Load</a></li>
-				  <li><a id="delete" href="javascript:deleteCookie()">Clear Cookies</a></li>
+<!--				  <li><a id="delete" href="javascript:deleteCookie()">Clear Cookies</a></li>-->
 <!--				  <li><a id="debugmoney" href="javascript:debugCurrency()">Add debugging currency</a></li> -->
                   <li class="divider"></li>
 				  <li><a id="hardreset" href="javascript:hardReset()">!Hard reset!</a></li>
 				  <li class="divider"></li>
                   <li class="dropdown-header"></li>
-				  <li><a href="#" data-toggle="modal" data-target="#versionmodal">Version</a></li>
+<!--				  <li><a href="#" data-toggle="modal" data-target="#versionmodal">Version</a></li>-->
+				  <li><a id="verinfo" target="_blank" href="changelog.html">Version 0.6.6</a></li>
                   <li><a href="#" data-toggle="modal" data-target="#aboutmodal">About</a></li>
                 </ul>
               </li>
@@ -105,6 +106,12 @@
 				Gold: <span id="gold">0</span>  <!--( <span id="goldpersec">0</span> gps)-->
 			</div>		
 		</li>
+		<li>
+			<div id = "wooddiv" >
+				<img src = "images/woodsmall.png" alt="Iron bar" id="reswoodimage">
+				Wood: <span id="wood">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
+			</div>
+		</li>		
 		<li>
 			<div id = "irondiv" style="display: none;">
 				<img src = "images/ironsmall.png" alt="Iron bar" id="resironimage">
@@ -147,7 +154,8 @@
 	  
 	  <div id="Gathering" class="collapse in">
 		<div class = "well well-sm">
-			<input type="image"  id="clickmoney" onclick="clickThing(1,'goldMouse')" src = "images/money_gold.png"/ title = "Click to gather gold yourself.">			
+			<input type="image"  id="clickmoney" onclick="clickThing(1,'goldMouse')" src = "images/money_gold.png"/ title = "Click to gather gold yourself.">
+			<input type="image"  id="clickwood" onclick="clickThing(1,'woodMouse')" src = "images/wood.png"/ title = "Click to gather wood yourself.">			
 		</div>
 	  </div>
 	  
@@ -180,6 +188,26 @@
 			</div>
 		<hr>
 		</div>
+
+		<div id="WoodcuttingTab" class = "container" style="display: none;">
+		<br />
+		<a id ="BtnLumberjackDesc" tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover" data-trigger="focus" data-html="true" title="Lumberjacks" 
+    		data-content="";>Lumberjacks (<span id="lumberjacks">0</span>)</a>
+		<br /><br />
+		<button id=btnbuyLumberjack onclick="Lumberjack.buyOne()"	type="button" class="btn btn-default">Recruit Lumberjack</button>
+		<button id=btnLumberjackUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#LumberjackUpgradeTab" aria-expanded="false" aria-controls="LumberjackUpgradeTab">Upgrades</button>		
+		<br />
+		 Lumberjack Cost: <span id="LumberjackCost">150</span> gold
+			<div id ="LumberjackUpgradeTab" class = "collapse">
+				<div class = "well">
+					<button id=btnljackUpgrade1 onclick="lumberjackUpgradeCollection()"	type="button" class="btn btn-default" title = "Your lumberjacks are now equipped with reinforced axes that allow them to chop longer before the axes get dull.">Reinforce Axes</button>
+					<br />
+					Upgrade Cost: 2500 gold and 1500 iron
+					<br /> <br />
+				</div>
+			</div>
+		<hr>
+		</div>		
 		
 		<div id="Mining" class = "container" style="display: none;">
 		<a id = 'BtnMinerDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Miners"
@@ -367,25 +395,32 @@
 				</div>				
 		</div>
 			<br />
+
+			<div id = "WoodcuttingTab" class = "container">
+				<button id=btnOpenMill title="Constructing a lumber mill allows you to hire lumberjacks and gather wood." onclick="Lumbermill.buy()"	type="button" class="btn btn-default">Construct Lumber Mill</button>
+				<br />
+				Opening the Lumber Mill costs 750 gold, 100 wood.
+				<br /><br />
+			</div>
 			
 			<div id = "OpenMinesTab" class = "container">
 				<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="Mines.buy()"	type="button" class="btn btn-default">Open Mines</button>
 				<br />
-				Opening the mine costs 1,250 gold.
+				Opening the mine costs 1,250 gold, 200 wood.
 				<br /><br />
 			</div>
 			
 			<div id = "OpenBarracksTab" class = "container">
 			<button id=btnOpenBarracks title="Build a structure to train units ready to battle evil" onclick="Barracks.buy()"	type="button" class="btn btn-default">Construct Barracks</button>
 			<br />
-			Building the barracks will cost 5,000 gold and 250 iron.
+			Building the barracks will cost 5,000 gold, 1,000 wood, and 250 iron.
 			<br /><br />
 			</div>
 			
 			<div id = buildTowerTab class = container style="display: none;">
 			<button id=btnOpenTower title="Build a glorious tower for your Archmage to channel his energies and cast spells from." onclick="Tower.buy()" type="button" class="btn btn-default">Construct Tower</button>
 			<br />
-			Building the tower will cost 1,000,000 gold, 10,000 iron, 500 silver, and 1,000 faith.
+			Building the tower will cost 1,000,000 gold, 700,000 wood, 10,000 iron, 500 silver, and 1,000 faith.
 			<br /><br />
 			</div>
 
@@ -590,6 +625,11 @@
 
 	 <!--- ALERTS ARE HERE --->
 
+		<div id = openMillAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> You can now <a href="javascript: toggle('openMillAlert');CollapseAll();toggle('Production')" class="alert-link">hire lumberjacks</a> to cut down trees for you!   
+		</div>	 
+	 
 		<div id = openMineAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
@@ -722,7 +762,7 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="myModalLabel">Holy Wars v. 0.6.2</h4>
+			<h4 class="modal-title" id="myModalLabel">Holy Wars v. 0.6.6</h4>
 		  </div>
 		  <div class="modal-body">
 				
