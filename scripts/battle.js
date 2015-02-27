@@ -14,6 +14,7 @@ var typeKilled = "none"	//HHound statistic
 var justKilled = 0;		//HHound statistic
 var peasantsKilled = 0; //HHound statistic
 var minersKilled = 0;
+var inbattle = false;
 
 var Raidtime = 0;
 var BattlePower = 0;
@@ -68,18 +69,20 @@ Enemy.prototype.fight = function(){
 	var EnemyName = this.name;
 	
 	if(this.fightable == true){
-
+	inbattle = true;
 		document.getElementById(this.htmlBoxRef).style.display = "block";
 		var $bar = $(document.getElementById(this.htmlBarRef));
 		var progress = setInterval(function() {
 			var currWidth = parseInt($bar.attr('aria-valuenow'));
 		    var maxWidth = parseInt($bar.attr('aria-valuemax'));	
 	
+			
 			//update the progress
 			$bar.width(perComplete +'%');
 			$bar.attr('aria-valuenow',perComplete);
 			$bar.text(perComplete+'%');
 			perComplete = perComplete + perIncrement;
+			
 		  if (currWidth >= maxWidth){
 			clearInterval(progress);
 			$bar.text("Complete!");
@@ -87,7 +90,8 @@ Enemy.prototype.fight = function(){
 			document.getElementById(box).style.display = "none";			//Hides progress bar box
 			document.getElementById(btn).innerHTML = EnemyName + " Defeated!";     //Changes button text
 			document.getElementById(btn).disabled = true;					//disables the buttons
-			this.inCombat = false;
+			inbattle = false;
+			
 			setDefeatEvents(EnemyName);
 		  } 		
 		}, this.speed);
@@ -103,7 +107,7 @@ Enemy.prototype.canFight = function(){
 	
 	var myButton = this.htmlBtnRef
 	
-	if(BattlePower >= this.BPReq && SpiritPower >= this.SPReq){
+	if(BattlePower >= this.BPReq && SpiritPower >= this.SPReq && inbattle == false){
 		this.fightable = true;
 		document.getElementById(myButton).disabled = false;
 		this.checkFlag();
@@ -152,7 +156,15 @@ Enemy.prototype.checkFlag = function(){
 				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
 				document.getElementById(myButton).disabled = true;	
 			}			
-		break;		
+		break;
+
+		case 'Armor':
+			if(defeatedArmor == true){
+				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
+				document.getElementById(myButton).disabled = true;	
+			}			
+		break;	
+		
 		case 'Archmage':
 			if(defeatedArchmage == true){
 				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text

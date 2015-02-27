@@ -36,40 +36,57 @@ var Unit = function(name, htmlNumRef, htmlNextGoldCost, htmlNextIronCost, htmlNe
 
 Unit.prototype.buyOne = function(){
 	this.curGoldCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));
-	this.curIronCost =  Math.floor(this.curIronCost * Math.pow(this.costMult,this.number));
-	this.curSilverCost =  Math.floor(this.curSilverCost * Math.pow(this.costMult,this.number));
-	this.curFaithCost =  Math.floor(this.curFaithCost * Math.pow(this.costMult,this.number));
-	this.curSoulCost =  Math.floor(this.curSoulCost * Math.pow(this.costMult,this.number));
+	this.curIronCost =  Math.floor(this.ironCost * Math.pow(this.costMult,this.number));
+	this.curSilverCost =  Math.floor(this.silverCost * Math.pow(this.costMult,this.number));
+	this.curFaithCost =  Math.floor(this.faithCost * Math.pow(this.costMult,this.number));
+	this.curSoulCost =  Math.floor(this.soulCost * Math.pow(this.costMult,this.number));
 	
 	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.number > 0)){
 		if(gold >= this.curGoldCost && iron >= this.curIronCost && silver >= this.curSilverCost && faith >= this.curFaithCost && souls >= this.curSoulCost ){    //checks that the player can afford the Unit
 			this.number = this.number + 1;                                  							 	  //increases number of Unit
-			gold = gold - this.curGoldCost;                     										          //removes the gold spent
-			iron = iron - this.curIronCost;
-			silver = silver - this.curSilverCost
-			faith = faith - this.curFaithCost;
-			souls = souls - this.curSoulCost;
+			gold = gold - this.curGoldCost;                     										      //removes the gold spent
+			iron = iron - this.curIronCost;                                                                   //removes the iron spent
+			silver = silver - this.curSilverCost;                                                             //removes the silver spent
+			faith = faith - this.curFaithCost;                                                                //removes the faith spent
+			souls = souls - this.curSoulCost;                                                                 //removes the souls spent
 			document.getElementById(this.htmlNumRef).innerHTML = this.number;  							      //updates the number of Unit for the user
 			document.getElementById('gold').innerHTML = gold;  										          //updates the number of gold for the user
-			document.getElementById('iron').innerHTML = iron;  										          //updates the number of gold for the user
-			document.getElementById('faith').innerHTML = faith;  										          //updates the number of gold for the user
-			document.getElementById('souls').innerHTML = souls;  										          //updates the number of gold for the user
+			document.getElementById('iron').innerHTML = iron;  										          //updates the number of iron for the user
+			document.getElementById('silver').innerHTML = iron;  										       //updates the number of silver for the user
+			document.getElementById('faith').innerHTML = faith;  										      //updates the number of faith for the user
+			document.getElementById('souls').innerHTML = souls;  										      //updates the number of souls for the user
 			if(this.hasReqUnit == true){
 				this.reqUnit.removeOne();
 			}
+			this.nextGoldCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Unit
+			document.getElementById(this.htmlNextGoldCost).innerHTML = this.nextGoldCost;  						      //updates the Unit cost for the user
+//			this.curGoldCost = this.nextGoldCost;
+			
+			if(this.htmlNextIronCost != 'none'){
+				this.nextIronCost = Math.floor(this.ironCost * Math.pow(this.costMult,this.number));                      //works out the iron cost of the next Unit
+				document.getElementById(this.htmlNextIronCost).innerHTML = this.nextIronCost;  						      //updates the Unit iron cost for the user
+//				this.curIronCost = this.nextIronCost;
+			}
+			
+			if(this.htmlNextSilverCost != 'none'){
+				this.nextSilverCost = Math.floor(this.silverCost * Math.pow(this.costMult,this.number));                    //works out the silver cost of the next Unit	
+				document.getElementById(this.htmlNextSilverCost).innerHTML = this.nextSilverCost;  						      //updates the Unit silver cost for the user
+//				this.curSilverCost = this.nextSilverCost
+			}
+			
+			if(this.htmlNextFaithCost != 'none'){
+				this.nextFaithCost = Math.floor(this.faithCost * Math.pow(this.costMult,this.number));                      //works out the faith cost of the next Unit
+				document.getElementById(this.htmlNextFaithCost).innerHTML = this.nextFaithCost;  						      //updates the Unit faith cost for the user	
+//				this.curFaithCost = this.nextFaithCost
+			}	
+
+			if(this.htmlNextSoulCost != 'none'){
+				this.nextSoulCost = Math.floor(this.soulCost * Math.pow(this.costMult,this.number));                       //works out the Soul cost of the next Unit
+				document.getElementById(this.htmlNextSoulCost).innerHTML = this.nextSoulCost;  						      //updates the Unit Soul cost for the user
+//				this.curSoulCost = this.nextSoulCost
+			}			
 		};
 	}
-/*	this.nextGoldCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Unit
-	this.nextIronCost = Math.floor(this.ironCost * Math.pow(this.costMult,this.number));                      //works out the cost of the next Unit
-	this.nextSilverCost = Math.floor(this.silverCost * Math.pow(this.costMult,this.number));                    //works out the cost of the next Unit
-	this.nextFaithCost = Math.floor(this.faithCost * Math.pow(this.costMult,this.number));                      //works out the cost of the next Unit
-	this.nextSoulCost = Math.floor(this.soulCost * Math.pow(this.costMult,this.number));                       //works out the cost of the next Unit
-    document.getElementById(this.htmlNextGoldCost).innerHTML = this.nextGoldCost;  						      //updates the Unit cost for the user
-	document.getElementById(this.htmlNextIronCost).innerHTML = this.nextIronCost;  						      //updates the Unit cost for the user
-	document.getElementById(this.htmlNextSilverCost).innerHTML = this.nextSilverCost;  						      //updates the Unit cost for the user
-	document.getElementById(this.htmlNextFaithCost).innerHTML = this.nextFaithCost;  						      //updates the Unit cost for the user
-	document.getElementById(this.htmlNextSoulCost).innerHTML = this.nextSoulCost;  						      //updates the Unit cost for the user*/
-	this.recalcCost();
 };
 
 Unit.prototype.removeOne = function(){
@@ -79,46 +96,40 @@ Unit.prototype.removeOne = function(){
 }
 
 Unit.prototype.recalcCost = function(){
-	
-	this.nextGoldCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Unit
-	document.getElementById(this.htmlNextGoldCost).innerHTML = this.nextGoldCost;  						      //updates the Unit cost for the user
-	this.curGoldCost = this.nextGoldCost;
+	this.curGoldCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Unit
+	document.getElementById(this.htmlNextGoldCost).innerHTML = this.curGoldCost;  						      //updates the Unit cost for the user
 	
 	if(this.htmlNextIronCost != 'none'){
-		this.nextIronCost = Math.floor(this.ironCost * Math.pow(this.costMult,this.number));                      //works out the iron cost of the next Unit
-		document.getElementById(this.htmlNextIronCost).innerHTML = this.nextIronCost;  						      //updates the Unit iron cost for the user
-		this.curIronCost = this.nextIronCost;
+		this.curIronCost = Math.floor(this.ironCost * Math.pow(this.costMult,this.number));                      //works out the iron cost of the next Unit
+		document.getElementById(this.htmlNextIronCost).innerHTML = this.curIronCost;  						      //updates the Unit iron cost for the user
 	}
 	
 	if(this.htmlNextSilverCost != 'none'){
-		this.nextSilverCost = Math.floor(this.silverCost * Math.pow(this.costMult,this.number));                    //works out the silver cost of the next Unit	
-		document.getElementById(this.htmlNextSilverCost).innerHTML = this.nextSilverCost;  						      //updates the Unit silver cost for the user
-		this.curSilverCost = this.nextSilverCost
+		this.curSilverCost = Math.floor(this.silverCost * Math.pow(this.costMult,this.number));                    //works out the silver cost of the next Unit	
+		document.getElementById(this.htmlNextSilverCost).innerHTML = this.curSilverCost;  						      //updates the Unit silver cost for the user
 	}
 	
 	if(this.htmlNextFaithCost != 'none'){
-		this.nextFaithCost = Math.floor(this.faithCost * Math.pow(this.costMult,this.number));                      //works out the faith cost of the next Unit
-		document.getElementById(this.htmlNextFaithCost).innerHTML = this.nextFaithCost;  						      //updates the Unit faith cost for the user	
-		this.curFaithCost = this.nextFaithCost
+		this.curFaithCost = Math.floor(this.faithCost * Math.pow(this.costMult,this.number));                      //works out the faith cost of the next Unit
+		document.getElementById(this.htmlNextFaithCost).innerHTML = this.curFaithCost;  						      //updates the Unit faith cost for the user	
 	}	
 
 	if(this.htmlNextSoulCost != 'none'){
-		this.nextSoulCost = Math.floor(this.soulCost * Math.pow(this.costMult,this.number));                       //works out the Soul cost of the next Unit
-		document.getElementById(this.htmlNextSoulCost).innerHTML = this.nextSoulCost;  						      //updates the Unit Soul cost for the user
-		this.curSoulCost = this.nextSoulCost
+		this.curSoulCost = Math.floor(this.soulCost * Math.pow(this.costMult,this.number));                       //works out the Soul cost of the next Unit
+		document.getElementById(this.htmlNextSoulCost).innerHTML = this.curSoulCost;  						      //updates the Unit Soul cost for the user
 	}	
 
 
 };
 
 Unit.prototype.canBuy = function(){
-	
+	this.recalcCost();
 	btn = this.htmlBuyBtn
 	
 	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.number > 0)){	
 		if(gold >= this.curGoldCost && iron >= this.curIronCost && silver >= this.curSilverCost && faith >= this.curFaithCost && souls >= this.curSoulCost ){     //checks that the player can afford the Unit
 			document.getElementById(btn).disabled = false;					//enables the buy button
-		}
+	}
 		else{
 			document.getElementById(btn).disabled = true;					//disables the buy button
 		}
@@ -148,7 +159,7 @@ var Page = new Unit("Page",'personPage','PageCost','PageIronCost','none','none',
 setDescription(Page, 'BtnPageDesc');
 
 var squireDesc = "Pages that have gained enough experience are promoted to Squires. They are semi-capable warriors. Provides 50 army strength."
-var Squire = new Unit("Squire",'squires','SquireCost','SquireIronCost','none','none','none','btnBuySquire',1200,250,0,0,0,1.1, squireDesc, 0, true, Page);	
+var Squire = new Unit("Squire",'squires','SquireCost','SquireIronCost','none','none','none','btnBuySquire',1200,250,0,0,0,1.15, squireDesc, 0, true, Page);	
 setDescription(Squire, 'BtnSquireDesc');
 
 var knightDesc = "Squires whom have passed the test of courage, honor, and battle prowess are promoted to knights. Provides 150 army strength."
@@ -164,14 +175,14 @@ var Acolyte = new Unit("Acolyte",'acolytes','AcolyteCost','none','none','none','
 setDescription(Acolyte, 'BtnAcolyteDesc');
 
 var priestDesc = "Men of the cloth. Their piety helps them channel the holy energy from the universe.  <br> Generates 0.5 faith per second"
-var Priest = new Unit("Priest",'priests','PriestCost','none','PriestSilverCost','PriestFaithCost','none','btnbuyPriest',1000,0,10,50,0,1.1, priestDesc, 0, true, Acolyte);	
+var Priest = new Unit("Priest",'priests','PriestCost','none','PriestSilverCost','PriestFaithCost','none','btnbuyPriest',1000,0,10,50,0,1.15, priestDesc, 0, true, Acolyte);	
 setDescription(Priest, 'BtnPriestDesc');
 
 var shadeDesc = "This spirits are but a barely present in our world, but they are still capable of damaging demonic beings. <br>Provides 5 army strength. <br>Provides 10 spiritual strength."
-var Shade = new Unit("Benevolent Shade",'shades','shadeCost','none','shadeSilverCost','none','shadeSoulCost','btnBuyShade',10000,0,250,0,200,1.1, shadeDesc, 0, false, "none");
+var Shade = new Unit("BenevolentShade",'shades','ShadeCost','none','shadeSilverCost','none','shadeSoulCost','btnBuyShade',10000,0,250,0,200,1.1, shadeDesc, 0, false, "none");
 setDescription(Shade, 'BtnShadeDesc');
 
 var aspectDesc = "These shades are now able to animate armor that you make from silver. They are much more capable of battling demonic beings. <br> Provides 100 army strength. <br>Provides 50 spiritual strength."
-var Aspect = new Unit("Aspect of Justice",'apsects','aspectCost','aspectIronCost','aspectSilverCost','none','aspectSoulCost','btnBuyAspect',15000,1000,500,0,500,1.1, aspectDesc, 0, true, Shade);
+var Aspect = new Unit("AspectofJustice",'aspects','AspectCost','aspectIronCost','aspectSilverCost','none','aspectSoulCost','btnBuyAspect',15000,1000,500,0,500,1.1, aspectDesc, 0, true, Shade);
 setDescription(Aspect, 'BtnAspectDesc');
 

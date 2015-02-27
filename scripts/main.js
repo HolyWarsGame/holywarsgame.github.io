@@ -98,12 +98,12 @@ function clickThing(number, type)
 }
 
 function debugCurrency(){
-	gold = gold + 100000;
-	iron = iron + 5000;	
-	silver = silver + 1000;
-	faith = faith + 1000;
-	souls = souls + 200;
-	mana = mana + 10000;
+	gold = gold + 1000000;
+	iron = iron + 10000;	
+	silver = silver + 10000;
+	faith = faith + 10000;
+	souls = souls + 10000;
+	mana = mana + 100000;
 };
 
 //UPGRADES
@@ -194,6 +194,8 @@ function recalculateCosts(){
 	Squire.recalcCost();
 	Knight.recalcCost();
 	Paladin.recalcCost();
+	Shade.recalcCost();
+	Aspect.recalcCost();
 };
 
 function UpdateButtons() {
@@ -225,6 +227,9 @@ function UpdateButtons() {
 	
 	//Enable/disables buy Shade button depending on if there is enough currency
 	Shade.canBuy();
+	
+	//Enable/disables buy AofJustice button depending on if there is enough currency
+	Aspect.canBuy();	
 	// End of Unit Buttons//	
 	
 	
