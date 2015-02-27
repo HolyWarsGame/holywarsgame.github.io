@@ -46,6 +46,7 @@
 		localStorage.setItem("minersKilled", minersKilled);
 		
 		//Upgradeflags
+		localStorage.setItem("pGoldUpgrade",pGoldUpgrade);
 		localStorage.setItem("pGoldClickUpgrade",pGoldClickUpgrade);
 		localStorage.setItem("mPanningUpgrade",mPanningUpgrade);
 		localStorage.setItem("mSilverUpgrade",mSilverUpgrade);
@@ -230,6 +231,14 @@
 			document.getElementById("aspects").innerHTML = Aspect.number;
 		}			
 		
+		if(localStorage.pGoldUpgrade != null){
+			var myBool = (localStorage.pGoldUpgrade == "true")
+			if(myBool == true){
+				pGoldUpgrade = true;
+				document.getElementById("btnPeasantUpgrade1").disabled = true;
+			}
+		}
+		
 		if(localStorage.pGoldClickUpgrade != null){
 			var myBool = (localStorage.pGoldClickUpgrade == "true")
 			if(myBool == true){
@@ -243,6 +252,8 @@
 			if(myBool == true){
 				mSilverUpgrade = true;
 				document.getElementById('silverdiv').style.display = "block";
+				document.getElementById("btnminerUpgrade2").innerHTML = "Learned Silver Studies";
+				document.getElementById("btnminerUpgrade2").disabled = true;				
 			}
 		}		
 		
@@ -250,6 +261,7 @@
 			var myBool = (localStorage.mPanningUpgrade == "true")
 			if(myBool == true){
 				mPanningUpgrade = true;
+				document.getElementById("btnminerUpgrade1").innerHTML = "Learned Panning";
 				document.getElementById("btnminerUpgrade1").disabled = true;
 			}
 		}

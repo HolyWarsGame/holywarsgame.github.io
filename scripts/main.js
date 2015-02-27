@@ -24,6 +24,7 @@ var tavernminers = 0;			//Tavern generated miners
 
 
 //Status Variables//
+var pGoldUpgrade = false;		//Peasant - Collection rate upgrade
 var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade 
 var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
 var mSilverUpgrade = false;		//Miner - Silver Mining upgrade
@@ -106,6 +107,16 @@ function debugCurrency(){
 };
 
 //UPGRADES
+
+function peasantUpgradeCollection(){
+	if(gold >= 2000){
+		gold = gold - 2000;
+		pGoldUpgrade = true;	
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById("btnPeasantUpgrade1").disabled = true;
+	}	
+};
+
 function upgradeClickGoldMultiplier(){
 	if(gold >= 1500){
 		gold = gold - 1500;
@@ -135,6 +146,8 @@ function minerUpgradeSilver(){
 		document.getElementById('iron').innerHTML = iron;
 		document.getElementById('silverdiv').style.display = "block";
 		document.getElementById("btnminerUpgrade2").disabled = true;
+		document.getElementById("btnminerUpgrade2").innerHTML = "Learned Silver Studies";
+		
 	}	
 };
 			
@@ -251,6 +264,14 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnPageUpgrade1").disabled = false;
 	}	
+	
+	//Unlock Knight Button
+	if(knightsUnlocked == true || (BattlePower < 500|| gold < 8000)){	
+		document.getElementById("btnSquireUpgrade1").disabled = true;
+	}
+	else{
+		document.getElementById("btnSquireUpgrade1").disabled = false;
+	}		
 	//End of Upgrade Buttons//
 	
 	
@@ -281,11 +302,18 @@ function UpdateButtons() {
 }
 
 window.setInterval(function(){                                 //Update per second counts
-    goldpersec = Peasant.number;
+    
+	if(pGoldUpgrade == true){
+		goldpersec = Peasant.number * 2;
+	}
+	else{
+		goldpersec = Peasant.number;	
+	}
 	if(mPanningUpgrade == true)
 	{
 		goldpersec = goldpersec + Miner.number;
 	}
+
 //	document.getElementById("goldpersec").innerHTML = goldpersec;	
 	 document.getElementById("resgoldimage").title = "Gold per second: " + goldpersec ; 
 
@@ -329,6 +357,9 @@ window.setInterval(function(){
 
 	//Gold generation via peasants etc every second
 	var number = Peasant.number;
+	if(pGoldUpgrade == true){
+		number = Peasant.number*2;
+	}
 	if(mPanningUpgrade == true)
 	{
 		number = number + Miner.number;

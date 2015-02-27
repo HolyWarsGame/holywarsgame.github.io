@@ -32,7 +32,12 @@ function calculateBattlePower(){
 };
 
 function calculateSpiritPower(){
-	SpiritPower =  ((Shade.number*10) + (Aspect.number * 50) );
+	var weapmult = 1;
+	if(paladinWepUpgrade == true)
+	{
+		weapmult = 2;
+	}	
+	SpiritPower =  ((Paladin.number * 5 * weapmult)+(Shade.number*10) + (Aspect.number * 50) );
 //	document.getElementById("SpiritPower").innerHTML = SpiritPower;
 	document.getElementById("SpiritPower2").innerHTML = SpiritPower;
 };
@@ -231,7 +236,7 @@ setEnemyDescription(Bandits, 'btnDescBandits');
 
 function banditLoot(){
 	if(defeatedBandits == false){
-		var raidtime = Math.floor((Math.random() * 90) + 30); ;
+		var raidtime = Math.floor((Math.random() * 90) + 15); ;
 		var ticker = raidtime;
 		var raid = setInterval(function() {
 			ticker = ticker - 1;  

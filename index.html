@@ -176,6 +176,11 @@
 		 Peasant Cost: <span id="PeasantCost">50</span> gold
 			<div id ="PeasantUpgradeTab" class = "collapse">
 				<div class = "well">
+					<button id=btnPeasantUpgrade1 onclick="peasantUpgradeCollection()"	type="button" class="btn btn-default" title = "Your peasants become more capable at finding gold. Doubles gold collection rate.">Peasant Power</button>
+					<br />
+					Upgrade Cost: 2000 gold
+					<br /><br />				
+				
 					<button id=clickGoldUpgrade onclick="upgradeClickGoldMultiplier()"	type="button" class="btn btn-default" title = "Your peasants learn to assist your gold collection. Doubles gold collected when clicking.">Click Upgrade</button>
 					<br />
 					Upgrade Cost: 1500 gold
@@ -199,7 +204,7 @@
 					<button id=btnminerUpgrade1 onclick="minerUpgradePanning()"	type="button" class="btn btn-default" title = "Your miners now pan for gold in their spare time. Miners now generate 1 gold per second.">Learn Panning</button>
 					<br />
 					Upgrade Cost: 3500 gold and 1000 iron
-					<br />
+					<br /> <br />
 					
 					<button id=btnminerUpgrade2 onclick="minerUpgradeSilver()"	type="button" class="btn btn-default" title = "Better mining techniques and tools allow your miner to find silver veins. Miners now find 0.5 silver per second.">Silver Studies</button>
 					<br />
@@ -242,7 +247,7 @@
 			<button id=btnbuyPriest onclick="Priest.buyOne()"	type="button" class="btn btn-default">Train Priest</button>
 			<button id=btnPriestUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
 			<br />
-			Priest Cost: <span id="PriestCost">1000</span> gold, 10 silver, 50 faith, and 1 acolyte
+			Priest Cost: <span id="PriestCost">1000</span> gold, <span id="PriestSilverCost">10</span> silver, <span id="PriestFaithCost">50</span> faith, and 1 acolyte
 			<br />
 			<div id ="PriestUpgradeTab" class = "collapse">
 				<div class = "well">
@@ -267,7 +272,7 @@
 			<button id=btnBuyPage onclick="Page.buyOne()"	type="button" class="btn btn-default">Train Page</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PageUpgradeTab" aria-expanded="false" aria-controls="PageUpgradeTab">Upgrades</button>
 			<br />
-			Page Cost: <span id="PageCost">500</span> gold and 100 iron
+			Page Cost: <span id="PageCost">500</span> gold and <span id="PageIronCost">100</span> iron
 			<br />
 			<hr>
 			<div id ="PageUpgradeTab" class = "collapse">
@@ -289,7 +294,7 @@
 			<button id=btnBuySquire onclick="Squire.buyOne()"	type="button" class="btn btn-default">Promote Squire</button>
 			<button id=btnSquireUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#SquireUpgradeTab" aria-expanded="false" aria-controls="SquireUpgradeTab">Upgrades</button>
 			<br />
-			Squire Cost: <span id="SquireCost">1200</span> gold, 250 iron, and 1 Page
+			Squire Cost: <span id="SquireCost">1200</span> gold, <span id = "SquireIronCost">250</span> iron, and 1 Page
 			<br />
 			<hr>	
 		</div>		
@@ -312,7 +317,7 @@
 			<button id=btnBuyKnight onclick="Knight.buyOne()"	type="button" class="btn btn-default">Promote Knight</button>
 			<button id=btnKnightUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#KnightUpgradeTab" aria-expanded="false" aria-controls="KnightUpgradeTab">Upgrades</button>
 			<br />
-			Knight Cost: <span id="KnightCost">3000</span> gold, 350 iron, and 1 Squire
+			Knight Cost: <span id="KnightCost">3000</span> gold, <span id= "KnightIronCost">350</span> iron, and 1 Squire
 			<br />
 			<hr>
 		</div>		
@@ -330,7 +335,7 @@
 			<button id=btnBuyPaladin onclick="Paladin.buyOne()"	type="button" class="btn btn-default">Train Paladin</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
 			<br />
-			Paladin Cost: <span id="PaladinCost">10,000</span> gold, 500 iron, 50 silver, 100 faith, 1 Knight
+			Paladin Cost: <span id="PaladinCost">10,000</span> gold, <span id="PaladinIronCost">500</span> iron, <span id="PaladinSilverCost">50</span> silver, <span id="PaladinFaithCost">100</span> faith, 1 Knight
 			<br /><br />
 		</div>
 		
@@ -416,7 +421,7 @@
 			<button id=btnBuyShade onclick="Shade.buyOne()"	type="button" class="btn btn-default">Summon Shade</button>
 			<button id=btnShadeUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#ShadeUpgradeTab" aria-expanded="false" aria-controls="ShadeUpgradeTab">Upgrades</button>
 			<br />
-			Shade Cost: <span id="shadeCost">10,000</span> gold, 50 silver, 75 souls.
+			Shade Cost: <span id="shadeCost">10,000</span> gold, <span id = "shadeSilverCost">50</span> silver, <span id="shadeSoulCost">75</span> souls.
 			<br />
 			<hr>
 			<div id ="ShadeUpgradeTab" class = "collapse">
@@ -435,7 +440,7 @@
 			<button id=btnBuyAspect onclick="Aspect.buyOne()"	type="button" class="btn btn-default">Upgrade Shade</button>
 			<button id=btnAspectUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#AspectUpgradeTab" aria-expanded="false" aria-controls="AspectUpgradeTab">Upgrades</button>
 			<br />
-			Aspect Cost: <span id="aspectCost">15,000</span> gold, 1000 iron, 150 silver, 100 souls.
+			Aspect Cost: <span id="aspectCost">15,000</span> gold, <span id="aspectIronCost">1000</span> iron, <span id="aspectSilverCost">150</span> silver, <span id="aspectSoulCost">100</span> souls.
 			<br />
 			<hr>
 			<div id ="AspectUpgradeTab" class = "collapse">
@@ -685,24 +690,8 @@
 		</div> 		
 
  </div> <!-- /container -->
+		
 
-	<script type ="text/javascript">
-		function CollapseAll(){
-			document.getElementById("Battle").style.display = "none";
-			document.getElementById("Relics").style.display = "none";
-			document.getElementById("Ethereal").style.display = "none";
-			document.getElementById("Structures").style.display = "none";
-			document.getElementById("Barracks").style.display = "none";
-			document.getElementById("Cathedral").style.display = "none";
-			document.getElementById("Production").style.display = "none";
-			document.getElementById("Magic").style.display = "none";
-
-		};
-		function setLastPage(name){
-			lastPage = name;
-		}	
-				
-	</script>
 	
 	
 	<!-- About Modal -->
@@ -716,7 +705,7 @@
 		  <div class="modal-body">
 			This is an incremental game developed by CursedAnubis and LadyUndine. Thank you for playing!
 			Please note that this game is still in development and is constantly rebalanced. Feedback is appreciated!<br /><br />
-			
+
 			Things to be added:<br />
 			Relics<br />
 			More Battles<br />
@@ -746,7 +735,7 @@
 		  </div>
 		  <div class="modal-body">
 				
-				<iframe src="changelog.html"></iframe>
+				<iframe id=changelogiframe src="changelog.html"></iframe>
 				
 		  </div>
 		  <div class="modal-footer">
@@ -755,6 +744,26 @@
 		</div>
 	  </div>
 	</div>		
+	
+
+	<script type ="text/javascript">
+		function CollapseAll(){
+			document.getElementById("Battle").style.display = "none";
+			document.getElementById("Relics").style.display = "none";
+			document.getElementById("Ethereal").style.display = "none";
+			document.getElementById("Structures").style.display = "none";
+			document.getElementById("Barracks").style.display = "none";
+			document.getElementById("Cathedral").style.display = "none";
+			document.getElementById("Production").style.display = "none";
+			document.getElementById("Magic").style.display = "none";
+
+		};
+		function setLastPage(name){
+			lastPage = name;
+		}
+   document.getElementById('changelogiframe').contentDocument.location.reload(true);
+   
+	</script>		
 
 	<script type="text/javascript" src="scripts/main.js"></script>         <!--Load main script --> 
 	<script type="text/javascript" src="scripts/units.js"></script>
