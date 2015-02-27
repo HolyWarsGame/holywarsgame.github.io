@@ -48,7 +48,6 @@ Unit.prototype.buyOne = function(){
 			gold = gold - this.curCost;                     										          //removes the gold spent
 			iron = iron - this.ironCost;
 			silver = silver - this.silverCost
-				console.log(this.faithCost);
 			faith = faith - this.faithCost;
 			souls = souls - this.soulCost;
 			document.getElementById(this.htmlNumRef).innerHTML = this.number;  							      //updates the number of Unit for the user
@@ -133,4 +132,8 @@ setDescription(Priest, 'BtnPriestDesc');
 var shadeDesc = "This spirits are but a barely present in our world, but they are still capable of damaging demonic beings. <br>Provides 5 army strength. <br>Provides 10 spiritual strength."
 var Shade = new Unit("Benevolent Shade",'shades','shadeCost','btnBuyShade',10000,0,50,0,75,1.1, shadeDesc, 0, false, "none");
 setDescription(Shade, 'BtnShadeDesc');
+
+var aspectDesc = "These shades are now able to animate armor that you make from silver. They are much more capable of battling demonic beings. <br> Provides 100 army strength. <br>Provides 50 spiritual strength."
+var Aspect = new Unit("Aspect of Justice",'apsects','aspectCost','btnBuyAspect',15000,1000,150,0,100,1.1, aspectDesc, 0, true, Shade);
+setDescription(Aspect, 'BtnAspectDesc');
 

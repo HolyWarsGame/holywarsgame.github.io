@@ -23,7 +23,9 @@
 		localStorage.setItem("taverns", Tavern.number);
 		localStorage.setItem("acolytes",Acolyte.number);
 		localStorage.setItem("priests",Priest.number);
-		localStorage.setItem("paladins",Paladin.number); 	
+		localStorage.setItem("paladins",Paladin.number); 
+		localStorage.setItem("shades", Shade.number);
+		localStorage.setItem("aspects", Aspect.number);
 		
 		//Building flags
 		localStorage.setItem("minesOpened",minesOpened);
@@ -37,6 +39,8 @@
 		localStorage.setItem("defeatedBandits",defeatedBandits);
 		localStorage.setItem("defeatedOgre",defeatedOgre); 
 		localStorage.setItem("defeatedHhounds",defeatedHhounds);
+		localStorage.setItem("defeatedPixie",defeatedPixie);
+		localStorage.setItem("defeatedArmor",defeatedArmor);
 		localStorage.setItem("defeatedArchmage",defeatedArchmage);
 		localStorage.setItem("peasantsKilled",peasantsKilled);
 		localStorage.setItem("minersKilled", minersKilled);
@@ -215,6 +219,16 @@
 			Paladin.number = parseInt(localStorage.paladins);
 			document.getElementById("paladins").innerHTML = Paladin.number;
 		}
+
+		if(localStorage.shades != null){
+			Shade.number = parseInt(localStorage.shades);
+			document.getElementById("shades").innerHTML = Shade.number;
+		}
+
+		if(localStorage.aspects != null){
+			Aspect.number = parseInt(localStorage.aspects);
+			document.getElementById("aspects").innerHTML = Aspect.number;
+		}			
 		
 		if(localStorage.pGoldClickUpgrade != null){
 			var myBool = (localStorage.pGoldClickUpgrade == "true")
@@ -317,6 +331,9 @@
 					defeatedHhounds = true;
 					document.getElementById('Ethereal').style.display = "block";
 					document.getElementById('EtherealMenu').style.display = "block";
+					document.getElementById('SpiritualStrength').style.display = "block";
+					document.getElementById('BatPixie').style.display = "block";
+					document.getElementById('BatArmor').style.display = "block";
 					document.getElementById('BatHhoundProgBarBox').style.display = "none";
 					document.getElementById("btnBatHellhound").disabled = true;
 					document.getElementById("btnBatHellhound").innerHTML = "Hellhounds Defeated!";
@@ -326,6 +343,21 @@
 					setTimeout(function() { hellHoundRaid(); }, 30000);			//killed ogre but haven't defeated hhounds yet, start raids again
 				}
 		};
+		if(localStorage.defeatedPixie != null){
+			var myBool = (localStorage.defeatedPixie == "true")
+				if(myBool == true){
+					defeatedPixie = true;
+				}
+		};
+		
+		if(localStorage.defeatedArmor != null){
+			var myBool = (localStorage.defeatedArmor == "true")
+				if(myBool == true){
+					defeatedArmor = true;
+					document.getElementById('AspectofJustice').style.display = "block";
+				}
+		};				
+							
 		
 		if(localStorage.defeatedArchmage != null){
 			var myBool = (localStorage.defeatedArchmage == "true")

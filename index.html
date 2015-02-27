@@ -175,7 +175,7 @@
 		 Peasant Cost: <span id="PeasantCost">50</span> gold
 			<div id ="PeasantUpgradeTab" class = "collapse">
 				<div class = "well">
-					<button id=clickGoldUpgrade onclick="upgradeClickGoldMultiplier()"	type="button" class="btn btn-default" title = "Your peasants learn to assist your gold collection. Doubles gold collected when clicking.">Power of the People</button>
+					<button id=clickGoldUpgrade onclick="upgradeClickGoldMultiplier()"	type="button" class="btn btn-default" title = "Your peasants learn to assist your gold collection. Doubles gold collected when clicking.">Click Upgrade</button>
 					<br />
 					Upgrade Cost: 1500 gold
 					<br />
@@ -425,6 +425,25 @@
 				</div>
 			</div>			
 		</div>		
+
+		<div id ="AspectofJustice" class = "container" style="display: none;">
+			<br />
+		<a id = 'BtnAspectDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Aspect of Justice"
+    		data-content="">Aspect of Justices (<span id="aspects">0</span>)</a>
+			<br /><br />
+			<button id=btnBuyAspect onclick="Aspect.buyOne()"	type="button" class="btn btn-default">Upgrade Shade</button>
+			<button id=btnAspectUpgrade class="btn btn-default" type="button" data-toggle="collapse" data-target="#AspectUpgradeTab" aria-expanded="false" aria-controls="AspectUpgradeTab">Upgrades</button>
+			<br />
+			Aspect Cost: <span id="aspectCost">15,000</span> gold, 1000 iron, 150 silver, 100 souls.
+			<br />
+			<hr>
+			<div id ="AspectUpgradeTab" class = "collapse">
+				<div class = "well">
+					 No Upgrades implemented for Shades yet.
+					<br />
+				</div>
+			</div>			
+		</div>			
 		
 	 </div>
 	
@@ -436,7 +455,7 @@
 
 	 <div id="Magic" class = "panel panel-default" style="display: none;">
 		<div class = "panel-heading">
-			<div class="panel-title">Archmage's Tower</div>
+			<div class="panel-title">Archmage Tower</div>
 		</div>		
 	 </div>	 
 	 
@@ -447,9 +466,12 @@
 	   
 	   <div id="BattleStrength" class = "container">
 			<h2> Current Army Strength: <span id = "BattlePower2">0</span> power </h2>
-			<hr>
 	   </div>
-
+	   <div id="SpiritualStrength" class = "container" style="display: none;">
+			<h3> Current Spirit Strength: <span id = "SpiritPower2">0</span> spirit power </h3>
+			
+	   </div>
+		<hr>
 	   <div id="BatGoblins" class = "container">
 		<a id = btnDescGoblins tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Horde of Goblins"
 		data-content="" >A Horde of Goblins</a>
@@ -514,6 +536,40 @@
 			<br />
 			<br />
 	   </div>
+	   
+	   <div id="BatPixie" class = "container" style="display: none;">
+		<a id = 'btnDescPixie' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="An Evil Pixie"
+		data-content="">An Evil Pixie</a>
+			<br />
+			<button id=btnBatPixie onclick="Pixie.fight()"	type="button" class="btn btn-danger">Battle!</button>
+			<br />
+			Requires army power: 3500 <br />
+			Requires spirit power: 100 <br />
+				<div id="BatPixieProgBarBox" class="progress" style="display: none;">
+				  <div id="BatPixieProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+					0%
+				  </div>
+				</div>
+			<br />
+			<br />
+	   </div>
+
+	   <div id="BatArmor" class = "container" style="display: none;">
+		<a id = 'btnDescArmor' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Haunted Armor"
+		data-content="">Haunted Armor</a>
+			<br />
+			<button id=btnBatArmor onclick="Armor.fight()"	type="button" class="btn btn-danger">Battle!</button>
+			<br />
+			Requires army power: 4000 <br />
+			Requires spirit power: 250 <br />
+				<div id="BatArmorProgBarBox" class="progress" style="display: none;">
+				  <div id="BatArmorProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+					0%
+				  </div>
+				</div>
+			<br />
+			<br />
+	   </div>		   
 
 	   <div id="BatArchMage" class = "container">
 		<a id = 'btnDescMage' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Corrupted Archmage"
@@ -589,6 +645,19 @@
 								 almost <a href="javascript: toggle('openEtherealAlert');CollapseAll();toggle('Ethereal')" class="alert-link">otherworldly tear</a> floating in front of you.   
 		</div>	
 
+		<div id = PixieDefeatAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong>The pixie collapses in a pile of glittering dust. Your priests decide to scoop her remains into a bottle for studying later.
+			<!--<a href="javascript: toggle('unlockAspectofJustice')" class="alert-link">tower</a>-->
+				
+		</div>			
+		
+		<div id = unlockAspectofJustice class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong>The armor stops moving. One of your shades is actually able to move it about, giving you a new idea on how to make your shades<a href="javascript: toggle('unlockAspectofJustice')" class="alert-link">stronger.</a>
+				
+		</div>			
+		
 		<div id = unlockWizardTowerAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> Your forces corner the Archmage. He has run out of mana but still tries to curse you anyway. A few feeble sparks

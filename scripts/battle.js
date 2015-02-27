@@ -5,7 +5,9 @@ var defeatedGoblins = false;
 var defeatedBandits = false;
 var defeatedOgre = false;
 var defeatedHhounds = false;
+var defeatedPixie = false;
 var defeatedArchmage = false;
+var defeatedArmor = false;
 var goldStolen = 0;
 var justStolen = 0;
 var typeKilled = "none"	//HHound statistic
@@ -15,6 +17,7 @@ var minersKilled = 0;
 
 var Raidtime = 0;
 var BattlePower = 0;
+var SpiritPower = 0;
 
 
 function calculateBattlePower(){
@@ -28,7 +31,13 @@ function calculateBattlePower(){
 	document.getElementById("BattlePower2").innerHTML = BattlePower;
 };
 
-var Enemy = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, htmlAlertRef, BPReq, percentComplete, percentIncrement,speed){
+function calculateSpiritPower(){
+	SpiritPower =  (Shade.number*10);
+//	document.getElementById("SpiritPower").innerHTML = SpiritPower;
+	document.getElementById("SpiritPower2").innerHTML = SpiritPower;
+};
+
+var Enemy = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, htmlAlertRef, BPReq, SPReq, percentComplete, percentIncrement,speed){
 	this.name = name;
 	this.description = description;
 	this.htmlBoxRef = htmlBoxRef;
@@ -36,6 +45,7 @@ var Enemy = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, html
 	this.htmlBtnRef = htmlBtnRef;
 	this.htmlAlertRef = htmlAlertRef;
 	this.BPReq = BPReq;
+	this.SPReq = SPReq;
 	this.percentComplete = percentComplete;
 	this.percentIncrement = percentIncrement;
 	this.speed = speed;
@@ -53,6 +63,7 @@ Enemy.prototype.fight = function(){
 	var EnemyName = this.name;
 	
 	if(this.fightable == true){
+
 		document.getElementById(this.htmlBoxRef).style.display = "block";
 		var $bar = $(document.getElementById(this.htmlBarRef));
 		var progress = setInterval(function() {
@@ -87,7 +98,7 @@ Enemy.prototype.canFight = function(){
 	
 	var myButton = this.htmlBtnRef
 	
-	if(BattlePower >= this.BPReq ){
+	if(BattlePower >= this.BPReq && SpiritPower >= this.SPReq){
 		this.fightable = true;
 		document.getElementById(myButton).disabled = false;
 		this.checkFlag();
@@ -131,6 +142,12 @@ Enemy.prototype.checkFlag = function(){
 			}			
 		break;
 		
+		case 'Pixie':
+			if(defeatedPixie == true){
+				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
+				document.getElementById(myButton).disabled = true;	
+			}			
+		break;		
 		case 'Archmage':
 			if(defeatedArchmage == true){
 				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
@@ -178,8 +195,21 @@ function setDefeatEvents(name){
 		case 'Hellhounds':
 			document.getElementById('Ethereal').style.display = "block";
 			document.getElementById('EtherealMenu').style.display = "block";
+			document.getElementById('SpiritualStrength').style.display = "block";
+			document.getElementById('BatArmor').style.display = "block";
+			document.getElementById('BatPixie').style.display = "block";
 			defeatedHhounds = true;
 		break;
+		
+		case 'Pixie':
+//			document.getElementById('buildTowerTab').style.display = "block";
+			defeatedPixie = true;
+		break;	
+
+		case 'Armor':
+			document.getElementById('AspectofJustice').style.display = "block";
+			defeatedArmor = true;
+		break;			
 		
 		case 'Archmage':
 			document.getElementById('buildTowerTab').style.display = "block";
@@ -190,13 +220,13 @@ function setDefeatEvents(name){
 	}
 		
 };
-
+//function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, htmlAlertRef, BPReq, SPReq, percentComplete, percentIncrement,speed)
 var goblinsDesc = "Goblin description placeholder <br><br> You should probably stop them.";
-var Goblins = new Enemy('Goblins', goblinsDesc, 'BatGoblinsProgBarBox', 'BatGoblinsProgBar', 'btnBatGoblins','goblinDefeatAlert',75,0,10,500);
+var Goblins = new Enemy('Goblins', goblinsDesc, 'BatGoblinsProgBarBox', 'BatGoblinsProgBar', 'btnBatGoblins','goblinDefeatAlert',75,0,0,10,500);
 setEnemyDescription(Goblins, 'btnDescGoblins');
 
 var banditsDesc = "A bandit camp sits on the outskirts of your village. Bandits occasionally ride into your village and do dastardly things like looting and pillaging your poor peasants.  <br><br> You should probably stop them."
-var Bandits = new Enemy('Bandits', banditsDesc, 'BatBanditsProgBarBox', 'BatBanditsProgBar', 'btnBatBandits','unlockCathAlert',100,0,5,500);
+var Bandits = new Enemy('Bandits', banditsDesc, 'BatBanditsProgBarBox', 'BatBanditsProgBar', 'btnBatBandits','unlockCathAlert',100,0,0,5,500);
 setEnemyDescription(Bandits, 'btnDescBandits');
 
 function banditLoot(){
@@ -237,11 +267,11 @@ function banditLoot(){
 setTimeout(function() { banditLoot(); }, 30000);//Triggers bandit looting
 
 var ogreDesc = "A large and particularly odorous Ogre is threatening your village! Take it out before it tries to eat any more of your cattle or decides to pass wind in your direction.";
-var Ogre = new Enemy("Ogre", ogreDesc, 'BatOgreProgBarBox','BatOgreProgBar','btnBatOgre','unlockPaladinsAlert',100,0,1,500);
+var Ogre = new Enemy("Ogre", ogreDesc, 'BatOgreProgBarBox','BatOgreProgBar','btnBatOgre','unlockPaladinsAlert',500,0,0,1,500);
 setEnemyDescription(Ogre, 'btnDescOgre');
 
 var hellhoundsDesc = "The Evil One has released these fiery hounds to stalk your village. Occasionally the are able to slip past your defences and kill some of your peasants and miners.";
-var Hellhounds = new Enemy("Hellhounds", hellhoundsDesc, 'BatHhoundProgBarBox','BatHhoundProgBar','btnBatHellhound','openEtherealAlert',2000,0,1,1000);
+var Hellhounds = new Enemy("Hellhounds", hellhoundsDesc, 'BatHhoundProgBarBox','BatHhoundProgBar','btnBatHellhound','openEtherealAlert',2000,0,0,1,1000);
 setEnemyDescription(Hellhounds, 'btnDescHellhounds');
 
 
@@ -311,13 +341,22 @@ function hellhoundCull(){
 		recalculateCosts();
 };
 
+var pixieDesc = "This little pixie hates your guts.";
+var Pixie = new Enemy("Pixie", pixieDesc, 'BatPixieProgBarBox','BatPixieProgBar','btnBatPixie','PixieDefeatAlert',3500,100,0,1,1000);
+setEnemyDescription(Pixie, 'btnDescPixie');
+
+var armorDesc = "In the woods nearby, you notice a nasty looking armor hanging about in the shadows. It makes threatening gestures at you from afar.";
+var Armor = new Enemy("Armor", armorDesc, 'BatArmorProgBarBox','BatArmorProgBar','btnBatArmor','unlockAspectofJustice',4000,250,0,1,1000);
+setEnemyDescription(Armor, 'btnDescArmor');
+
 var archmageDesc = "One of The Evil One's lieutenants, capable of casting nasty and powerful spells.";
-var Archmage = new Enemy("Archmage", archmageDesc, 'BatMageProgBarBox','BatMageProgBar','btnBatMage','unlockWizardTowerAlert',20000,0,1,2000);
+var Archmage = new Enemy("Archmage", archmageDesc, 'BatMageProgBarBox','BatMageProgBar','btnBatMage','unlockWizardTowerAlert',20000,0,0,1,2000);
 setEnemyDescription(Archmage, 'btnDescMage');
 
 
 window.setInterval(function(){					//Calculates Battle Power 
 	calculateBattlePower();
+	calculateSpiritPower();
 }, 100);
 
 

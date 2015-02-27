@@ -210,7 +210,10 @@ function UpdateButtons() {
 	
 	//Enable/disables buy paladin button depending on if there is enough currency
 	Paladin.canBuy();
-	// End of Unit Buttons//
+	
+	//Enable/disables buy Shade button depending on if there is enough currency
+	Shade.canBuy();
+	// End of Unit Buttons//	
 	
 	
 	//Structure Buttons
@@ -264,6 +267,12 @@ function UpdateButtons() {
 	
 	//Hellhound Button
 	Hellhounds.canFight();
+	
+	//Pixie Button
+	Pixie.canFight();
+
+	//Armor Button
+	Armor.canFight();
 	
 	//Archmage Button
 	Archmage.canFight();
