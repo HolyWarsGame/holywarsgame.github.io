@@ -198,7 +198,6 @@ function recalculateCosts(){
 
 function UpdateButtons() {
 	
-	
 	//Unit Buttons //
 	//Enable/disables buy peasant button depending on if there is enough currency	
 	Peasant.canBuy();
@@ -398,7 +397,7 @@ window.setInterval(function(){
 
 window.setInterval(function(){					//Enables/disables buttons 
 	UpdateButtons();
-}, 10);
+}, 100);
 
 window.setInterval(function(){					//Increases totalTimePlayed by 1 second per second 
 	totalTimePlayed = totalTimePlayed + 1;

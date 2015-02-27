@@ -35,7 +35,6 @@ var Unit = function(name, htmlNumRef, htmlNextGoldCost, htmlNextIronCost, htmlNe
 
 
 Unit.prototype.buyOne = function(){
-	
 	this.curGoldCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));
 	this.curIronCost =  Math.floor(this.curIronCost * Math.pow(this.costMult,this.number));
 	this.curSilverCost =  Math.floor(this.curSilverCost * Math.pow(this.costMult,this.number));
@@ -169,10 +168,10 @@ var Priest = new Unit("Priest",'priests','PriestCost','none','PriestSilverCost',
 setDescription(Priest, 'BtnPriestDesc');
 
 var shadeDesc = "This spirits are but a barely present in our world, but they are still capable of damaging demonic beings. <br>Provides 5 army strength. <br>Provides 10 spiritual strength."
-var Shade = new Unit("Benevolent Shade",'shades','shadeCost','none','shadeSilverCost','none','shadeSoulCost','btnBuyShade',10000,0,50,0,75,1.1, shadeDesc, 0, false, "none");
+var Shade = new Unit("Benevolent Shade",'shades','shadeCost','none','shadeSilverCost','none','shadeSoulCost','btnBuyShade',10000,0,250,0,200,1.1, shadeDesc, 0, false, "none");
 setDescription(Shade, 'BtnShadeDesc');
 
 var aspectDesc = "These shades are now able to animate armor that you make from silver. They are much more capable of battling demonic beings. <br> Provides 100 army strength. <br>Provides 50 spiritual strength."
-var Aspect = new Unit("Aspect of Justice",'apsects','aspectCost','aspectIronCost','aspectSilverCost','none','aspectSoulCost','btnBuyAspect',15000,1000,150,0,100,1.1, aspectDesc, 0, true, Shade);
+var Aspect = new Unit("Aspect of Justice",'apsects','aspectCost','aspectIronCost','aspectSilverCost','none','aspectSoulCost','btnBuyAspect',15000,1000,500,0,500,1.1, aspectDesc, 0, true, Shade);
 setDescription(Aspect, 'BtnAspectDesc');
 
