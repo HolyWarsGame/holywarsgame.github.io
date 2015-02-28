@@ -15,6 +15,7 @@
 		
 		//Unit variables
  		localStorage.setItem("peasants",Peasant.number - tavernpeasants);
+		localStorage.setItem("lumberjacks", Lumberjack.number);
 		localStorage.setItem("miners",Miner.number);
 		localStorage.setItem("personPage",Page.number);
 		localStorage.setItem("squires",Squire.number);
@@ -43,9 +44,11 @@
 		localStorage.setItem("defeatedHhounds",defeatedHhounds);
 		localStorage.setItem("defeatedPixie",defeatedPixie);
 		localStorage.setItem("defeatedArmor",defeatedArmor);
-		localStorage.setItem("defeatedArchmage",defeatedArchmage);
+		localStorage.setItem("defeatedArchmage",defeatedArchmage)
+		localStorage.setItem("defeatedSuccubus",defeatedSuccubus)
 		localStorage.setItem("peasantsKilled",peasantsKilled);
 		localStorage.setItem("minersKilled", minersKilled);
+		localStorage.setItem("unitsSeduced", unitsSeduced);
 		
 		//Upgradeflags
 		localStorage.setItem("pGoldUpgrade",pGoldUpgrade);
@@ -133,7 +136,11 @@
 		if(localStorage.peasants != null){
 			Peasant.number = parseInt(localStorage.peasants);
 			document.getElementById("peasants").innerHTML = Peasant.number;
-		}	
+		}
+		if(localStorage.lumberjacks != null){
+			Lumberjack.number = parseInt(localStorage.lumberjacks);
+			document.getElementById("lumberjacks").innerHTML = Lumberjack.number;
+		}			
 		if(localStorage.miners != null){
 			Miner.number = parseInt(localStorage.miners);
 			document.getElementById("miners").innerHTML = Miner.number;
@@ -392,7 +399,6 @@
 				}
 		};				
 							
-		
 		if(localStorage.defeatedArchmage != null){
 			var myBool = (localStorage.defeatedArchmage == "true")
 				if(myBool == true){
@@ -403,7 +409,16 @@
 					defeatedArchmage = true;
 				}
 		};		
-		
+		if(localStorage.defeatedSuccubus != null){
+			var myBool = (localStorage.defeatedSuccubus == "true")
+				if(myBool == true){
+					defeatedSuccubus = true;
+				}
+				else if(defeatedArchmage == true){
+					setTimeout(function() { succubusRaid(); }, 30000);			//defeated archmage but haven't defeated succubus yet, start raids again
+				}				
+		};
+setTimeout(function() { triggerSuccubus(); }, 30000);		
 		if(localStorage.peasantsKilled != null){
 			peasantsKilled = parseInt(localStorage.peasantsKilled);
 			document.getElementById("peasantsKilled").innerHTML = peasantsKilled;
@@ -413,7 +428,10 @@
 			minersKilled = parseInt(localStorage.minersKilled);
 			document.getElementById("minersKilled").innerHTML = minersKilled;
 		}			
-		
+		if(localStorage.unitsSeduced != null){
+			unitsSeduced = parseInt(localStorage.unitsSeduced);
+			document.getElementById("unitsSeduced").innerHTML = unitsSeduced;
+		}			
 		if(localStorage.lastPage != null){
 			lastPage = localStorage.lastPage;
 		}

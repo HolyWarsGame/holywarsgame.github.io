@@ -128,7 +128,7 @@ Building.prototype.buy = function(){
 					document.getElementById('Magic').style.display = "block";
 					document.getElementById('manadiv').style.display = "block";
 					document.getElementById('TowerMenu').style.display = "block";
-					document.getElementById('builtTowerAlert').style.display = "block";					
+					document.getElementById('builtTowerAlert').style.display = "block";
 				default:
 			}
 		}

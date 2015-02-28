@@ -113,6 +113,7 @@ function clickThing(number, type)
 
 function debugCurrency(){
 	gold = gold + 1000000;
+	wood = wood + 10000;
 	iron = iron + 10000;	
 	silver = silver + 10000;
 	faith = faith + 10000;
@@ -332,6 +333,9 @@ function UpdateButtons() {
 	
 	//Archmage Button
 	Archmage.canFight();
+
+	//Succubus Button
+	Succubus.canFight();
 	//End of Battle Buttons
 	
 	//Changes status of Spell buttons

@@ -8,13 +8,16 @@ var defeatedHhounds = false;
 var defeatedPixie = false;
 var defeatedArchmage = false;
 var defeatedArmor = false;
+var defeatedSuccubus = false;
 var goldStolen = 0;
 var justStolen = 0;
 var typeKilled = "none"	//HHound statistic
 var justKilled = 0;		//HHound statistic
 var peasantsKilled = 0; //HHound statistic
 var minersKilled = 0;
+var unitsSeduced = 0;   //Succubus statistic
 var inbattle = false;
+var curBattling;
 
 var Raidtime = 0;
 var BattlePower = 0;
@@ -56,6 +59,7 @@ var Enemy = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, html
 	this.percentIncrement = percentIncrement;
 	this.speed = speed;
 	this.fightable = false;
+	//Need to add $bar here to add % fight spell?
 };
 
 //Fighting enemy function prototype
@@ -70,6 +74,7 @@ Enemy.prototype.fight = function(){
 	
 	if(this.fightable == true){
 	inbattle = true;
+	curBattling = this.name
 		document.getElementById(this.htmlBoxRef).style.display = "block";
 		var $bar = $(document.getElementById(this.htmlBarRef));
 		var progress = setInterval(function() {
@@ -231,6 +236,10 @@ function setDefeatEvents(name){
 		case 'Archmage':
 			document.getElementById('buildTowerTab').style.display = "block";
 			defeatedArchmage = true;
+			setTimeout(function() { triggerSuccubus(); }, 30000);
+		
+		case 'Succubus':
+			defeatedSuccubus = true;
 		break;
 		
 		default:
@@ -367,9 +376,81 @@ var Armor = new Enemy("Armor", armorDesc, 'BatArmorProgBarBox','BatArmorProgBar'
 setEnemyDescription(Armor, 'btnDescArmor');
 
 var archmageDesc = "One of The Evil One's lieutenants, capable of casting nasty and powerful spells.";
-var Archmage = new Enemy("Archmage", archmageDesc, 'BatMageProgBarBox','BatMageProgBar','btnBatMage','unlockWizardTowerAlert',20000,0,0,1,2000);
+var Archmage = new Enemy("Archmage", archmageDesc, 'BatMageProgBarBox','BatMageProgBar','btnBatMage','unlockWizardTowerAlert',20000,750,0,1,2000);
 setEnemyDescription(Archmage, 'btnDescMage');
 
+var succubusDesc = "A very shapely demon. She has magic powers that make it difficult to resist her will. Not wearing any clothes probably helps too.";
+var Succubus = new Enemy("Succubus", succubusDesc, 'BatSuccubusProgBarBox','BatSuccubusProgBar','btnBatSuccubus','SuccubusDefeatAlert',35000,2000,0,1,2000);
+setEnemyDescription(Succubus, 'btnDescSuccubus');
+
+function triggerSuccubus(){
+	document.getElementById('EvilOneIreAlert').style.display = "block";	
+	document.getElementById('BatSuccubus').style.display = "block";
+	succubusRaid();
+}
+
+function succubusRaid(){
+		if(defeatedSuccubus == false){
+		var raidtime = Math.floor((Math.random() * 130) + 70); ;
+//		console.log("Raidtime in: " + raidtime)
+		var ticker = raidtime;
+		
+		var raid = setInterval(function() {
+			ticker = ticker - 1;  
+//			console.log(ticker);
+		  if (ticker == 0){
+			clearInterval(raid);
+			if(defeatedSuccubus == false){
+				succubusSeduce();
+				succubusRaid();
+				//Dismisses Raid Alert
+				var ticker2 = 0 ;
+				var clearAttackAlert = setInterval(function() {
+					ticker2 = ticker2 + 1;   
+						if (ticker2 == 20){
+							clearInterval(clearAttackAlert);
+							if(document.getElementById('SuccubusAttackAlert').style.display == "block"){
+							document.getElementById("SuccubusAttackAlert").style.display = "none";
+						}	
+					}
+				}, 1000);	
+				//End Dismisses Raid Alert
+			}
+		  }
+		}, 1000);				
+	};	
+}
+
+function succubusSeduce(){
+	//find highest tier unit in barracks
+	var highestTier
+	var previousTier
+	
+	if(Paladin.number > 0){
+		highestTier = Paladin
+		previousTier = Knight
+	}
+	else if(Knight.number > 0){
+		highestTier = Knight
+		previousTier = Squire
+	}
+	else{
+		highestTier = Squire
+		previousTier = Page
+	}
+	
+	highestTier.number = highestTier.number - 1;
+	previousTier.number = previousTier.number + 1;
+	unitsSeduced = unitsSeduced + 1;
+	
+	document.getElementById(highestTier.htmlNumRef).innerHTML = highestTier.number;
+	document.getElementById(previousTier.htmlNumRef).innerHTML = previousTier.number;		
+	document.getElementById('seducedUnitType').innerHTML = highestTier.name;
+	document.getElementById('previousUnitType').innerHTML = previousTier.name;
+	document.getElementById('unitsSeduced').innerHTML = unitsSeduced;
+	
+	document.getElementById('SuccubusAttackAlert').style.display = "block"
+}
 
 window.setInterval(function(){					//Calculates Battle Power 
 	calculateBattlePower();

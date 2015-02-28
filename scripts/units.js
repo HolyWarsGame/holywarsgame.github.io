@@ -52,7 +52,7 @@ Unit.prototype.buyOne = function(){
 			document.getElementById(this.htmlNumRef).innerHTML = this.number;  							      //updates the number of Unit for the user
 			document.getElementById('gold').innerHTML = gold;  										          //updates the number of gold for the user
 			document.getElementById('iron').innerHTML = iron;  										          //updates the number of iron for the user
-			document.getElementById('silver').innerHTML = iron;  										       //updates the number of silver for the user
+			document.getElementById('silver').innerHTML = silver;  										       //updates the number of silver for the user
 			document.getElementById('faith').innerHTML = faith;  										      //updates the number of faith for the user
 			document.getElementById('souls').innerHTML = souls;  										      //updates the number of souls for the user
 			if(this.hasReqUnit == true){
@@ -183,10 +183,10 @@ var Priest = new Unit("Priest",'priests','PriestCost','none','PriestSilverCost',
 setDescription(Priest, 'BtnPriestDesc');
 
 var shadeDesc = "This spirits are but a barely present in our world, but they are still capable of damaging demonic beings. <br>Provides 5 army strength. <br>Provides 10 spiritual strength."
-var Shade = new Unit("BenevolentShade",'shades','ShadeCost','none','shadeSilverCost','none','shadeSoulCost','btnBuyShade',10000,0,250,0,200,1.1, shadeDesc, 0, false, "none");
+var Shade = new Unit("BenevolentShade",'shades','ShadeCost','none','shadeSilverCost','none','shadeSoulCost','btnBuyShade',10000,0,250,0,200,1.15, shadeDesc, 0, false, "none");
 setDescription(Shade, 'BtnShadeDesc');
 
 var aspectDesc = "These shades are now able to animate armor that you make from silver. They are much more capable of battling demonic beings. <br> Provides 100 army strength. <br>Provides 50 spiritual strength."
-var Aspect = new Unit("AspectofJustice",'aspects','AspectCost','aspectIronCost','aspectSilverCost','none','aspectSoulCost','btnBuyAspect',15000,1000,500,0,500,1.1, aspectDesc, 0, true, Shade);
+var Aspect = new Unit("AspectofJustice",'aspects','AspectCost','aspectIronCost','aspectSilverCost','none','aspectSoulCost','btnBuyAspect',15000,1000,500,0,500,1.2, aspectDesc, 0, true, Shade);
 setDescription(Aspect, 'BtnAspectDesc');
 

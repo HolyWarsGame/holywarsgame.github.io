@@ -77,6 +77,7 @@ Archmage - open portal?
 	- imbue weapon (i.e. increase soul gain rate by 25%)
 	- transmutation/alchemy (convert resources)
 	- rapture (convert Master Paladin to Seraphim)
+	- Arcane Focus building - > lets you store more mana for more expensive spells
 	
 
 Intermediate Goals: Defeat lieutenants 
