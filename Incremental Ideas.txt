@@ -50,10 +50,10 @@ Faith-production units: Acolyte
 			- upgrade to have % of faith turned into souls (battle-hardened)
 
 Building Unit/Upgrade:  Cathedral - unlocks Faith units (requires resources)
-			Mine - unlocks Miner unit 
+		//	Mine - unlocks Miner unit 
 			Monastery - generates priest
-			Barracks - generate knights 
-			Tavern - generate peasants 
+		//	Barracks - generate knights 
+		//	Tavern - generate peasants 
 				- upgrade to generate one of each non-combat unit					
 			Spirit Nexus - generate benevolent shade
 			Divine Gate - generate angel

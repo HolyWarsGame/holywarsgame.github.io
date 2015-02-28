@@ -91,12 +91,12 @@ function clickThing(number, type)
 		
 		case "peasant":
 			Peasant.number = Peasant.number + number;
-			document.getElementById("peasants").innerHTML = Peasant.number;		
+			document.getElementById("peasants").innerHTML = Peasant.number;
 			break;
 
 		case "miner":
 			Miner.number = Miner.number + number;
-			document.getElementById("miners").innerHTML = Miner.number + tavernminers;		
+			document.getElementById("miners").innerHTML = Miner.number + tavernminers;	
 			break;			
 		
 		case "souls":
@@ -359,7 +359,9 @@ window.setInterval(function(){
 
 	//Mana generation per second
 	if(towerBuilt == true){
-		clickThing(1,"mana");
+		if(mana < manaCap){
+			clickThing(1,"mana");
+		}
 	}
 	
 }, 1000);

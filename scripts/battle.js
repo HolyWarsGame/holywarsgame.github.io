@@ -397,6 +397,7 @@ function triggerSuccubus(){
 }
 
 function succubusRaid(){
+		document.getElementById('BatSuccubus').style.display = "block";
 		if(defeatedSuccubus == false){
 		var raidtime = Math.floor((Math.random() * 130) + 70); ;
 //		console.log("Raidtime in: " + raidtime)

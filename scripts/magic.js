@@ -1,3 +1,4 @@
+var manaCap = 2000;
 
 var Spell = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, htmlAlertRef, goldCost, woodCost, ironCost, silverCost, faithCost, soulCost, manaCost){
 	this.name = name;
@@ -101,3 +102,42 @@ FastForward.cast = function(){
 function checkSpellButtons(){
 	FastForward.canCast();
 };
+
+window.setInterval(function(){                                 
+	document.getElementById("manaCap").innerHTML = manaCap;	
+	
+	var percentFull = ((mana/manaCap)*100).toFixedDown(1);
+	
+	var $bar = $(document.getElementById('manaprogbar'));
+		$bar.width(percentFull +'%');
+		$bar.attr('aria-valuenow',percentFull);
+		$bar.text(percentFull + '%' + " mana");
+	
+	var currWidth = parseInt($bar.attr('aria-valuenow'));
+    var maxWidth = parseInt($bar.attr('aria-valuemax'));
+	if (currWidth >= maxWidth){
+		$bar.text("Mana Full!");
+	}
+	
+/*			
+			//update the progress
+			$bar.width(perComplete +'%');
+			$bar.attr('aria-valuenow',perComplete);
+			$bar.text(perComplete+'%');
+			perComplete = perComplete + perIncrement;
+			
+		  if (currWidth >= maxWidth){
+			$bar.text("Complete!");
+			document.getElementById(alert).style.display = "block";			//Displays alert related to this battle
+			document.getElementById(box).style.display = "none";			//Hides progress bar box
+			document.getElementById(btn).innerHTML = EnemyName + " Defeated!";     //Changes button text
+			document.getElementById(btn).disabled = true;					//disables the buttons
+			inbattle = false;
+			
+			setDefeatEvents(EnemyName);
+		  } 		
+*/
+	
+	
+},100);
+
