@@ -107,7 +107,7 @@
 		</li>
 		<li>
 			<div id = "wooddiv" >
-				<img src = "images/woodsmall.png" alt="Iron bar" id="reswoodimage">
+				<img src = "images/woodsmall.png" alt="Logs" id="reswoodimage">
 				Wood: <span id="wood">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
 			</div>
 		</li>		
@@ -123,13 +123,6 @@
 				Silver: <span id="silver">0</span>     <!--( <span id="silverpersec">0</span> silps)-->	
 			</div>
 		</li>		
-		<li>
-			<div id = "armystrdiv" style="display: none;">
-			<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
-				<img src = "images/armsmall.png" alt="Army Power">
-				Army: <span id="BattlePower">0</span> 
-			</div>
-		</li>
 		<li>			
 			<div id = "faithdiv" style="display: none;">
 				<img src = "images/faithsmall.png" alt="Praying Hands"  id="resfaithimage">
@@ -146,6 +139,13 @@
 			<div id = "manadiv" style="display: none;">
 				<img src = "images/manasmall.png" alt="Mana Crystal" id="resmanaimage">
 				Mana: <span id="mana">0</span>    <!--( <span id="manapersec">0</span> mps)	-->	
+			</div>
+		</li>
+		<li>
+			<div id = "armystrdiv" style="display: none;">
+			<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
+				<img src = "images/armsmall.png" alt="Army Power">
+				Army: <span id="BattlePower">0</span> 
 			</div>
 		</li>		
 		</div>
@@ -171,17 +171,17 @@
 		<button id=btnbuyPeasant onclick="Peasant.buyOne()"	type="button" class="btn btn-default">Recruit Peasant</button>
 		<button id=btnPeasantUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PeasantUpgradeTab" aria-expanded="false" aria-controls="PeasantUpgradeTab">Upgrades</button>		
 		<br />
-		 Peasant Cost: <span id="PeasantCost">50</span> gold
+		 <img src = "images/money_goldsmall.png" title ="Gold" > <span id="PeasantCost">50</span> 
 			<div id ="PeasantUpgradeTab" class = "collapse">
 				<div class = "well">
 					<button id=btnPeasantUpgrade1 onclick="peasantUpgradeCollection()"	type="button" class="btn btn-default" title = "Your peasants become more capable at finding gold. Doubles gold collection rate.">Peasant Power</button>
 					<br />
-					Upgrade Cost: 2000 gold
+					<img src = "images/money_goldsmall.png" title ="Gold" > 2,000
 					<br /><br />				
 				
 					<button id=clickGoldUpgrade onclick="upgradeClickGoldMultiplier()"	type="button" class="btn btn-default" title = "Your peasants learn to assist your gold collection. Doubles gold collected when clicking.">Click Upgrade</button>
 					<br />
-					Upgrade Cost: 1500 gold
+					<img src = "images/money_goldsmall.png" title ="Gold" > 1,500
 					<br />
 				</div>
 			</div>
@@ -196,12 +196,12 @@
 		<button id=btnbuyLumberjack onclick="Lumberjack.buyOne()"	type="button" class="btn btn-default">Recruit Lumberjack</button>
 		<button id=btnLumberjackUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#LumberjackUpgradeTab" aria-expanded="false" aria-controls="LumberjackUpgradeTab">Upgrades</button>		
 		<br />
-		 Lumberjack Cost: <span id="LumberjackCost">150</span> gold
+		 <img src = "images/money_goldsmall.png" title ="Gold" > <span id="LumberjackCost">150</span>
 			<div id ="LumberjackUpgradeTab" class = "collapse">
 				<div class = "well">
 					<button id=btnljackUpgrade1 onclick="lumberjackUpgradeCollection()"	type="button" class="btn btn-default" title = "Your lumberjacks are now equipped with reinforced axes that allow them to chop longer before the axes get dull.">Reinforce Axes</button>
 					<br />
-					Upgrade Cost: 2500 gold and 1500 iron
+					<img src = "images/money_goldsmall.png" title ="Gold" > 2500 | <img src = "images/ironsmall.png" title="Iron"> 1500
 					<br /> <br />
 				</div>
 			</div>
@@ -215,18 +215,18 @@
 			<button id=btnbuyMiner onclick="Miner.buyOne()"	type="button" class="btn btn-default">Hire Miner</button>
 			<button id=btnMinerUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#MinerUpgradeTab" aria-expanded="false" aria-controls="MinerUpgradeTab">Upgrades</button>
 			<br />
-			 Miner Cost: <span id="MinerCost">250</span> gold
+			 <img src = "images/money_goldsmall.png" title ="Gold" > <span id="MinerCost">250</span> 
 			<br />
 			<div id ="MinerUpgradeTab" class = "collapse">
 				<div class = "well">
 					<button id=btnminerUpgrade1 onclick="minerUpgradePanning()"	type="button" class="btn btn-default" title = "Your miners now pan for gold in their spare time. Miners now generate 1 gold per second.">Learn Panning</button>
 					<br />
-					Upgrade Cost: 3500 gold and 1000 iron
+					<img src = "images/money_goldsmall.png" title ="Gold" > 3,500 | <img src = "images/ironsmall.png" title="Iron"> 1,000 
 					<br /> <br />
 					
 					<button id=btnminerUpgrade2 onclick="minerUpgradeSilver()"	type="button" class="btn btn-default" title = "Better mining techniques and tools allow your miner to find silver veins. Miners now find 0.5 silver per second.">Silver Studies</button>
 					<br />
-					Upgrade Cost: 7500 gold and 2500 iron
+					<img src = "images/money_goldsmall.png" title ="Gold" > 7500 | <img src = "images/ironsmall.png" title="Iron"> 2500
 					<br />					
 				</div>
 			</div>			
@@ -247,7 +247,7 @@
 			<button id=btnbuyAcolyte onclick="Acolyte.buyOne()"	type="button" class="btn btn-default">Recruit Acolyte</button>
 			<button id=btnAcolyteUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#AcolyteUpgradeTab" aria-expanded="false" aria-controls="AcolyteUpgradeTab">Upgrades</button>
 			<br />
-			Acolyte Cost: <span id="AcolyteCost">500</span> gold
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="AcolyteCost">500</span>
 			<br />
 			<div id ="AcolyteUpgradeTab" class = "collapse">
 				<div class = "well">
@@ -265,7 +265,7 @@
 			<button id=btnbuyPriest onclick="Priest.buyOne()"	type="button" class="btn btn-default">Train Priest</button>
 			<button id=btnPriestUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
 			<br />
-			Priest Cost: <span id="PriestCost">1000</span> gold, <span id="PriestSilverCost">10</span> silver, <span id="PriestFaithCost">50</span> faith, and 1 acolyte
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="PriestCost">1000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="PriestSilverCost">10</span> | <img src = "images/faithsmall.png" alt="Praying Hands"> <span id="PriestFaithCost">50</span> faith | 1 acolyte
 			<br />
 			<div id ="PriestUpgradeTab" class = "collapse">
 				<div class = "well">
@@ -290,15 +290,15 @@
 			<button id=btnBuyPage onclick="Page.buyOne()"	type="button" class="btn btn-default">Train Page</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PageUpgradeTab" aria-expanded="false" aria-controls="PageUpgradeTab">Upgrades</button>
 			<br />
-			Page Cost: <span id="PageCost">500</span> gold and <span id="PageIronCost">100</span> iron
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="PageCost">500</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="PageIronCost">100</span>
 			<br />
 			<hr>
 			<div id ="PageUpgradeTab" class = "collapse">
 				<div class = "well">
 					<button id=btnPageUpgrade1 onclick="UnlockSquire()"	type="button" class="btn btn-default" title = "Your squires become more knowledgeable and skilled. Unlocks the Squire.">Unlock Squire</button>
 					<br />
-					Requires: 120 Army strength <br />
-					Upgrade Cost: 4000 gold
+					Requires: <img src = "images/armsmall.png" title="Army Power"> 120 <br />
+					<img src = "images/money_goldsmall.png" title ="Gold" > 4000
 					<br />
 				</div>
 			</div>			
@@ -312,7 +312,7 @@
 			<button id=btnBuySquire onclick="Squire.buyOne()"	type="button" class="btn btn-default">Promote Squire</button>
 			<button id=btnSquireUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#SquireUpgradeTab" aria-expanded="false" aria-controls="SquireUpgradeTab">Upgrades</button>
 			<br />
-			Squire Cost: <span id="SquireCost">1200</span> gold, <span id = "SquireIronCost">250</span> iron, and 1 Page
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="SquireCost">1200</span> | <img src = "images/ironsmall.png" title="Iron"> <span id = "SquireIronCost">250</span> | 1 Page
 			<br />
 			<hr>	
 		</div>		
@@ -320,8 +320,8 @@
 			<div class = "well">
 					<button id=btnSquireUpgrade1 onclick="UnlockKnight()"	type="button" class="btn btn-default" title = "Your squires become more knowledgeable and skilled. Unlocks the Knight.">Unlock Knight</button>
 					<br />
-					Requires: 500 Army strength <br />
-					Upgrade Cost: 8000 gold
+					Requires: <img src = "images/armsmall.png" title="Army Power"> 500 <br />
+					<img src = "images/money_goldsmall.png" title ="Gold" > 8000 
 					<br />
 			</div>
 
@@ -335,7 +335,7 @@
 			<button id=btnBuyKnight onclick="Knight.buyOne()"	type="button" class="btn btn-default">Promote Knight</button>
 			<button id=btnKnightUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#KnightUpgradeTab" aria-expanded="false" aria-controls="KnightUpgradeTab">Upgrades</button>
 			<br />
-			Knight Cost: <span id="KnightCost">3000</span> gold, <span id= "KnightIronCost">350</span> iron, and 1 Squire
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="KnightCost">3000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id= "KnightIronCost">350</span> | 1 Squire
 			<br />
 			<hr>
 		</div>		
@@ -353,7 +353,7 @@
 			<button id=btnBuyPaladin onclick="Paladin.buyOne()"	type="button" class="btn btn-default">Train Paladin</button>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
 			<br />
-			Paladin Cost: <span id="PaladinCost">10,000</span> gold, <span id="PaladinIronCost">500</span> iron, <span id="PaladinSilverCost">50</span> silver, <span id="PaladinFaithCost">100</span> faith, 1 Knight
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="PaladinCost">10,000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="PaladinIronCost">500</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="PaladinSilverCost">50</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="PaladinFaithCost">100</span> | 1 Knight
 			<br /><br />
 		</div>
 		
@@ -361,7 +361,7 @@
 			<div class = "well">
 			<button id=paladinUpgrade1 onclick="paladinUpgradeWeapon()" title= "Your paladins imbue their weapons with their faith, doubling their battle power and soul collection rate."	type="button" class="btn btn-default">Imbue Weapon</button>		
 			<br />
-			Imbue weapon costs 20,000 gold, 5,000 iron, and 2,500 faith.
+			<img src = "images/money_goldsmall.png" title ="Gold" > 20,000 | 5,000 <img src = "images/ironsmall.png" title="Iron"> | <img src = "images/faithsmall.png" title="Faith"> 2,500
 			</div>
 		</div>
 	 </div>
@@ -379,7 +379,7 @@
 				<button id=btnTavernUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#TavernUpgradeTab" aria-expanded="false" aria-controls="TavernUpgradeTab">Upgrades</button>
 				<br />
 				
-				Tavern Cost: <span id="TavernCost">5,000</span> gold, 2500 wood
+				<img src = "images/money_goldsmall.png" title ="Gold" data-html="true" id="resgoldimage"> <span id="TavernCost">5,000</span> | <img src = "images/woodsmall.png" title = "Wood" id="reswoodimage"> 2500 
 				<br />
 				Peasants recruited by tavern: <span id="tavernpeasants">0</span>
 				<br />
@@ -387,50 +387,54 @@
 					<div class = "well">
 					<button id=btnUpgradeTavern onclick="upgradeTavern()" title="Your tavern is now also recruiting miners using ladies of the night and handing out hip-flasks to new miners."	type="button" class="btn btn-default">Mining Initiative</button>		
 					<br />
-					Mining Initiative Cost: 10,000 gold and 5,000 iron
+					<img src = "images/money_goldsmall.png" title ="Gold" data-html="true" id="resgoldimage"> 10,000 | <img src = "images/ironsmall.png" title="Iron"> 5,000
 					<br />
 					Miners recruited by tavern: <span id="tavernminers">0</span>
 					</div>
 				</div>				
 		</div>
-			<br />
-
+		<hr>
+		
 			<div id = "WoodcuttingTab" class = "container">
 				<button id=btnOpenMill title="Constructing a lumber mill allows you to hire lumberjacks and gather wood." onclick="Lumbermill.buy()"	type="button" class="btn btn-default">Construct Lumber Mill</button>
 				<br />
-				Opening the Lumber Mill costs 750 gold, 100 wood.
-				<br /><br />
+				<img src = "images/money_goldsmall.png" title ="Gold"> 750 | <img src = "images/woodsmall.png" title = "Wood"> 100
+				<br />
 			</div>
+			<hr>
 			
 			<div id = "OpenMinesTab" class = "container">
 				<button id=btnOpenMines title="Opening the mines lets you collect minerals" onclick="Mines.buy()"	type="button" class="btn btn-default">Open Mines</button>
 				<br />
-				Opening the mine costs 1,250 gold, 200 wood.
-				<br /><br />
+				<img src = "images/money_goldsmall.png" title ="Gold"> 1,250 | <img src = "images/woodsmall.png" title = "Wood"> 200
+				<br />
 			</div>
+			<hr>
 			
 			<div id = "OpenBarracksTab" class = "container">
 			<button id=btnOpenBarracks title="Build a structure to train units ready to battle evil" onclick="Barracks.buy()"	type="button" class="btn btn-default">Construct Barracks</button>
 			<br />
-			Building the barracks will cost 5,000 gold, 1,000 wood, and 250 iron.
-			<br /><br />
+			<img src = "images/money_goldsmall.png" title ="Gold" > 5,000 | <img src = "images/woodsmall.png" title = "Wood"> 1,000 | <img src = "images/ironsmall.png" title="Iron"> 250
+			<br />
 			</div>
+			<hr>
 			
 			<div id = buildTowerTab class = container style="display: none;">
 			<button id=btnOpenTower title="Build a glorious tower for your Archmage to channel his energies and cast spells from." onclick="Tower.buy()" type="button" class="btn btn-default">Construct Tower</button>
 			<br />
-			Building the tower will cost 1,000,000 gold, 700,000 wood, 10,000 iron, 500 silver, and 1,000 faith.
-			<br /><br />
+			<img src = "images/money_goldsmall.png" title ="Gold"> 1,000,000 | <img src = "images/woodsmall.png" title = "Wood">700,000 | <img src = "images/ironsmall.png" title="Iron"> 10,000 | <img src = "images/silverOresmall.png" title="Silver"> 500 | <img src = "images/faithsmall.png" title="Faith"> 1,000
+			<br />
 			</div>
+			<hr>
 
 		
 			<div id = "FaithStructuresTab" class = "container" style="display: none;">
 				<button id=btnOpenCathedral title="Construct a sturdy stone and iron structure meant for contemplation and worship." onclick="Cathedral.buy()"	type="button" class="btn btn-default">Build Cathedral</button>
 				<br />
-				Opening the cathedral costs 15,000 gold, 500 iron, 100 silver.
-				<br />
+				<img src = "images/money_goldsmall.png" title ="Gold" > 15,000 | <img src = "images/woodsmall.png" title = "Wood"> 2,500 | <img src = "images/ironsmall.png" title="Iron"> 500 | <img src = "images/silverOresmall.png" title="Silver"> 100
 				<br />
 			</div>
+			<hr>
 	 </div>
 	 
 	 <div id="Ethereal" class = "panel panel-default" style="display: none;">
@@ -446,7 +450,7 @@
 			<button id=btnBuyShade onclick="Shade.buyOne()"	type="button" class="btn btn-default">Summon Shade</button>
 			<button id=btnShadeUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#ShadeUpgradeTab" aria-expanded="false" aria-controls="ShadeUpgradeTab">Upgrades</button>
 			<br />
-			Shade Cost: <span id="ShadeCost">10,000</span> gold, <span id = "shadeSilverCost">250</span> silver, <span id="shadeSoulCost">200</span> souls.
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="ShadeCost">10,000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id = "shadeSilverCost">250</span> | <img src = "images/soulssmall.png" title="Souls"> <span id="shadeSoulCost">200</span>
 			<br />
 			<hr>
 			<div id ="ShadeUpgradeTab" class = "collapse">
@@ -465,12 +469,12 @@
 			<button id=btnBuyAspect onclick="Aspect.buyOne()"	type="button" class="btn btn-default">Upgrade Shade</button>
 			<button id=btnAspectUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#AspectUpgradeTab" aria-expanded="false" aria-controls="AspectUpgradeTab">Upgrades</button>
 			<br />
-			Aspect Cost: <span id="AspectCost">15,000</span> gold, <span id="aspectIronCost">1000</span> iron, <span id="aspectSilverCost">500</span> silver, <span id="aspectSoulCost">500</span> souls.
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="AspectCost">15,000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="aspectIronCost">1000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="aspectSilverCost">500</span> | <img src = "images/soulssmall.png" title="Souls"> <span id="aspectSoulCost">500</span> | 1 Shade
 			<br />
 			<hr>
 			<div id ="AspectUpgradeTab" class = "collapse">
 				<div class = "well">
-					 No Upgrades implemented for Shades yet.
+					 No Upgrades implemented for Aspect of Justices yet.
 					<br />
 				</div>
 			</div>			
@@ -494,7 +498,7 @@
 			<a id = 'BtnSpellFFDesc' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Time Skip" data-content = ''>Time Skip</a>
 			<br /><br />
 			<button id=btnSpellFF onclick="FastForward.cast()"	type="button" class="btn btn-default">Cast Spell</button>
-			<br />	Mana Cost: 1,000 Mana
+			<br />	<img src = "images/manasmall.png" Title="Mana">1,000
 		</div>				
 		<br />	
 	 </div>	 
@@ -517,7 +521,7 @@
 		data-content="" >A Horde of Goblins</a>
 		<br />
 				<button id=btnBatGoblins onclick="Goblins.fight()"	type="button" class="btn btn-danger">Battle!</button>
-				<br />Requires army power: 75 <br />
+				<br />Requires <img src = "images/armsmall.png" title="Army Power"> 75 <br />
 			<div id="BatGoblinsProgBarBox" class="progress" style="display: none;">
 			  <div id="BatGoblinsProgBar" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
 				0%
@@ -533,7 +537,7 @@
 		<br />
 				<button id=btnBatBandits onclick="Bandits.fight()"	type="button" class="btn btn-danger">Battle!</button>
 				<br />They have stolen <span id='goldStolen'>0</span> gold from you.
-				<br />Requires army power: 100 <br />
+				<br />Requires <img src = "images/armsmall.png" title="Army Power"> 100 <br />
 			<div id="BatBanditsProgBarBox" class="progress" style="display: none;">
 			  <div id="BatBanditsProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
 				0%
@@ -549,7 +553,7 @@
 		<br />
 			<button id=btnBatOgre onclick="Ogre.fight()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
-			Requires army power: 500 <br />
+			Requires <img src = "images/armsmall.png" title="Army Power"> 500 <br />
 				<div id="BatOgreProgBarBox" class="progress" style="display: none;">
 				  <div id="BatOgreProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
 					0%
@@ -565,7 +569,7 @@
 			<br />
 			<button id=btnBatHellhound onclick="Hellhounds.fight()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
-			Requires army power: 2000 <br />
+			Requires <img src = "images/armsmall.png" title="Army Power"> 2000 <br />
 			Peasants Killed: <span id = "peasantsKilled">0</span> <br />
 			Miners Killed: <span id = "minersKilled">0</span> <br />
 				<div id="BatHhoundProgBarBox" class="progress" style="display: none;">
@@ -583,7 +587,7 @@
 			<br />
 			<button id=btnBatPixie onclick="Pixie.fight()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
-			Requires army power: 3500 <br />
+			Requires <img src = "images/armsmall.png" title="Army Power"> 3500 <br />
 			Requires spirit power: 100 <br />
 				<div id="BatPixieProgBarBox" class="progress" style="display: none;">
 				  <div id="BatPixieProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
@@ -600,7 +604,7 @@
 			<br />
 			<button id=btnBatArmor onclick="Armor.fight()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
-			Requires army power: 4000 <br />
+			Requires <img src = "images/armsmall.png" title="Army Power"> 4000 <br />
 			Requires spirit power: 250 <br />
 				<div id="BatArmorProgBarBox" class="progress" style="display: none;">
 				  <div id="BatArmorProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
@@ -617,7 +621,7 @@
 			<br />
 			<button id=btnBatMage onclick="Archmage.fight()"	type="button" class="btn btn-danger">Battle!</button>
 			<br />
-			Requires army power: 20,000 <br />
+			Requires <img src = "images/armsmall.png" title="Army Power"> 20,000 <br />
 
 				<div id="BatMageProgBarBox" class="progress" style="display: none;">
 				  <div id="BatMageProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
