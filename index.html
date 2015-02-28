@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -488,7 +487,16 @@
 	 <div id="Magic" class = "panel panel-default" style="display: none;">
 		<div class = "panel-heading">
 			<div class="panel-title">Archmage Tower</div>
-		</div>		
+		</div>				
+		
+		<div id ="FastForwardTab" class = "container">
+			<br />
+			<a id = 'BtnSpellFFDesc' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Time Skip" data-content = ''>Time Skip</a>
+			<br /><br />
+			<button id=btnSpellFF onclick="FastForward.cast()"	type="button" class="btn btn-default">Cast Spell</button>
+			<br />	Mana Cost: 1,000 Mana
+		</div>				
+		<br />	
 	 </div>	 
 	 
 	 <div id="Battle" class = "panel panel-default" style="display: none;">
@@ -799,7 +807,8 @@
 	<script type="text/javascript" src="scripts/main.js"></script>         <!--Load main script --> 
 	<script type="text/javascript" src="scripts/units.js"></script>        <!--Load unit script -->
 	<script type="text/javascript" src="scripts/buildings.js"></script>    <!--Load building script -->
-	<script type="text/javascript" src="scripts/battle.js"></script>       <!--Load Battle script -->	
+	<script type="text/javascript" src="scripts/battle.js"></script>       <!--Load Battle script -->
+	<script type="text/javascript" src="scripts/magic.js"></script>       <!--Load Magic script -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

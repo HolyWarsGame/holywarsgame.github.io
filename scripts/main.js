@@ -334,6 +334,9 @@ function UpdateButtons() {
 	Archmage.canFight();
 	//End of Battle Buttons
 	
+	//Changes status of Spell buttons
+	FastForward.canCast();
+	
 }
 
 window.setInterval(function(){                                 //Update per second counts
