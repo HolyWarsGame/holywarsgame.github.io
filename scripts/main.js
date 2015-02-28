@@ -131,6 +131,15 @@ function peasantUpgradeCollection(){
 	}	
 };
 
+function upgradeClickGoldMultiplier(){
+	if(gold >= 1500){
+		gold = gold - 1500;
+		pGoldClickUpgrade = true;	
+		document.getElementById('gold').innerHTML = gold;
+		document.getElementById("clickGoldUpgrade").disabled = true;
+	}	
+};
+
 function lumberjackUpgradeCollection(){
 	if(gold >= 2500 && iron >= 1500){
 		gold = gold - 1500;
@@ -140,15 +149,6 @@ function lumberjackUpgradeCollection(){
 		document.getElementById('iron').innerHTML = iron;
 		document.getElementById("btnljackUpgrade1").disabled = true;
 	}
-};
-
-function peasantUpgradeCollection(){
-	if(gold >= 2000){
-		gold = gold - 2000;
-		pGoldUpgrade = true;	
-		document.getElementById('gold').innerHTML = gold;
-		document.getElementById("btnPeasantUpgrade1").disabled = true;
-	}	
 };
 
 function minerUpgradePanning(){
