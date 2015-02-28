@@ -97,3 +97,7 @@ FastForward.cast = function(){
 	alert(this.name + " spell cast!\n\nYou gain " + goldGained + " gold. \nYou gain " + woodGained + 
 				     " wood.\nYou gain " + ironGained + " iron.\nYou gain " + silverGained + " silver.\nYou gain " + faithGained + " faith.\nYou gain " + soulsGained + " souls.");
 }
+
+function checkSpellButtons(){
+	FastForward.canCast();
+};

@@ -177,6 +177,13 @@ Enemy.prototype.checkFlag = function(){
 			}							
 		break;
 		
+		case 'Succubus':
+			if(defeatedSuccubus == true){
+				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
+				document.getElementById(myButton).disabled = true;	
+			}							
+		break;	
+		
 		default:		
 	}
 };
@@ -434,9 +441,12 @@ function succubusSeduce(){
 		highestTier = Knight
 		previousTier = Squire
 	}
-	else{
+	else if(Squire.number > 0){
 		highestTier = Squire
 		previousTier = Page
+	}
+	else{
+		return;
 	}
 	
 	highestTier.number = highestTier.number - 1;
@@ -451,6 +461,33 @@ function succubusSeduce(){
 	
 	document.getElementById('SuccubusAttackAlert').style.display = "block"
 }
+
+function checkBattleButtons(){
+	//Changes status of Battle Buttons
+	//Goblin Button
+	Goblins.canFight();
+	
+	//Bandit Button
+	Bandits.canFight();
+
+	//Ogre Button
+	Ogre.canFight();
+	
+	//Hellhound Button
+	Hellhounds.canFight();
+	
+	//Pixie Button
+	Pixie.canFight();
+
+	//Armor Button
+	Armor.canFight();
+	
+	//Archmage Button
+	Archmage.canFight();
+
+	//Succubus Button
+	Succubus.canFight();
+};
 
 window.setInterval(function(){					//Calculates Battle Power 
 	calculateBattlePower();

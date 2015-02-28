@@ -221,6 +221,35 @@ var Cathedral = new Building('Cathedral','btnOpenCathedral',15000,2500,500,100,0
 var towerDesc = ""
 var Tower = new Building('Tower','btnOpenTower',1000000,700000,10000,500,1000,0,towerDesc,"none",'towerBuilt');
 
+function checkBuildingButtons(){
+		//Structure Buttons
+	//Enable/disables buy tavern button depending on if there is enough currency
+	Tavern.canBuy();
+	
+	//Enable/disables tavern upgrade
+	if(tavernUpgrade == true || gold < 10000 || iron < 5000){
+		document.getElementById("btnUpgradeTavern").disabled = true;
+	}
+	else{
+		document.getElementById("btnUpgradeTavern").disabled = false;
+	}
+
+	//Changes status of the building mines button
+	Lumbermill.canBuy();
+	
+	//Changes status of the building mines button
+	Mines.canBuy();
+	
+	//Changes status of the building barracks button
+	Barracks.canBuy();
+	
+	//Changes status of the building cathedral button
+	Cathedral.canBuy();
+
+	//Changes status of the building tower button
+	Tower.canBuy();
+	//End of Structure Buttons
+};
 
 window.setInterval(function(){					//Tavern unit generation
 	clickThing(Tavern.number,"peasant");

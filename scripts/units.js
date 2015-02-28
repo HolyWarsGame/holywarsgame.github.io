@@ -190,3 +190,39 @@ var aspectDesc = "These shades are now able to animate armor that you make from 
 var Aspect = new Unit("AspectofJustice",'aspects','AspectCost','aspectIronCost','aspectSilverCost','none','aspectSoulCost','btnBuyAspect',15000,1000,500,0,500,1.2, aspectDesc, 0, true, Shade);
 setDescription(Aspect, 'BtnAspectDesc');
 
+function checkUnitButtons(){
+	//Unit Buttons //
+	//Enable/disables buy peasant button depending on if there is enough currency	
+	Peasant.canBuy();
+
+	//Enable/disables buy miner button depending on if there is enough currency
+	Lumberjack.canBuy();
+	
+	//Enable/disables buy miner button depending on if there is enough currency
+	Miner.canBuy();
+
+	//Enable/disables buy priest button depending on if there is enough currency
+	Acolyte.canBuy();	
+	
+	//Enable/disables buy priest button depending on if there is enough currency
+	Priest.canBuy();
+
+	//Enable/disables buy page button depending on if there is enough currency
+	Page.canBuy();	
+
+	//Enable/disables buy squire button depending on if there is enough currency
+	Squire.canBuy();	
+	
+	//Enable/disables buy squire button depending on if there is enough currency
+	Knight.canBuy();	
+	
+	//Enable/disables buy paladin button depending on if there is enough currency
+	Paladin.canBuy();
+	
+	//Enable/disables buy Shade button depending on if there is enough currency
+	Shade.canBuy();
+	
+	//Enable/disables buy AofJustice button depending on if there is enough currency
+	Aspect.canBuy();	
+	// End of Unit Buttons//	
+};

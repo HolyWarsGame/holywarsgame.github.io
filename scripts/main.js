@@ -226,73 +226,10 @@ function recalculateCosts(){
 
 function UpdateButtons() {
 	
-	//Unit Buttons //
-	//Enable/disables buy peasant button depending on if there is enough currency	
-	Peasant.canBuy();
+	checkUnitButtons();
+	checkBuildingButtons();
 
-	//Enable/disables buy miner button depending on if there is enough currency
-	Lumberjack.canBuy();
-	
-	//Enable/disables buy miner button depending on if there is enough currency
-	Miner.canBuy();
-
-	//Enable/disables buy priest button depending on if there is enough currency
-	Acolyte.canBuy();	
-	
-	//Enable/disables buy priest button depending on if there is enough currency
-	Priest.canBuy();
-
-	//Enable/disables buy page button depending on if there is enough currency
-	Page.canBuy();	
-
-	//Enable/disables buy squire button depending on if there is enough currency
-	Squire.canBuy();	
-	
-	//Enable/disables buy squire button depending on if there is enough currency
-	Knight.canBuy();	
-	
-	//Enable/disables buy paladin button depending on if there is enough currency
-	Paladin.canBuy();
-	
-	//Enable/disables buy Shade button depending on if there is enough currency
-	Shade.canBuy();
-	
-	//Enable/disables buy AofJustice button depending on if there is enough currency
-	Aspect.canBuy();	
-	// End of Unit Buttons//	
-	
-	
-	//Structure Buttons
-	//Enable/disables buy tavern button depending on if there is enough currency
-	Tavern.canBuy();
-	
-	//Enable/disables tavern upgrade
-	if(tavernUpgrade == true || gold < 10000 || iron < 5000){
-		document.getElementById("btnUpgradeTavern").disabled = true;
-	}
-	else{
-		document.getElementById("btnUpgradeTavern").disabled = false;
-	}
-
-	//Changes status of the building mines button
-	Lumbermill.canBuy();
-	
-	//Changes status of the building mines button
-	Mines.canBuy();
-	
-	//Changes status of the building barracks button
-	Barracks.canBuy();
-	
-	//Changes status of the building cathedral button
-	Cathedral.canBuy();
-
-	//Changes status of the building tower button
-	Tower.canBuy();
-	//End of Structure Buttons
-	
-	
 	//Upgrade Buttons//
-
 	//Unlock Squire Button
 	if(squiresUnlocked == true || (BattlePower < 120|| gold < 4000)){	
 		document.getElementById("btnPageUpgrade1").disabled = true;
@@ -309,37 +246,10 @@ function UpdateButtons() {
 		document.getElementById("btnSquireUpgrade1").disabled = false;
 	}		
 	//End of Upgrade Buttons//
-	
-	
-	
-	//Changes status of Battle Buttons
-	//Goblin Button
-	Goblins.canFight();
-	
-	//Bandit Button
-	Bandits.canFight();
-
-	//Ogre Button
-	Ogre.canFight();
-	
-	//Hellhound Button
-	Hellhounds.canFight();
-	
-	//Pixie Button
-	Pixie.canFight();
-
-	//Armor Button
-	Armor.canFight();
-	
-	//Archmage Button
-	Archmage.canFight();
-
-	//Succubus Button
-	Succubus.canFight();
-	//End of Battle Buttons
+	checkBattleButtons();	
 	
 	//Changes status of Spell buttons
-	FastForward.canCast();
+	checkSpellButtons();
 	
 }
 
@@ -418,7 +328,12 @@ window.setInterval(function(){
 	clickThing(number, "gold");
 
 	//Wood Generation via lumberjacks etc every second
-	clickThing(Lumberjack.number, "wood")	
+	var woodnumber = Lumberjack.number;
+	if(lwoodClickUpgrade == true){
+		woodnumber = Lumberjack.number * 2;
+	}
+	
+	clickThing(woodnumber, "wood")	
 	
 	//Iron Generation via miners etc every second
 	clickThing(Miner.number, "iron")

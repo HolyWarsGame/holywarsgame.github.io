@@ -417,8 +417,7 @@
 				else if(defeatedArchmage == true){
 					setTimeout(function() { succubusRaid(); }, 30000);			//defeated archmage but haven't defeated succubus yet, start raids again
 				}				
-		};
-setTimeout(function() { triggerSuccubus(); }, 30000);		
+		};	
 		if(localStorage.peasantsKilled != null){
 			peasantsKilled = parseInt(localStorage.peasantsKilled);
 			document.getElementById("peasantsKilled").innerHTML = peasantsKilled;
