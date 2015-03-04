@@ -2,23 +2,23 @@
 Enemy:  Horde of cliff Racers
 	Goblin
 	Orc
-	Brigands/bandits		
+//	Brigands/bandits		
 	Troll
-	Ogre
+//	Ogre
 	Cyclops
 	Dire Wolves
-	Putrid Ooze
+//	Putrid Ooze
 
 	Angry Demon
-	Possessed Armor
-	Hellhound
-	Gelatinous undead
+//	Possessed Armor
+//	Hellhound
+//	Undead Army + Necromancer
 	Witch
 	Werewolves
 	Bloody Wraith
 	Elder Vampire (L)
-	Succubus (L)
-	Corrupted Archmage (B)
+//	Succubus (L)
+//	Corrupted Archmage (B)
 	Corrupted Sylph
 
 
@@ -78,6 +78,7 @@ Archmage - open portal?
 	- transmutation/alchemy (convert resources)
 	- rapture (convert Master Paladin to Seraphim)
 	- Arcane Focus building - > lets you store more mana for more expensive spells
+	- Arcane Tomes/Arcane Sirraculum - > lets you store mana in the form of books
 	
 
 Intermediate Goals: Defeat lieutenants 

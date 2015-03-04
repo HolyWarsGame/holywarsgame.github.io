@@ -58,6 +58,7 @@ var FastForward = new Spell("FastForward", fastForwardDesc, 0, 0, 'btnSpellFF', 
 setSpellDescription(FastForward, 'BtnSpellFFDesc');
 
 FastForward.cast = function(){
+	
 	var timemultiplier = 15; //15 Minutes
 	var goldGained = 0;
 	var woodGained = 0;
@@ -65,7 +66,7 @@ FastForward.cast = function(){
 	var silverGained = 0;
 	var faithGained = 0;
 	var soulsGained = 0;
-	
+	if(mana >= 1000){
 	goldGained = timemultiplier*60*goldpersec;
 	gold = gold + goldGained;
 	document.getElementById('gold').innerHTML = gold;  										          //updates the number of gold for the user	
@@ -97,14 +98,39 @@ FastForward.cast = function(){
 	
 	alert(this.name + " spell cast!\n\nYou gain " + goldGained + " gold. \nYou gain " + woodGained + 
 				     " wood.\nYou gain " + ironGained + " iron.\nYou gain " + silverGained + " silver.\nYou gain " + faithGained + " faith.\nYou gain " + soulsGained + " souls.");
+
+	}
+}
+
+var fireBallDesc = "The archmage conjures a flaming ball of fire and sends it hurtling towards your foe! It will damage the enemy you are currently battling, pushing you 15% closer to victory!";
+var FireBall = new Spell("FireBall", fireBallDesc, 0, 0, 'btnSpellFB', 'Alert', 0, 0, 0, 0, 0, 0, 750);
+setSpellDescription(FastForward, 'BtnSpellFBDesc');
+
+FireBall.cast = function(){
+	if(inbattle == false){
+		alert("You are not in a battle! Your archmage declines to cast fireballs at nothing.");
+	}
+	else{
+		spellBoost(15);
+		mana = mana - this.manaCost;                                                                  //removes the souls spent	
+		document.getElementById('mana').innerHTML = mana;  										      //updates the number of souls for the user	
+		CollapseAll(); 
+		toggle('Battle');	
+	}
+
+}
+
+function spellBoost(num){			//Boosts current battle completion percent by desired number
+	spellBoostPercent = num;
 }
 
 function checkSpellButtons(){
 	FastForward.canCast();
+	FireBall.canCast();
 };
 
 window.setInterval(function(){                                 
-	document.getElementById("manaCap").innerHTML = manaCap;	
+	document.getElementById("manaCap").innerHTML = fnum(manaCap);	
 	
 	var percentFull = ((mana/manaCap)*100).toFixedDown(1);
 	
@@ -118,26 +144,5 @@ window.setInterval(function(){
 	if (currWidth >= maxWidth){
 		$bar.text("Mana Full!");
 	}
-	
-/*			
-			//update the progress
-			$bar.width(perComplete +'%');
-			$bar.attr('aria-valuenow',perComplete);
-			$bar.text(perComplete+'%');
-			perComplete = perComplete + perIncrement;
-			
-		  if (currWidth >= maxWidth){
-			$bar.text("Complete!");
-			document.getElementById(alert).style.display = "block";			//Displays alert related to this battle
-			document.getElementById(box).style.display = "none";			//Hides progress bar box
-			document.getElementById(btn).innerHTML = EnemyName + " Defeated!";     //Changes button text
-			document.getElementById(btn).disabled = true;					//disables the buttons
-			inbattle = false;
-			
-			setDefeatEvents(EnemyName);
-		  } 		
-*/
-	
-	
 },100);
 

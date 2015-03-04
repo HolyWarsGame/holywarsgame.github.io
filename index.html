@@ -9,20 +9,16 @@
     <link rel="icon" href="favicon.ico">
 
     <title>Holy Wars</title>
-
+	
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+	<!-- Custom styles for this template -->
     <link href="navbar.css" rel="stylesheet">
 	<link href="currency.css" rel="stylesheet">
-
 	
     <script src="dist/assets/js/ie-emulation-modes-warning.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src = "scripts/decimal.js"></script>
-
-	
 	<script type="text/javascript" src="scripts/saveload.js"></script>
 	
 	<script language="javascript"> 
@@ -34,20 +30,17 @@
 		else {
 			ele.style.display = "block";
 		}
-	}; 
-
+	};
 	$(function () { 
-		$("[data-toggle='popover']").popover(); 
-	});
-	
-	
+		$("[data-toggle='popover']").popover(); 	
+	});				
 	</script>
 
   </head>
 
   <body>
 
-    <div class="container">
+<div class="container">
 
       <!-- Static navbar -->
       <nav class="navbar navbar-default">
@@ -67,27 +60,29 @@
 			  <li><a id="ProductionMenu" href="javascript:CollapseAll(); toggle('Production'); setLastPage('Production');">Village</a></li>
 			  <li><a id="StructureMenu" href="javascript:CollapseAll(); toggle('Structures'); setLastPage('Structures');">Structures</a></li>
               <li><a id="FaithMenu" href="javascript:CollapseAll(); toggle('Cathedral'); setLastPage('Cathedral');" style="display: none;">Cathedral</a></li>
-			  <li><a id="BarracksMenu" href="javascript:CollapseAll(); toggle('Barracks'); setLastPage('Barracks');;" style="display: none; ">Barracks</a></li>
+			  <li><a id="BarracksMenu" href="javascript:CollapseAll(); toggle('Barracks'); setLastPage('Barracks');" style="display: none; ">Barracks</a></li>
 			  <li><a id="EtherealMenu" href="javascript:CollapseAll(); toggle('Ethereal'); setLastPage('Ethereal');" style="display: none;">Ethereal</a></li>
 			  <li><a id="TowerMenu" href="javascript:CollapseAll(); toggle('Magic'); setLastPage('Magic');" style="display: none;">Tower</a></li>
-    		  <li><a id="BattleMenu" href="javascript:CollapseAll(); toggle('Battle'); setLastPage('Battle');;">Battle</a></li>
-			  <li><a id="RelicsMenu" href="javascript:CollapseAll(); toggle('Relics'); setLastPage('Relics');;" style="display: none;">Relics</a></li>
+    		  <li><a id="BattleMenu" href="javascript:CollapseAll(); toggle('Battle'); setLastPage('Battle');">Battle</a></li>
+			  <li><a id="RelicsMenu" href="javascript:CollapseAll(); toggle('Relics'); setLastPage('Relics');" style="display: none;">Relics</a></li>
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a id="displayResourceOpt" data-toggle="collapse" href="#Resources" aria-expanded="true" aria-controls="Resources">Toggle Resources</a></li>
+				  <li><a id="display2ResourceOpt" data-toggle="collapse" href="#SecondaryResources" aria-expanded="true" aria-controls="SecondaryResources">Toggle Secondary Resources</a></li>
                   <li><a id="displayGatheringOpt" data-toggle="collapse" href="#Gathering" aria-expanded="true" aria-controls="Gathering">Toggle Gathering</a></li>
+<!--				  <li><a id="UndefeatedOpt" href="javascript:CollapseAll(); toggle('Battle'); setLastPage('Battle'); showUndefeatedBattles();">Show Undefeated Enemies</a></li> -->
+				  <li class="divider"></li>
 				  <li><a id="save" href="javascript:saveCookie();">Save</a></li>
                   <li><a id="load" href="javascript:loadCookie()">Load</a></li>
-<!--				  <li><a id="delete" href="javascript:deleteCookie()">Clear Cookies</a></li>-->
 <!--				  <li><a id="debugmoney" href="javascript:debugCurrency()">Add debugging currency</a></li> -->
                   <li class="divider"></li>
 				  <li><a id="hardreset" href="javascript:hardReset()">!Hard reset!</a></li>
 				  <li class="divider"></li>
                   <li class="dropdown-header"></li>
-<!--				  <li><a href="#" data-toggle="modal" data-target="#versionmodal">Version</a></li>-->
-				  <li><a id="verinfo" target="_blank" href="changelog.html">Version 0.6.9.1</a></li>
+				  <li><a id="ToggleTrunc" href="javascript:toggleTrunc();">Toggle Number Truncation</a></li>
+				  <li><a id="verinfo" target="_blank" href="changelog.html">Version 0.6.9.3</a></li>
                   <li><a href="#" data-toggle="modal" data-target="#aboutmodal">About</a></li>
                 </ul>
               </li>
@@ -98,66 +93,107 @@
 		
 	  
 	  <div id="Resources" class="collapse in">
-		<div class = "well well-sm">
+		<div class = "well well-sm" id = "ResourcesWell">
 		<ul id = "ResourceList">
-		<li>
-			<div id = "golddiv" >
-				<img src = "images/money_goldsmall.png" alt="Gold Coins" title ="" data-html="true" id="resgoldimage">
-				Gold: <span id="gold">0</span>  <!--( <span id="goldpersec">0</span> gps)-->
-			</div>		
-		</li>
-		<li>
-			<div id = "wooddiv" >
-				<img src = "images/woodsmall.png" alt="Logs" id="reswoodimage">
-				Wood: <span id="wood">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
-			</div>
-		</li>		
-		<li>
-			<div id = "irondiv" style="display: none;">
-				<img src = "images/ironsmall.png" alt="Iron bar" id="resironimage">
-				Iron: <span id="iron">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
-			</div>
-		</li>
-		<li>
-			<div id = "silverdiv" style="display: none;">
-				<img src = "images/silverOresmall.png" alt="Silver Ore" id="ressilverimage"> 
-				Silver: <span id="silver">0</span>     <!--( <span id="silverpersec">0</span> silps)-->	
-			</div>
-		</li>		
-		<li>			
-			<div id = "faithdiv" style="display: none;">
-				<img src = "images/faithsmall.png" alt="Praying Hands"  id="resfaithimage">
-				Faith: <span id="faith">0</span>   <!-- ( <span id="faithpersec">0</span> fps)-->	
-			</div>
-		</li>
-		<li>			
-			<div id = "soulsdiv" style="display: none;">
-				<img src = "images/soulssmall.png" alt="Souls"  id="ressoulsimage">
-				Souls: <span id="souls">0</span>  <!-- ( <span id="soulspersec">0</span> sps)	-->	
-			</div>
-		</li>
-		<li>			
-			<div id = "manadiv" style="display: none;">
-				<img src = "images/manasmall.png" alt="Mana Crystal" id="resmanaimage">
-				Mana: <span id="mana">0</span>    <!--( <span id="manapersec">0</span> mps)	-->	
-			</div>
-		</li>
-		<li>
-			<div id = "armystrdiv" style="display: none;">
-			<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
-				<img src = "images/armsmall.png" alt="Army Power">
-				Army: <span id="BattlePower">0</span> 
-			</div>
-		</li>		
+			<li>
+				<div id = "golddiv" >
+					<img src = "images/money_goldsmall.png" Title="Gold" title ="" data-html="true" id="resgoldimage">
+					
+					Gold: <span id="gold">0</span>  <!--( <span id="goldpersec">0</span> gps)-->
+				</div>		
+			</li>
+			<li>
+				<div id = "wooddiv" >
+					<img src = "images/woodsmall.png" Title="Wood" id="reswoodimage">
+					Wood: <span id="wood">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
+				</div>
+			</li>		
+			<li>
+				<div id = "irondiv" style="display: none;">
+					<img src = "images/ironsmall.png" Title="Iron" id="resironimage">
+					Iron: <span id="iron">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
+				</div>
+			</li>
+			<li>			
+				<div id = "faithdiv" style="display: none;">
+					<img src = "images/faithsmall.png" Title="Faith"  id="resfaithimage">
+					Faith: <span id="faith">0</span>   <!-- ( <span id="faithpersec">0</span> fps)-->
+				</div>
+			</li>	
+			<li>			
+				<div id = "soulsdiv" style="display: none;">
+					<img src = "images/soulssmall.png" Title="Souls"  id="ressoulsimage">
+					Souls: <span id="souls">0</span>  <!-- ( <span id="soulspersec">0</span> sps)	-->	
+				</div>
+			</li>
+			<li>			
+				<div id = "manadiv" style="display: none;">
+					<img src = "images/manasmall.png" Title="Mana" id="resmanaimage">
+					Mana: <span id="mana">0</span>    <!--( <span id="manapersec">0</span> mps)	-->	
+				</div>
+			</li>
+			</ul>
 		</div>
 	  </div>
 	  
+	  <div id="SecondaryResources" class="collapse">
+		<div class = "well well-sm" id = "SecondaryResourceWell">
+			<ul id = "SecondaryResourceList">
+
+				<li>
+					<div id = "silverdiv" style="display: none;">
+						<img src = "images/silverOresmall.png" Title="Silver" id="ressilverimage"> 
+						Silver: <span id="silver">0</span>     <!--( <span id="silverpersec">0</span> silps)-->	
+					</div>
+				</li>		
+				<li>			
+					<div id = "paperdiv" style="display: none;">
+						<img src = "images/parchmentsmall.png" Title="Paper" id="respaperimage">
+						Paper: <span id="paper">0</span>    <!--( <span id="manapersec">0</span> mps)	-->	
+					</div>
+				</li>		
+				<li>			
+					<div id = "tomediv" style="display: none;">
+						<img src = "images/bookssmall.png" Title="Holy Tomes" id="restomeimage">
+						Tomes: <span id="tomes">0</span>    <!--( <span id="manapersec">0</span> mps)	-->	
+					</div>
+				</li>		
+				<li>			
+					<div id = "armystrdiv" style="display: none;">
+					<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
+						<img src = "images/armsmall.png" Title="Army Power">
+						Army: <span id="BattlePower">0</span> 
+					</div>
+				</li>
+				<li>
+					<div id = "spiritarmystrdiv" style="display: none;">
+					<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
+						<img src = "images/armsmall.png" Title="Army Power">
+						Spirit: <span id="SpiritPower">0</span> 
+					</div>
+				</li>
+			</ul>
+		</div>
+	  </div>	  
+	  
 	  <div id="Gathering" class="collapse in">
 		<div class = "well well-sm">
-			<input type="image"  id="clickmoney" onclick="clickThing(1,'goldMouse')" src = "images/money_gold.png"/ title = "Click to gather gold yourself.">
-			<input type="image"  id="clickwood" onclick="clickThing(1,'woodMouse')" src = "images/wood.png"/ title = "Click to gather wood yourself.">			
+			<ul id = "GatherList">
+				<li><input type="image"  id="clickmoney" onclick="clickThing(1,'goldMouse')" src = "images/money_gold.png"/ title = "Click to gather gold yourself."></li>
+				<li><input type="image"  id="clickwood" onclick="clickThing(1,'woodMouse')" src = "images/wood.png"/ title = "Click to gather wood yourself."></li>
+				<li>
+					<div id ="gatherPaper" style = "display: none;">
+						<input type="image"  id="clickpaper" onclick="clickThing(1,'paperMouse')" src = "images/parchment.png"/ title = "Click to convert 50 wood into paper yourself.">
+					</div>
+				</li>
+				<li>
+					<div id ="createTome" style = "display: none;">
+						<input type="image"  id="clicktome" onclick="clickThing(1,'tomeMouse')" src = "images/books.png"/ title = "Click to convert 2000 pages and 100 faith into a tome yourself.">
+					</div>
+				</li>
+			</ul>
 		</div>
-	  </div>
+	  </div> 
 	  
 	  <div id="Production" class= "panel panel-default">
 		<div class = "panel-heading">
@@ -175,6 +211,7 @@
 		 <img src = "images/money_goldsmall.png" title ="Gold" > <span id="PeasantCost">50</span> 
 			<div id ="PeasantUpgradeTab" class = "collapse">
 				<div class = "well">
+				
 					<button id=btnPeasantUpgrade1 onclick="peasantUpgradeCollection()"	type="button" class="btn btn-default" title = "Your peasants become more capable at finding gold. Doubles gold collection rate.">Peasant Power</button>
 					<br />
 					<img src = "images/money_goldsmall.png" title ="Gold" > 2,000
@@ -183,7 +220,12 @@
 					<button id=clickGoldUpgrade onclick="upgradeClickGoldMultiplier()" 	type="button" class="btn btn-default" title = "Your peasants learn to assist your gold collection. Doubles gold collected when clicking.">Click Upgrade</button>
 					<br />
 					<img src = "images/money_goldsmall.png" title ="Gold" > 1,500
+					<br /> <br />
+					
+					<button id=clickGoldUpgrade2 onclick="upgradeClickGoldMultiplier2()" 	type="button" class="btn btn-default" title = "Your peasants learn to better assist your gold collection. Five times the gold collected when clicking.">Click Upgrade 2</button>
 					<br />
+					<img src = "images/money_goldsmall.png" title ="Gold" > 25,000
+					<br />					
 				</div>
 			</div>
 		<hr>
@@ -200,7 +242,7 @@
 		 <img src = "images/money_goldsmall.png" title ="Gold" > <span id="LumberjackCost">150</span>
 			<div id ="LumberjackUpgradeTab" class = "collapse">
 				<div class = "well">
-					<button id=btnljackUpgrade1 onclick="lumberjackUpgradeCollection()"	type="button" class="btn btn-default" title = "Your lumberjacks are now equipped with reinforced axes that allow them to chop longer before the axes get dull.">Reinforce Axes</button>
+					<button id=btnljackUpgrade1 onclick="lumberjackUpgradeCollection()"	type="button" class="btn btn-default" title = "Your lumberjacks are now equipped with reinforced axes that allow them to chop longer before the axes get dull. Lumberjacks are twice as effective at gathering wood.">Reinforced Axes</button>
 					<br />
 					<img src = "images/money_goldsmall.png" title ="Gold" > 2,500 | <img src = "images/ironsmall.png" title="Iron"> 1,500
 					<br /> <br />
@@ -239,7 +281,21 @@
 		<div class = "panel-heading">
 			<div class="panel-title">Cathedral</div>
 		</div>
-
+		
+		<div id = "RelicPedestalTab" class = "container" style="display: none;">
+			<br />
+			<a id = 'BtnRelicDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Relic on a Pedestal"
+				data-content="">Relic on a Pedestal</a> <br />
+				Faith empowering relic: <span id = 'faithDonated'>0</span> <img src = "images/faithsmall.png" title="Faith"> <br />
+				Sacrifice:<br/>
+				<div class="btn-group" role="group" aria-label="...">
+				  <button type="button" onclick = "addFaithToRelic(100)" class="btn btn-default"> 100</button>
+				  <button type="button" onclick = "addFaithToRelic(1000)" class="btn btn-default"> 1000</button>
+				  <button type="button" onclick = "addFaithToRelic(100000)" class="btn btn-default"> 100000</button>
+				</div>	
+			<br /><br />		
+		</div>
+		
 		<div id="AcolyteTab" class = "container">
 			<br />
 		<a id = 'BtnAcolyteDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Acolytes"
@@ -253,7 +309,7 @@
 			<div id ="AcolyteUpgradeTab" class = "collapse">
 				<div class = "well">
 					<br />
-					No Upgrades implemented for Acolytes yet.
+						No Upgrades implemented for Acolytes yet.
 				</div>
 			</div>
 			<hr>
@@ -266,16 +322,47 @@
 			<button id=btnbuyPriest onclick="Priest.buyOne()"	type="button" class="btn btn-default">Train Priest</button>
 			<button id=btnPriestUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
 			<br />
-			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="PriestCost">1000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="PriestSilverCost">10</span> | <img src = "images/faithsmall.png" alt="Praying Hands"> <span id="PriestFaithCost">50</span> | 1 acolyte
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="PriestCost">1000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="PriestSilverCost">10</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="PriestFaithCost">50</span> | 1 acolyte
 			<br />
 			<div id ="PriestUpgradeTab" class = "collapse">
 				<div class = "well">
 					<br />
-					No Upgrades implemented for priests yet.
+					
+					<div class = 'container'>
+					<button id=btnPriestUpgrade1 onclick="priestUpgradeCollection()"	type="button" class="btn btn-default" title = "Your priests carve rosary beads out of wood. The beads allow them to focus on the divine with more clarity. Doubles priest faith generation rate.">Rosary Beads</button>
+					<br />
+					<img src = "images/money_goldsmall.png" title ="Gold" > 7,000 | <img src = "images/woodsmall.png" title = "Wood"> 5,000 | <img src = "images/faithsmall.png" title="Faith"> 500
+					<br /><br />
+					</div>
+					
+					<div id = 'tomeUnlock' class = 'container' style="display: none;"> 
+					<button id=btnTomeUnlock onclick="UnlockTomes()"	type="button" class="btn btn-default" title = "Your priests now are able to archive knowledge of the Holy Order into tomes.">Scribing</button>
+					<br />	
+					<img src = "images/money_goldsmall.png" title ="Gold" > 12,000 | <img src = "images/parchmentsmall.png" Title="Paper"> 2,000 | <img src = "images/faithsmall.png" title="Faith"> 1,000			
+					</div>
 				</div>
 			</div>
-			<br />
+			<hr>
 		</div>
+
+		<div id="BishopTab" class = "container">
+		<a id = 'BtnBishopDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Bishops"
+    		data-content="">Bishops (<span id="bishops">0</span>)</a>
+			<br /><br />
+			<button id=btnbuyBishop onclick="Bishop.buyOne()"	type="button" class="btn btn-default">Train Bishop</button>
+			<button id=btnBishopUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#BishopUpgradeTab" aria-expanded="false" aria-controls="BishopUpgradeTab">Upgrades</button>
+			<br />
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="BishopCost">75000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="BishopSilverCost">10000</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="BishopFaithCost">5000</span> | <img src = "images/bookssmall.png" Title="Tomes"> <span id="BishopTomeCost">10</span> | 1 Priest
+			<br />
+			<div id ="BishopUpgradeTab" class = "collapse">
+				<div class = "well">
+					<br />
+					No Upgrades for Bishops yet
+				</div>
+			</div>
+			<hr>
+		</div>		
+		
 	 </div>
 	 
 	 <div id="Barracks" class= "panel panel-default" style="display: none;">
@@ -325,7 +412,6 @@
 					<img src = "images/money_goldsmall.png" title ="Gold" > 8000 
 					<br />
 			</div>
-
 		</div>
 
 
@@ -396,10 +482,39 @@
 		</div>
 		<hr>
 		
+		<div id = "PaperMillTab" class = "container"style="display: none;">
+				<br />
+				<a id = 'BtnPMillDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Paper Mills"
+				data-content="Constructing a paper mill allows you to automatically convert wood into paper. Converts 50 wood to 1 paper every 10 second">Paper Mill (<span id="papermills">0</span>)</a>			
+				<br /><br />
+				<div class="btn-group" role="group" aria-label="...">
+				  <button id ="MillLess" type = "button" class="btn btn-warning" onclick = "PaperMillOnMinus()">-</button>
+				  <button id = "MillOnOff" type="button" class="btn btn-default" onclick = "PaperMillToggle()">On/Off</button>
+				  <button id ="MillMore" type = "button" class="btn btn-warning" onclick = "PaperMillOnPlus()">+</button>
+				</div>
+				<br /><br />
+				<button id=btnbuyPMill title="Paper Mills turn wood into paper." onclick="PaperMill.buyOne()"	type="button" class="btn btn-default">Build Paper Mill</button>	
+				<button id=btnPMillUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PMillUpgradeTab" aria-expanded="false" aria-controls="PMillUpgradeTab">Upgrades</button>
+				<br />
+				<img src = "images/money_goldsmall.png" title ="Gold" data-html="true" id="resgoldimage"> <span id="pMillCost">4,500</span> | <img src = "images/woodsmall.png" title = "Wood"> <span id="pMillWoodCost">2000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="pMillIronCost">1500</span>
+				<br />
+			
+				<div id = "PMillUpgradeTab" class = "collapse" >
+					<div class = "well">
+						<div id = 'PMillUpgradeEffTab' class = 'container'> 
+							<button id=btnPmillEffUpgrade onclick="PmillEffUpgrade()"	type="button" class="btn btn-default" title = "Adjustmets to your mills make them much more efficient at converting wood into paper. They require 40% less wood.">Process Control</button>
+							<br />	
+							<img src = "images/money_goldsmall.png" title ="Gold" > 50,000 | <img src = "images/woodsmall.png" title = "Wood"> 25,000 | <img src = "images/ironsmall.png" title="Iron"> 35,000		
+						</div>
+					</div>
+				</div>				
+		</div>
+		<hr>		
+		
 			<div id = "WoodcuttingTab" class = "container">
 				<button id=btnOpenMill title="Constructing a lumber mill allows you to hire lumberjacks and gather wood." onclick="Lumbermill.buy()"	type="button" class="btn btn-default">Construct Lumber Mill</button>
 				<br />
-				<img src = "images/money_goldsmall.png" title ="Gold"> 750 | <img src = "images/woodsmall.png" title = "Wood"> 100
+				<img src = "images/money_goldsmall.png" title ="Gold"> 750 
 				<br />
 			</div>
 			<hr>
@@ -420,7 +535,7 @@
 			</div>
 			<hr>
 			
-			<div id = buildTowerTab class = container style="display: none;">
+			<div id = 'buildTowerTab' class = container style="display: none;">
 			<button id=btnOpenTower title="Build a glorious tower for your Archmage to channel his energies and cast spells from." onclick="Tower.buy()" type="button" class="btn btn-default">Construct Tower</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold"> 1,000,000 | <img src = "images/woodsmall.png" title = "Wood">700,000 | <img src = "images/ironsmall.png" title="Iron"> 10,000 | <img src = "images/silverOresmall.png" title="Silver"> 500 | <img src = "images/faithsmall.png" title="Faith"> 1,000
@@ -480,6 +595,25 @@
 				</div>
 			</div>			
 		</div>			
+
+		<div id ="AngelTab" class = "container" style="display: none;">
+			<br />
+		<a id = 'BtnAngelDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Angels"
+    		data-content="">Angels (<span id="angels">0</span>)</a>
+			<br /><br />
+			<button id=btnBuyAngel onclick="Angel.buyOne()"	type="button" class="btn btn-default">Summon Angel</button>
+			<button id=btnAngelUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#AngelUpgradeTab" aria-expanded="false" aria-controls="AngelUpgradeTab">Upgrades</button>
+			<br />
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="AngelCost">200,000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="angelIronCost">500</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="angelSilverCost">2500</span> | <img src = "images/soulssmall.png" title="Souls"> <span id="angelSoulCost">1500</span> | <img src = "images/bookssmall.png" Title="Tomes"> <span id="angelTomeCost">50</span>
+			<br />
+			<hr>
+			<div id ="AngelUpgradeTab" class = "collapse">
+				<div class = "well">
+					 No Upgrades implemented for Angels yet.
+					<br />
+				</div>
+			</div>			
+		</div>		
 		
 	 </div>
 	
@@ -501,7 +635,14 @@
 			  </div>
 			</div>	   
 			<h3> Current mana cap: <span id = "manaCap">0</span> </h3>
-	   </div>		
+	   </div>
+		<div id ="FireBallTab" class = "container">
+			<br />
+			<a id = 'BtnSpellFBDesc' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Time Skip" data-content = ''>Fire Ball</a>
+			<br /><br />
+			<button id=btnSpellFB onclick="FireBall.cast()"	type="button" class="btn btn-default">Cast Spell</button>
+			<br />	<img src = "images/manasmall.png" Title="Mana">750
+		</div>			   
 		<div id ="FastForwardTab" class = "container">
 			<br />
 			<a id = 'BtnSpellFFDesc' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Time Skip" data-content = ''>Time Skip</a>
@@ -516,228 +657,416 @@
 		<div class = "panel-heading">
 			<div class="panel-title">Battle</div>
 		</div>
+		
+	<!--<button type="button" class="close" onclick = "javascript: hideAllBattles();" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
 	   
 	   <div id="BattleStrength" class = "container">
-			<h2> Current Army Strength: <span id = "BattlePower2">0</span> power </h2>
+			<h3> Current Army Strength: <span id = "BattlePower2">0</span> power </h2>
 	   </div>
 	   <div id="SpiritualStrength" class = "container" style="display: none;">
-			<h3> Current Spirit Strength: <span id = "SpiritPower2">0</span> spirit power </h3>
-			
+			<h4> Current Spirit Strength: <span id = "SpiritPower2">0</span> spirit power </h3> <br />
+			<a href = "javascript: showUndefeatedBattles()">Show Undefeated</a>
 	   </div>
-		<hr>
-	   <div id="BatGoblins" class = "container">
-		<a id = btnDescGoblins tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Horde of Goblins"
-		data-content="" >A Horde of Goblins</a>
-		<br />
-				<button id=btnBatGoblins onclick="Goblins.fight()"	type="button" class="btn btn-danger">Battle!</button>
-				<br />Requires <img src = "images/armsmall.png" title="Army Power"> 75 <br />
-			<div id="BatGoblinsProgBarBox" class="progress" style="display: none;">
-			  <div id="BatGoblinsProgBar" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
-				0%
-			  </div>
+
+	   <hr>
+		<div class="panel-group" id="battleaccordion" role="tablist" aria-multiselectable="true">
+		
+		  <div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="GoblinTitle">
+			  <h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#GoblinCollapse" aria-expanded="true" aria-controls="GoblinCollapse">
+				  A Horde of Goblins
+				</a>
+			  </h4>
 			</div>
-		<br />
-		<br />
-	   </div>	   
-	   
-	   <div id="BatBandits" class = "container">
-		<a id = btnDescBandits tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Bandits"
-		data-content="" >Bunch of Bandits</a>
-		<br />
-				<button id=btnBatBandits onclick="Bandits.fight()"	type="button" class="btn btn-danger">Battle!</button>
-				<br />They have stolen <span id='goldStolen'>0</span> gold from you.
-				<br />Requires <img src = "images/armsmall.png" title="Army Power"> 100 <br />
-			<div id="BatBanditsProgBarBox" class="progress" style="display: none;">
-			  <div id="BatBanditsProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
-				0%
-			  </div>
+			<div id="GoblinCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="GoblinTitle">
+			   <div id="BatGoblins" class = "panel-body">
+				<a id = btnDescGoblins tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Horde of Goblins"
+				data-content="" >A Horde of Goblins</a>
+				<br />
+						<button id=btnBatGoblins onclick="Goblins.fight()"	type="button" class="btn btn-danger">Battle!</button>
+						<br />Requires <img src = "images/armsmall.png" title="Army Power"> 75 <br />
+					<div id="BatGoblinsProgBarBox" class="progress" style="display: none;">
+					  <div id="BatGoblinsProgBar" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+						0%
+					  </div>
+					</div>
+			   </div>	
 			</div>
-		<br />
-		<br />
-	   </div>
-	   
-	   <div id="BatOgre" class = "container">
-		<a id = 'btnDescOgre' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Smelly Ogre"
-		data-content="">Smelly Ogre</a>
-		<br />
-			<button id=btnBatOgre onclick="Ogre.fight()"	type="button" class="btn btn-danger">Battle!</button>
-			<br />
-			Requires <img src = "images/armsmall.png" title="Army Power"> 500 <br />
-				<div id="BatOgreProgBarBox" class="progress" style="display: none;">
-				  <div id="BatOgreProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
-					0%
-				  </div>
-				</div>
-			<br />
-			<br />
-	   </div>
+		  </div>
+		  
+		  <div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingTwo">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#BanditCollapse" aria-expanded="false" aria-controls="BanditCollapse">
+				  Bunch of Bandits
+				</a>
+			  </h4>
+			</div>
+		   <div id="BanditCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			   <div id="BatBandits" class="panel-body">
+				<a id = btnDescBandits tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Bandits"
+				data-content="" >Bunch of Bandits</a>
+				<br />
+						<button id=btnBatBandits onclick="Bandits.fight()"	type="button" class="btn btn-danger">Battle!</button>
+						<br />They have stolen <span id='goldStolen'>0</span> gold from you.
+						<br />Requires <img src = "images/armsmall.png" title="Army Power"> 100 <br />
+					<div id="BatBanditsProgBarBox" class="progress" style="display: none;">
+					  <div id="BatBanditsProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+						0%
+					  </div>
+					</div>
+			   </div>
+		  </div>
+		  </div>
+		  
+		  
+		  <div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingThree">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#HermitCollapse" aria-expanded="false" aria-controls="HermitCollapse">
+				  A Reclusive Hermit
+				</a>
+			  </h4>
+			</div>
+			<div id="HermitCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			   <div id="BatHermit" class = "panel-body">
+				<a id = btnDescHermit tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Reclusive Hermit"
+				data-content="" >A Reclusive Hermit</a>
+				<br />
+						<button id=btnBatHermit onclick="Hermit.fight()"	type="button" class="btn btn-danger">Battle!</button>
+						<br />Requires <img src = "images/armsmall.png" title="Army Power"> 250 <br />
+					<div id="BatHermitProgBarBox" class="progress" style="display: none;">
+					  <div id="BatHermitProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+						0%
+					  </div>
+					</div>
+			   </div>	 
+			</div>
+		  </div>
+		  
+		  
+		  <div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingFour">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#OgreCollapse" aria-expanded="false" aria-controls="OgreCollapse">
+				  A Smelly Ogre
+				</a>
+			  </h4>
+			</div>
+			<div id="OgreCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+			   <div id="BatOgre" class = "panel-body">
+				<a id = 'btnDescOgre' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Smelly Ogre"
+				data-content="">Smelly Ogre</a>
+				<br />
+					<button id=btnBatOgre onclick="Ogre.fight()"	type="button" class="btn btn-danger">Battle!</button>
+					<br />
+					Requires <img src = "images/armsmall.png" title="Army Power"> 500 <br />
+						<div id="BatOgreProgBarBox" class="progress" style="display: none;">
+						  <div id="BatOgreProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+							0%
+						  </div>
+						</div>
+			   </div>
+			</div>
+		  </div>	
 
-	   <div id="BatHellhound" class = "container" style="display: none;">
-		<a id = 'btnDescHellhounds' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Hellhounds"
-		data-content="">Pack of Hellhounds</a>
-			<br />
-			<button id=btnBatHellhound onclick="Hellhounds.fight()"	type="button" class="btn btn-danger">Battle!</button>
-			<br />
-			Requires <img src = "images/armsmall.png" title="Army Power"> 2000 <br />
-			Peasants Killed: <span id = "peasantsKilled">0</span> <br />
-			Miners Killed: <span id = "minersKilled">0</span> <br />
-				<div id="BatHhoundProgBarBox" class="progress" style="display: none;">
-				  <div id="BatHhoundProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
-					0%
-				  </div>
-				</div>
-			<br />
-			<br />
-	   </div>
-	   
-	   <div id="BatPixie" class = "container" style="display: none;">
-		<a id = 'btnDescPixie' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="An Evil Pixie"
-		data-content="">An Evil Pixie</a>
-			<br />
-			<button id=btnBatPixie onclick="Pixie.fight()"	type="button" class="btn btn-danger">Battle!</button>
-			<br />
-			Requires <img src = "images/armsmall.png" title="Army Power"> 3500 <br />
-			Requires spirit power: 100 <br />
-				<div id="BatPixieProgBarBox" class="progress" style="display: none;">
-				  <div id="BatPixieProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
-					0%
-				  </div>
-				</div>
-			<br />
-			<br />
-	   </div>
+		  <div class="panel panel-default" id="BatHellhound" style="display: none;">
+			<div class="panel-heading" role="tab" id="headingFive">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#HellhoundCollapse" aria-expanded="false" aria-controls="HellhoundCollapse">
+				  Pack of Hellhounds
+				</a>
+			  </h4>
+			</div>
+			<div id="HellhoundCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+			   <div class = "panel-body" >
+				<a id = 'btnDescHellhounds' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="A Pack of Hellhounds"
+				data-content="">Pack of Hellhounds</a>
+					<br />
+					<button id=btnBatHellhound onclick="Hellhounds.fight()"	type="button" class="btn btn-danger">Battle!</button>
+					<br />
+					Requires <img src = "images/armsmall.png" title="Army Power"> 2000 <br />
+					Peasants Killed: <span id = "peasantsKilled">0</span> <br />
+					Miners Killed: <span id = "minersKilled">0</span> <br />
+						<div id="BatHhoundProgBarBox" class="progress" style="display: none;">
+						  <div id="BatHhoundProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+							0%
+						  </div>
+						</div>
+			   </div>
+			</div>
+		  </div>		  
 
-	   <div id="BatArmor" class = "container" style="display: none;">
-		<a id = 'btnDescArmor' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Haunted Armor"
-		data-content="">Haunted Armor</a>
-			<br />
-			<button id=btnBatArmor onclick="Armor.fight()"	type="button" class="btn btn-danger">Battle!</button>
-			<br />
-			Requires <img src = "images/armsmall.png" title="Army Power"> 4000 <br />
-			Requires spirit power: 250 <br />
-				<div id="BatArmorProgBarBox" class="progress" style="display: none;">
-				  <div id="BatArmorProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
-					0%
-				  </div>
-				</div>
-			<br />
-			<br />
-	   </div>		   
+		  <div class="panel panel-default" id = "BatPixie" style="display: none;">
+			<div class="panel-heading" role="tab" id="headingSix">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#pixieCollapse" aria-expanded="false" aria-controls="pixieCollapse">
+				  An Evil Pixie
+				</a>
+			  </h4>
+			</div>
+			<div id="pixieCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			   <div class = "panel-body">
+				<a id = 'btnDescPixie' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="An Evil Pixie"
+				data-content="">An Evil Pixie</a>
+				<br />
+				<button id=btnBatPixie onclick="Pixie.fight()"	type="button" class="btn btn-danger">Battle!</button>
+				<br />
+				Requires <img src = "images/armsmall.png" title="Army Power"> 3500 <br />
+				Requires spirit power: 100 <br />
+					<div id="BatPixieProgBarBox" class="progress" style="display: none;">
+					  <div id="BatPixieProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+						0%
+					  </div>
+					</div>
+			   </div>
+			</div>
+		  </div>		  
 
-	   <div id="BatArchMage" class = "container">
-		<a id = 'btnDescMage' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Corrupted Archmage"
-		data-content="">Corrupted Archmage</a>
-			<br />
-			<button id=btnBatMage onclick="Archmage.fight()"	type="button" class="btn btn-danger">Battle!</button>
-			<br />
-			Requires <img src = "images/armsmall.png" title="Army Power"> 20,000 <br />
-			Requires spirit power: 750 <br />
-			
-				<div id="BatMageProgBarBox" class="progress" style="display: none;">
-				  <div id="BatMageProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
-					0%
-				  </div>
-				</div>
-			<br />
-			<br />
-	   </div>
+		  
+		  <div class="panel panel-default" id="BatArmor" style="display: none;">
+			<div class="panel-heading" role="tab" id="headingSeven">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#ArmorCollapse" aria-expanded="false" aria-controls="ArmorCollapse">
+				  Haunted Armor
+				</a>
+			  </h4>
+			</div>
+			<div id="ArmorCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+			   <div class = "panel-body" >
+				<a id = 'btnDescArmor' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Haunted Armor"
+				data-content="">Haunted Armor</a>
+					<br />
+					<button id=btnBatArmor onclick="Armor.fight()"	type="button" class="btn btn-danger">Battle!</button>
+					<br />
+					Requires <img src = "images/armsmall.png" title="Army Power"> 4000 <br />
+					Requires spirit power: 250 <br />
+					<div id="BatArmorProgBarBox" class="progress" style="display: none;">
+					  <div id="BatArmorProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+						0%
+					  </div>
+					</div>
+			   </div>	
+			</div>
+		  </div>
 
-	   <div id="BatSuccubus" class = "container" style="display: none;">
-		<a id = 'btnDescSuccubus' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Seductive Succubus"
-		data-content="">Seductive Succubus</a>
-			<br />
-			<button id=btnBatSuccubus onclick="Succubus.fight()"	type="button" class="btn btn-danger">Battle!</button>
-			<br />
-			Requires <img src = "images/armsmall.png" title="Army Power"> 35,000 <br />
-			Requires spirit power: 2000 <br />
-			Number of Units Seduced: <span id = "unitsSeduced">0</span> <br />
-			
-				<div id="BatSuccubusProgBarBox" class="progress" style="display: none;">
-				  <div id="BatSuccubusProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
-					0%
-				  </div>
-				</div>
-			<br />
-			<br />
-	   </div>	
-	   
-	   
-	 </div>	 
+		  <div class="panel panel-default" id="BatOoze" style="display: none;">
+			<div class="panel-heading" role="tab" id="headingTen">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#OozeCollapse" aria-expanded="false" aria-controls="OozeCollapse">
+				  Gelatinous Ooze
+				</a>
+			  </h4>
+			</div>
+			<div id="OozeCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+			   <div class = "panel-body" >
+				<a id = 'btnDescOoze' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Gelatinous"
+				data-content="">Gelatinous Ooze</a>
+					<br />
+					<button id=btnBatOoze onclick="Ooze.fight()"	type="button" class="btn btn-danger">Battle!</button>
+					<br />
+					Requires <img src = "images/armsmall.png" title="Army Power"> 0 <br />
+					Requires spirit power: 550 <br />
+					Iron absorbed:	<span id = 'ironAbsorbed'>0</span>			<br />
+					Silver absorbed: <span id = 'silverAbsorbed'>0</span>			<br />
+					<div id="BatOozeProgBarBox" class="progress" style="display: none;">
+					  <div id="BatOozeProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+						0%
+					  </div>
+					</div>
+			   </div>	
+			</div>
+		  </div>			  
+		  
+		  <div class="panel panel-default" id="BatArchMage">
+			<div class="panel-heading" role="tab" id="headingEight">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#ArchmageCollapse" aria-expanded="false" aria-controls="ArchmageCollapse">
+				  Corrupted Archmage
+				</a>
+			  </h4>
+			</div>
+			<div id="ArchmageCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+			   <div class = "panel-body">
+				<a id = 'btnDescMage' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Corrupted Archmage"
+				data-content="">Corrupted Archmage</a>
+					<br />
+					<button id=btnBatMage onclick="Archmage.fight()"	type="button" class="btn btn-danger">Battle!</button>
+					<br />
+					Requires <img src = "images/armsmall.png" title="Army Power"> 20,000 <br />
+					Requires spirit power: 750 <br />
+					
+					<div id="BatMageProgBarBox" class="progress" style="display: none;">
+					  <div id="BatMageProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+						0%
+					  </div>
+					</div>
+			   </div>
+			</div>
+		  </div>		  
+
+		  <div class="panel panel-default" id="BatSuccubus" style="display: none;">
+			<div class="panel-heading" role="tab" id="headingNine">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#SuccubusCollapse" aria-expanded="false" aria-controls="SuccubusCollapse">
+				  Seductive Succubus
+				</a>
+			  </h4>
+			</div>
+			<div id="SuccubusCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+			   <div class = "panel-body" >
+				<a id = 'btnDescSuccubus' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Seductive Succubus"
+				data-content="">Seductive Succubus</a>
+					<br />
+					<button id=btnBatSuccubus onclick="Succubus.fight()"	type="button" class="btn btn-danger">Battle!</button>
+					<br />
+					Requires <img src = "images/armsmall.png" title="Army Power"> 35,000 <br />
+					Requires spirit power: 2,000 <br />
+					Number of Units Seduced: <span id = "unitsSeduced">0</span> <br />
+					
+					<div id="BatSuccubusProgBarBox" class="progress" style="display: none;">
+					  <div id="BatSuccubusProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+						0%
+					  </div>
+					</div>
+			   </div>
+			</div>
+		  </div>
+
+		  <div class="panel panel-default" id="BatUndeadArmy" style="display: none;">
+			<div class="panel-heading" role="tab" id="headingEleven">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#UndeadArmyCollapse" aria-expanded="false" aria-controls="UndeadArmyCollapse">
+				  Undead Army
+				</a>
+			  </h4>
+			</div>
+			<div id="UndeadArmyCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+			   <div class = "panel-body" >
+				<a id = 'btnDescUArmy' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="An Undead Army"
+				data-content="">An Undead Army</a>
+					<br />
+					<button id=btnBatUArmy onclick="UndeadArmy.fight()"	type="button" class="btn btn-danger">Battle!</button>
+					<br />
+					Requires <img src = "images/armsmall.png" title="Army Power"> 40,000 <br />
+					Requires spirit power: 3,000 <br />
+						<div id="BatUArmyProgBarBox" class="progress" style="display: none;">
+						  <div id="BatUArmyProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+							0%
+						  </div>
+						</div>
+			   </div>
+			</div>
+		  </div>
+		  
+		  <div class="panel panel-default" id="BatNecromancer" style="display: none;">
+			<div class="panel-heading" role="tab" id="headingTwelve">
+			  <h4 class="panel-title">
+				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#NecromancerCollapse" aria-expanded="false" aria-controls="NecromancerCollapse">
+				  Undead Army
+				</a>
+			  </h4>
+			</div>
+			<div id="NecromancerCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwelve">
+			   <div class = "panel-body" >
+				<a id = 'btnDescNecro' tabindex="0" class="btn btn-lg btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Necromancer"
+				data-content="">Necromancer</a>
+					<br />
+					<button id=btnBatUArmy onclick="UndeadArmy.fight()"	type="button" class="btn btn-danger">Battle!</button>
+					<br />
+					Requires <img src = "images/armsmall.png" title="Army Power"> 52,500 <br />
+					Requires spirit power: 6,000 <br />
+						<div id="BatNecroProgBarBox" class="progress" style="display: none;">
+						  <div id="BatNecroProgBar" class="progress-bar progress-bar-danger  progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 0%;">
+							0%
+						  </div>
+						</div>
+			   </div>
+			</div>
+		  </div>		  
+		  
+		</div>
+	</div>
 	 
 
 	 <!--- ALERTS ARE HERE --->
-
-		<div id = openMillAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+	<div id = 'alerts' type = 'container'>
+		<div id = 'openMillAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> You can now <a href="javascript: toggle('openMillAlert');CollapseAll();toggle('Production')" class="alert-link">hire lumberjacks</a> to cut down trees for you!   
 		</div>	 
 	 
-		<div id = openMineAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'openMineAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
 		</div>
 		
 		
-		<div id = openBarracksAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'openBarracksAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> You can now <a href="javascript: toggle('openBarracksAlert');CollapseAll();toggle('Barracks')" class="alert-link">train</a> units to fight against the Evil One and his minions.   
 		</div>  
 
-		<div id = goblinDefeatAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'goblinDefeatAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> You chase the defeated horde of goblins back to their mound. They put up a last ditch effort, but your forces make quick work out of them. Inside their mound you find a stash of 2000 gold!   
 		</div>	
 		
-		<div id = openCathAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'paperMillAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> As your troops put the hermit out of her misery, you get a chance to take a look inside her hovel. It turns out that she has been using the wood to create paper on which she has 
+					been scrawling things that are completely illegible to you. You study her tools and are able to figure out how to <a href="javascript: toggle('paperMillAlert');CollapseAll();toggle('Structures')" class="alert-link">make your own paper</a>.
+		</div>			
+		<div id = 'openCathAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Cathedral')" class="alert-link">cathedral</a>.   
 		</div>
 
-		<div id = unlockCathAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'unlockCathAlert' class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> You successfully chase out the bandits raiding your village. As you raze their camp to make sure they don't return, you find plans for an elaborate  <a href="javascript: toggle('unlockCathAlert');CollapseAll();toggle('Structures')" class="alert-link">Cathedral</a>. 
 			 These bandits sure do have funny taste in loot. You also find a portion of the gold that they have stolen from you.
 		</div>		
 		
-		<div id = unlockPaladinsAlert class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'unlockPaladinsAlert' class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> As the ogre writhes in his death throes, something falls from his loincloth and hits the floor. It's a book on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
 		</div>	
 			
-		<div id = banditLootAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+		<div id = 'banditLootAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
 			<strong>Oh No!!</strong> Bandits come and raid <span id = "justStolen">0</span> gold from your gold supply! Maybe you should try <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">getting rid</a> of them?   
 		</div>		
 
-		<div id = hellhoundUnlockAlert class="alert alert-danger fade in" role="alert" style="display: none;">
+		<div id = 'hellhoundUnlockAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>Oh No!!</strong> The Evil One has noticed your presence, and has decided to start sending <a href="javascript: toggle('hellhoundUnlockAlert');CollapseAll();toggle('Battle')" class="alert-link">hellhounds</a> to attack you.  
 		</div>	
 		
-		<div id = hellHoundAttackAlert class="alert alert-danger fade in" role="alert" style="display: none;">
-			<strong>Oh No!!</strong>The Evil One's hellhounds break through your defenses and kill <span id = "justKilled">0</span> of your <span id = "typeKilled">x</span>. Build up your strength and <a href="javascript: toggle('hellHoundAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">fight</a> them off!   
+		<div id = 'hellHoundAttackAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
+			<strong>Oh No!!</strong> The Evil One's hellhounds break through your defenses and kill <span id = "justKilled">0</span> of your <span id = "typeKilled">x</span>. Build up your strength and <a href="javascript: toggle('hellHoundAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">fight</a> them off!   
 		</div>		
 
-		<div id = openEtherealAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'openEtherealAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> After the hellhounds explode in a cloud of blood and fire, you sift through the ashes of their remains. One of them was wearing a collar,
 								 which upon closer observation has a map engraved on one of the tags. When you arrive at the marked destination on the map, you realize there is a 
 								 almost <a href="javascript: toggle('openEtherealAlert');CollapseAll();toggle('Ethereal')" class="alert-link">otherworldly tear</a> floating in front of you.   
 		</div>	
 
-		<div id = PixieDefeatAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'PixieDefeatAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong>The pixie collapses in a pile of glittering dust. Your priests decide to scoop her remains into a bottle for studying later.
+			<strong>New!</strong> The pixie collapses in a pile of glittering dust. Your priests decide to scoop her remains into a bottle for studying later.
 			<!--<a href="javascript: toggle('unlockAspectofJustice')" class="alert-link">tower</a>-->
 				
 		</div>			
 		
-		<div id = unlockAspectofJustice class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'unlockAspectofJustice' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong>The armor stops moving. One of your shades is actually able to move it about, giving you a new idea on how to make your shades <a href="javascript: toggle('unlockAspectofJustice');CollapseAll();toggle('Ethereal')" class="alert-link">stronger.</a>
-				
+			<strong>New!</strong> The armor stops moving. One of your shades is actually able to move it about, giving you a new idea on how to make your shades <a href="javascript: toggle('unlockAspectofJustice');CollapseAll();toggle('Ethereal')" class="alert-link">stronger.</a>	
 		</div>			
 		
-		<div id = unlockWizardTowerAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'unlockWizardTowerAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>New!</strong> Your forces corner the Archmage. He has run out of mana but still tries to curse you anyway. A few feeble sparks
 					sputter from his fingertips, but nothing happens. One of your paladins has been studying purification techniques, and performs
@@ -747,39 +1076,88 @@
 					where he can channel his energies.   
 		</div>
 
-		<div id = builtTowerAlert class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'builtTowerAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong>Using massive amounts of resources, you build the Archmage the <a href="javascript: toggle('builtTowerAlert');CollapseAll();toggle('Magic')" class="alert-link">tower</a>
+			<strong>New!</strong> Using massive amounts of resources, you build the Archmage the <a href="javascript: toggle('builtTowerAlert');CollapseAll();toggle('Magic')" class="alert-link">tower</a>
 					where he can cast magic to help your forces.
 		</div>
+		
+		
+		<div id = 'OozeAttackAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
+			<strong>Oh No!!</strong> A nasty ooze burbles up from inside of your mine and engulfs <span id = 'absorbedAmount'>0</span> of your <span id = "absorbedType">x type</span>! 
+			It's going to be a <a href="javascript: toggle('OozeAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">sticky fight</a>, but if you don't get rid of it it will absorb all of your minerals.  
+		</div>		
 
-		<div id = EvilOneIreAlert class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;">
+		<div id = 'tomeUnlockAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Oh No!</strong>Having defeated one of The Evil One's valued lieutenants, you realize that things are going to heat up from here. 
+			<strong>New!</strong> With an ominous blurp, whatever was animating the ooze comes to a slurpy halt. Although the ore that it has absorbed is now useless, you come to realize that that vast quantity of ooze now own is great for gluing together your paper to make books! Maybe <a href="javascript: toggle('tomeUnlockAlert'); CollapseAll(); toggle('Cathedral');" class="alert-link">someone</a> knows what to do with these...
+		</div>			
+		
+		<div id = 'EvilOneIreAlert' class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Uh oh...</strong> Having defeated one of The Evil One's valued lieutenants, you realize that things are going to heat up from here. 
 					Your intuition is confirmed when a winged demon flies into your kingdom and issues a dire warning letting you know that The Evil
 					One going to destroy you and is sending more of his lieutenants your way.
 		</div>
 		
-		<div id = SuccubusAttackAlert class="alert alert-danger fade in" role="alert" style="display: none;">
-			<strong>Oh No!!</strong>The Evil One's paramour, the Succubus magically appears in the cover of the night... she seduces one of your <span id = "seducedUnitType">x type</span>s! 
+		<div id = 'SuccubusAttackAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
+			<strong>Oh No!!</strong> The Evil One's paramour, the Succubus magically appears in the cover of the night... she seduces one of your <span id = "seducedUnitType">x type</span>s! 
 					They are returned the next day but cannot function as their previous role and have to be retrained from a <span id = "previousUnitType"></span>.
 					You better get <a href="javascript: toggle('SuccubusAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">get rid</a> of her before she decimates your entire army.  
 		</div>
 
-		<div id = SuccubusDefeatAlert class="alert alert-info fade in" role="alert" style="display: none;">   <!--PLACEHOLDER -->
-			<strong>New!</strong> She dies. This is a place holder alert! Congrats for beating the highest currently implemented battle!
+		<div id = 'SuccubusDefeatAlert' class="alert alert-info fade in" role="alert" style="display: none;">
+			<strong>New!</strong> Even in death, the succubus jiggles in a most appealing manner, but that doesn't stop you from ending her 
+					reign of seductive terror. Your paladins attempt to purify her as they did with the Archmage, causing her to writhe around
+					in pain. Her wings transition from leathery to feathery, and her horns recede into her head. It turns out the succubus was
+					actually an angel! The injuries she has sustained in her battle with you are fatal, and none of your people are able to
+					close the angel grievous wounds. She feebly beckons for you to come closer, and when you do, she presses an ancient relic
+					into your hand. "... please defeat Him...", she whispers. Her body fades and dissolves into a million tiny glittering lights
+					that float gently up into the sky. Her demise only deepens your resolve to defeat The Evil One. Your priests take the relic
+					and place it <a href="javascript: toggle('SuccubusDefeatAlert');CollapseAll();toggle('Cathedral')" class="alert-link">on a pedestal</a> in the cathedral.
+		</div>			
+
+		<div id = 'AngelUnlockAlert' class="alert alert-info fade in" role="alert" style="display: none;">
+			<strong>New!</strong> The relic is overflowing with the faith! It starts to vibrate violently, and you decide the most prudent thing to do is to take it outside.
+					Just as you step foot outside the cathedral doors, flies out of your hands and hovers before you. You can literally feel the hum of power as the relic
+					emits a brilliant beam of light that shoots into the heavens. You watch as the skies are turned a vibrant gold.. all of the faith that was 
+					used to empower the relic opens up a <a href="javascript: toggle('AngelUnlockAlert');CollapseAll();toggle('Ethereal')" class="alert-link">divine gate</a>.
+					The gate is directly above your cathedral, but you swear you can see winged beings flapping just beyond the shimmering portal.
+		</div>			
+		<div id = 'UArmyDefeatAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" onclick = "$('#UArmyDefeatAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> <span id = "UADefeatMessage"></span>
+		</div>
+
+		<div id = 'UArmyReviveAlert' class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" onclick = "$('#UArmyReviveAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>What the!</strong> The moaning returns! While you are in the middle of ordering a scout to check the location you buried the undead army, a lookout comes
+					running into your quarters tells you that the undead army has risen and is marching on your kingdom <a href="javascript: toggle('UArmyReviveAlert');CollapseAll();toggle('Battle')" class="alert-link">again!</a>
+		</div>	
+
+		<div id = 'UArmyReviveAlert' class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" onclick = "$('#UArmyReviveAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>What the!</strong> The moaning returns! While you are in the middle of ordering a scout to check the location you buried the undead army, a lookout comes
+					running into your quarters tells you that the undead army has risen and is marching on your kingdom <a href="javascript: toggle('UArmyReviveAlert');CollapseAll();toggle('Battle')" class="alert-link">again!</a>
+		</div>			
+
+		<div id = 'NecroDefeatAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> Congrats! You have defeated the highest implemented battle!
+			<!--<a href="javascript: toggle('unlockAspectofJustice')" class="alert-link">tower</a>-->
+				
 		</div>			
 		
-		
-		<div id = saveAlert class="alert alert-success fade in" role="alert" style="display: none;">
-		<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+		<div id = 'saveAlert' class="alert alert-success fade in" role="alert" style="display: none;">
+			<button type="button" class="close" onclick = "$('#saveAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>Save!</strong> Your game has been saved!   
 		</div>
-		<div id = loadAlert class="alert alert-success fade in" role="alert" style="display: none;">
-		<!--	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+		<div id = 'loadAlert' class="alert alert-success fade in" role="alert" style="display: none;">
+			<button type="button" class="close" onclick = "$('#loadAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<strong>Load!</strong> Your game save has been loaded!   
-		</div> 		
-
+		</div> 	
+		
+	</div> <!-- End Alert Container -->
  </div> <!-- /container -->
 		
 
@@ -800,14 +1178,12 @@
 			Things to be added:<br />
 			Relics<br />
 			More Battles<br />
-			Ethereal tab<br />
-			Magic System<br />
 			Prestige System<br /> <br />
-			
-			Things to fix:<br />
+
 			
 			You have played Holy Wars for: <span id = tTPinHHMMSS>0</span>
-			
+			<br />
+				
 		  </div>
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -816,27 +1192,6 @@
 	  </div>
 	</div>	
 	
-	<!-- Version Modal -->
-<!--	<div class="modal fade" id="versionmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="myModalLabel">Holy Wars v. 0.6.6</h4>
-		  </div>
-		  <div class="modal-body">
-				
-				<iframe id=changelogiframe src="changelog.html"></iframe>
-				
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		  </div>
-		</div>
-	  </div>
-	</div>		-->
-	
-
 	<script type ="text/javascript">
 		function CollapseAll(){
 			document.getElementById("Battle").style.display = "none";
@@ -852,8 +1207,19 @@
 		function setLastPage(name){
 			lastPage = name;
 		}
-   
-	</script>		
+   				
+	</script>
+
+	<!-- Google Analytics -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-60295840-1', 'auto');
+	  ga('send', 'pageview');
+	</script>	
 
 	<script type="text/javascript" src="scripts/main.js"></script>         <!--Load main script --> 
 	<script type="text/javascript" src="scripts/units.js"></script>        <!--Load unit script -->
