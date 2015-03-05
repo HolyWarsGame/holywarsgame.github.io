@@ -232,11 +232,11 @@ MultBuilding.prototype.buyOne = function(){
 		if(gold >= this.curGoldCost && wood >= this.curWoodCost && iron >= this.curIronCost && silver >= this.curSilverCost && faith >= this.curFaithCost && souls >= this.curSoulCost ){    //checks that the player can afford the Building
 			this.number = this.number + 1;                                  							 	  //increases number of Building
 			gold = gold - this.curGoldCost;                     										          //removes the gold spent
-			wood = wood - this.woodCost;																	  //removes the wood spent
-			iron = iron - this.ironCost;																	  //removes the iron spent
-			silver = silver - this.silverCost;
-			faith = faith - this.faithCost;																	  //removes the faith spent
-			souls = souls - this.soulCost;																	  //removes the souls spent
+			wood = wood - this.curWoodCost;																	  //removes the wood spent
+			iron = iron - this.curIronCost;																	  //removes the iron spent
+			silver = silver - this.curSilverCost;
+			faith = faith - this.curFaithCost;																	  //removes the faith spent
+			souls = souls - this.curSoulCost;																	  //removes the souls spent
 			document.getElementById(this.htmlNumRef).innerHTML = this.number;  							      //updates the number of Buildings for the user
 			document.getElementById('gold').innerHTML = fnum(gold);  										          //updates the number of gold for the user
 			document.getElementById('wood').innerHTML = fnum(wood);  										          //updates the number of wood for the user
