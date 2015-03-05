@@ -163,7 +163,7 @@ var Peasant = new Unit("Peasant",'peasants','PeasantCost','none','none','none','
 setDescription(Peasant, 'BtnPeasantDesc');
 
 var lumberjackDesc = "These brawny men fell trees for you. <br> Generates 1 wood per second"
-var Lumberjack = new Unit("Lumberjack",'lumberjacks','LumberjackCost','none','none','none','none','none','btnbuyLumberjack',150,0,0,0,0,0,1.1, minerDesc, 0, false, "none")
+var Lumberjack = new Unit("Lumberjack",'lumberjacks','LumberjackCost','none','none','none','none','none','btnbuyLumberjack',150,0,0,0,0,0,1.1, lumberjackDesc, tavernlumberjacks, false, "none")
 setDescription(Lumberjack, 'BtnLumberjackDesc');
 
 var minerDesc = "These hard-working mine excavate minerals from the mine you have built. They bring canaries in with them to warn them of disasters. Also as lunch. <br> Generates 1 iron per second"

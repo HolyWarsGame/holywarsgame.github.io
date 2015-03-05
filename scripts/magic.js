@@ -104,7 +104,7 @@ FastForward.cast = function(){
 
 var fireBallDesc = "The archmage conjures a flaming ball of fire and sends it hurtling towards your foe! It will damage the enemy you are currently battling, pushing you 15% closer to victory!";
 var FireBall = new Spell("FireBall", fireBallDesc, 0, 0, 'btnSpellFB', 'Alert', 0, 0, 0, 0, 0, 0, 750);
-setSpellDescription(FastForward, 'BtnSpellFBDesc');
+setSpellDescription(FireBall, 'BtnSpellFBDesc');
 
 FireBall.cast = function(){
 	if(inbattle == false){

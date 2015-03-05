@@ -26,6 +26,7 @@ var tTPinHHMMSS = 0;
 //Unit Variables//
 var tavernpeasants = 0;			//Tavern generated peasants
 var tavernminers = 0;			//Tavern generated miners
+var tavernlumberjacks = 0;      //Tavern generated Lumberjacks
 
 
 //Status Variables//
@@ -37,7 +38,8 @@ var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
 var mSilverUpgrade = false;		//Miner - Silver Mining upgrade
 var prFaithUpgrade = false;     //Priest - Faith collection rate upgrade
 var paladinWepUpgrade = false;  //Paladin - Weapon Upgrade
-var tavernUpgrade = false;		//Tavern - Weapon Upgrade
+var tavernUpgrade = false;		//Tavern - Miner Upgrade
+var tavernUpgrade2 = false;		//Tavern - Lumberjack Upgrade
 
 var squiresUnlocked = false;	//Page - Squire Tier unlock
 var knightsUnlocked = false;    //Squire - Page Tier unlock
@@ -86,20 +88,30 @@ function clickThing(number, type)
 			break;
 
 		case "paper":
-			if(wood >= 100*number){
+			if(wood >= 50*number){
 			paper = paper + number;
-			wood = wood - number * 100;
+			wood = wood - number * 50;
 			document.getElementById("paper").innerHTML = fnum(paper);
 			document.getElementById("wood").innerHTML = fnum(wood);
 			}
 			break;				
 			
 		case "paperMouse":
-			if(wood >= 100){
-				paper = paper + number;
-				wood = wood - number * 100;
-				document.getElementById("paper").innerHTML = fnum(paper);
-				document.getElementById("wood").innerHTML = fnum(wood);
+			if(PmillEffUpgr == true){
+					if(wood >= 50*0.6*number){
+					paper = paper + number;
+					wood = wood - number * 50*0.6;
+					document.getElementById("paper").innerHTML = fnum(paper);
+					document.getElementById("wood").innerHTML = fnum(wood);
+				}
+			}
+			else{
+				if(wood >= 50*number){
+					paper = paper + number;
+					wood = wood - number * 50;
+					document.getElementById("paper").innerHTML = fnum(paper);
+					document.getElementById("wood").innerHTML = fnum(wood);
+				}
 			}
 			break;	
 
@@ -171,6 +183,8 @@ function debugCurrency(){
 	faith = faith + 10000;
 	souls = souls + 10000;
 	mana = mana + 100000;
+	paper = 3000;
+	tomes = 1000;
 };
 
 //UPGRADES
@@ -240,7 +254,6 @@ function minerUpgradeSilver(){
 		$("#SecondaryResources").collapse('show');
 		document.getElementById("btnminerUpgrade2").disabled = true;
 		document.getElementById("btnminerUpgrade2").innerHTML = "Learned Silver Studies";
-		
 	}	
 };
 
@@ -274,6 +287,9 @@ function PmillEffUpgrade(){
 
 function UnlockTomes(){
 	if(gold >= 12000 && paper >= 2000 && faith >= 1000){
+		gold = gold - 12000;
+		paper = paper - 2000;
+		faith = faith - 1000;
 		tomesUnlocked = true;
 		document.getElementById('tomediv').style.display = "block";
 		document.getElementById('createTome').style.display = "block";
@@ -329,6 +345,24 @@ function addFaithToRelic(number){
 		faithDonated = faithDonated + number;
 		document.getElementById('faithDonated').innerHTML = fnum(faithDonated)
 		document.getElementById('faith').innerHTML = fnum(faith)
+
+		var description;
+		
+		if(faithDonated < 250000){
+			description = "The relic from the succubus/angel sits quietly on a black marble pedestal. There must be something more to it."
+		}
+		else if(faithDonated > 250000){
+			description = "The relic begins to glow slightly, and you swear you can hear a humming noise emanating from deep within."
+			document.getElementById('RelicHalfAlert').style.display = "block";
+			scroll(RelicHalfAlert, 1000);
+		}
+		else if(faithDonate > 400000){
+			description = "The glowing from the relic intensifies, and now there is a slight shimmering around the surface! Just a little more, something is about to happen!"
+			document.getElementById('RelicAlmostAlert').style.display = "block";			
+		}
+		var popover = document.getElementById('BtnRelicDesc');
+		popover.setAttribute("data-content", description);
+				
 	}
 	
 	if(faithDonated >= 500000){
@@ -339,6 +373,8 @@ function addFaithToRelic(number){
 		element_to_scroll_to = document.getElementById('AngelUnlockAlert');
 		element_to_scroll_to.scrollIntoView();	
 	}
+
+	
 }
 
 
@@ -358,12 +394,59 @@ function recalculateCosts(){
 };
 
 function UpdateButtons() {
-	
-	checkUnitButtons();
-	checkBuildingButtons();
+
 
 	//Upgrade Buttons//
+
+	//Peasant Upgrade gold collection Peasant Power
+	if(pGoldClickUpgrade == true || (gold < 2000)){
+		document.getElementById("btnPeasantUpgrade1").disabled = true;
+	}
+	else{
+		document.getElementById("btnPeasantUpgrade1").disabled = false;
+	}	
 	
+	//Mouse click upgrade
+	if(pGoldClickUpgrade == true || (gold < 1500)){
+		document.getElementById("clickGoldUpgrade").disabled = true;
+	}
+	else{
+		document.getElementById("clickGoldUpgrade").disabled = false;
+	}		
+	
+	//Mouse gold click upgrade 2
+	if(pGoldClickUpgrade2 == true || (gold < 25000)){
+		document.getElementById("clickGoldUpgrade2").disabled = true;
+	}
+	else{
+		document.getElementById("clickGoldUpgrade2").disabled = false;
+	}	
+	
+	//Lumberjack upgrade collection
+	if(lwoodClickUpgrade == true || (gold < 2500 || iron < 1500)){
+		document.getElementById("btnljackUpgrade1").disabled = true;
+	}
+	else{
+		document.getElementById("btnljackUpgrade1").disabled = false;
+	}
+	
+	//Miner upgrade panning 
+	if(mPanningUpgrade == true || (gold < 3500 || iron < 1000)){
+		document.getElementById("btnminerUpgrade1").disabled = true;
+	}
+	else{
+		document.getElementById("btnminerUpgrade1").disabled = false;
+	}	
+	
+	//Miner upgrade silver 
+	if(mSilverUpgrade == true || (gold < 7500 || iron < 2500)){
+		document.getElementById("btnminerUpgrade2").disabled = true;
+	}
+	else{
+		document.getElementById("btnminerUpgrade2").disabled = false;
+	}		
+	
+	//Priest faith upgrade
 	if(prFaithUpgrade == true || (gold < 7000 || wood < 5000 || faith < 500)){
 		document.getElementById("btnPriestUpgrade1").disabled = true;
 	}
@@ -371,12 +454,23 @@ function UpdateButtons() {
 		document.getElementById("btnPriestUpgrade1").disabled = false;
 	}
 	
+	
+	//Paper mill efficiency upgrade
 	if(PmillEffUpgrade == true || (gold < 50000 || wood < 25000 || iron < 35000)){
 		document.getElementById("btnPmillEffUpgrade").disabled = true;
 	}
 	else{
 		document.getElementById("btnPmillEffUpgrade").disabled = false;
 	}	
+	
+	//Tomes  button
+	if(tomesUnlocked == true || (gold < 12000 || paper < 2000 || faith < 1000)){
+		document.getElementById("btnTomeUnlock").disabled = true;	
+	}
+	else{
+		document.getElementById("btnTomeUnlock").disabled = false;	
+	}
+
 	
 	//Unlock Squire Button
 	if(squiresUnlocked == true || (BattlePower < 120|| gold < 4000)){	
@@ -393,9 +487,24 @@ function UpdateButtons() {
 	else{
 		document.getElementById("btnSquireUpgrade1").disabled = false;
 	}		
+
+	//Paladin upgrade weapon
+	if(paladinUpgradeWeapon == true || (gold < 20000 || iron < 5000 || faith < 2500)){
+		document.getElementById("paladinUpgrade1").disabled = true;
+	}
+	else{
+		document.getElementById("paladinUpgrade1").disabled = false;
+	}
+
 	//End of Upgrade Buttons//
 	
+	//Changes status of Unit buttons
+	checkUnitButtons();
 	
+	//Changes status of building buttons
+	checkBuildingButtons();	
+	
+	//Changes status of battle buttons
 	checkBattleButtons();	
 	
 	//Changes status of Spell buttons
@@ -436,8 +545,12 @@ window.setInterval(function(){                                 //Update per seco
 	}
 	document.getElementById("ressilverimage").title = "Silver per second: " + fnum(silverpersec) ; 	 	
  
-  
-    faithpersec = Bishop.number * 10 + Priest.number*0.5 + Acolyte.number*0.1;
+	if(prFaithUpgrade == true){
+		faithpersec = Bishop.number * 10 + Priest.number*0.5*2 + Acolyte.number*0.1;		
+	}
+	else{
+		faithpersec = Bishop.number * 10 + Priest.number*0.5 + Acolyte.number*0.1;		
+	}
 	faithpersec = faithpersec.toFixedDown(2)
     document.getElementById("resfaithimage").title = "Faith per second: " + fnum(faithpersec) ; 
 	
@@ -451,7 +564,6 @@ window.setInterval(function(){                                 //Update per seco
 	manapersec = 1;
 	document.getElementById("resmanaimage").title = "Mana per second: " + fnum(manapersec) ; 	
 	
-   
 	document.getElementById("peasants").innerHTML = Peasant.number ;	//For testing
 	document.getElementById("miners").innerHTML = Miner.number;			//For Testing
 },100);
@@ -472,6 +584,7 @@ window.setInterval(function(){
 
 	//Wood Generation via lumberjacks etc every second
 	var woodnumber = Lumberjack.number;
+	
 	if(lwoodClickUpgrade == true){
 		woodnumber = Lumberjack.number * 2;
 	}
@@ -506,7 +619,6 @@ window.setInterval(function(){
 			clickThing(1,"mana");
 		}
 	}
-	
 }, 1000);
 
 

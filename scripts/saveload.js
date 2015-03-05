@@ -17,8 +17,8 @@
 		
 		//Unit variables
  		localStorage.setItem("peasants",Peasant.number - tavernpeasants);
-		localStorage.setItem("lumberjacks", Lumberjack.number);
-		localStorage.setItem("miners",Miner.number);
+		localStorage.setItem("lumberjacks", Lumberjack.number - tavernlumberjacks);
+		localStorage.setItem("miners",Miner.number - tavernminers);
 		localStorage.setItem("personPage",Page.number);
 		localStorage.setItem("squires",Squire.number);
 		localStorage.setItem("knights",Knight.number);
@@ -34,6 +34,7 @@
 		localStorage.setItem("taverns", Tavern.number);
 		localStorage.setItem("tavernpeasants",tavernpeasants);
 		localStorage.setItem("tavernminers",tavernminers);
+		localStorage.setItem("tavernlumberjacks",tavernlumberjacks);
 		localStorage.setItem("papermills", PaperMill.number)
 		localStorage.setItem("papermillstatus", PaperMill.status)
 		localStorage.setItem("papermillnumon",PaperMill.numberOn)
@@ -81,6 +82,7 @@
 		localStorage.setItem("PmillEffUpgr", PmillEffUpgr);
 		localStorage.setItem("paladinWepUpgrade",paladinWepUpgrade);
 		localStorage.setItem("tavernUpgrade",tavernUpgrade);
+		localStorage.setItem("tavernUpgrade2", tavernUpgrade2);
 		
 		//MiscFlags
 		localStorage.setItem("faithDonated", faithDonated);
@@ -214,10 +216,16 @@
 
 		if(localStorage.tavernminers != null){
 			tavernminers = parseInt(localStorage.tavernminers);
+			Miner.number = Miner.number + tavernminers;
 			document.getElementById("tavernminers").innerHTML = tavernminers;
 			document.getElementById("miners").innerHTML = Miner.number;
 		}			
-		
+		if(localStorage.tavernlumberjacks != null){
+			tavernlumberjacks = parseInt(localStorage.tavernlumberjacks);
+			Lumberjack.number = Lumberjack.number + tavernlumberjacks;
+			document.getElementById("tavernlumberjacks").innerHTML = tavernlumberjacks;
+			document.getElementById("lumberjacks").innerHTML = Lumberjack.number;
+		}		
 		if(localStorage.taverns != null){
 			Tavern.number = parseInt(localStorage.taverns);
 			document.getElementById("taverns").innerHTML = Tavern.number;
@@ -402,8 +410,14 @@
 				tavernUpgrade = true;
 				document.getElementById("btnUpgradeTavern").disabled = true;
 			}
-		}		
-		
+		}
+		if(localStorage.tavernUpgrade2 != null){
+			var myBool = (localStorage.tavernUpgrade2 == "true")
+			if(myBool == true){
+				tavernUpgrade2 = true;
+				document.getElementById("btnUpgradeTavern2").disabled = true;
+			}
+		}			
 		if(localStorage.squiresUnlocked != null){
 			var myBool = (localStorage.squiresUnlocked == "true")
 			if(myBool == true){

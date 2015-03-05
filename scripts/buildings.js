@@ -322,7 +322,27 @@ var tavernDesc = "A cozy place where many people gather to drink and celebrate. 
 var Tavern = new MultBuilding('Tavern','taverns','TavernCost','tavernWoodCost', 'tavernIronCost','none','none','none','btnbuyTavern',5000,2500,2000,0,0,0,2,tavernDesc,0,false,0);
 
 function upgradeTavern(){
-	tavernUpgrade = true;
+	if(tavernUpgrade == false && gold >= 10000 && iron >= 5000)
+	{
+		gold = gold - 10000;
+		iron = iron - 5000;
+		document.getElementById('gold').innerHTML = fnum(gold);
+		document.getElementById('iron').innerHTML = fnum(iron);
+		tavernUpgrade = true;
+	}
+};
+
+function upgradeTavern2(){
+	if(tavernUpgrade == false && gold >= 15000 && iron >= 7000 && wood >= 2500)
+	{
+		gold = gold - 15000;
+		iron = iron - 7000;
+		wood = wood - 2500;
+		document.getElementById('gold').innerHTML = fnum(gold);
+		document.getElementById('iron').innerHTML = fnum(iron);
+		document.getElementById('wood').innerHTML = fnum(wood);
+		tavernUpgrade2 = true;
+	}
 };
 
 var barracksDesc = ""
@@ -347,6 +367,14 @@ function checkBuildingButtons(){
 	else{
 		document.getElementById("btnUpgradeTavern").disabled = false;
 	}
+
+	//Enable/disables tavern upgrade2
+	if(tavernUpgrade2 == true || gold < 15000 || iron < 7000 || wood < 2500){
+		document.getElementById("btnUpgradeTavern2").disabled = true;
+	}
+	else{
+		document.getElementById("btnUpgradeTavern2").disabled = false;
+	}	
 
 	//Changes status of the building mines button
 	Lumbermill.canBuy();
@@ -383,24 +411,32 @@ window.setInterval(function(){					//Tavern unit generation
 		Miner.costAdj = tavernminers;
 		Miner.recalcCost();	
 	}
+	
+	if(tavernUpgrade2 == true){
+		clickThing(Tavern.number,"lumberjack");
+		tavernlumberjacks = tavernlumberjacks + Tavern.number;
+		document.getElementById('tavernlumberjacks').innerHTML = tavernlumberjacks;
+		Lumberjack.costAdj = tavernlumberjacks;
+		Lumberjack.recalcCost();	
+	}	
 
 }, 30000);
 
 window.setInterval(function(){					//Tavern unit generation
 
 	if(PmillEffUpgr == true){
-		if(PaperMill.status == "On" && wood >= PaperMill.numberOn*60){
+		if(PaperMill.status == "On" && wood >= PaperMill.numberOn*50*0.6){
 			clickThing(PaperMill.numberOn,"paper");		
 		}
-		else if(wood < PaperMill.numberOn*60){
+		else if(wood < PaperMill.numberOn*30*0.6){
 			PaperMill.status = "Off"
 		}		
 	}
 	else{
-		if(PaperMill.status == "On" && wood >= PaperMill.numberOn*100){
+		if(PaperMill.status == "On" && wood >= PaperMill.numberOn*50){
 			clickThing(PaperMill.numberOn,"paper");		
 		}
-		else if(wood < PaperMill.numberOn*100){
+		else if(wood < PaperMill.numberOn*50){
 			PaperMill.status = "Off"
 		}
 	}

@@ -82,7 +82,7 @@
 				  <li class="divider"></li>
                   <li class="dropdown-header"></li>
 				  <li><a id="ToggleTrunc" href="javascript:toggleTrunc();">Toggle Number Truncation</a></li>
-				  <li><a id="verinfo" target="_blank" href="changelog.html">Version 0.6.9.3</a></li>
+				  <li><a id="verinfo" target="_blank" href="changelog.html">Version 0.6.9.4</a></li>
                   <li><a href="#" data-toggle="modal" data-target="#aboutmodal">About</a></li>
                 </ul>
               </li>
@@ -179,16 +179,16 @@
 	  <div id="Gathering" class="collapse in">
 		<div class = "well well-sm">
 			<ul id = "GatherList">
-				<li><input type="image"  id="clickmoney" onclick="clickThing(1,'goldMouse')" src = "images/money_gold.png"/ title = "Click to gather gold yourself."></li>
-				<li><input type="image"  id="clickwood" onclick="clickThing(1,'woodMouse')" src = "images/wood.png"/ title = "Click to gather wood yourself."></li>
+				<li><input type="image"  id="clickmoney" tabIndex="-1" onclick="clickThing(1,'goldMouse')" src = "images/money_gold.png"/ title = "Click to gather gold yourself."></li>
+				<li><input type="image"  id="clickwood" tabIndex="-1" onclick="clickThing(1,'woodMouse')" src = "images/wood.png"/ title = "Click to gather wood yourself."></li>
 				<li>
 					<div id ="gatherPaper" style = "display: none;">
-						<input type="image"  id="clickpaper" onclick="clickThing(1,'paperMouse')" src = "images/parchment.png"/ title = "Click to convert 50 wood into paper yourself.">
+						<input type="image"  id="clickpaper" tabIndex="-1" onclick="clickThing(1,'paperMouse')" src = "images/parchment.png"/ title = "Click to convert 50 wood into paper yourself.">
 					</div>
 				</li>
 				<li>
 					<div id ="createTome" style = "display: none;">
-						<input type="image"  id="clicktome" onclick="clickThing(1,'tomeMouse')" src = "images/books.png"/ title = "Click to convert 2000 pages and 100 faith into a tome yourself.">
+						<input type="image"  id="clicktome" tabIndex="-1" onclick="clickThing(1,'tomeMouse')" src = "images/books.png"/ title = "Click to convert 2000 pages and 100 faith into a tome yourself.">
 					</div>
 				</li>
 			</ul>
@@ -285,7 +285,7 @@
 		<div id = "RelicPedestalTab" class = "container" style="display: none;">
 			<br />
 			<a id = 'BtnRelicDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Relic on a Pedestal"
-				data-content="">Relic on a Pedestal</a> <br />
+				data-content="The relic from the succubus/angel sits quietly on a black marble pedestal. There must be something more to it.">Relic on a Pedestal</a> <br />
 				Faith empowering relic: <span id = 'faithDonated'>0</span> <img src = "images/faithsmall.png" title="Faith"> <br />
 				Sacrifice:<br/>
 				<div class="btn-group" role="group" aria-label="...">
@@ -476,7 +476,13 @@
 					<br />
 					<img src = "images/money_goldsmall.png" title ="Gold" data-html="true" id="resgoldimage"> 10,000 | <img src = "images/ironsmall.png" title="Iron"> 5,000
 					<br />
-					Miners recruited by tavern: <span id="tavernminers">0</span>
+					Miners recruited by tavern: <span id="tavernminers">0</span> <br />
+					
+					<button id=btnUpgradeTavern2 onclick="upgradeTavern2()" title="Your tavern keeper learns how to make flapjacks with maple syrup. Taverns now recruit lumberjacks."	type="button" class="btn btn-default">Flapjacks</button>	
+					<br / >
+					<img src = "images/money_goldsmall.png" title ="Gold" data-html="true" id="resgoldimage"> 15,000 | <img src = "images/ironsmall.png" title="Iron"> 7,000 | <img src = "images/woodsmall.png" title = "Wood"> 5,000
+					<br />
+					Lumberjacks recruited by tavern: <span id = "tavernlumberjacks">0</span>
 					</div>
 				</div>				
 		</div>
@@ -502,7 +508,7 @@
 				<div id = "PMillUpgradeTab" class = "collapse" >
 					<div class = "well">
 						<div id = 'PMillUpgradeEffTab' class = 'container'> 
-							<button id=btnPmillEffUpgrade onclick="PmillEffUpgrade()"	type="button" class="btn btn-default" title = "Adjustmets to your mills make them much more efficient at converting wood into paper. They require 40% less wood.">Process Control</button>
+							<button id=btnPmillEffUpgrade onclick="PmillEffUpgrade()"	type="button" class="btn btn-default" title = "Adjustments to your mills make them much more efficient at converting wood into paper. They require 40% less wood.">Process Control</button>
 							<br />	
 							<img src = "images/money_goldsmall.png" title ="Gold" > 50,000 | <img src = "images/woodsmall.png" title = "Wood"> 25,000 | <img src = "images/ironsmall.png" title="Iron"> 35,000		
 						</div>
@@ -1117,7 +1123,15 @@
 					that float gently up into the sky. Her demise only deepens your resolve to defeat The Evil One. Your priests take the relic
 					and place it <a href="javascript: toggle('SuccubusDefeatAlert');CollapseAll();toggle('Cathedral')" class="alert-link">on a pedestal</a> in the cathedral.
 		</div>			
-
+		<div id = 'RelicHalfAlert' class="alert alert-info fade in" role="alert" style="display: none;">
+			<button type="button" class="close" onclick = "$('#RelicHalfAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> The relic begins to glow slightly, and you swear you can hear a humming noise emanating from deep within.
+		</div>
+		<div id = 'RelicAlmostAlert' class="alert alert-info fade in" role="alert" style="display: none;">
+			<button type="button" class="close" onclick = "$('#RelicAlmostAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>New!</strong> "The glowing from the relic intensifies, and now there is a slight shimmering around the surface! Just a little more, something is about to happen!"
+		</div>		
+		
 		<div id = 'AngelUnlockAlert' class="alert alert-info fade in" role="alert" style="display: none;">
 			<strong>New!</strong> The relic is overflowing with the faith! It starts to vibrate violently, and you decide the most prudent thing to do is to take it outside.
 					Just as you step foot outside the cathedral doors, flies out of your hands and hovers before you. You can literally feel the hum of power as the relic
