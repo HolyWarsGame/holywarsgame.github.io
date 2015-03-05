@@ -328,12 +328,13 @@ function upgradeTavern(){
 		iron = iron - 5000;
 		document.getElementById('gold').innerHTML = fnum(gold);
 		document.getElementById('iron').innerHTML = fnum(iron);
+		document.getElementById('btnUpgradeTavern').innerHTML = "Mining Initiative Purchased";
 		tavernUpgrade = true;
 	}
 };
 
 function upgradeTavern2(){
-	if(tavernUpgrade == false && gold >= 15000 && iron >= 7000 && wood >= 2500)
+	if(tavernUpgrade2 == false && gold >= 15000 && iron >= 7000 && wood >= 2500)
 	{
 		gold = gold - 15000;
 		iron = iron - 7000;
@@ -341,6 +342,7 @@ function upgradeTavern2(){
 		document.getElementById('gold').innerHTML = fnum(gold);
 		document.getElementById('iron').innerHTML = fnum(iron);
 		document.getElementById('wood').innerHTML = fnum(wood);
+		document.getElementById('btnUpgradeTavern2').innerHTML = "Flapjacks Purchased";
 		tavernUpgrade2 = true;
 	}
 };
