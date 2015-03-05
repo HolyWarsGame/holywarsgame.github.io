@@ -33,7 +33,8 @@ var tavernlumberjacks = 0;      //Tavern generated Lumberjacks
 var pGoldUpgrade = false;		//Peasant - Collection rate upgrade
 var pGoldClickUpgrade = false;	//Peasant - Gold clicking upgrade
 var pGoldClickUpgrade2 = false;	//Peasant - Gold clicking upgrade
-var lwoodClickUpgrade = false;  //LJack - Wood collection rate upgrade 
+var lwoodUpgrade = false;		//Ljack - Collection rate upgrade
+var lwoodClickUpgrade = false;  //LJack - Wood click rate upgrade 
 var mPanningUpgrade = false;	//Miner - Gold Panning upgrade
 var mSilverUpgrade = false;		//Miner - Silver Mining upgrade
 var prFaithUpgrade = false;     //Priest - Faith collection rate upgrade
@@ -83,6 +84,9 @@ function clickThing(number, type)
 			break;	
 
 		case "woodMouse":
+			if(lwoodClickUpgrade == true){
+				number = number * 5
+			}
 			wood = wood + number;
 			document.getElementById("wood").innerHTML = fnum(wood);
 			break;
@@ -200,7 +204,7 @@ function peasantUpgradeCollection(){
 		pGoldUpgrade = true;	
 		document.getElementById('gold').innerHTML = fnum(gold);
 		document.getElementById("btnPeasantUpgrade1").disabled = true;
-		document.getElementById("btnPeasantUpgrade1").innerHTML = "Peasant Power Bought";
+		document.getElementById("btnPeasantUpgrade1").innerHTML = "Peasant Power Purchased";
 	}	
 };
 
@@ -210,7 +214,7 @@ function upgradeClickGoldMultiplier(){
 		pGoldClickUpgrade = true;	
 		document.getElementById('gold').innerHTML = fnum(gold);
 		document.getElementById("clickGoldUpgrade").disabled = true;
-		document.getElementById("clickGoldUpgrade").innerHTML = "Click Upgrade Bought";
+		document.getElementById("clickGoldUpgrade").innerHTML = "Click Upgrade Purchased";
 	}	
 };
 
@@ -220,7 +224,7 @@ function upgradeClickGoldMultiplier2(){
 		pGoldClickUpgrade2 = true;	
 		document.getElementById('gold').innerHTML = fnum(gold);
 		document.getElementById("clickGoldUpgrade2").disabled = true;
-		document.getElementById("clickGoldUpgrade2").innerHTML = "Click Upgrade 2 Bought";
+		document.getElementById("clickGoldUpgrade2").innerHTML = "Click Upgrade 2 Purchased";
 	}	
 };
 
@@ -228,12 +232,30 @@ function lumberjackUpgradeCollection(){
 	if(gold >= 2500 && iron >= 1500){
 		gold = gold - 1500;
 		iron = iron - 1500;
-		lwoodClickUpgrade = true;	
+		lwoodUpgrade = true;	
 		document.getElementById('gold').innerHTML = fnum(gold);
 		document.getElementById('iron').innerHTML = fnum(iron);
 		document.getElementById("btnljackUpgrade1").disabled = true;
-		document.getElementById("btnljackUpgrade1").innerHTML = "Reinforced Axes Bought";
+		document.getElementById("btnljackUpgrade1").innerHTML = "Reinforced Axes Purchased";
 	}
+};
+
+function upgradeClickWoodMultiplier(){
+	if(gold >= 25000 && iron >= 20000 && silver >=15000 && souls >= 5000 && Shade.number >= 5){
+		gold = gold - 25000;
+		iron = iron - 20000;
+		silver = silver - 15000;
+		souls = souls - 5000;
+		Shade.number = Shade.number - 5;
+		lwoodClickUpgrade = true;	
+		document.getElementById('gold').innerHTML = fnum(gold);
+		document.getElementById('iron').innerHTML = fnum(iron);
+		document.getElementById('silver').innerHTML = fnum(silver);
+		document.getElementById('souls').innerHTML = fnum(souls);
+		document.getElementById('shades').innerHTML = Shade.number;
+		document.getElementById("btnljackUpgrade2").disabled = true;
+		document.getElementById("btnljackUpgrade2").innerHTML = "Phantom Axes Purchased";
+	}	
 };
 
 function minerUpgradePanning(){
@@ -244,7 +266,7 @@ function minerUpgradePanning(){
 		document.getElementById('gold').innerHTML = fnum(gold);
 		document.getElementById('iron').innerHTML = fnum(iron);
 		document.getElementById("btnminerUpgrade1").disabled = true;
-		document.getElementById("btnminerUpgrade1").innerHTML = "Learn Panning Bought";
+		document.getElementById("btnminerUpgrade1").innerHTML = "Learn Panning Purchased";
 	}	
 };
 
@@ -286,7 +308,7 @@ function PmillEffUpgrade(){
 		document.getElementById('iron').innerHTML = fnum(iron);
 		PmillEffUpgr = true;
 		document.getElementById("btnPmillEffUpgrade").disabled = true;
-		document.getElementById("btnPmillEffUpgrade").innerHTML = "Process Control Bought";
+		document.getElementById("btnPmillEffUpgrade").innerHTML = "Process Control Purchased";
 	}		
 }
 
@@ -335,7 +357,7 @@ function paladinUpgradeWeapon(){
 		document.getElementById('faith').innerHTML = fnum(faith);
 		paladinWepUpgrade = true;
 		document.getElementById("paladinUpgrade1").disabled = true;
-		document.getElementById("paladinUpgrade1").innerHTML = "Imbue Weapons Bought";
+		document.getElementById("paladinUpgrade1").innerHTML = "Imbue Weapons Purchased";
 	}
 }
 
@@ -378,8 +400,6 @@ function addFaithToRelic(number){
 		element_to_scroll_to = document.getElementById('AngelUnlockAlert');
 		element_to_scroll_to.scrollIntoView();	
 	}
-
-	
 }
 
 
@@ -426,13 +446,20 @@ function UpdateButtons() {
 	else{
 		document.getElementById("clickGoldUpgrade2").disabled = false;
 	}	
-	
+
 	//Lumberjack upgrade collection
-	if(lwoodClickUpgrade == true || (gold < 2500 || iron < 1500)){
+	if(lwoodUpgrade == true || (gold < 2500 || iron < 1500)){
 		document.getElementById("btnljackUpgrade1").disabled = true;
 	}
 	else{
 		document.getElementById("btnljackUpgrade1").disabled = false;
+	}	
+	//Lumberjack upgrade wood click
+	if(lwoodClickUpgrade == true || (gold < 25000 || iron < 20000 || silver < 15000 || souls < 5000 || Shade.number < 5)){
+		document.getElementById("btnljackUpgrade2").disabled = true;
+	}
+	else{
+		document.getElementById("btnljackUpgrade2").disabled = false;
 	}
 	
 	//Miner upgrade panning 
@@ -590,7 +617,7 @@ window.setInterval(function(){
 	//Wood Generation via lumberjacks etc every second
 	var woodnumber = Lumberjack.number;
 	
-	if(lwoodClickUpgrade == true){
+	if(lwoodUpgrade == true){
 		woodnumber = Lumberjack.number * 2;
 	}
 	

@@ -71,6 +71,7 @@
 		localStorage.setItem("pGoldUpgrade",pGoldUpgrade);
 		localStorage.setItem("pGoldClickUpgrade",pGoldClickUpgrade);
 		localStorage.setItem("pGoldClickUpgrade2",pGoldClickUpgrade2);
+		localStorage.setItem("lwoodUpgrade",lwoodUpgrade);
 		localStorage.setItem("lwoodClickUpgrade",lwoodClickUpgrade);
 		localStorage.setItem("mPanningUpgrade",mPanningUpgrade);
 		localStorage.setItem("mSilverUpgrade",mSilverUpgrade);
@@ -341,15 +342,23 @@
 				document.getElementById("clickGoldUpgrade2").innerHTML = "Click Upgrade 2 Bought";
 			}
 		}
-				
+		if(localStorage.lwoodUpgrade != null){
+			var myBool = (localStorage.lwoodUpgrade == "true")
+			if(myBool == true){
+				lwoodUpgrade = true;
+				document.getElementById("btnljackUpgrade1").disabled = true;
+			}
+		}				
 		
 		if(localStorage.lwoodClickUpgrade != null){
 			var myBool = (localStorage.lwoodClickUpgrade == "true")
 			if(myBool == true){
 				lwoodClickUpgrade = true;
-				document.getElementById("btnljackUpgrade1").disabled = true;
+				document.getElementById("btnljackUpgrade2").disabled = true;
 			}
 		}
+		
+		
 		if(localStorage.mSilverUpgrade != null){
 			var myBool = (localStorage.mSilverUpgrade == "true")
 			if(myBool == true){
