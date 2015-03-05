@@ -160,8 +160,13 @@ function clickThing(number, type)
 
 		case "miner":
 			Miner.number = Miner.number + number;
-			document.getElementById("miners").innerHTML = Miner.number + tavernminers;	
-			break;			
+			document.getElementById("miners").innerHTML = Miner.number;	
+			break;
+
+		case "lumberjack":
+			Lumberjack.number = Lumberjack.number + number;
+			document.getElementById("lumberjacks").innerHTML = Lumberjack.number;	
+			break;				
 		
 		case "souls":
 			souls = souls + number;
