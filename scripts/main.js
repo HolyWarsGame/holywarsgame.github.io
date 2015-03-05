@@ -527,7 +527,7 @@ window.setInterval(function(){					//Enables/disables buttons
 		document.getElementById('clicktome').src = "images/books.png"
 	}	
 	
-}, 100);
+}, 200);
 
 window.setInterval(function(){					//Increases totalTimePlayed by 1 second per second 
 	totalTimePlayed = totalTimePlayed + 1;
@@ -607,7 +607,7 @@ function fnum(x) {
 			return (x/1000000000000000000000).toFixed(2) + "Sp";
 		}			
 	 
-		return "1T+";
+		return "1Sp+";
 	}
 	else
 	{
