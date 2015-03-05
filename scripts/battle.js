@@ -670,7 +670,7 @@ setEnemyDescription(Hellhounds, 'btnDescHellhounds');
 function triggerHellhound(){
 	document.getElementById('hellhoundUnlockAlert').style.display = "block";
 	document.getElementById('BatHellhound').style.display = "block";
-	Hellhounds.showBattle();
+	showBattle('Hellhounds');
 	hellHoundRaid();
 }
 
