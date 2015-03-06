@@ -441,7 +441,7 @@ function UpdateButtons() {
 
 	//Upgrade Buttons//
 	//Peasant Upgrade gold collection Peasant Power
-	if(pGoldClickUpgrade == true || (gold < 2000)){
+	if(pGoldUpgrade == true || (gold < 2000)){
 		document.getElementById("btnPeasantUpgrade1").disabled = true;
 	}
 	else{
@@ -545,7 +545,7 @@ function UpdateButtons() {
 	}		
 
 	//Paladin upgrade weapon
-	if(paladinUpgradeWeapon == true || (gold < 20000 || iron < 5000 || faith < 2500)){
+	if(paladinWepUpgrade == true || (gold < 20000 || iron < 5000 || faith < 2500)){
 		document.getElementById("paladinUpgrade1").disabled = true;
 	}
 	else{
@@ -685,6 +685,8 @@ window.setInterval(function(){
 			clickThing(1,"mana");
 		}
 	}
+	
+	updateUnitPopover()
 }, 1000);
 
 
