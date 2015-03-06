@@ -343,7 +343,16 @@ function setDefeatEvents(name){
 						setTimeout(function() { necroReviveUA(); }, 180000);
 						document.getElementById("BatNecromancer").style.display = "block";
 						showBattle('Necromancer');
-					break;					
+					break;
+					
+					default:
+						document.getElementById('UADefeatMessage').innerHTML = "You realize that fighting the undead army is basically pointless, as they keep coming back. "+
+						"You have one of your paladins whom is more attuned to magic tracking seek out the source. It turns out there's a necromancer hiding in a cave you " +
+						"never noticed before! Clearly he was sent to harass you by The Evil One."
+						
+						setTimeout(function() { necroReviveUA(); }, 180000);
+						document.getElementById("BatNecromancer").style.display = "block";
+						showBattle('Necromancer');					
 				}
 
 			
@@ -904,7 +913,6 @@ function necroReviveUA(){
 	if(defeatedUArmy == true){
 		defeatedUArmy = false;
 		document.getElementById('btnBatUArmy').innerHTML = "Battle Again!";
-		
 		document.getElementById(UndeadArmy.htmlBoxRef).style.display = "block";
 		$bar = $(document.getElementById(UndeadArmy.htmlBarRef));		
 		$bar.width(0 +'%');

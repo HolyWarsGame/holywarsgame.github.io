@@ -207,7 +207,7 @@ var Aspect = new Unit("AspectofJustice",'aspects','AspectCost','aspectIronCost',
 setDescription(Aspect, 'BtnAspectDesc');
 
 var angelDesc = "Divine warriors capable of flight summoned down from the heavens. They smell vaguely like freshly baked brownies. <br> Provides 450 army strength. <br>Provides 200 spiritual strength.<br> Provides 5 souls per second."
-var Angel = new Unit("Angel",'angels','AngelCost','angelIronCost','angelSilverCost','none','angelSoulCost','angelTomeCost','btnBuyAngel',200000,500,2500,0,1500,50,1.15, angelDesc, 0, false, "none");
+var Angel = new Unit("Angel",'angels','AngelCost','angelIronCost','angelSilverCost','none','angelSoulCost','angelTomeCost','btnBuyAngel',200000,500,2500,0,1500,30,1.15, angelDesc, 0, false, "none");
 setDescription(Angel, 'BtnAngelDesc');
 
 function checkUnitButtons(){

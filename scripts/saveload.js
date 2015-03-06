@@ -579,6 +579,18 @@
 					defeatedUArmy = true;
 				}
 		};
+		
+		if(localStorage.UARevivedCount != null){
+			UARevivedCount = parseInt(localStorage.UARevivedCount);
+			if(UARevivedCount < 3){
+				setTimeout(function() { necroReviveUA(); }, 20000);
+			}
+			else if( UARevivedCount >= 3){
+				document.getElementById("BatNecromancer").style.display = "block";
+//				showBattle('Necromancer');
+			}
+//			document.getElementById("UARevivedCount").innerHTML = fnum(UARevivedCount);
+		}				
 		if(localStorage.defeatedNecromancer != null){
 			var myBool = (localStorage.defeatedNecromancer == "true")
 				if(myBool == true){
@@ -613,11 +625,7 @@
 		if(localStorage.unitsSeduced != null){
 			unitsSeduced = parseInt(localStorage.unitsSeduced);
 			document.getElementById("unitsSeduced").innerHTML = fnum(unitsSeduced);
-		}	
-		if(localStorage.UARevivedCount != null){
-			UARevivedCount = parseInt(localStorage.UARevivedCount);
-//			document.getElementById("UARevivedCount").innerHTML = fnum(UARevivedCount);
-		}			
+		}		
 		
 		if(localStorage.inbattle != null){
 			var myBool = (localStorage.inbattle == "true")
@@ -626,7 +634,6 @@
 				battlePercent = localStorage.battlePercent;
 				console.log(curBattling + ": " + battlePercent + "%")
 				setTimeout(function() { loadBattle(curBattling, battlePercent); }, 500)
-
 			}
 		}
 		if(localStorage.faithDonated != null){
@@ -653,9 +660,9 @@
 		
 		if(window.localStorage.length != 0){
 			console.log("Save loaded.")
-			document.getElementById('loadAlert').style.display = "block";  //Displays saved alert
+			document.getElementById('loadAlert').style.display = "block";  //Displays load alert
 			
-			//Dismisses Save Alert
+			//Dismisses load Alert
 			var ticker = 0 ;
 			var clearSave = setInterval(function() {
 				ticker = ticker + 1;   
@@ -666,7 +673,7 @@
 				}	
 			  }
 			}, 1000);	
-			//End Dismisses Save Alert			
+			//End Dismisses load Alert			
 		}
 	};
 	
@@ -676,7 +683,7 @@
 		answer = confirm("Are you sure you want to hard reset? You will LOSE ALL YOUR DATA!");
 		if(answer == true){
 			deleteCookie();
-			location.reload(false);
+			location.reload(true);
 		}
 	};
 	
@@ -700,7 +707,7 @@ function loadScenario(number){
 			barracksOpened = true;
 			minesOpened = true;
 			saveCookie();
-			location.reload(false);
+			location.reload(true);
 		break;
 		
 		case 2:
@@ -724,7 +731,7 @@ function loadScenario(number){
 			mSilverUpgrade = true;
 			mPanningUpgrade = true;	
 			saveCookie();
-			location.reload(false);			
+			location.reload(true);			
 		break;
 
 		case 3:
@@ -755,7 +762,7 @@ function loadScenario(number){
 			mSilverUpgrade = true;
 			mPanningUpgrade = true;
 			saveCookie();
-			location.reload(false);			
+			location.reload(true);			
 		break;
 		
 		case 4:
@@ -790,7 +797,7 @@ function loadScenario(number){
 			mSilverUpgrade = true;
 			mPanningUpgrade = true;
 			saveCookie();
-			location.reload(false);				
+			location.reload(true);				
 		break;
 
 		case 5:
@@ -827,7 +834,7 @@ function loadScenario(number){
 			mSilverUpgrade = true;
 			mPanningUpgrade = true;
 			saveCookie();
-			location.reload(false);			
+			location.reload(true);			
 		break;
 		
 		case 6:
@@ -870,7 +877,7 @@ function loadScenario(number){
 			mPanningUpgrade = true;
 			paladinWepUpgrade = true;
 			saveCookie();
-			location.reload(false);			
+			location.reload(true);			
 		break;	
 
 		case 7:
@@ -916,7 +923,7 @@ function loadScenario(number){
 			tomesUnlocked = true;
 			
 			saveCookie();
-			location.reload(false);			
+			location.reload(true);			
 		break;		
 		
 		default:
