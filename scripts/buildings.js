@@ -426,8 +426,39 @@ window.setInterval(function(){					//Tavern unit generation
 
 }, 30000);
 
-window.setInterval(function(){					//Tavern unit generation
 
+interval = 5000; // initial condition
+var run = setInterval(request , interval); // start setInterval as "run"
+
+    function request() { 
+
+        console.log(interval); // firebug or chrome log
+        clearInterval(run); // stop the setInterval()
+
+         // dynamically change the run interval
+        if(interval>200 ){
+          interval = interval*.8;
+        }else{
+          interval = interval*1.2;
+        }
+
+        run = setInterval(request, interval); // start the setInterval()
+
+    }
+
+
+var PMillTime = 10000;
+var Pmillticker = setInterval(request, PMillTime);
+
+function request(){
+	clearInterval(Pmillticker);
+	if(PmillEffUpgr2 == true){
+		PMillTime = 5000;
+	}
+	else{
+		PMillTime = 10000;
+	}
+	
 	if(PmillEffUpgr == true){
 		if(PaperMill.status == "On" && wood >= PaperMill.numberOn*50*0.6){
 			clickThing(PaperMill.numberOn,"paper");		
@@ -443,5 +474,8 @@ window.setInterval(function(){					//Tavern unit generation
 		else if(wood < PaperMill.numberOn*50){
 			PaperMill.status = "Off"
 		}
-	}
-}, 10000);
+	}	
+	
+	Pmillticker = setInterval(request, PMillTime);
+}
+ 

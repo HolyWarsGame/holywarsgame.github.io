@@ -81,6 +81,7 @@
 		localStorage.setItem("angelsUnlocked", angelsUnlocked);
 		localStorage.setItem("tomesUnlocked",tomesUnlocked);
 		localStorage.setItem("PmillEffUpgr", PmillEffUpgr);
+		localStorage.setItem("PmillEffUpgr2",PmillEffUpgr2);
 		localStorage.setItem("paladinWepUpgrade",paladinWepUpgrade);
 		localStorage.setItem("tavernUpgrade",tavernUpgrade);
 		localStorage.setItem("tavernUpgrade2", tavernUpgrade2);
@@ -403,7 +404,15 @@
 				document.getElementById("btnPmillEffUpgrade").disabled = true;
 				document.getElementById("btnPmillEffUpgrade").innerHTML = "Process Control Bought";
 			}
-		}			
+		}	
+		if(localStorage.PmillEffUpgr2 != null){
+			var myBool = (localStorage.PmillEffUpgr2 == "true")
+			if(myBool == true){
+				PmillEffUpgr2 = true;
+				document.getElementById("btnPmillEffUpgrade2").disabled = true;
+				document.getElementById("btnPmillEffUpgrade2").innerHTML = "Total Overhaul Bought";
+			}
+		}		
 		if(localStorage.paladinWepUpgrade != null){
 			var myBool = (localStorage.paladinWepUpgrade == "true")
 			if(myBool == true){
@@ -452,8 +461,8 @@
 			if(myBool == true){
 				angelsUnlocked = true;
 			document.getElementById('RelicPedestalTab').style.display = "none";
-//			document.getElementById('AngelUnlockAlert').style.display = "block";
-			document.getElementById('AngelTab').style.display = "block";				
+			document.getElementById('AngelTab').style.display = "block";	
+			document.getElementById("Etherealtitle").innerHTML = "Ethereal Rip & Angelic Gates";
 			}
 		}			
 		
@@ -520,7 +529,6 @@
 					document.getElementById("btnBatHellhound").disabled = true;
 					document.getElementById("btnBatHellhound").innerHTML = "Hellhounds Defeated!";
 					defeatedHhounds = true;
-					setTimeout(function() { triggerOoze(); }, 60000);				//restarts ooze raids after defeating hhounds
 				}
 				else if(defeatedOgre == true){
 					setTimeout(function() { hellHoundRaid(); }, 30000);			//killed ogre but haven't defeated hhounds yet, start raids again
@@ -545,7 +553,11 @@
 			var myBool = (localStorage.defeatedOoze == "true")
 				if(myBool == true){
 					defeatedOoze = true;
+					document.getElementById('BatOoze').style.display = "block";
 					document.getElementById('tomeUnlock').style.display = "block";
+				}
+				else if(defeatedHhounds == true){
+					setTimeout(function() { triggerOoze(); }, 60000);				//restarts ooze raids after defeating hhounds
 				}
 		};			
 							
@@ -640,7 +652,7 @@
 			faithDonated = parseInt(localStorage.faithDonated);
 			document.getElementById("faithDonated").innerHTML = fnum(faithDonated);
 			if(faithDonated >= 500000){
-	//			document.getElementById('RelicPedestalTab').style.display = "none";
+				document.getElementById('RelicPedestalTab').style.display = "none";
 			}			
 		}		
 		if(localStorage.lastPage != null){

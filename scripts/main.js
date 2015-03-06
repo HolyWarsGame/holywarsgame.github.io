@@ -19,6 +19,7 @@ var ironpersec = 0;
 var silverpersec = 0;
 var soulspersec = 0;
 var manapersec = 0;
+var paperpersec = 0;
 var faithDonated = 0;
 var totalTimePlayed = 0;
 var tTPinHHMMSS = 0;
@@ -50,7 +51,8 @@ var lumbermillOpened = false;
 var minesOpened = false;
 var cathedralOpened = false;
 var tomesUnlocked = false;
-var PmillEffUpgr = false;
+var PmillEffUpgr = false;		//Paper mill efficiency upgrade cost
+var PmillEffUpgr2 = false;
 var barracksOpened = false;
 var towerUnlocked = false;
 var towerBuilt = false;
@@ -299,7 +301,7 @@ function priestUpgradeCollection(){
 }
 
 function PmillEffUpgrade(){
-	if(gold >= 50000 && wood >= 25000 && iron >= 35000 && PmillEffUpgr == false){
+	if(gold >= 50000 && wood >= 25000 && iron >= 35000){
 		gold = gold - 50000
 		wood = wood - 25000
 		iron = iron - 35000
@@ -309,6 +311,22 @@ function PmillEffUpgrade(){
 		PmillEffUpgr = true;
 		document.getElementById("btnPmillEffUpgrade").disabled = true;
 		document.getElementById("btnPmillEffUpgrade").innerHTML = "Process Control Purchased";
+	}		
+}
+
+function PmillEffUpgrade2(){
+	if(gold >= 1000000 && wood >= 1000000 && iron >= 1000000 && souls >= 50000){
+		gold = gold - 1000000
+		wood = wood - 1000000
+		iron = iron - 1000000
+		souls = souls - 50000;
+		document.getElementById('gold').innerHTML = fnum(gold);
+		document.getElementById('wood').innerHTML = fnum(wood);
+		document.getElementById('iron').innerHTML = fnum(iron);
+		document.getElementById('souls').innerHTML = fnum(souls);
+		PmillEffUpgr2 = true;
+		document.getElementById("btnPmillEffUpgrade2").disabled = true;
+		document.getElementById("btnPmillEffUpgrade2").innerHTML = "Total Overhaul Purchased";
 	}		
 }
 
@@ -385,7 +403,7 @@ function addFaithToRelic(number){
 		}
 		else if(faithDonate > 400000){
 			description = "The glowing from the relic intensifies, and now there is a slight shimmering around the surface! Just a little more, something is about to happen!"
-			document.getElementById('RelicAlmostAlert').style.display = "block";			
+			document.getElementById('RelicAlmostAlert').style.display = "block";
 		}
 		var popover = document.getElementById('BtnRelicDesc');
 		popover.setAttribute("data-content", description);
@@ -393,6 +411,7 @@ function addFaithToRelic(number){
 	}
 	
 	if(faithDonated >= 500000){
+		document.getElementById("Etherealtitle").innerHTML = "Ethereal Rip & Angelic Gates";
 		document.getElementById('RelicPedestalTab').style.display = "none";
 		document.getElementById('AngelUnlockAlert').style.display = "block";
 		document.getElementById('AngelTab').style.display = "block";
@@ -486,6 +505,14 @@ function UpdateButtons() {
 	
 	//Paper mill efficiency upgrade
 	if(PmillEffUpgr == true || (gold < 50000 || wood < 25000 || iron < 35000)){
+		document.getElementById("btnPmillEffUpgrade").disabled = true;
+	}
+	else{
+		document.getElementById("btnPmillEffUpgrade").disabled = false;
+	}	
+	
+	//Paper mill efficiency upgrade 2
+	if(PmillEffUpgr2 == true || (gold < 1000000 || wood < 1000000 || iron < 1000000 || souls < 50000)){
 		document.getElementById("btnPmillEffUpgrade").disabled = true;
 	}
 	else{
@@ -589,7 +616,17 @@ window.setInterval(function(){                                 //Update per seco
 	}
 	document.getElementById("ressoulsimage").title = "Souls per second: " + fnum(soulspersec) ; 
 	
+	if(PmillEffUpgr2 == true){
+		paperpersec = PaperMill.number / 5;
+		document.getElementById("respaperimage").title = "Paper per 5 seconds: " + fnum(paperpersec * 5) ; 
+	}
+	else{
+		paperpersec = PaperMill.number / 10;
+		document.getElementById("respaperimage").title = "Paper per 10 seconds: " + fnum(paperpersec * 10) ; 
+	}
+	
 
+	
 	manapersec = 1;
 	document.getElementById("resmanaimage").title = "Mana per second: " + fnum(manapersec) ; 	
 	

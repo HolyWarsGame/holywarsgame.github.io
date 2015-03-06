@@ -757,8 +757,8 @@ var Ooze = new Enemy("Ooze", oozeDesc, 'BatOozeProgBarBox','BatOozeProgBar','btn
 setEnemyDescription(Ooze, 'btnDescOoze');
 
 function triggerOoze(){
-	showBattle('Ooze');	
 	document.getElementById('BatOoze').style.display = "block";
+	showBattle('Ooze');	
 	oozeRaid();
 }
 

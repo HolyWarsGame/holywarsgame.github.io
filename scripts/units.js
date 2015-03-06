@@ -158,7 +158,7 @@ function setDescription(Unit, element){
 
 //Unit constructor  (name, htmlNumRef, htmlNextGoldCost, htmlNextIronCost, htmlNextSilverCost, htmlNextFaithCost, htmlNextSoulCost, htmlNextTomeCost, htmlBuyBtn, 
 //					goldCost, ironCost, silverCost, faithCost, soulCost, tomeCost, costMult,description, costAdj, hasReqUnit, reqUnit){
-var peasDesc = "A lowly denizen of your realm. They are adept at farming and scrounging for gold but completely useless at fighting. <br>   Generates 1 <img src='images/money_goldsmall.png'> per second"
+var peasDesc = "A lowly denizen of your realm. They are adept at farming and scrounging for gold but completely useless at fighting. <br>Generates 1 <img src='images/money_goldsmall.png'> per second"
 var Peasant = new Unit("Peasant",'peasants','PeasantCost','none','none','none','none','none','btnbuyPeasant',50,0,0,0,0,0,1.1, peasDesc, tavernpeasants,false,"none");
 setDescription(Peasant, 'BtnPeasantDesc');
 

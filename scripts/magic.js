@@ -53,7 +53,7 @@ function setSpellDescription(Spell, element){
 };
 
 
-var fastForwardDesc = "The archmage casts a spell that warps your kingdom 15 minutes into the future. Unfortunately, the spell isn't strong enough to keep your taverns working for the duration of the spell.";
+var fastForwardDesc = "<img src='images/stopwatch.png'>The archmage casts a spell that warps your kingdom 15 minutes into the future. Unfortunately, the spell isn't strong enough to keep your taverns working for the duration of the spell.";
 var FastForward = new Spell("FastForward", fastForwardDesc, 0, 0, 'btnSpellFF', 'Alert', 0, 0, 0, 0, 0, 0, 1000);
 setSpellDescription(FastForward, 'BtnSpellFFDesc');
 
@@ -66,6 +66,8 @@ FastForward.cast = function(){
 	var silverGained = 0;
 	var faithGained = 0;
 	var soulsGained = 0;
+	var paperGained = 0;
+	
 	if(mana >= 1000){
 	goldGained = timemultiplier*60*goldpersec;
 	gold = gold + goldGained;
@@ -91,18 +93,22 @@ FastForward.cast = function(){
 	souls = souls + soulsGained;
 	document.getElementById('souls').innerHTML = souls;  										          //updates the number of souls for the user		
 	
+	paperGained = timemultiplier*60*paperpersec;														// updates number of paper for the user
+	paper = paper + paperGained;	
+	document.getElementById('paper').innerHTML = paper;					
+	
 	
 	mana = mana - this.manaCost;                                                                  //removes the souls spent	
 	document.getElementById('mana').innerHTML = mana;  										      //updates the number of souls for the user
 	
 	
 	alert(this.name + " spell cast!\n\nYou gain " + goldGained + " gold. \nYou gain " + woodGained + 
-				     " wood.\nYou gain " + ironGained + " iron.\nYou gain " + silverGained + " silver.\nYou gain " + faithGained + " faith.\nYou gain " + soulsGained + " souls.");
+				     " wood.\nYou gain " + ironGained + " iron.\nYou gain " + silverGained + " silver.\nYou gain " + faithGained + " faith.\nYou gain " + soulsGained + " souls.\nYou gain " + paperGained + " paper.");
 
 	}
 }
 
-var fireBallDesc = "The archmage conjures a flaming ball of fire and sends it hurtling towards your foe! It will damage the enemy you are currently battling, pushing you 15% closer to victory!";
+var fireBallDesc = "<img src='images/fireball.png'>The archmage conjures a flaming ball of fire and sends it hurtling towards your foe! It will damage the enemy you are currently battling, pushing you 15% closer to victory!";
 var FireBall = new Spell("FireBall", fireBallDesc, 0, 0, 'btnSpellFB', 'Alert', 0, 0, 0, 0, 0, 0, 750);
 setSpellDescription(FireBall, 'BtnSpellFBDesc');
 

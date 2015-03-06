@@ -1,0 +1,117 @@
+body { 
+padding-top: 50px;
+}
+
+#ResourcesWell
+{
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+#ResourceList ul
+{
+margin: 0px;
+padding: 0px;
+list-style-type: none;
+
+display:-webkit-box;
+-webkit-box-orient: horizontal;
+-webkit-box-pack:justify;
+width:200px;
+}
+
+#ResourceList li
+{
+display: inline-block;
+margin: -4px;
+padding-right: 60px;
+
+-webkit-box-flex:1;
+}
+
+
+#ResourceList div
+{
+display: inline;
+margin: 9px 0px 0px;
+padding: 0px;
+}
+
+#SecondaryResourceWell
+{
+margin-top: 5px;
+margin-bottom: 5px;
+}
+
+#SecondaryResourceList ul
+{
+margin: 0px;
+padding: 0px;
+list-style-type: none;
+
+display:-webkit-box;
+-webkit-box-orient: horizontal;
+-webkit-box-pack:justify;
+width:200px;
+}
+
+#SecondaryResourceList li
+{
+display: inline-block;
+margin: -4px;
+padding-right: 60px;
+
+-webkit-box-flex:1;
+}
+
+
+#SecondaryResourceList div
+{
+display: inline;
+margin: 9px 0px 0px;
+padding: 0px;
+}
+
+#GatherList li
+{
+display: inline-block;
+margin: -4px;
+padding-right: 20px;
+}
+
+#GatherListWell{
+margin-top:10px;
+margin-bottom: 10px;
+}
+
+#GatherList div
+{
+display: inline;
+margin-top: 20px;
+margin-bottom: 0px;
+padding: 0px;
+}
+
+#relicInputGroup input-group{
+padding: 0px;
+}
+
+#SpellsDiv div{
+display: inline-block;
+}
+
+.panel{
+margin-top:10px;
+}
+
+.upgrade {
+width: 450px;
+height: auto;
+}
+
+.spell{
+padding-top: 0px;
+margin-left: 10px;
+width: auto;
+}
+
