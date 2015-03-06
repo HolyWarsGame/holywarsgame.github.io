@@ -32,7 +32,7 @@
 		}
 	};
 	$(function () { 
-		$("[data-toggle='popover']").popover(); 	
+		$("[data-toggle='popover']").popover({ trigger: "hover" });
 	});
 	
     $(function () {
@@ -99,14 +99,13 @@
         </div><!--/.container-fluid -->
       </nav>
 		
-	  
+	
 	  <div id="Resources" class="collapse in">
 		<div class = "well well-sm" id = "ResourcesWell">
 		<ul id = "ResourceList">
 			<li>
 				<div id = "golddiv" >
 					<img src = "images/money_goldsmall.png" Title="Gold" title ="" data-html="true" id="resgoldimage">
-					
 					Gold: <span id="gold">0</span>  <!--( <span id="goldpersec">0</span> gps)-->
 				</div>		
 			</li>
@@ -210,7 +209,7 @@
 		
 		<div id="PeasantTab" class = "container">
 		<br />
-		<a id ="BtnPeasantDesc" tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover" data-trigger="focus" data-html="true" title="Peasants" 
+		<a id ="BtnPeasantDesc" tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover" data-trigger="focus" data-html="true" title="Peasants"
     		data-content="";>Peasants (<span id="peasants">0</span>)</a>
 		<br /><br />
 		<button id=btnbuyPeasant onclick="Peasant.buyOne()"	type="button" class="btn btn-default">Recruit Peasant</button>

@@ -283,8 +283,10 @@ MultBuilding.prototype.buyOne = function(){
 var lumermillDesc = "Constructing a lumber mill allows you to hire lumberjacks and gather wood.";
 var Lumbermill = new Building('Lumbermill','btnOpenMill',750,100,0,0,0,0,lumermillDesc,"none",'lumbermillOpened');
 
-var papermillDesc = "Constructing a paper mill allows you to automatically convert wood into paper. Converts 50 wood to 1 paper every 10 second";
+var papermillDesc = "Constructing a paper mill allows you to automatically convert wood into paper. Converts 50 <img src = 'images/woodsmall.png'> to 1 <img src = 'images/parchmentsmall.png'> every 10 seconds";
 var PaperMill = new MultBuilding('Papermill','papermills', 'pMillCost', 'pMillWoodCost','pMillIronCost','none','none','none','btnbuyPMill',4500,2000,1500,0,0,0,1.5,papermillDesc,0,false,0);
+setDescription(PaperMill,'BtnPMillDesc')
+
 PaperMill.numberOn = 0;
 PaperMill.status = "On"
 
