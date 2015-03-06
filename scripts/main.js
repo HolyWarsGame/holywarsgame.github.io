@@ -299,7 +299,7 @@ function priestUpgradeCollection(){
 }
 
 function PmillEffUpgrade(){
-	if(gold >= 50000 && wood >= 25000 && iron >= 35000){
+	if(gold >= 50000 && wood >= 25000 && iron >= 35000 && PmillEffUpgr == false){
 		gold = gold - 50000
 		wood = wood - 25000
 		iron = iron - 35000
@@ -420,9 +420,7 @@ function recalculateCosts(){
 
 function UpdateButtons() {
 
-
 	//Upgrade Buttons//
-
 	//Peasant Upgrade gold collection Peasant Power
 	if(pGoldClickUpgrade == true || (gold < 2000)){
 		document.getElementById("btnPeasantUpgrade1").disabled = true;
@@ -486,9 +484,8 @@ function UpdateButtons() {
 		document.getElementById("btnPriestUpgrade1").disabled = false;
 	}
 	
-	
 	//Paper mill efficiency upgrade
-	if(PmillEffUpgrade == true || (gold < 50000 || wood < 25000 || iron < 35000)){
+	if(PmillEffUpgr == true || (gold < 50000 || wood < 25000 || iron < 35000)){
 		document.getElementById("btnPmillEffUpgrade").disabled = true;
 	}
 	else{
