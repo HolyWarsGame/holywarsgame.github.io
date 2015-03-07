@@ -348,6 +348,7 @@
 			if(myBool == true){
 				lwoodUpgrade = true;
 				document.getElementById("btnljackUpgrade1").disabled = true;
+				document.getElementById("btnljackUpgrade1").innerHTML = "Reinforced Axes Bought";
 			}
 		}				
 		
@@ -356,6 +357,7 @@
 			if(myBool == true){
 				lwoodClickUpgrade = true;
 				document.getElementById("btnljackUpgrade2").disabled = true;
+				document.getElementById("btnljackUpgrade2").innerHTML = "Phantom Axes Bought";
 			}
 		}
 		

@@ -513,20 +513,20 @@ function UpdateButtons() {
 	
 	//Paper mill efficiency upgrade 2
 	if(PmillEffUpgr2 == true || (gold < 1000000 || wood < 1000000 || iron < 1000000 || souls < 50000)){
-		document.getElementById("btnPmillEffUpgrade").disabled = true;
+		document.getElementById("btnPmillEffUpgrade2").disabled = true;
 	}
 	else{
-		document.getElementById("btnPmillEffUpgrade").disabled = false;
-	}	
+		document.getElementById("btnPmillEffUpgrade2").disabled = false;
+	}
+		
 	
-	//Tomes  button
+	//Tomes button
 	if(tomesUnlocked == true || (gold < 12000 || paper < 2000 || faith < 1000)){
 		document.getElementById("btnTomeUnlock").disabled = true;	
 	}
 	else{
 		document.getElementById("btnTomeUnlock").disabled = false;	
 	}
-
 	
 	//Unlock Squire Button
 	if(squiresUnlocked == true || (BattlePower < 120|| gold < 4000)){	

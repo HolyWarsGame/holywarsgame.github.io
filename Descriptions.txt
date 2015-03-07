@@ -1,0 +1,110 @@
+BATTLE
+=======
+
+Goblins
+-------
+Concerned with the security of your land, your spymaster has made a list of enemies spotted by your scouts.
+The list begins with a den of greedy goblins in the nearby oak grove.
+Though they have not made any aggressive moves toward your people and your holdings, theses capricious hoarders of all things shiny remain a threat.
+
+
+
+Bandits
+-------
+Scouts have reported sightings of a large group of marauders camped out on the plains. 
+Outfitted in leather armor and wielding iron weapons, these bandits roam the outskirts of your town and periodically pilfer from your peasants.
+
+
+Reclusive Hermit
+-----------------
+Your people have been warned away from the swampy western woods where the mists blanket everything except for the lone hovel at the center.
+Its single occupant can be seen chopping wood and collecting wild plants from time to time, often singing to herself into a garbled, eldritch language.
+Her age hides the true extent of her skills - she keeps visitors away with an array of throwing knives, all launched with terrifyingly great accuracy.
+
+
+Smelly Ogre
+------------
+
+
+Pack of Hellhounds
+-------------------
+A 
+
+
+Evil Pixie
+-----------
+
+
+
+Haunted Armor
+--------------
+
+
+Gelatinous Ooze
+----------------
+
+
+
+Corrupted Archmage
+-------------------
+
+
+
+
+UNITS
+=====
+
+Peasant
+Lumberjack
+Miner
+Page
+Squire
+Knight
+Paladin
+
+Master Paladin
+
+Acolyte
+Priest
+Bishop
+Shade
+Aspect
+Angel
+
+Archangel
+Seraphim
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -559,6 +559,7 @@ function hideAllBattles(){
 	hideBattle('Succubus');
 }
 */
+
 function loadBattle(name, percent){
 	spellBoost(percent);
 	showBattle(name);
