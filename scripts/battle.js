@@ -1428,7 +1428,14 @@ setEnemyDescription(Hellhounds, 'btnDescHellhounds');
 
 
 function triggerHellhound(){
-	document.getElementById('hellhoundUnlockAlert').style.display = "block";
+//	document.getElementById('hellhoundUnlockAlert').style.display = "block";
+	$.notify({
+		title: "<strong>Oh No! </strong>",
+		message: " Your presence has not gone unnoticed - <a href='javascript: toggle('hellhoundUnlockAlert');CollapseAll();toggle('Battle')' class='alert-link'>hellhounds</a> have been summoned by the Evil One's command to attack you.",
+		delay: 60000},{
+	type: 'danger'
+	});	
+
 	document.getElementById('BatHellhound').style.display = "block";
 	showBattle('Hellhounds');
 	hellHoundRaid();
