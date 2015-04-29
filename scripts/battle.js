@@ -657,7 +657,7 @@ function setDefeatEvents(name){
 
 		case 'Ooze':
 			document.getElementById('tomeUnlock').style.display = "block";
-			document.getElementById('tomeUnlockAlert').style.display = "block";
+//			document.getElementById('tomeUnlockAlert').style.display = "block";
 			document.getElementById('BatDwarf').style.display = "block";
 			defeatedOoze = true;
 
