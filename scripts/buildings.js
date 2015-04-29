@@ -483,7 +483,7 @@ var commandPostDesc = ""
 var CommandPost = new Building('Command Post','btnOpenCommandPost','commandPostGoldCost', 'commandPostWoodCost', 'commandPostIronCost','none','none','none',5000,1000,250,0,0,0,commandPostDesc,"none",'commandPostOpened');
 
 var forgeDesc = ""
-var Forge = new Building('Forge','btnOpenForge','forgeGoldCost','forgeWoodCost','forgeIronCost','forgeSilverCost','none','none',750000,400000,750000,500,100000,0,forgeDesc,"none",'forgeOpened');
+var Forge = new Building('Forge','btnOpenForge','forgeGoldCost','forgeWoodCost','forgeIronCost','forgeSilverCost','none','none',750000,400000,750000,100000,0,0,forgeDesc,"none",'forgeOpened');
 
 var churchDesc = ""
 var Church = new Building('Church','btnOpenChurch','churchGoldCost','churchWoodCost','churchIronCost','churchSilverCost','none','none',15000,2500,500,100,0,0,churchDesc,"none",'churchOpened');
