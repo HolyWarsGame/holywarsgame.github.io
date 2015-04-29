@@ -292,47 +292,55 @@ function btnSendQuest(){
 		 }
 		 string = string + " out on the quest '" + $('#questSelectPicker').selectpicker('val') + "'";
 
+	    function notify(){
+			$.notify({
+				title: "<strong>Questing! </strong>",
+				message: string,
+				delay: 25000
+			});				
+		}
 	  
-		$.notify({
-			title: "<strong>Questing! </strong>",
-			message: string,
-			delay: 25000
-		});		  
 	  
 	  switch($('#questSelectPicker').selectpicker('val'))
 	  {
 		 case 'Help the People':
 			console.log('Help the People');
 			goldQuest.startQuest('gold');
+			notify();
 		 break;
 
 		 case 'Slay Treants':
 			console.log('Slay Treants');
 			woodQuest.startQuest('wood');
+			notify();
 		 break;
 		 
 		 case 'Slay Iron Golems':
 			console.log('Slay Iron Golems');
 			ironQuest.startQuest('iron');
+			notify();
 		 break;
 
 		 case 'Aid the Sprites':
 			console.log('Aid the Sprites');
 			silverQuest.startQuest('silver');
+			notify();
 		 break;	 
 		 
 		 case 'Hunt Lesser Demons':
 			console.log('Hunt Lesser Demons');
 			soulsQuest.startQuest('souls');
+			notify();
 		 break;		 
 		 
 		 case 'Relic Hunt':
-			if($('#unitSelectPicker').selectpicker('val') == 'Paladin')
+			if($('#unitSelectPicker').selectpicker('val') == 'Paladin' && Paladin.number > 0)
 			{
 					RelicHunt.startQuest();
+					notify();
 			}
 			else{
-				alert("You can only send Paladins relic hunting!");
+//				alert("You can only send Paladins relic hunting!");
 			}
 		 break;
 		 
