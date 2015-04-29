@@ -109,7 +109,7 @@
 			  <li><a id="QuestMenu" href="javascript:CollapseAll(); toggle('Quests'); setLastPage('Quests');" style = "display: none;" >Quests</a></li>
     		  <li><a id="BattleMenu" href="javascript:CollapseAll(); toggle('Battle'); setLastPage('Battle');">Battle</a></li>
 			  <li><a id="RelicsMenu" href="javascript:CollapseAll(); toggle('Relics'); setLastPage('Relics');" style="display: none;">Relics <span class="badge" id = "relicBadge">0</span></a></li>
-<!--		  <li><a id="AchievmentsMenu" href="javascript:CollapseAll(); toggle('Achievements'); setLastPage('Achievements');">Achievements</a></li> -->
+			  <li><a id="CommandMenu" href="javascript:CollapseAll(); toggle('CommandPost'); setLastPage('CommandPost');" style="display: none;">Command</a></li> 
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
@@ -140,7 +140,7 @@
               </li>		  
             </ul>
 			<ul class="nav navbar-nav" id = "kingdomUL">
-				<li class = 'opt'><a id="navKingdomName" href="javascript:CollapseAll(); toggle('CommandPost');"> <span id = "KingdomName"> </span></a></li>
+				<li class = 'opt'><a id="navKingdomName" href="#"> <span id = "KingdomName"> </span></a></li>
 			</ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -615,7 +615,7 @@
 		<div id = "TavernTab" class = "container">
 				<br />
 				<a id = 'BtnTavernDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Taverns"
-				data-content="A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 30 seconds.">Taverns (<span id="taverns">0</span>)</a>			
+				data-content="A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 30 seconds.">Taverns <span class='badge' id="taverns">0</span></a>			
 				<br /><br />
 				<button id=btnbuyTavern title="A peasant joins your forces every few seconds" onclick="Tavern.buyOne()"	type="button" class="btn btn-default">Build Tavern</button>	
 				<button id=btnTavernUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#TavernUpgradeTab" aria-expanded="false" aria-controls="TavernUpgradeTab">Upgrades</button>
@@ -880,7 +880,7 @@
 		
 		<div>
 			<div id = "questContainer" class = 'well'>
-				<div class = 'well' id = 'QuestDescBox'>
+				<div class = 'panel' id = 'QuestDescBox'>
 					<span id = 'questDescString'>Your taskmaster patiently awaits your command.<br> He informs you that you can send your units out on quests, and that the stronger units you send, the better the rewards will be.</span>
 				</div>
 					<div id="QuestProgBarBox" class="progress" style="display: none;">
@@ -2161,7 +2161,7 @@
 				break;	
 
 				case 'CommandPost':
-					document.getElementById("navKingdomName").click();
+					document.getElementById("CommandMenu").click();
 				break;					
 				
 			}

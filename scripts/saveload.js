@@ -488,6 +488,7 @@
 			var myBool = localStorage.commandPostOpened == "true"
 			if(myBool == true){
 				commandPostOpened = true
+				document.getElementById('CommandMenu').style.display = "block";
 				document.getElementById('CommandPost').style.display = "block";
 				document.getElementById('CommandPostDiv').style.display = "block";
 			}
