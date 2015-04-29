@@ -9,31 +9,37 @@ Enemy:  Horde of cliff Racers
 	Dire Wolves
 //	Putrid Ooze
 
-	Angry Demon
+
 //	Possessed Armor
 //	Hellhound
 //	Undead Army + Necromancer
+//	Elemental (fire, earth, air, water) - Requires specific relics to beat
+//	Ancient Corrupted Dwarf - Relic identification, trades relic fragments for relics
 	Witch
 	Werewolves
 	Bloody Wraith
 	Elder Vampire (L)
+//	Gemini Monster (Two monsters requiring deaths within a certain period to kill them both or they revive) -> Ouro and Boros : Snake like demons that turn into the other
 //	Succubus (L)
 //	Corrupted Archmage (B)
-	Corrupted Sylph
+//	Corrupted Sylph
+	Cerberus - > Mother of the hellhounds defeated earlier
+	Archdemon
 
+	Change battle to a subtractive HP system? ie Bandits start out with 500 hp, -battle power every second?
 
 Base unit: Peasant
 
-Battle Units: 	Page
-		Squire
-		Knight
-		Knight-Captain
-		Paladin (Need Faith)
-		Master Paladin
+Battle Units: //	Page
+//		Squire
+//		Knight
+		Knight-Captain  (relic unlock?)
+//		Paladin (Need Faith)
+		Master Paladin  (relic unlock?)
 
-		Benevolent Shade (Number of souls)
-		Aspect of Justice 
-		Angel
+//		Benevolent Shade (Number of souls)
+//		Aspect of Justice 
+//		Angel
 		Archangel
 		Seraphim
 		
@@ -41,7 +47,7 @@ Battle Units: 	Page
 Non-combat Units: 	Tradesman/Craftsman
 			Merchant - Gold currency generator
 			Farmer
-			Miner - platinum ore generator
+		//	Miner - platinum ore generator
 
 Faith-production units: Acolyte
 			Priest
@@ -58,6 +64,16 @@ Building Unit/Upgrade:  Cathedral - unlocks Faith units (requires resources)
 			Spirit Nexus - generate benevolent shade
 			Divine Gate - generate angel
 			Bazaar - generates tradesman
+
+Unicorns:		Mounts for Paladins and beyond
+			May be found during relic hunts
+			Pasture unlocked after discovering 'the enchanted glade' or something
+				Costs Silver, faith, wood to make
+				Creates silver fooder/whatever unicorn food name
+			Unicorns consume food/s
+			Regular unicorns double battle unit riding's power
+			Winged unicorns triple/quadruple battle unit riding's power
+				Winged unicorns by Archmage spell?
 			
 				 
 
@@ -87,7 +103,7 @@ Intermediate Goals: Defeat lieutenants
 
 
 Ultimate Goal: Challenge the Evil One 
-	- Available when minimum number of divine archons have been summoned
+	- Available when minimum number of divint archons have been summoned
 	- Success on dependent on your army composition and number of units 
 
 
@@ -97,6 +113,12 @@ Everytime Evil One is defeated - you get one purified essence and unlocks presti
 
 Prestige Shop - uses boss currency
 
+//Change alerts into growls
+http://bootstrap-growl.remabledesigns.com/
+
+//Animate
+http://daneden.github.io/animate.css/
+
 
 Issues:
 ========================
@@ -105,9 +127,8 @@ Issues:
 
 - Magic casting unit collects gold
 
-- Training page button causing iron currency to briefly change to gold amount - Fixed
+- Change Succubus drop to mysterious pendant
 
-https://github.com/MikeMcl/decimal.js/
 
 
 

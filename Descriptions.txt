@@ -5,8 +5,7 @@ Goblins
 -------
 Concerned with the security of your land, your spymaster has made a list of enemies spotted by your scouts.
 The list begins with a den of greedy goblins in the nearby oak grove.
-Though they have not made any aggressive moves toward your people and your holdings, theses capricious hoarders of all things shiny remain a threat.
-
+Though they have not made any aggressive moves toward your people and your holdings, these capricious hoarders of all things shiny remain a threat.
 
 
 Bandits
@@ -24,30 +23,63 @@ Her age hides the true extent of her skills - she keeps visitors away with an ar
 
 Smelly Ogre
 ------------
+Some of the peasants have reported missing livestock - cattle, pigs, geese and even chickens. <br><br> At the same time, your villagers have been complaining of a spectacularly 
+foul smell drifting in with the eastern wind. <br><br> Your scouts track down the nauseating fumes to a dark cave in the cliffs where they find a large and particularly odorous ogre
+munching on YOUR livestock. <br><br> Take it out before it eats more of your livestock or decides to pass more wind in your direction.
 
 
 Pack of Hellhounds
 -------------------
-A 
+Your hunters come across signs of a large pack of canine-like creatures wandering the plains. <br><br> Nightmarish howls can be heard day and night, frightening the livestock and putting
+your people on edge. <br><br> The most experienced of your hunters finally witnesses a portal rip open one night, sulfurous smoke billowing forth from the dark red maw and spitting out 
+wicked hounds of enormous size that glow like the embers of smoldering lava. <br><br>  The pack will harass your defences and occasionally kill some of your peasants and miners.
 
 
 Evil Pixie
------------
-
+--------
+Research turns up notes about a trickster that delights in playing with mortals. <br><br> One ancient scroll describes the creature as possessing an deceptively innocent appearance,
+a small and spritely winged form dressed in the earhtly browns and bright greens of the forest designed to lure in unsuspecting humans. <br><br> Written in the margins of the scroll is a 
+warning to the reader to beware of the creature's cunningness.
 
 
 Haunted Armor
 --------------
+The region has been inhabited for a very long time, resulting in many remnants from previous civilizations.<br><br>  
+The surprisingly intact ancient ruins of one such civilization stands out on the southern horizon. <br><br> Your night patrol spots movement in the ruin's shadows and 
+upon closer inspection, discovers an empty set of armor of blackened steel engraved with mysterious runes. It floats mid-air with deadly grace, making threatening gestures from afar.
 
 
 Gelatinous Ooze
 ----------------
-
+Your mine tunnels intersect a long and winding cave system where slimy and moist sounds echo throughout the night. <br><br> Exploring the cavern, you discover an undulating translucent blob  
+oozing slowly over the iron and silver deposits. <br><br> The ooze appears to be consuming the deposits as ore fragments are being rapidly absorbed into its metallic copper surface. <br><br> Conventional 
+weapons slide right through the gelatinous creature - you need to find some other means of defeating it. 
 
 
 Corrupted Archmage
 -------------------
 
+A crumbling tower springs up overnight, constructed at the will of some unknown force. <br><br> The tower's only inhabitant can be frequently seen practicing magic, its dark robes whipping up with the force of the spells. <br><br> 
+The gold and silver symbols embroidered into the robes indicate this is no ordinary mage but rather an Archmage, a caster whose many years of study and experience have bestowed upon him/her great skill and power. <br><br>
+Your scholars warn you that physical power alone will not net you victory - you must acquire those skilled in the spiritual arts in order to face this foe and succeed. 
+
+
+Succubus
+---------
+
+The unknown force has also deposited temptation at your doorstep in the form of one...very shapely demon. <br><br> The magical powers it commands makes it difficult to resist its will as somehow its androgynous appearance lures
+in both men and women alike. <br><br> The fact that what it wears barely covers its...uh, more luscious bits...well, let's stop right there, shall we? 
+
+
+Undead Army
+------------
+
+Your patrols are returning with reports of unearthly moaning and groaning beyond the borders of your kingdom. <br><br> The sound are accompanied by the echo of footsteps in the distance as well as the stench of decaying flesh. <br> 
+As if the ragged decomposed beings weren't frightening enough, a majority of the walking dead bear weapons and armor in relatively good shape. <br><br> You may need to bring spiritual forces to combat this unnatural army. 
+
+
+Necromancer
+------------
 
 
 

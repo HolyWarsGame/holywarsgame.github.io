@@ -1,0 +1,310 @@
+body { 
+padding-top: 50px;
+padding-bottom: 20px;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+#ResourcesWell
+{
+width: 100%;
+margin-top: 5px;
+margin-bottom: 0px;
+display: inline-block;
+}
+#ResourcesWell div {
+float: left;
+padding-right: 30px;
+padding-left: 60px;
+}
+
+#ResourcesWell div:hover
+{
+color: darkred;
+/*font-weight: bold;*/
+-webkit-transition: .5s;
+-moz-transition-duration: .5s;
+-o-transition-duration: .5s;
+}
+
+/* #ResourceList ul
+{
+margin: 0px;
+padding: 0px;
+list-style-type: none;
+
+display:-webkit-box;
+-webkit-box-orient: horizontal;
+-webkit-box-pack:justify;
+width:200px;
+}
+
+#ResourceList li
+{
+display: inline-block;
+margin: -4px;
+padding-right: 60px;
+
+-webkit-box-flex:1;
+}
+ */
+
+#ResourceList div
+{
+display: inline;
+margin: 9px 0px 0px;
+padding: 0px;
+}
+
+#SecondaryResources
+{
+padding-top: 5px;
+}
+
+#SecondaryResourceWell div:hover
+{
+color: darkred;
+/*font-weight: bold;*/
+-webkit-transition: .5s;
+-moz-transition-duration: .5s;
+-o-transition-duration: .5s;
+}
+
+#SecondaryResourceWell
+{
+display: inline-block;
+margin-bottom: 0px;
+width: 100%;
+}
+
+
+#SecondaryResourceWell div{
+float: left;
+padding-right: 30px;
+padding-left: 60px;
+}
+
+/* #SecondaryResourceList ul
+{
+margin: 0px;
+padding: 0px;
+list-style-type: none;
+
+display:-webkit-box;
+-webkit-box-orient: horizontal;
+-webkit-box-pack:justify;
+width:200px;
+}
+
+#SecondaryResourceList li
+{
+display: inline-block;
+margin: -4px;
+padding-right: 60px;
+
+-webkit-box-flex:1;
+}
+
+
+#SecondaryResourceList div
+{
+display: inline;
+margin: 9px 0px 0px;
+padding: 0px;
+} */
+
+#Gathering
+{
+padding-top: 5px;
+}
+
+#GatherList li
+{
+display: inline-block;
+margin: -4px;
+padding-right: 20px;
+}
+
+#GatherListWell input{
+outline: 0;
+}
+
+#GatherListWell{
+margin-bottom: 10px;
+display: inline-block;
+width: 100%;
+}
+
+#GatherListWell div{
+float: left;
+padding-left: 10px;
+padding-right:10px;
+}
+
+#GatherList div
+{
+display: inline;
+margin-top: 20px;
+margin-bottom: 0px;
+padding: 0px;
+}
+
+#relicInputGroup input-group{
+padding: 0px;
+}
+
+#SpellsDiv div{
+display: inline-block;
+}
+
+#AchievementsDiv div{
+display: inline-block;
+}
+
+#questContainer {
+display: inline-block;
+width: 95%;
+margin: 2.5%;
+}
+
+#dwarfshop{
+display: inline-block;
+}
+
+[data-notify="progressbar"] {
+	margin-bottom: 0px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 5px;
+}
+
+/* Trying to fix collape jerkiness*/
+ .ui-accordion .ui-accordion-content{
+      box-sizing:content-box;             
+      -moz-box-sizing:content-box;
+}
+
+.questComponent{
+width: 200px;
+float: left;
+margin: 20px;
+}
+
+.battle{
+color: darkred;
+}
+
+.defeatedtitle{
+color: grey;
+text-decoration: line-through;
+-webkit-transition:3s;
+-moz-transition-duration: 3s;
+-o-transition-duration: 3s;
+}
+
+.panel{
+margin-top:10px;
+}
+
+.upgrade {
+width: 450px;
+height: auto;
+padding: 0;
+}
+
+.relic{
+padding-top: 0px;
+margin-left: 10px;
+width: auto;
+float: left;
+}
+
+.relicbought{
+padding-top: 0px;
+margin-left: 10px;
+width: auto;
+float: left;
+background-color: rgb(178, 178, 178);
+-webkit-transition:2s;
+-moz-transition-duration: 2s;
+-o-transition-duration: 2s;
+}
+
+.spell{
+padding-top: 0px;
+margin-left: 10px;
+width: auto;
+}
+
+.achievement{
+padding-top: 0px;
+margin-left: 10px;
+width: auto;
+color: gray;
+}
+
+.achievementearned{
+padding-top: 0px;
+margin-left: 10px;
+width: auto;
+color: black;
+}
+
+
+.backgroundRed{
+	background: #FF9999;
+}
+
+.panel-collapse{
+	-webkit-transition: background 1.0s ease-in-out;	
+	-moz-transition:    background 1.0s ease-in-out;
+	-ms-transition:     background 1.0s ease-in-out;
+	transition:         background 1.0s ease-in-out;
+}
+
+
+.popover{
+max-width: 100%;
+width: 300px;
+}
+
+.mobiletooltip{
+display: none;
+}
+
+.collapsing { transition: height 0.6s; }
+
+#navKingdomName{   
+   color: black;
+}
+ 
+#kingdomUL{
+   float: right;	
+}
+
+@media (min-width: 768px) and (max-width: 1148px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+}
+
+legend{
+width: 75%
+}
