@@ -1485,7 +1485,7 @@ function hellhoundCull(){
 //			document.getElementById("typeKilled").innerHTML = typeKilled;
 			justKilled = Math.floor(Peasant.number / 10);
 			Peasant.number -= justKilled;
-			document.getElementById("justKilled").innerHTML = justKilled;
+//			document.getElementById("justKilled").innerHTML = justKilled;
 			peasantsKilled += justKilled;
 			statTotalPeasantsKilled += justKilled;
 			document.getElementById("peasants").innerHTML = Peasant.number;

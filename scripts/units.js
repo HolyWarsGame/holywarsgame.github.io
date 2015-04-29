@@ -50,17 +50,18 @@ var Unit = function(name, htmlNumRef, htmlNextGoldCost, htmlNextIronCost, htmlNe
 	this.costAdj = costAdj;	
 	this.hasReqUnit = hasReqUnit;
 	this.reqUnit = reqUnit;
+	this.onQuest = 0;
 };
 
 
 Unit.prototype.buyOne = function(){
-	this.curGoldCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));
-	this.curIronCost =  Math.floor(this.ironCost * Math.pow(this.costMult,this.number));
-	this.curSilverCost =  Math.floor(this.silverCost * Math.pow(this.costMult,this.number));
-	this.curFaithCost =  Math.floor(this.faithCost * Math.pow(this.costMult,this.number));
-	this.curSoulCost =  Math.floor(this.soulCost * Math.pow(this.costMult,this.number));
-	this.curTomeCost =  Math.floor(this.tomeCost * Math.pow(this.costMult,this.number));
-	this.curManaCost = Math.floor(this.manaCost * Math.pow(this.costMult,this.number));
+	this.curGoldCost =  Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj+this.onQuest));
+	this.curIronCost =  Math.floor(this.ironCost * Math.pow(this.costMult,this.number+this.onQuest));
+	this.curSilverCost =  Math.floor(this.silverCost * Math.pow(this.costMult,this.number+this.onQuest));
+	this.curFaithCost =  Math.floor(this.faithCost * Math.pow(this.costMult,this.number+this.onQuest));
+	this.curSoulCost =  Math.floor(this.soulCost * Math.pow(this.costMult,this.number+this.onQuest));
+	this.curTomeCost =  Math.floor(this.tomeCost * Math.pow(this.costMult,this.number+this.onQuest));
+	this.curManaCost = Math.floor(this.manaCost * Math.pow(this.costMult,this.number+this.onQuest));
 	
 	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.number > 0)){
 		if(gold >= this.curGoldCost && iron >= this.curIronCost && silver >= this.curSilverCost && faith >= this.curFaithCost && souls >= this.curSoulCost && tomes >= this.tomeCost && mana >= this.manaCost){    //checks that the player can afford the Unit
@@ -83,36 +84,36 @@ Unit.prototype.buyOne = function(){
 			if(this.hasReqUnit == true){
 				this.reqUnit.removeOne();
 			}
-			this.nextGoldCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Unit
+			this.nextGoldCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj+this.onQuest));         //works out the cost of the next Unit
 			document.getElementById(this.htmlNextGoldCost).innerHTML = fnum(this.nextGoldCost);  						      //updates the Unit cost for the user
 			
 			if(this.htmlNextIronCost != 'none'){
-				this.nextIronCost = Math.floor(this.ironCost * Math.pow(this.costMult,this.number));                      //works out the iron cost of the next Unit
+				this.nextIronCost = Math.floor(this.ironCost * Math.pow(this.costMult,this.number+this.onQuest));                      //works out the iron cost of the next Unit
 				document.getElementById(this.htmlNextIronCost).innerHTML = fnum(this.nextIronCost);  						      //updates the Unit iron cost for the user
 			}
 			
 			if(this.htmlNextSilverCost != 'none'){
-				this.nextSilverCost = Math.floor(this.silverCost * Math.pow(this.costMult,this.number));                    //works out the silver cost of the next Unit	
+				this.nextSilverCost = Math.floor(this.silverCost * Math.pow(this.costMult,this.number+this.onQuest));                    //works out the silver cost of the next Unit	
 				document.getElementById(this.htmlNextSilverCost).innerHTML = fnum(this.nextSilverCost);  						      //updates the Unit silver cost for the user
 			}
 			
 			if(this.htmlNextFaithCost != 'none'){
-				this.nextFaithCost = Math.floor(this.faithCost * Math.pow(this.costMult,this.number));                      //works out the faith cost of the next Unit
+				this.nextFaithCost = Math.floor(this.faithCost * Math.pow(this.costMult,this.number+this.onQuest));                      //works out the faith cost of the next Unit
 				document.getElementById(this.htmlNextFaithCost).innerHTML = fnum(this.nextFaithCost);  						      //updates the Unit faith cost for the user	
 			}	
 
 			if(this.htmlNextSoulCost != 'none'){
-				this.nextSoulCost = Math.floor(this.soulCost * Math.pow(this.costMult,this.number));                       //works out the Soul cost of the next Unit
+				this.nextSoulCost = Math.floor(this.soulCost * Math.pow(this.costMult,this.number+this.onQuest));                       //works out the Soul cost of the next Unit
 				document.getElementById(this.htmlNextSoulCost).innerHTML = fnum(this.nextSoulCost);  						      //updates the Unit Soul cost for the user
 			}
 
 			if(this.htmlNextTomeCost != 'none'){
-				this.nextTomeCost = Math.floor(this.tomeCost * Math.pow(this.costMult,this.number));                       //works out the Tome cost of the next Unit
+				this.nextTomeCost = Math.floor(this.tomeCost * Math.pow(this.costMult,this.number+this.onQuest));                       //works out the Tome cost of the next Unit
 				document.getElementById(this.htmlNextTomeCost).innerHTML = fnum(this.nextTomeCost);  						      //updates the Unit Tome cost for the user
 			}	
 
 			if(this.htmlNextManaCost != 'none'){
-				this.nextManaCost = Math.floor(this.manaCost * Math.pow(this.costMult,this.number));                       //works out the Mana cost of the next Unit
+				this.nextManaCost = Math.floor(this.manaCost * Math.pow(this.costMult,this.number+this.onQuest));                       //works out the Mana cost of the next Unit
 				document.getElementById(this.htmlNextManaCost).innerHTML = fnum(this.nextManaCost);  						      //updates the Unit Mana cost for the user
 			}				
 			
@@ -129,36 +130,36 @@ Unit.prototype.removeOne = function(){
 }
 
 Unit.prototype.recalcCost = function(){
-	this.curGoldCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Unit
+	this.curGoldCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj+this.onQuest));         //works out the cost of the next Unit
 	document.getElementById(this.htmlNextGoldCost).innerHTML = fnum(this.curGoldCost);  						      //updates the Unit cost for the user
 	
 	if(this.htmlNextIronCost != 'none'){
-		this.curIronCost = Math.floor(this.ironCost * Math.pow(this.costMult,this.number));                      //works out the iron cost of the next Unit
+		this.curIronCost = Math.floor(this.ironCost * Math.pow(this.costMult,this.number+this.onQuest));                      //works out the iron cost of the next Unit
 		document.getElementById(this.htmlNextIronCost).innerHTML = fnum(this.curIronCost);  						      //updates the Unit iron cost for the user
 	}
 	
 	if(this.htmlNextSilverCost != 'none'){
-		this.curSilverCost = Math.floor(this.silverCost * Math.pow(this.costMult,this.number));                    //works out the silver cost of the next Unit	
+		this.curSilverCost = Math.floor(this.silverCost * Math.pow(this.costMult,this.number+this.onQuest));                    //works out the silver cost of the next Unit	
 		document.getElementById(this.htmlNextSilverCost).innerHTML = fnum(this.curSilverCost);  						      //updates the Unit silver cost for the user
 	}
 	
 	if(this.htmlNextFaithCost != 'none'){
-		this.curFaithCost = Math.floor(this.faithCost * Math.pow(this.costMult,this.number));                      //works out the faith cost of the next Unit
+		this.curFaithCost = Math.floor(this.faithCost * Math.pow(this.costMult,this.number+this.onQuest));                      //works out the faith cost of the next Unit
 		document.getElementById(this.htmlNextFaithCost).innerHTML = fnum(this.curFaithCost);  						      //updates the Unit faith cost for the user	
 	}	
 
 	if(this.htmlNextSoulCost != 'none'){
-		this.curSoulCost = Math.floor(this.soulCost * Math.pow(this.costMult,this.number));                       //works out the Soul cost of the next Unit
+		this.curSoulCost = Math.floor(this.soulCost * Math.pow(this.costMult,this.number+this.onQuest));                       //works out the Soul cost of the next Unit
 		document.getElementById(this.htmlNextSoulCost).innerHTML = fnum(this.curSoulCost);  						      //updates the Unit Soul cost for the user
 	}	
 
 	if(this.htmlNextTomeCost != 'none'){
-		this.curTomeCost = Math.floor(this.tomeCost * Math.pow(this.costMult,this.number));                       //works out the Tome cost of the next Unit
+		this.curTomeCost = Math.floor(this.tomeCost * Math.pow(this.costMult,this.number+this.onQuest));                       //works out the Tome cost of the next Unit
 		document.getElementById(this.htmlNextTomeCost).innerHTML = fnum(this.curTomeCost);  					   //updates the Unit Tome cost for the user
 	}	
 
 	if(this.htmlNextManaCost != 'none'){
-		this.curManaCost = Math.floor(this.manaCost * Math.pow(this.costMult,this.number));                       //works out the Mana cost of the next Unit
+		this.curManaCost = Math.floor(this.manaCost * Math.pow(this.costMult,this.number+this.onQuest));                       //works out the Mana cost of the next Unit
 		document.getElementById(this.htmlNextManaCost).innerHTML = fnum(this.curManaCost);  					   //updates the Unit Mana cost for the user
 	}	
 	

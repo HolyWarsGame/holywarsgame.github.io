@@ -55,7 +55,10 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 	$qbar = $(document.getElementById(this.htmlBarRef));
 	UnitOnQuest = $('#unitSelectPicker').selectpicker('val')
 	NumUnitOnQuest = $('#QuestUnitNumSelect').val();		
-	holdUnitforQuest();
+	if(loadedQuest == false)
+	{
+		holdUnitforQuest();		
+	}
 	
 	document.getElementById(btn).disabled = true;					//disables the buttons
 	document.getElementById(btn).innerHTML = QuestName + " in progress!";     //Changes button text
@@ -246,7 +249,11 @@ function loadQuest(QuestName, percent, unit, numUnit){
 	document.getElementById('unitSelectPicker').value = unit;		//Type of unit sent
 	document.getElementById('QuestUnitNumSelect').value = numUnit;		//Number of units sent
 	document.getElementById('questSelectPicker').value = QuestName; //Quest type
-
+	
+//	eval(unit + '.number += numUnit');
+	eval(unit + '.onQuest = numUnit');
+//	document.getElementById(unit.htmlNumRef).innerHTML = unit.number;
+	
 	$('.selectpicker').selectpicker('refresh');
 	
 	switch(QuestName){
@@ -549,7 +556,8 @@ function rollForFragment(){
 function holdUnitforQuest(){
 	switch(UnitOnQuest){
 		case "Paladin":
-			Paladin.number -= NumUnitOnQuest;
+			Paladin.number -= parseInt(NumUnitOnQuest);
+			Paladin.onQuest = parseInt(NumUnitOnQuest);
 			Paladin.totalArmyPower();
 			Paladin.totalSpiritPower();
 			document.getElementById('paladins').innerHTML = Paladin.number;
@@ -561,6 +569,7 @@ function holdUnitforQuest(){
 		case "Knight":
 			Knight.number -= parseInt(NumUnitOnQuest);
 			Knight.totalArmyPower();
+			Knight.onQuest = parseInt(NumUnitOnQuest);
 			document.getElementById('knights').innerHTML = Knight.number;	
 			calculateBattlePower();
 //			console.log("taking knights");		
@@ -569,6 +578,7 @@ function holdUnitforQuest(){
 		case "Squire":
 			Squire.number -= parseInt(NumUnitOnQuest);
 			Squire.totalArmyPower();
+			Squire.onQuest = parseInt(NumUnitOnQuest);
 			document.getElementById('squires').innerHTML = Squire.number;	
 			calculateBattlePower();
 //			console.log("taking Squires");		
@@ -580,6 +590,7 @@ function returnUnitfromQuest(){
 	switch(UnitOnQuest){
 		case "Paladin":
 			Paladin.number += parseInt(NumUnitOnQuest);
+			Paladin.onQuest = 0;
 			Paladin.totalArmyPower();
 			Paladin.totalSpiritPower();
 			document.getElementById('paladins').innerHTML = Paladin.number;
@@ -594,6 +605,7 @@ function returnUnitfromQuest(){
 		
 		case "Knight":
 			Knight.number += parseInt(NumUnitOnQuest);
+			Knight.onQuest = 0;
 			Knight.totalArmyPower();
 			document.getElementById('knights').innerHTML = Knight.number;	
 			calculateBattlePower();
@@ -605,6 +617,7 @@ function returnUnitfromQuest(){
 		case "Squire":
 			Squire.number += parseInt(NumUnitOnQuest);
 			Squire.totalArmyPower();
+			Squire.onQuest = 0;
 			document.getElementById('squires').innerHTML = Squire.number;	
 			calculateBattlePower();
 			document.getElementById("BattlePower").innerHTML = fnum(BattlePower);

@@ -1088,6 +1088,7 @@
 				UnitOnQuest = localStorage.UnitOnQuest;	
 				NumUnitOnQuest = parseInt(localStorage.NumUnitOnQuest);
 				QuestDuration = parseInt(localStorage.QuestDuration);
+//				eval('UnitOnQuest.onQuest = NumUnitOnQuest');
 				loadedQuest = true;
 				console.log(curQuestType + ": " + questPercent + "%" + UnitOnQuest + " " + NumUnitOnQuest);
 				setTimeout(function() { loadQuest(curQuestType, questPercent, UnitOnQuest, NumUnitOnQuest); }, 500)
