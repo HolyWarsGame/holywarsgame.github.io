@@ -255,6 +255,7 @@ function clickThing(number, type)
 			if(iron >= number*100 && coal >= number*10){
 				steel += number;
 				steel = Math.round(steel*100)/100;
+				coal -= number*10;
 				statSteelCollected += number;
 				statTotalSteelCollected += number;				
 				document.getElementById("iron").innerHTML = fnum(iron);
