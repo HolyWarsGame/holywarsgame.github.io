@@ -1626,7 +1626,14 @@ var Succubus = new Enemy("Succubus", succubusDesc, 'BatSuccubusProgBarBox','BatS
 setEnemyDescription(Succubus, 'btnDescSuccubus');
 
 function triggerSuccubus(){
-	document.getElementById('EvilOneIreAlert').style.display = "block";
+//	document.getElementById('EvilOneIreAlert').style.display = "block";
+	$.notify({
+		title: "<strong>Oh No! </strong>",
+		message: "Having defeated one of The Evil One's valued lieutenants, you realize that things are going to heat up from here. Your intuition is confirmed when a winged demon flies into your kingdom and issues a dire warning letting you know that The Evil. One going to destroy you and is sending more of his lieutenants your way.",
+		},
+	{delay: 60000,
+	type: 'danger'
+	});	
 	showBattle('Succubus');	
 	document.getElementById('BatSuccubus').style.display = "block";
 	showBattle('UndeadArmy');
