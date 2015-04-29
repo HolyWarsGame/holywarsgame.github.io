@@ -1151,13 +1151,9 @@
 			gameSaveVer = localStorage.gameSaveVer;
 			console.log("Save version: " + gameSaveVer);
 			if(gameSaveVer < gameVer || gameSaveVer == ''){
-				var response = confirm("The game save data you have came from a previous version of the game, and in order to get the best experience, a hard reset is in order. Apologies for the inconvenience!");
-				if (response == true) {
+				alert("The game save data you have came from a previous version of the game, and in order to get the best experience, a hard reset is in order. Apologies for the inconvenience!");
 					deleteCookie();
 					location.reload(true);
-				} else {
-					
-				}				
 			}
 		}			
 		

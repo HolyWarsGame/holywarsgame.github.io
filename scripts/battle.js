@@ -53,6 +53,7 @@ function calculateBattlePower(){
 	
 	BattlePower += Page.totalArmyPower();
 	BattlePower += Squire.totalArmyPower();
+	BattlePower += Knight.totalArmyPower();
 	BattlePower += Paladin.totalArmyPower();
 	BattlePower += Shade.totalArmyPower();
 	BattlePower += Aspect.totalArmyPower();
