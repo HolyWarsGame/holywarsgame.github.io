@@ -1481,7 +1481,7 @@ function hellhoundCull(){
 	var loststring
 	
 		if(flipCoin%2 == 0){
-//			typeKilled = "peasants";
+			typeKilled = "peasants";
 //			document.getElementById("typeKilled").innerHTML = typeKilled;
 			justKilled = Math.floor(Peasant.number / 10);
 			Peasant.number -= justKilled;
@@ -1496,11 +1496,11 @@ function hellhoundCull(){
 			loststring = "The Evil One's hellhounds break through your defenses and kill " + justKilled + " of your "  + typeKilled + ". Build up your strength and <a href='javascript: alertOpenBattlePage();' class='alert-link'>fight</a> them off!"
 		}
 		else{
-//			typeKilled = "miners";
+			typeKilled = "miners";
 //			document.getElementById("typeKilled").innerHTML = typeKilled;
 			justKilled = Math.floor(Miner.number / 10);
 			Miner.number -= justKilled;
-			document.getElementById("justKilled").innerHTML = justKilled;
+//			document.getElementById("justKilled").innerHTML = justKilled;
 			minersKilled += justKilled;
 			statTotalMinersKilled += justKilled;
 			document.getElementById("miners").innerHTML = Miner.number;
