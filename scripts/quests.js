@@ -455,8 +455,11 @@ RelicHunt.startQuest = function(){
 		var foundRelic = false;
 			
 		inQuest = true;
-		curQuestType = this.name
-
+		curQuestType = this.name;
+		
+		NumUnitOnQuest = $('#QuestUnitNumSelect').val();
+		UnitOnQuest = $('#unitSelectPicker').selectpicker('val');
+		
 		if(loadedQuest == false){
 			if(holdUnitforQuest() == false)
 			{
@@ -560,41 +563,49 @@ function holdUnitforQuest(){
 			if(Paladin.number < parseInt(NumUnitOnQuest)){
 				return false;
 			}
-			Paladin.number -= parseInt(NumUnitOnQuest);
-			Paladin.onQuest = parseInt(NumUnitOnQuest);
-			Paladin.totalArmyPower();
-			Paladin.totalSpiritPower();
-			document.getElementById('paladins').innerHTML = Paladin.number;
-			calculateBattlePower();
-			calculateSpiritPower();	
-//			console.log("taking paladins");
-			return true;
+			else{
+				Paladin.number -= parseInt(NumUnitOnQuest);
+				Paladin.onQuest = parseInt(NumUnitOnQuest);
+				Paladin.totalArmyPower();
+				Paladin.totalSpiritPower();
+				document.getElementById('paladins').innerHTML = Paladin.number;
+				calculateBattlePower();
+				calculateSpiritPower();	
+//				console.log("taking paladins");
+				return true;				
+			}
+
 		break;
 		
 		case "Knight":
 			if(Knight.number < parseInt(NumUnitOnQuest)){
 				return false;
 			}
-			Knight.number -= parseInt(NumUnitOnQuest);
-			Knight.totalArmyPower();
-			Knight.onQuest = parseInt(NumUnitOnQuest);
-			document.getElementById('knights').innerHTML = Knight.number;	
-			calculateBattlePower();
-//			console.log("taking knights");	
-			return true;
+			else{
+				Knight.number -= parseInt(NumUnitOnQuest);
+				Knight.totalArmyPower();
+				Knight.onQuest = parseInt(NumUnitOnQuest);
+				document.getElementById('knights').innerHTML = Knight.number;	
+				calculateBattlePower();
+	//			console.log("taking knights");	
+			return true;				
+			}
+
 		break;
 		
 		case "Squire":
 			if(Squire.number < parseInt(NumUnitOnQuest)){
 				return false;
 			}
-			Squire.number -= parseInt(NumUnitOnQuest);
-			Squire.totalArmyPower();
-			Squire.onQuest = parseInt(NumUnitOnQuest);
-			document.getElementById('squires').innerHTML = Squire.number;	
-			calculateBattlePower();
-//			console.log("taking Squires");	
-			return true;
+			else{
+				Squire.number -= parseInt(NumUnitOnQuest);
+				Squire.totalArmyPower();
+				Squire.onQuest = parseInt(NumUnitOnQuest);
+				document.getElementById('squires').innerHTML = Squire.number;	
+				calculateBattlePower();
+	//			console.log("taking Squires");	
+				return true;				
+			}
 		break;		
 	}
 };
