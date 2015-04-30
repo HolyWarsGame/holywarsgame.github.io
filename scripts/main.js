@@ -651,15 +651,24 @@ window.setInterval(function(){                                 //Update per seco
 	}
 	document.getElementById("silverdiv").title = "Silver per second: " + fnum(silverpersec) ; 	 	
  
-	if(prFaithUpgrade == true){
-		faithpersec = Bishop.number * 10 + Priest.number*0.5*2 + Acolyte.number*0.1;		
+	var acoMult = 0.1;	
+	var priestMult = 0.5;
+	var bishopMult = 1;
+	var buildingMult = 1;
+	if(acFaithUpgrade == true){
+		acoMult = 0.2;
 	}
-	else{
-		faithpersec = Bishop.number * 10 + Priest.number*0.5 + Acolyte.number*0.1;		
+	if(prFaithUpgrade == true){
+		priestMult = 1.0;
+	}
+	if(bishopUpgr1 == true){
+		bishopMult = 2.0;
 	}
 	if(cathUpgrade == true){
-		faithpersec *=2;
+		buildingMult = 2;
 	}
+ 
+	faithpersec = Bishop.number*bishopMult * 10 + Priest.number*priestMult + Acolyte.number*acoMult;
 	faithpersec = faithpersec.toFixedDown(2)
     document.getElementById("faithdiv").title = "Faith per second: " + fnum(faithpersec) ; 
 	
@@ -726,18 +735,22 @@ window.setInterval(function(){
 	 
 	var acoMult = 0.1;	
 	var priestMult = 0.5;
+	var bishopMult = 1;
 	var buildingMult = 1;
 	if(acFaithUpgrade == true){
-		acoMult = 0.2
+		acoMult = 0.2;
 	}
 	if(prFaithUpgrade == true){
-		priestMult = 1.0
-	}	
+		priestMult = 1.0;
+	}
+	if(bishopUpgr1 == true){
+		bishopMult = 2.0;
+	}
 	if(cathUpgrade == true){
-		buildingMult = 2
+		buildingMult = 2;
 	}
 	 
-	clickThing((Bishop.number * 10 + Priest.number*priestMult + Acolyte.number*acoMult)*buildingMult, "faith");          
+	clickThing((Bishop.number*bishopMult * 10 + Priest.number*priestMult + Acolyte.number*acoMult)*buildingMult, "faith");          
 	faith = faith.toFixedDown(2);
 	
 	//Soul generation via paladins etc every second

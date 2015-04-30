@@ -21,7 +21,7 @@ $("input[name='QuestUnitNumSelect']").TouchSpin({
   prefix: 'Send',
   verticalbuttons: true,
   min: 1,
-  max: 100
+  max: 10000
 });
 
 
