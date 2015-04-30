@@ -350,10 +350,6 @@ function btnSendQuest(){
 //				alert("You can only send Paladins relic hunting!");
 			}
 		 break;
-		 
-		 case 'Demon Hunt':
-			console.log('Demon hunt');
-		 break;
 	  }
 	 }
 };
@@ -649,7 +645,7 @@ $(function() {
 	
 //	console.log(newMax);
 	if(newMax < document.getElementById('QuestUnitNumSelect').value){
-		document.getElementById('QuestUnitNumSelect').value = newMax;
+		document.getElementById('QuestUnitNumSelect').value = 1;
 	}
 	$("input").trigger("touchspin.updatesettings", {max: newMax});
   }); 

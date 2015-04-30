@@ -168,16 +168,16 @@ Unit.prototype.recalcCost = function(){
 Unit.prototype.canBuy = function(){
 	this.recalcCost();
 	btn = this.htmlBuyBtn
-	
-	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.number > 0)){	
-		if(gold >= this.curGoldCost && iron >= this.curIronCost && silver >= this.curSilverCost && faith >= this.curFaithCost && souls >= this.curSoulCost && tomes >= this.curTomeCost && mana >= this.curManaCost){     //checks that the player can afford the Unit
+		if(this.checkReqUnit() * gold >= this.curGoldCost && iron >= this.curIronCost && silver >= this.curSilverCost && faith >= this.curFaithCost && souls >= this.curSoulCost && tomes >= this.curTomeCost && mana >= this.curManaCost ){     //checks that the player can afford the Unit
  			document.getElementById(btn).disabled = false;					//enables the buy button
 			this.CostsToBlack();
-	}
+			return true;
+		}
 		else{
 			document.getElementById(btn).disabled = true;					//disables the buy button
 			if(gold < this.curGoldCost && this.htmlNextGoldCost != 'none'){
 				document.getElementById(this.htmlNextGoldCost).style.color = "red";
+				
 			}
 			if(iron < this.curIronCost && this.htmlNextIronCost != 'none'){
 				document.getElementById(this.htmlNextIronCost).style.color = "red";
@@ -193,29 +193,42 @@ Unit.prototype.canBuy = function(){
 			}
 			if(tomes < this.curTomeCost && this.htmlNextTomeCost != 'none'){
 				document.getElementById(this.htmlNextTomeCost).style.color = "red";
+
 			}
 			if(mana < this.curManaCost && this.htmlNextManaCost != 'none'){
 				document.getElementById(this.htmlNextManaCost).style.color = "red";
-			}				
+			}
+			return false;
 		}
-	}
-	else{
-		if(this.hasReqUnit == true && this.reqUnit.number < 1)
+		
+};
+
+Unit.prototype.checkReqUnit = function(){
+	
+		if(this.hasReqUnit == false){
+			return true;
+		}
+		else if(this.hasReqUnit == true && this.reqUnit.number < 1)
 		{
 			document.getElementById(this.htmlReqUnit).style.color = "red";
+			return false;
 		}
-		document.getElementById(btn).disabled = true;	
-	}
-};
+		else if(this.hasReqUnit == true && this.reqUnit.number >= 1)
+		{
+			document.getElementById(this.htmlReqUnit).style.color = "black";
+			return true;
+		}
+}
 
 Unit.prototype.CostsToBlack = function(){
 	if(this.htmlNextGoldCost != 'none'){document.getElementById(this.htmlNextGoldCost).style.color = "black";}
 	if(this.htmlNextIronCost != 'none'){document.getElementById(this.htmlNextIronCost).style.color = "black";}
+	if(this.htmlNextSilverCost != 'none'){document.getElementById(this.htmlNextSilverCost).style.color = "black";}
 	if(this.htmlNextFaithCost != 'none'){document.getElementById(this.htmlNextFaithCost).style.color = "black";}
 	if(this.htmlNextSoulCost != 'none'){document.getElementById(this.htmlNextSoulCost).style.color = "black";}
 	if(this.htmlNextTomeCost != 'none'){document.getElementById(this.htmlNextTomeCost).style.color = "black";}
 	if(this.htmlNextManaCost != 'none'){document.getElementById(this.htmlNextManaCost).style.color = "black";}
-	if(this.htmlReqUnit != 'none'){document.getElementById(this.htmlReqUnit).style.color = "black";}
+//	if(this.htmlReqUnit != 'none'){document.getElementById(this.htmlReqUnit).style.color = "black";}
 }
 
 Unit.prototype.totalArmyPower = function(){
@@ -671,8 +684,8 @@ var Shade = new Unit(
 /*description*/		shadeDesc, 
 /*costAdj*/			0, 
 /*hasReqUnit*/		false, 
-/*reqUnit*/			"none", 
-/*htmlReqUnit*/		"none");
+/*reqUnit*/			'none', 
+/*htmlReqUnit*/		'none');
 setDescription(Shade, 'BtnShadeDesc');
 setArmyPower(Shade, 5);
 setSpiritPower(Shade, 10);
@@ -693,7 +706,7 @@ var Aspect = new Unit(
 /*goldCost*/		15000,
 /*ironCost*/		1000,
 /*silverCost*/		500,
-/*faithCost*/		  0,
+/*faithCost*/		0,
 /*soulCost*/		500,
 /*tomeCost*/		0,
 /*manaCost*/		0,
@@ -701,7 +714,7 @@ var Aspect = new Unit(
 /*description*/		aspectDesc, 
 /*costAdj*/			0, 
 /*hasReqUnit*/		true, 
-/*reqUnit*/			"Shade", 
+/*reqUnit*/			Shade, 
 /*htmlReqUnit*/		"AspectReqUnit");
 setDescription(Aspect, 'BtnAspectDesc');
 setArmyPower(Aspect, 100);

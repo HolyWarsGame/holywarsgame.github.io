@@ -81,247 +81,249 @@ var gameSaveVer;
 
 function clickThing(number, type)
 {
-	switch(type){
-		case "gold":
-			gold += number;
-			statGoldCollected += number;
-			statTotalGoldCollected += number;
-			achieveCheckGold();
-			
-			document.getElementById("gold").innerHTML = fnum(gold);	
-			document.getElementById("statgoldcollected").innerHTML = fnum(statGoldCollected);
-			document.getElementById("stattotalgoldcollected").innerHTML = fnum(statTotalGoldCollected);
-			
-			break;
-			
-		case "goldMouse":
-			if(pGoldClickUpgrade == true){
-				number *= 2;
-			}
-			if(pGoldClickUpgrade2 == true){
-				number *= 5
-			}
-			if(pGoldClickUpgrade3 == true){
-				number += goldpersec*0.1
-			}
-			gold += number;
-			gold = Math.round(gold*100)/100;
-			statSelfGoldCollected += number;
-			statTotalSelfGoldCollected += number;
-			statTotalGoldCollected += number;
-			achieveCheckGold();
-
-			document.getElementById("gold").innerHTML = fnum(gold);
-			document.getElementById("statselfgoldcollected").innerHTML = fnum(statSelfGoldCollected);
-			document.getElementById("stattotalselfgoldcollected").innerHTML = fnum(statTotalSelfGoldCollected);
-			document.getElementById("stattotalgoldcollected").innerHTML = fnum(statTotalGoldCollected);
-			document.getElementById('clickmoney').setAttribute('title', "Click to gather gold yourself - " + fnum(number) + " gold gained per click.");
-			break;
-
-		case "wood":
-			wood += number;
-			statWoodCollected += number;
-			statTotalWoodCollected += number;
-			
-			document.getElementById("wood").innerHTML = fnum(wood);
-			document.getElementById("statWoodCollected").innerHTML = fnum(statWoodCollected);
-			document.getElementById("statTotalWoodCollected").innerHTML = fnum(statTotalWoodCollected);		
-			break;	
-
-		case "woodMouse":
-			if(lwoodClickUpgrade == true){
-				number *= 5
-			}
-			wood = wood + number;
-			statWoodCollected += number;
-			statSelfWoodCollected += number;
-			statTotalWoodCollected += number;
-			statTotalSelfWoodCollected += number;
-			
-			document.getElementById("wood").innerHTML = fnum(wood);
-			document.getElementById("statWoodCollected").innerHTML = fnum(statWoodCollected);		
-			document.getElementById("statSelfWoodCollected").innerHTML = fnum(statSelfWoodCollected);		
-			document.getElementById("statTotalWoodCollected").innerHTML = fnum(statTotalWoodCollected);		
-			document.getElementById("statTotalSelfWoodCollected").innerHTML = fnum(statTotalSelfWoodCollected);	
-			document.getElementById('clickwood').setAttribute('title', "Click to gather wood yourself - " + fnum(number) + " wood gained per click.");			
-			break;
-
-		case "paper":
-			if(wood >= 50*number){
-			paper += number;
-			statPaperCrafted += number;
-			statTotalPaperCrafted += number;
-			wood -= number * 50;
-			document.getElementById("paper").innerHTML = fnum(paper);
-			document.getElementById("statPaperCrafted").innerHTML = fnum(statPaperCrafted);
-			document.getElementById("statTotalPaperCrafted").innerHTML = fnum(statTotalPaperCrafted);
-			document.getElementById("wood").innerHTML = fnum(wood);
-			}
-			break;				
-			
-		case "paperMouse":
-			var numMade = 1;
-			if(PmillClickUpgr == true){
-				numMade = 10;
-			}
-			if(PmillEffUpgr == true){
-					if(wood >= 50*0.6*number*numMade){
-					paper += number*numMade;
-					statPaperCrafted += number*numMade;
-					statTotalPaperCrafted += number*numMade;
-					statSelfPaperCrafted += number*numMade;
-					statTotalSelfPaperCrafted += number*numMade;
-					wood -= number * 50*0.6*numMade;
-					document.getElementById("paper").innerHTML = fnum(paper);
-					document.getElementById("statPaperCrafted").innerHTML = fnum(statPaperCrafted);
-					document.getElementById("statTotalPaperCrafted").innerHTML = fnum(statTotalPaperCrafted);
-					document.getElementById("statSelfPaperCrafted").innerHTML = fnum(statSelfPaperCrafted);
-					document.getElementById("statTotalSelfPaperCrafted").innerHTML = fnum(statTotalSelfPaperCrafted);
-					document.getElementById("wood").innerHTML = fnum(wood);
+	if(number > 0){
+		switch(type){
+			case "gold":
+				gold += number;
+				statGoldCollected += number;
+				statTotalGoldCollected += number;
+				achieveCheckGold();
+				
+				document.getElementById("gold").innerHTML = fnum(gold);	
+				document.getElementById("statgoldcollected").innerHTML = fnum(statGoldCollected);
+				document.getElementById("stattotalgoldcollected").innerHTML = fnum(statTotalGoldCollected);
+				
+				break;
+				
+			case "goldMouse":
+				if(pGoldClickUpgrade == true){
+					number *= 2;
 				}
-			}
-			else{
-				if(wood >= 50*number*numMade){
-					paper += number*numMade;
-					statPaperCrafted += number*numMade;
-					statTotalPaperCrafted += number*numMade;
-					statSelfPaperCrafted += number*numMade;
-					statTotalSelfPaperCrafted += number*numMade;
-					wood -= number * 50*numMade;
-					document.getElementById("paper").innerHTML = fnum(paper);
-					document.getElementById("statPaperCrafted").innerHTML = fnum(statPaperCrafted);
-					document.getElementById("statTotalPaperCrafted").innerHTML = fnum(statTotalPaperCrafted);
-					document.getElementById("statSelfPaperCrafted").innerHTML = fnum(statSelfPaperCrafted);
-					document.getElementById("statTotalSelfPaperCrafted").innerHTML = fnum(statTotalSelfPaperCrafted);					
-					document.getElementById("wood").innerHTML = fnum(wood);
+				if(pGoldClickUpgrade2 == true){
+					number *= 5
 				}
-			}
-			break;	
+				if(pGoldClickUpgrade3 == true){
+					number += goldpersec*0.1
+				}
+				gold += number;
+				gold = Math.round(gold*100)/100;
+				statSelfGoldCollected += number;
+				statTotalSelfGoldCollected += number;
+				statTotalGoldCollected += number;
+				achieveCheckGold();
 
-		case "tome":
-			if(paper >= 2000*number && faith >= 100*number){
-				tomes +=  number;
-				paper -=  number * 2000;
-				faith -=  number * 100;
-				document.getElementById("paper").innerHTML = fnum(paper);
-				document.getElementById("faith").innerHTML = fnum(faith);
-				document.getElementById("tomes").innerHTML = fnum(tomes);
-			}
-			break;	
+				document.getElementById("gold").innerHTML = fnum(gold);
+				document.getElementById("statselfgoldcollected").innerHTML = fnum(statSelfGoldCollected);
+				document.getElementById("stattotalselfgoldcollected").innerHTML = fnum(statTotalSelfGoldCollected);
+				document.getElementById("stattotalgoldcollected").innerHTML = fnum(statTotalGoldCollected);
+				document.getElementById('clickmoney').setAttribute('title', "Click to gather gold yourself - " + fnum(number) + " gold gained per click.");
+				break;
 
-		case "tomeMouse":
-			if(paper >= 2000*number && faith >= 100*number){
-				tomes += number;
-				paper -= number * 2000;
-				faith -= number * 100;
+			case "wood":
+				wood += number;
+				statWoodCollected += number;
+				statTotalWoodCollected += number;
+				
+				document.getElementById("wood").innerHTML = fnum(wood);
+				document.getElementById("statWoodCollected").innerHTML = fnum(statWoodCollected);
+				document.getElementById("statTotalWoodCollected").innerHTML = fnum(statTotalWoodCollected);		
+				break;	
+
+			case "woodMouse":
+				if(lwoodClickUpgrade == true){
+					number *= 5
+				}
+				wood = wood + number;
+				statWoodCollected += number;
+				statSelfWoodCollected += number;
+				statTotalWoodCollected += number;
+				statTotalSelfWoodCollected += number;
+				
+				document.getElementById("wood").innerHTML = fnum(wood);
+				document.getElementById("statWoodCollected").innerHTML = fnum(statWoodCollected);		
+				document.getElementById("statSelfWoodCollected").innerHTML = fnum(statSelfWoodCollected);		
+				document.getElementById("statTotalWoodCollected").innerHTML = fnum(statTotalWoodCollected);		
+				document.getElementById("statTotalSelfWoodCollected").innerHTML = fnum(statTotalSelfWoodCollected);	
+				document.getElementById('clickwood').setAttribute('title', "Click to gather wood yourself - " + fnum(number) + " wood gained per click.");			
+				break;
+
+			case "paper":
+				if(wood >= 50*number){
+				paper += number;
+				statPaperCrafted += number;
+				statTotalPaperCrafted += number;
+				wood -= number * 50;
 				document.getElementById("paper").innerHTML = fnum(paper);
-				document.getElementById("faith").innerHTML = fnum(faith);
-				document.getElementById("tomes").innerHTML = fnum(tomes);
-			}
-			break;				
+				document.getElementById("statPaperCrafted").innerHTML = fnum(statPaperCrafted);
+				document.getElementById("statTotalPaperCrafted").innerHTML = fnum(statTotalPaperCrafted);
+				document.getElementById("wood").innerHTML = fnum(wood);
+				}
+				break;				
+				
+			case "paperMouse":
+				var numMade = 1;
+				if(PmillClickUpgr == true){
+					numMade = 10;
+				}
+				if(PmillEffUpgr == true){
+						if(wood >= 50*0.6*number*numMade){
+						paper += number*numMade;
+						statPaperCrafted += number*numMade;
+						statTotalPaperCrafted += number*numMade;
+						statSelfPaperCrafted += number*numMade;
+						statTotalSelfPaperCrafted += number*numMade;
+						wood -= number * 50*0.6*numMade;
+						document.getElementById("paper").innerHTML = fnum(paper);
+						document.getElementById("statPaperCrafted").innerHTML = fnum(statPaperCrafted);
+						document.getElementById("statTotalPaperCrafted").innerHTML = fnum(statTotalPaperCrafted);
+						document.getElementById("statSelfPaperCrafted").innerHTML = fnum(statSelfPaperCrafted);
+						document.getElementById("statTotalSelfPaperCrafted").innerHTML = fnum(statTotalSelfPaperCrafted);
+						document.getElementById("wood").innerHTML = fnum(wood);
+					}
+				}
+				else{
+					if(wood >= 50*number*numMade){
+						paper += number*numMade;
+						statPaperCrafted += number*numMade;
+						statTotalPaperCrafted += number*numMade;
+						statSelfPaperCrafted += number*numMade;
+						statTotalSelfPaperCrafted += number*numMade;
+						wood -= number * 50*numMade;
+						document.getElementById("paper").innerHTML = fnum(paper);
+						document.getElementById("statPaperCrafted").innerHTML = fnum(statPaperCrafted);
+						document.getElementById("statTotalPaperCrafted").innerHTML = fnum(statTotalPaperCrafted);
+						document.getElementById("statSelfPaperCrafted").innerHTML = fnum(statSelfPaperCrafted);
+						document.getElementById("statTotalSelfPaperCrafted").innerHTML = fnum(statTotalSelfPaperCrafted);					
+						document.getElementById("wood").innerHTML = fnum(wood);
+					}
+				}
+				break;	
+
+			case "tome":
+				if(paper >= 2000*number && faith >= 100*number){
+					tomes +=  number;
+					paper -=  number * 2000;
+					faith -=  number * 100;
+					document.getElementById("paper").innerHTML = fnum(paper);
+					document.getElementById("faith").innerHTML = fnum(faith);
+					document.getElementById("tomes").innerHTML = fnum(tomes);
+				}
+				break;	
+
+			case "tomeMouse":
+				if(paper >= 2000*number && faith >= 100*number){
+					tomes += number;
+					paper -= number * 2000;
+					faith -= number * 100;
+					document.getElementById("paper").innerHTML = fnum(paper);
+					document.getElementById("faith").innerHTML = fnum(faith);
+					document.getElementById("tomes").innerHTML = fnum(tomes);
+				}
+				break;				
+				
+			case "iron":
+				iron += number;
+				statIronCollected += number;
+				statTotalIronCollected += number;
+				document.getElementById("iron").innerHTML = fnum(iron);
+				document.getElementById("statIronCollected").innerHTML = fnum(statIronCollected);
+				document.getElementById("statTotalIronCollected").innerHTML = fnum(statTotalIronCollected);
+				break;
 			
-		case "iron":
-			iron += number;
-			statIronCollected += number;
-			statTotalIronCollected += number;
-			document.getElementById("iron").innerHTML = fnum(iron);
-			document.getElementById("statIronCollected").innerHTML = fnum(statIronCollected);
-			document.getElementById("statTotalIronCollected").innerHTML = fnum(statTotalIronCollected);
-			break;
-		
-		case "coal":
-			coal += number;
-			coal = Math.round(coal*100)/100;
-			statCoalCollected += number;
-			statCoalCollected = Math.round(statCoalCollected*100)/100;
-			statTotalCoalCollected += number;
-			statTotalCoalCollected = Math.round(statTotalCoalCollected*100)/100;
-			document.getElementById("coal").innerHTML = fnum(coal);
-			document.getElementById("statCoalCollected").innerHTML = fnum(statCoalCollected);
-			document.getElementById("statTotalCoalCollected").innerHTML = fnum(statTotalCoalCollected);
-			break;
+			case "coal":
+				coal += number;
+				coal = Math.round(coal*100)/100;
+				statCoalCollected += number;
+				statCoalCollected = Math.round(statCoalCollected*100)/100;
+				statTotalCoalCollected += number;
+				statTotalCoalCollected = Math.round(statTotalCoalCollected*100)/100;
+				document.getElementById("coal").innerHTML = fnum(coal);
+				document.getElementById("statCoalCollected").innerHTML = fnum(statCoalCollected);
+				document.getElementById("statTotalCoalCollected").innerHTML = fnum(statTotalCoalCollected);
+				break;
 
-		case "steel":
-			steel += number;
-			steel = Math.round(steel*100)/100;
-			statSteelCollected += number;
-			statTotalSteelCollected += number;
-			document.getElementById("steel").innerHTML = fnum(steel);
-			document.getElementById("statSteelCollected").innerHTML = fnum(statSteelCollected);
-			document.getElementById("statTotalSteelCollected").innerHTML = fnum(statTotalSteelCollected);
-			break;	
-
-		case "steelMouse":
-			if(iron >= number*100 && coal >= number*10){
+			case "steel":
 				steel += number;
 				steel = Math.round(steel*100)/100;
-				coal -= number*10;
 				statSteelCollected += number;
-				statTotalSteelCollected += number;				
-				document.getElementById("iron").innerHTML = fnum(iron);
-				document.getElementById("coal").innerHTML = fnum(iron);
+				statTotalSteelCollected += number;
 				document.getElementById("steel").innerHTML = fnum(steel);
 				document.getElementById("statSteelCollected").innerHTML = fnum(statSteelCollected);
-				document.getElementById("statTotalSteelCollected").innerHTML = fnum(statTotalSteelCollected);				
-			}
+				document.getElementById("statTotalSteelCollected").innerHTML = fnum(statTotalSteelCollected);
+				break;	
+
+			case "steelMouse":
+				if(iron >= number*100 && coal >= number*10){
+					steel += number;
+					steel = Math.round(steel*100)/100;
+					coal -= number*10;
+					statSteelCollected += number;
+					statTotalSteelCollected += number;				
+					document.getElementById("iron").innerHTML = fnum(iron);
+					document.getElementById("coal").innerHTML = fnum(iron);
+					document.getElementById("steel").innerHTML = fnum(steel);
+					document.getElementById("statSteelCollected").innerHTML = fnum(statSteelCollected);
+					document.getElementById("statTotalSteelCollected").innerHTML = fnum(statTotalSteelCollected);				
+				}
 
 
-			break;			
-		
-		case "silver":
-			silver += number;
-			silver = Math.round(silver*100)/100;
-			statSilverCollected += number;
-			statTotalSilverCollected += number;
-			document.getElementById("silver").innerHTML = fnum(silver);
-			document.getElementById("statSilverCollected").innerHTML = fnum(statSilverCollected);
-			document.getElementById("statTotalSilverCollected").innerHTML = fnum(statTotalSilverCollected);
-			break;		
+				break;			
 			
-		case "faith":
-			faith += number;
-			faith = Math.round(faith*100)/100;
-			statFaithCollected += number;
-			statTotalFaithCollected += number;
-			faith = faith.toFixedDown(2);
-			document.getElementById("faith").innerHTML = fnum(faith);
-			document.getElementById("statFaithCollected").innerHTML = fnum(statFaithCollected.toFixedDown(2));	
-			document.getElementById("statTotalFaithCollected").innerHTML = fnum(statTotalFaithCollected.toFixedDown(2));				
-			break;
-		
-		case "peasant":
-			Peasant.number += number;
-			document.getElementById("peasants").innerHTML = Peasant.number;
-			break;
-
-		case "miner":
-			Miner.number += number;
-			document.getElementById("miners").innerHTML = Miner.number;	
-			break;
-
-		case "lumberjack":
-			Lumberjack.number += number;
-			document.getElementById("lumberjacks").innerHTML = Lumberjack.number;	
-			break;				
-		
-		case "souls":
-			souls += number;
-			statSoulsCollected += number;
-			statTotalSoulsCollected += number;
-			document.getElementById("souls").innerHTML = fnum(souls);
-			document.getElementById("statSoulsCollected").innerHTML = fnum(statSoulsCollected);
-			document.getElementById("statTotalSoulsCollected").innerHTML = fnum(statTotalSoulsCollected);
-			break;
+			case "silver":
+				silver += number;
+				silver = Math.round(silver*100)/100;
+				statSilverCollected += number;
+				statTotalSilverCollected += number;
+				document.getElementById("silver").innerHTML = fnum(silver);
+				document.getElementById("statSilverCollected").innerHTML = fnum(statSilverCollected);
+				document.getElementById("statTotalSilverCollected").innerHTML = fnum(statTotalSilverCollected);
+				break;		
+				
+			case "faith":
+				faith += number;
+				faith = Math.round(faith*100)/100;
+				statFaithCollected += number;
+				statTotalFaithCollected += number;
+				faith = faith.toFixedDown(2);
+				document.getElementById("faith").innerHTML = fnum(faith);
+				document.getElementById("statFaithCollected").innerHTML = fnum(statFaithCollected.toFixedDown(2));	
+				document.getElementById("statTotalFaithCollected").innerHTML = fnum(statTotalFaithCollected.toFixedDown(2));				
+				break;
 			
-		case "mana":
-			mana += number;
-			mana = Math.round(mana*100)/100;
-			statManaGained += number;
-			statTotalManaGained += number;
-			document.getElementById("mana").innerHTML = fnum((Math.round( mana * 10) / 10).toFixedDown(1));
-			document.getElementById("statManaGained").innerHTML = fnum(statManaGained.toFixedDown(1));		
-			document.getElementById("statTotalManaGained").innerHTML = fnum(statTotalManaGained.toFixedDown(1));		
-		default:
+			case "peasant":
+				Peasant.number += number;
+				document.getElementById("peasants").innerHTML = Peasant.number;
+				break;
+
+			case "miner":
+				Miner.number += number;
+				document.getElementById("miners").innerHTML = Miner.number;	
+				break;
+
+			case "lumberjack":
+				Lumberjack.number += number;
+				document.getElementById("lumberjacks").innerHTML = Lumberjack.number;	
+				break;				
+			
+			case "souls":
+				souls += number;
+				statSoulsCollected += number;
+				statTotalSoulsCollected += number;
+				document.getElementById("souls").innerHTML = fnum(souls);
+				document.getElementById("statSoulsCollected").innerHTML = fnum(statSoulsCollected);
+				document.getElementById("statTotalSoulsCollected").innerHTML = fnum(statTotalSoulsCollected);
+				break;
+				
+			case "mana":
+				mana += number;
+				mana = Math.round(mana*100)/100;
+				statManaGained += number;
+				statTotalManaGained += number;
+				document.getElementById("mana").innerHTML = fnum((Math.round( mana * 10) / 10).toFixedDown(1));
+				document.getElementById("statManaGained").innerHTML = fnum(statManaGained.toFixedDown(1));		
+				document.getElementById("statTotalManaGained").innerHTML = fnum(statTotalManaGained.toFixedDown(1));		
+			default:
+		}
 	}
 }
 
@@ -611,6 +613,7 @@ function UpdateButtons() {
 	}
 
 }
+
 
 window.setInterval(function(){                                 //Update per second counts
     
