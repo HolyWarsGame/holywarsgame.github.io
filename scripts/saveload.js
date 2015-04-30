@@ -118,6 +118,7 @@
 		save("PmillClickUpgr",PmillClickUpgr);
 		save("bishopUpgr1", bishopUpgr1);
 		save("paladinWepUpgrade",paladinWepUpgrade);
+		save("paladinWepUpgrade2",paladinWepUpgrade2)
 		save("shadeUpgr1", shadeUpgr1);
 		save("angelUpgr1", angelUpgr1);
 		save("tavernUpgrade",tavernUpgrade);
