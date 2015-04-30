@@ -607,6 +607,7 @@ function UpdateButtons() {
 	
 //	checkQuestGoButton();
 
+
 	//Check Relic Buttons
 	if(defeatedDwarf == true){
 		updateRelicButtons();		

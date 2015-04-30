@@ -51,15 +51,17 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 		
 	inQuest = true;
 	curQuestType = this.name
-	document.getElementById(this.htmlBoxRef).style.display = "block";	
-	$qbar = $(document.getElementById(this.htmlBarRef));
+
 	UnitOnQuest = $('#unitSelectPicker').selectpicker('val')
 	NumUnitOnQuest = $('#QuestUnitNumSelect').val();		
-	if(loadedQuest == false)
-	{
-		holdUnitforQuest();		
-	}
-	
+		if(holdUnitforQuest() == false)
+		{
+			console.log('Bad quest selection.');
+			return;
+		};		
+	document.getElementById(this.htmlBoxRef).style.display = "block";	
+	$qbar = $(document.getElementById(this.htmlBarRef));
+		
 	document.getElementById(btn).disabled = true;					//disables the buttons
 	document.getElementById(btn).innerHTML = QuestName + " in progress!";     //Changes button text
 	document.getElementById('questSelectPicker').disabled = true;  //disables picker
@@ -355,7 +357,6 @@ function btnSendQuest(){
 };
 
 function checkQuestSelection(){
-	
 	if($('.selectpicker').selectpicker('val') == "Paladin"){
 		if(Paladin.number < $('#QuestUnitNumSelect').val()){
 			alert("You do not have enough Paladins for this!");
@@ -455,15 +456,19 @@ RelicHunt.startQuest = function(){
 			
 		inQuest = true;
 		curQuestType = this.name
+
+		if(loadedQuest == false){
+			if(holdUnitforQuest() == false)
+			{
+				console.log('Bad quest selection.');
+				return;
+			};			
+		}
 		document.getElementById(this.htmlBoxRef).style.display = "block";	
 		$qbar = $(document.getElementById(this.htmlBarRef));
 		
 		UnitOnQuest = $('#unitSelectPicker').selectpicker('val');
-		NumUnitOnQuest = $('#QuestUnitNumSelect').val();
-		if(loadedQuest == false){
-			holdUnitforQuest();			
-		}
-		
+		NumUnitOnQuest = $('#QuestUnitNumSelect').val();		
 		var questprogress = setInterval(function() {
 		qcurrWidth = parseInt(this.$qbar.attr('aria-valuenow'));
 		qmaxWidth = parseInt(this.$qbar.attr('aria-valuemax'));	
@@ -552,6 +557,9 @@ function rollForFragment(){
 function holdUnitforQuest(){
 	switch(UnitOnQuest){
 		case "Paladin":
+			if(Paladin.number < parseInt(NumUnitOnQuest)){
+				return false;
+			}
 			Paladin.number -= parseInt(NumUnitOnQuest);
 			Paladin.onQuest = parseInt(NumUnitOnQuest);
 			Paladin.totalArmyPower();
@@ -559,25 +567,34 @@ function holdUnitforQuest(){
 			document.getElementById('paladins').innerHTML = Paladin.number;
 			calculateBattlePower();
 			calculateSpiritPower();	
-//			console.log("taking paladins");			
+//			console.log("taking paladins");
+			return true;
 		break;
 		
 		case "Knight":
+			if(Knight.number < parseInt(NumUnitOnQuest)){
+				return false;
+			}
 			Knight.number -= parseInt(NumUnitOnQuest);
 			Knight.totalArmyPower();
 			Knight.onQuest = parseInt(NumUnitOnQuest);
 			document.getElementById('knights').innerHTML = Knight.number;	
 			calculateBattlePower();
-//			console.log("taking knights");		
+//			console.log("taking knights");	
+			return true;
 		break;
 		
 		case "Squire":
+			if(Squire.number < parseInt(NumUnitOnQuest)){
+				return false;
+			}
 			Squire.number -= parseInt(NumUnitOnQuest);
 			Squire.totalArmyPower();
 			Squire.onQuest = parseInt(NumUnitOnQuest);
 			document.getElementById('squires').innerHTML = Squire.number;	
 			calculateBattlePower();
-//			console.log("taking Squires");		
+//			console.log("taking Squires");	
+			return true;
 		break;		
 	}
 };
@@ -664,7 +681,15 @@ $(function() {
 		case 'Relic Hunt':									//Only Paladins or higher can go on Relic Hunts
 			$('#KnightOption').prop("disabled", true);
 			$('#SquireOption').prop("disabled", true);
-			$('#unitSelectPicker').selectpicker('val', 'Paladin');
+			if(Paladin.number < 1){
+				$('#PaladinOption').prop("disabled", true);
+				$('#unitSelectPicker').selectpicker('val', '');
+			}
+			else{
+				$('#PaladinOption').prop("enabled", true);
+				$('#unitSelectPicker').selectpicker('val', 'Paladin');
+			}
+//			$('#unitSelectPicker').selectpicker('val', 'Paladin');
 			$('.selectpicker').selectpicker('refresh');
 			questDescription = "Send your units out to look for mysterious relics. <br>Requires Paladins or higher units. <br>Reward: Chance at relics"
 			document.getElementById('questDescString').innerHTML = questDescription;
@@ -674,6 +699,7 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
+			QuestCheckUnitOptions()
 			$('.selectpicker').selectpicker('refresh');
 			questDescription = "Send your units out to slay lesser demons attacking the people in " + KingdomName + ". <br>Reward: <img src = 'images/soulssmall.png' title='Souls'>Souls"
 			document.getElementById('questDescString').innerHTML = questDescription;			
@@ -683,6 +709,7 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
+			QuestCheckUnitOptions()
 			$('.selectpicker').selectpicker('refresh');
 			questDescription = "Send your units out to slay treants menacing the lumberjacks in the woods. <br>Reward: <img src = 'images/woodsmall.png' title = 'Wood'> Wood"
 			document.getElementById('questDescString').innerHTML = questDescription;			
@@ -692,6 +719,7 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
+			QuestCheckUnitOptions()
 			$('.selectpicker').selectpicker('refresh');
 			questDescription = "Send your units out to slay the iron golems summoned by the Evil One in your mines. <br>Reward: <img src = 'images/ironsmall.png' title='Iron'>Iron"
 			document.getElementById('questDescString').innerHTML = questDescription;			
@@ -701,6 +729,7 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
+			QuestCheckUnitOptions()
 			$('.selectpicker').selectpicker('refresh');	
 			questDescription = "Send your units out to help the people of " + KingdomName + " with generic problems, like little children falling down a well. <br>Reward: <img src = 'images/money_goldsmall.png' title ='Gold'>Gold"
 			document.getElementById('questDescString').innerHTML = questDescription;			
@@ -710,6 +739,7 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
+			QuestCheckUnitOptions()
 			$('.selectpicker').selectpicker('refresh');	
 			questDescription = "Send your units into your mines to help the sprites residing within. <br>Reward: <img src = 'images/silverOresmall.png' title='Silver'>Silver"
 			document.getElementById('questDescString').innerHTML = questDescription;			
