@@ -618,25 +618,11 @@ function UpdateButtons() {
 window.setInterval(function(){                                 //Update per second counts
     
 	
-	if(pGoldUpgrade == true){
-		goldpersec = Peasant.number * 2;
-	}
-	else{
-		goldpersec = Peasant.number;	
-	}
-	if(mPanningUpgrade == true)
-	{
-		goldpersec = goldpersec + Miner.number;
-	}
+	
+	goldpersec = Peasant.number*Peasant.goldClickVal + Miner.number*Miner.goldClickVal;
+	document.getElementById("golddiv").title = "Gold per second: " + fnum(goldpersec) ; 
 
-	 document.getElementById("golddiv").title = "Gold per second: " + fnum(goldpersec) ; 
-
-	if(lwoodClickUpgrade == true){
-		woodpersec = Lumberjack.number*2;		
-	}
-	else{
-		woodpersec = Lumberjack.number;	
-	}
+	woodpersec = Lumberjack.number*Lumberjack.woodClickVal;
 	document.getElementById("wooddiv").title = "Wood per second: " + fnum(woodpersec) ; 	 
 	 
 	ironpersec = Miner.number;
@@ -645,37 +631,20 @@ window.setInterval(function(){                                 //Update per seco
 	coalpersec = CoalMiner.number*0.1;
 	document.getElementById('coaldiv').title = "Coal per second " + fnum(coalpersec.toFixedDown(2)) ;
 	 
-	if(mSilverUpgrade == true)
-	{
-		silverpersec = Miner.number*0.5
-	}
+	
+	silverpersec = Miner.number*Miner.silverClickVal;
 	document.getElementById("silverdiv").title = "Silver per second: " + fnum(silverpersec) ; 	 	
  
-	var acoMult = 0.1;	
-	var priestMult = 0.5;
-	var bishopMult = 1;
+ 
 	var buildingMult = 1;
-	if(acFaithUpgrade == true){
-		acoMult = 0.2;
-	}
-	if(prFaithUpgrade == true){
-		priestMult = 1.0;
-	}
-	if(bishopUpgr1 == true){
-		bishopMult = 2.0;
-	}
 	if(cathUpgrade == true){
 		buildingMult = 2;
 	}
- 
-	faithpersec = Bishop.number*bishopMult * 10 + Priest.number*priestMult + Acolyte.number*acoMult;
+	faithpersec = (Bishop.number*Bishop.faithClickVal + Priest.number*Priest.faithClickVal + Acolyte.number*Acolyte.faithClickVal)*buildingMult;
 	faithpersec = faithpersec.toFixedDown(2)
     document.getElementById("faithdiv").title = "Faith per second: " + fnum(faithpersec) ; 
 	
-    soulspersec = Paladin.number +  Aspect.number * 2  + Angel.number * 5;
-	if(paladinWepUpgrade == true){
-		soulspersec = Paladin.number * 2 +  Aspect.number * 2 + Angel.number * 5;
-	}
+    soulspersec = Paladin.number*Paladin.soulsClickVal + Aspect.number*Aspect.soulsClickVal + Angel.number*Angel.soulsClickVal;
 	document.getElementById("soulsdiv").title = "Souls per second: " + fnum(soulspersec) ; 
 	
 	if(PmillEffUpgr2 == true){
@@ -687,35 +656,33 @@ window.setInterval(function(){                                 //Update per seco
 		document.getElementById("paperdiv").title = "Paper per 10 seconds: " + fnum(paperpersec * 10) ; 
 	}
 	
-	manapersec = 1 + 0.1*Sprite.number;
+	manapersec = 1 + Sprite.number*Sprite.manaClickVal;
 	document.getElementById("manadiv").title = "Mana per second: " + fnum(manapersec) ; 	
 	
-	document.getElementById("peasants").innerHTML = Peasant.number ;	//For testing
-	document.getElementById("miners").innerHTML = Miner.number;			//For Testing
 },100);
 
 
 window.setInterval(function(){	
 
 	//Gold generation via peasants etc every second
-	var number = Peasant.number;
+/* 	var number = Peasant.number;
 	if(pGoldUpgrade == true){
 		number = Peasant.number*2;
 	}
 	if(mPanningUpgrade == true)
 	{
 		number += Miner.number;
-	}
-	clickThing(number, "gold");
+	} */
+	clickThing(Peasant.number*Peasant.goldClickVal + Miner.number*Miner.goldClickVal, "gold");
 
 	//Wood Generation via lumberjacks etc every second
-	var woodnumber = Lumberjack.number;
+/* 	var woodnumber = Lumberjack.number;
 	
 	if(lwoodUpgrade == true){
 		woodnumber = Lumberjack.number * 2;
 	}
-	
-	clickThing(woodnumber, "wood")	
+	 */
+	clickThing(Lumberjack.number*Lumberjack.woodClickVal, "wood")	
 	
 	//Iron Generation via miners etc every second
 	clickThing(Miner.number, "iron")
@@ -725,49 +692,28 @@ window.setInterval(function(){
 	coal = coal.toFixedDown(2);
 	
 	//Silver Generation via miners etc every second
-	if(mSilverUpgrade == true)
-	{
-		clickThing(Miner.number*0.5, "silver")
-	}	
+	clickThing(Miner.number*Miner.silverClickVal, "silver")
 	silver = silver.toFixedDown(2);
 	
 	 //Faith Generation via priests etc every second
-	 
-	var acoMult = 0.1;	
-	var priestMult = 0.5;
-	var bishopMult = 1;
 	var buildingMult = 1;
-	if(acFaithUpgrade == true){
-		acoMult = 0.2;
-	}
-	if(prFaithUpgrade == true){
-		priestMult = 1.0;
-	}
-	if(bishopUpgr1 == true){
-		bishopMult = 2.0;
-	}
 	if(cathUpgrade == true){
 		buildingMult = 2;
 	}
 	 
-	clickThing((Bishop.number*bishopMult * 10 + Priest.number*priestMult + Acolyte.number*acoMult)*buildingMult, "faith");          
+	clickThing((Bishop.number*Bishop.faithClickVal + Priest.number*Priest.faithClickVal + Acolyte.number*Acolyte.faithClickVal)*buildingMult, "faith");          
 	faith = faith.toFixedDown(2);
 	
 	//Soul generation via paladins etc every second
-	if(paladinWepUpgrade == true){
-		clickThing(Paladin.number*2 + Aspect.number * 2 + Angel.number * 5,"souls");	
-	}
-	else{
-		clickThing(Paladin.number +  Aspect.number * 2 + Angel.number * 5,"souls");	
-	}
+	clickThing(Paladin.number*Paladin.soulsClickVal + Aspect.number*Aspect.soulsClickVal + Angel.number*Angel.soulsClickVal,"souls");	
 
+	
 	//Mana generation per second
 	if(towerBuilt == true){
 		if(mana < manaCap){
-			clickThing(1 + 0.1*Sprite.number,"mana");
+			clickThing(1 + Sprite.number*Sprite.manaClickVal,"mana");
 		}
 	}
-	
 	updateUnitPopover()
 }, 1000);
 

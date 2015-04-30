@@ -25,6 +25,7 @@ var Unit = function(name, htmlNumRef, htmlNextGoldCost, htmlNextIronCost, htmlNe
 	this.goldClickVal = 0;
 	this.woodClickVal = 0;
 	this.ironClickVal = 0;
+	this.coalClickVal = 0;
 	this.silverClickVal = 0;
 	this.faithClickVal = 0;
 	this.soulsClickVal = 0;
@@ -64,6 +65,7 @@ Unit.prototype.buyOne = function(){
 	this.curManaCost = Math.floor(this.manaCost * Math.pow(this.costMult,this.number+this.onQuest));
 	
 	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.number > 0)){
+
 		if(gold >= this.curGoldCost && iron >= this.curIronCost && silver >= this.curSilverCost && faith >= this.curFaithCost && souls >= this.curSoulCost && tomes >= this.tomeCost && mana >= this.manaCost){    //checks that the player can afford the Unit
 			this.number += 1;                                  							 	  //increases number of Unit
 			gold -= this.curGoldCost;                     										      //removes the gold spent
@@ -116,10 +118,10 @@ Unit.prototype.buyOne = function(){
 				this.nextManaCost = Math.floor(this.manaCost * Math.pow(this.costMult,this.number+this.onQuest));                       //works out the Mana cost of the next Unit
 				document.getElementById(this.htmlNextManaCost).innerHTML = fnum(this.nextManaCost);  						      //updates the Unit Mana cost for the user
 			}				
-			
+
 			updateStatistic(this.name, 1);
-		};
-	}
+		}
+	};
 	QuestCheckUnitOptions(); //
 };
 
@@ -162,7 +164,6 @@ Unit.prototype.recalcCost = function(){
 		this.curManaCost = Math.floor(this.manaCost * Math.pow(this.costMult,this.number+this.onQuest));                       //works out the Mana cost of the next Unit
 		document.getElementById(this.htmlNextManaCost).innerHTML = fnum(this.curManaCost);  					   //updates the Unit Mana cost for the user
 	}	
-	
 };
 
 Unit.prototype.canBuy = function(){
@@ -177,7 +178,6 @@ Unit.prototype.canBuy = function(){
 			document.getElementById(btn).disabled = true;					//disables the buy button
 			if(gold < this.curGoldCost && this.htmlNextGoldCost != 'none'){
 				document.getElementById(this.htmlNextGoldCost).style.color = "red";
-				
 			}
 			if(iron < this.curIronCost && this.htmlNextIronCost != 'none'){
 				document.getElementById(this.htmlNextIronCost).style.color = "red";
@@ -261,6 +261,10 @@ function setClickVal(Unit, type, value){
 		
 		case 'wood':
 			Unit.woodClickVal = value;
+		break;
+		
+		case 'coal':
+			Unit.coalClickVal = value;
 		break;
 		
 		case 'iron':
@@ -434,7 +438,7 @@ setClickVal(Miner, 'iron', 1);
 var coalMinerDesc = "These miners have specialized in dredging dirty, black fuel from the mines."
 var CoalMiner = new Unit("Coal Miner",'coalminers','CoalMinerCost','CoalMinerIronCost','CoalMinerSilverCost','none','none','none','none','btnbuyCoalMiner',40000,20000,15000,0,0,0,0,1.25, coalMinerDesc, 0, true, Miner, "coalMinerReqUnit")
 setDescription(CoalMiner, 'BtnCoalMinerDesc');
-//setClickVal(CoalMiner, 'iron', 1);
+setClickVal(CoalMiner, 'coal', 0.1);
 
 var pageDesc = "Young men in training to become knights. Not too great with weapons yet, but they're learning.  <br> Provides  <img src = 'images/armsmall.png'>10 army strength"
 var Page = new Unit(
@@ -761,7 +765,7 @@ Angel.totalSpiritPower = function(){
 	}
 };
 
-var spriteDesc = "These petite, fairy-like creatures are intensely attracted to the arcane aura emanating from your tower. Just being around them makes your mind sharpen to the arcane energies of the universe. <br><br>Increases mana generation by 0.1 <img src = 'images/manasmall.png' Title='Mana'> per second."
+var spriteDesc = "These petite, fairy-like creatures are intensely attracted to the arcane aura emanating from your tower. Just being around them makes your mind sharpen to the arcane energies of the universe."
 //var Sprite = new Unit("Sprite",'sprites','SpriteCost','none','spriteSilverCost','spriteFaithCost','spriteSoulCost','spriteTomeCost', 'spriteManaCost','btnBuySprite',750000,500000,2500,50000,2000,25,2000,1.5, spriteDesc, 0, false, "none", 'none');
 var Sprite = new Unit(
 /*Name*/			"Sprite",
@@ -775,7 +779,7 @@ var Sprite = new Unit(
 /*htmlNextManaCost*/'spriteManaCost',
 /*htmlBuyBtn*/		'btnBuySprite',
 /*goldCost*/		750000,
-/*ironCost*/		500000,
+/*ironCost*/		0,
 /*silverCost*/		2500,
 /*faithCost*/		50000,
 /*soulCost*/		2000,
@@ -844,66 +848,60 @@ function checkUnitButtons(){
 function updateUnitPopover(){
 	
 	//Peasant
-	if(pGoldUpgrade == true){
-		Peasant.goldClickVal = 2;
-	}
 	Peasant.description = peasDesc + "<br> Generates " + Peasant.goldClickVal + "<img src='images/money_goldsmall.png'> per second"
 	setDescription(Peasant, 'BtnPeasantDesc');
 	
-	
 	//Lumberjack
-	if(lwoodUpgrade == true){
-		Lumberjack.woodClickVal = 2;
-	}
 	Lumberjack.description = lumberjackDesc + "<br> Generates " + Lumberjack.woodClickVal + "<img src = 'images/woodsmall.png'> per second"
 	setDescription(Lumberjack, 'BtnLumberjackDesc');
 	
 	//Miner
 	var tempMinerDesc = minerDesc
-	
 	tempMinerDesc = tempMinerDesc + "<br> Generates " + Miner.ironClickVal + "<img src='images/ironsmall.png'> per second"
-	
 	if(mPanningUpgrade == true){
-		Miner.goldClickVal = 1;
 		tempMinerDesc = tempMinerDesc + "<br> Generates " + Miner.goldClickVal + "<img src='images/money_goldsmall.png'> per second"
 	}
 	if(mSilverUpgrade == true){
-		Miner.silverClickVal = 0.5;
 		tempMinerDesc = tempMinerDesc + "<br> Generates " + Miner.silverClickVal + "<img src = 'images/silverOresmall.png'> per second"
 	}
 	Miner.description = tempMinerDesc;
 	setDescription(Miner, 'BtnMinerDesc');
+	
+	
+	//CoalMiner
+	CoalMiner.description = coalMinerDesc + "<br> Generates " + CoalMiner.coalClickVal + "<img src = 'images/coalsmall.png'> per second";
+	setDescription(CoalMiner, 'BtnCoalMinerDesc');
 	
 //	setDescription(Page, 'BtnPageDesc');
 //	setDescription(Squire, 'BtnSquireDesc');
 //	setDescription(Knight, 'BtnKnightDesc');
 
 	//Paladin
-	if(paladinWepUpgrade == true){
+/* 	if(paladinWepUpgrade == true){
 		Paladin.soulsClickVal = 2;
 //		Paladin.spiritPower = 10;
-	}
+	} */
 	Paladin.description = paladinDesc + "<br> Provides <img src = 'images/armsmall.png'> " + Paladin.armyPower + " army strength. <br>Provides <img src = 'images/armsmall.png'> " + Paladin.spiritPower + " spiritual strength. <br>Generates " + Paladin.soulsClickVal + " <img src = 'images/soulssmall.png'> per second."
 	setDescription(Paladin, 'BtnPaladinDesc')
 	
 	//Acolyte
-	if(acFaithUpgrade == true){
+/* 	if(acFaithUpgrade == true){
 		Acolyte.faithClickVal = 0.2
-	}	
+	}	 */
 	Acolyte.description = acolyteDesc + "<br> Generates "+ Acolyte.faithClickVal +" <img src = 'images/faithsmall.png'> per second"
 	setDescription(Acolyte, 'BtnAcolyteDesc');
 	
 	//Priest
-	if(prFaithUpgrade == true){
+/* 	if(prFaithUpgrade == true){
 		Priest.faithClickVal = 1
-	}
+	} */
 	Priest.description = priestDesc + "<br>Generates " + Priest.faithClickVal + " <img src = 'images/faithsmall.png'> per second";
 	setDescription(Priest, 'BtnPriestDesc');
 	
 	//Bishop
-	if(bishopUpgr1 == true){
+/* 	if(bishopUpgr1 == true){
 		Bishop.faithClickVal = 20;
-	}
+	} */
 	Bishop.description = bishopDesc + "<br> Generates " + Bishop.faithClickVal + " <img src = 'images/faithsmall.png'> per second";
 	setDescription(Bishop, 'BtnBishopDesc');
 	
@@ -928,4 +926,6 @@ function updateUnitPopover(){
 	setDescription(Angel, 'BtnAngelDesc'); 
 	
 	//Sprite
+	Sprite.description = spriteDesc + "<br> Generates " + Sprite.manaClickVal + " <img src = 'images/manasmall.png'> per second.";
+	setDescription(Sprite, 'BtnSpritesDesc'); 
 };

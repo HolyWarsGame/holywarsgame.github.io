@@ -533,8 +533,9 @@
 			var myBool = (localStorage.towerBuilt == "true")
 			if(myBool == true){
 				towerBuilt = true
-				document.getElementById('gathersteel').style.display = "block";
-				document.getElementById('steeldiv').style.display = "block";
+				document.getElementById('Magic').style.display = "block";
+				document.getElementById('manadiv').style.display = "block";
+				document.getElementById('TowerMenu').style.display = "block";
 			}
 		}	
 

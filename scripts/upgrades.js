@@ -150,7 +150,7 @@ Upgrade.prototype.enableFlag = function(){
 	switch(this.name){
 		case 'peasantUpgrade1':
 			pGoldUpgrade = true;
-			Peasant.goldClickVal += 1;
+			Peasant.goldClickVal *= 2;  //Clickval should = 2
 		break;
 		
 		case 'clickGoldUpgrade':
@@ -167,6 +167,7 @@ Upgrade.prototype.enableFlag = function(){
 		
 		case 'ljackUpgrade1':
 			lwoodUpgrade = true;
+			Lumberjack.woodClickVal *= 2; //Clickval should = 2
 		break;					
 		
 		case 'ljackUpgrade2':
@@ -175,20 +176,24 @@ Upgrade.prototype.enableFlag = function(){
 		
 		case 'minerUpgrade1':
 			mPanningUpgrade = true;
+			Miner.goldClickVal = 1;
 		break;	
 
 		case 'minerUpgrade2':
 			mSilverUpgrade = true;
+			Miner.silverClickVal = 0.5;
 			document.getElementById('silverdiv').style.display = "block";
 			$("#SecondaryResources").collapse('show');			 
 		break;			
 		
 		case 'acolyteUpgrade1':
 			acFaithUpgrade = true;
+			Acolyte.faithClickVal *= 2
 		break;		
 		
 		case 'priestUpgrade1':
 			prFaithUpgrade = true;
+			Priest.faithClickVal *= 2
 		break;		
 		
 		case 'tomeUnlock':
@@ -199,6 +204,7 @@ Upgrade.prototype.enableFlag = function(){
 
 		case 'bishopUpgrade1':
 			bishopUpgr1 = true;
+			Bishop.faithClickVal *= 2;
 		break;		
 		
 		case 'pageUpgrade1':
@@ -213,6 +219,7 @@ Upgrade.prototype.enableFlag = function(){
 		
 		case 'paladinUpgrade1':
 			paladinWepUpgrade = true;
+			Paladin.soulsClickVal *= 2;
 			setSpiritPower(Paladin,10);			
 		break;	
 
