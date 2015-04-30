@@ -543,9 +543,8 @@
 			var myBool = (localStorage.forgeOpened == "true")
 			if(myBool == true){
 				forgeOpened = true
-				document.getElementById('Magic').style.display = "block";
-				document.getElementById('manadiv').style.display = "block";
-				document.getElementById('TowerMenu').style.display = "block";
+				document.getElementById('gathersteel').style.display = "block";
+				document.getElementById('steeldiv').style.display = "block";
 			}
 		}	
 		if(localStorage.coalUnlocked != null){
