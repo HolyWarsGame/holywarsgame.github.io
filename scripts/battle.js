@@ -678,7 +678,7 @@ function setDefeatEvents(name){
 
 			this.AlertRef = $.notify({
 				title: "<strong>New!</strong>",
-				message: "The dwarf coughs and the ire fades from his eyes. After a few moments gathering his composure, the dwarf offers to use his skills and tools to <a href='alertOpenRelicPage(); this.AlertRef.close();' class='alert-link'>identify relics</a> for you.",			
+				message: "The dwarf coughs and the ire fades from his eyes. After a few moments gathering his composure, the dwarf offers to use his skills and tools to <a href='javascript: alertOpenRelicPage(); this.AlertRef.close();' class='alert-link'>identify relics</a> for you.",			
 				},{
 			delay: 300000,
 			type: 'success'
