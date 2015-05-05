@@ -202,6 +202,7 @@ Upgrade.prototype.enableFlag = function(){
 		
 		case 'tomeUnlock':
 			tomesUnlocked = true;
+			document.getElementById('ScribeTab').style.display = "block";
 			document.getElementById('tomediv').style.display = "block";
 			document.getElementById('createTome').style.display = "block";			
 		break;	

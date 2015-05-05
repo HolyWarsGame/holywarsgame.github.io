@@ -418,6 +418,27 @@
 			<hr>
 		</div>
 
+		<div id="ScribeTab" class = "container" style="display: none;">
+		<a id = 'BtnScribeDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Scribes"
+    		data-content="">Scribes <span class='badge' id="scribes">0</span></a>
+			<br /><br />
+			<button id=btnbuyScribe onclick="Scribe.buyOne()"	type="button" class="btn btn-default">Train Scribe</button>
+			<button id=btnScribeUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#ScribeUpgradeTab" aria-expanded="false" aria-controls="ScribeUpgradeTab">Upgrades</button>
+			<br />
+			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="ScribeCost">1000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="ScribeSilverCost">10</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="ScribeFaithCost">50</span> | <img src = "images/bookssmall.png" Title="Tomes"> <span id="ScribeTomeCost">1</span>  | <span id = 'ScribeReqUnit'>1 Priest<span>
+			<br />
+			<div id ="ScribeUpgradeTab" class = "upgrade collapse">
+				<div class = "well">
+					<br />
+					
+					<div class = 'container'>
+
+					</div>
+				</div>
+			</div>
+			<hr>
+		</div>				
+		
 		<div id="BishopTab" class = "container">
 		<a id = 'BtnBishopDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Bishops"
     		data-content="">Bishops <span class='badge' id="bishops">0</span></a>
@@ -676,7 +697,13 @@
 							<br />
 						</div>
 						<br />						
-						
+						<div id = 'PMillUpgradeEff3Tab' class = 'container'> 
+							<button id='btnPmillEffUpgrade3' onclick="pmillEffUpgrade3.buyUpgrade()"	type="button" class="btn btn-default" title = "A little bit of magic and the help of a couple of shades further increases the efficency of your paper mills. Multiplies paper output by 1.5.">Shady Intervention</button>
+							<span class="glyphicon glyphicon-info-sign mobiletooltip" aria-hidden="true" title = "A little bit of magic and the help of a couple of shades further increases the efficency of your paper mills. Multiplies paper output by 1.5." rel="tooltip"></span>
+							<br />	
+							<img src = "images/money_goldsmall.png" title ="Gold" ><span id = 'pmillEffUpgrade3GoldCost'>5M</span> | <img src = "images/woodsmall.png" title = "Wood"><span id = 'pmillEffUpgrade3WoodCost'>3M</span> | <img src = "images/ironsmall.png" title="Iron"><span id = 'pmillEffUpgrade3IronCost'>3M</span> | <img src = "images/soulssmall.png" title="Souls"><span id = 'pmillEffUpgrade3SoulCost'>2.5M</span> | <span id = 'pmillEffUpgrade3UnitCost'>25 shades</span>
+							<br />
+						</div>
 					</div>
 				</div>				
 		</div>
