@@ -120,6 +120,10 @@ Upgrade.prototype.checkFlag = function(){
 			return PmillEffUpgr2;
 		break;	
 
+		case 'pmillEffUpgrade3':
+			return PmillEffUpgr3;
+		break;	
+
 		case 'pmillClickUpgrade':
 			return PmillClickUpgr;
 		break;
@@ -250,6 +254,10 @@ Upgrade.prototype.enableFlag = function(){
 		case 'pmillEffUpgrade2':
 			PmillEffUpgr2 = true;
 		break;
+
+		case 'pmillEffUpgrade3':
+			PmillEffUpgr3 = true;
+		break;			
 		
 		case 'pmillClickUpgrade':
 			PmillClickUpgr = true;
@@ -1040,6 +1048,38 @@ var paladinUpgrade1 = new Upgrade(
 						document.getElementById("btnPmillEffUpgrade2").innerHTML = "Total Overhaul Purchased";
 					}		
 				} */
+
+var pmillEffUpgrade3 = new Upgrade(	
+ /*Name*/'pmillEffUpgrade3', 
+/*goldCost*/5000000, 
+/*htmlGoldCost*/'pmillEffUpgrade3GoldCost',
+/*woodCost*/3000000, 
+/*htmlWoodCost*/'pmillEffUpgrade3WoodCost',
+/*ironCost*/3000000, 
+/*htmlIronCost*/'pmillEffUpgrade3IronCost',
+/*coalCost*/0, 
+/*htmlCoalCost*/'none',
+/*steelCost*/0, 
+/*htmlSteelCost*/'none',
+/*silverCost*/0, 
+/*htmlSilverCost*/'none',
+/*faithCost*/0, 
+/*htmlFaithCost*/'none',
+/*soulCost*/2500000, 
+/*htmlSoulCost*/'pmillEffUpgrade3SoulCost',
+/*paperCost*/0, 
+/*htmlPaperCost*/'none',
+/*tomeCost*/0, 
+/*htmlTomeCost*/'none',
+/*manaCost*/0, 
+/*htmlManaCost*/'none',
+/*buttonRef*/'btnPmillEffUpgrade3'
+);	
+pmillEffUpgrade3.hasReqUnit = true;
+pmillEffUpgrade3.reqUnit = Shade;
+pmillEffUpgrade3.numReqUnit = 20;
+pmillEffUpgrade3.htmlReqUnit = 'pmillEffUpgrade3UnitCost';
+
  var pmillClickUpgrade = new Upgrade(	
  /*Name*/'pmillClickUpgrade', 
 /*goldCost*/1200000, 

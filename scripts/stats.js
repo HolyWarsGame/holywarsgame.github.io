@@ -74,6 +74,9 @@ var statTotalPaladinsTrained = 0;
 var statAcolytesRecruited = 0;
 var statTotalAcolytesRecruited = 0;
 
+var statScribesTrained = 0;
+var statTotalScribesTrained = 0;
+
 var statPriestsTrained = 0;
 var statTotalPriestsTrained = 0;
 

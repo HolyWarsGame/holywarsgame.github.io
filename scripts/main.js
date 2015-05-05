@@ -23,6 +23,7 @@ var silverpersec = 0;
 var soulspersec = 0;
 var manapersec = 0;
 var paperpersec = 0;
+var tomepersec = 0;
 var faithDonated = 0;
 var totalTimePlayed = 0;
 var tTPinHHMMSS = 0;
@@ -64,6 +65,7 @@ var tomesUnlocked = false;
 var coalUnlocked = false;
 var PmillEffUpgr = false;		//Paper mill efficiency upgrade cost
 var PmillEffUpgr2 = false;
+var PmillEffUpgr3 = false;
 var PmillClickUpgr = false;		//Paper mill - Click multiplier
 var barracksOpened = false;
 var commandPostOpened = false;
@@ -329,7 +331,6 @@ function clickThing(number, type)
 }
 
 function renameKingdom(){
-	
 //	KingdomName = prompt("Name your kingdom", "");
 	
 		bootbox.prompt({
@@ -582,6 +583,9 @@ function UpdateButtons() {
 							document.getElementById("btnPmillEffUpgrade2").disabled = false;
 						} */
 
+	//Paper mill efficiency upgrade 3
+	pmillEffUpgrade3.canBuy();
+
 	//Paper mill click upgrade
 	pmillClickUpgrade.canBuy();
 	
@@ -618,8 +622,6 @@ function UpdateButtons() {
 
 window.setInterval(function(){                                 //Update per second counts
     
-	
-	
 	goldpersec = Peasant.number*Peasant.goldClickVal + Miner.number*Miner.goldClickVal;
 	document.getElementById("golddiv").title = "Gold per second: " + fnum(goldpersec) ; 
 
@@ -641,21 +643,29 @@ window.setInterval(function(){                                 //Update per seco
 	if(cathUpgrade === true){
 		buildingMult = 2;
 	}
-	faithpersec = (Bishop.number*Bishop.faithClickVal + Priest.number*Priest.faithClickVal + Acolyte.number*Acolyte.faithClickVal)*buildingMult;
+	faithpersec = (Bishop.number*Bishop.faithClickVal + Priest.number*Priest.faithClickVal +  Scribe.number*Scribe.faithClickVal + Acolyte.number*Acolyte.faithClickVal)*buildingMult;
 	faithpersec = faithpersec.toFixedDown(2);
     document.getElementById("faithdiv").title = "Faith per second: " + fnum(faithpersec) ; 
 	
     soulspersec = Paladin.number*Paladin.soulsClickVal + Aspect.number*Aspect.soulsClickVal + Angel.number*Angel.soulsClickVal;
 	document.getElementById("soulsdiv").title = "Souls per second: " + fnum(soulspersec) ; 
 	
+	var PmillMult = 1.0;
+	if(PmillEffUpgr3 === true){
+		PmillMult = 1.5;
+	}
+
 	if(PmillEffUpgr2 === true){
-		paperpersec = PaperMill.number / 5;
+		paperpersec = PaperMill.number*PmillMult / 5;
 		document.getElementById("paperdiv").title = "Paper per 5 seconds: " + fnum(paperpersec * 5) ; 
 	}
 	else{
-		paperpersec = PaperMill.number / 10;
+		paperpersec = PaperMill.number*PmillMult / 10;
 		document.getElementById("paperdiv").title = "Paper per 10 seconds: " + fnum(paperpersec * 10) ; 
 	}
+
+	tomepersec = Scribe.number;
+	document.getElementById("tomediv").title = "Tome per 10 seconds: " + fnum(tomepersec) ; 
 	
 	manapersec = 1 + Sprite.number*Sprite.manaClickVal;
 	document.getElementById("manadiv").title = "Mana per second: " + fnum(manapersec) ; 	
@@ -666,23 +676,9 @@ window.setInterval(function(){                                 //Update per seco
 window.setInterval(function(){	
 
 	//Gold generation via peasants etc every second
-/* 	var number = Peasant.number;
-	if(pGoldUpgrade == true){
-		number = Peasant.number*2;
-	}
-	if(mPanningUpgrade == true)
-	{
-		number += Miner.number;
-	} */
 	clickThing(Peasant.number*Peasant.goldClickVal + Miner.number*Miner.goldClickVal, "gold");
 
 	//Wood Generation via lumberjacks etc every second
-/* 	var woodnumber = Lumberjack.number;
-	
-	if(lwoodUpgrade == true){
-		woodnumber = Lumberjack.number * 2;
-	}
-	 */
 	clickThing(Lumberjack.number*Lumberjack.woodClickVal, "wood");	
 	
 	//Iron Generation via miners etc every second
@@ -702,7 +698,7 @@ window.setInterval(function(){
 		buildingMult = 2;
 	}
 	 
-	clickThing((Bishop.number*Bishop.faithClickVal + Priest.number*Priest.faithClickVal + Acolyte.number*Acolyte.faithClickVal)*buildingMult, "faith");          
+	clickThing((Bishop.number*Bishop.faithClickVal + Priest.number*Priest.faithClickVal + Scribe.number*Scribe.faithClickVal + Acolyte.number*Acolyte.faithClickVal)*buildingMult, "faith");          
 	faith = faith.toFixedDown(2);
 	
 	//Soul generation via paladins etc every second
@@ -717,6 +713,12 @@ window.setInterval(function(){
 	}
 	updateUnitPopover();
 }, 1000);
+
+window.setInterval(function(){	
+	//Tome generation via scribes every 15 seconds
+	clickThing(Scribe.number*Scribe.tomeClickVal,"tome");
+}, 15000)
+
 
 
 window.setInterval(function(){					//Enables/disables buttons 

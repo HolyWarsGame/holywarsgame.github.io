@@ -379,6 +379,13 @@ function updateStatistic(name, value){
 			document.getElementById('statTotalPriestsTrained').innerHTML = statTotalPriestsTrained;			
 		break;
 
+		case 'Scribe':
+			statScribesTrained += value;
+			statTotalScribesTrained += value;
+			document.getElementById('statScribesTrained').innerHTML = statScribesTrained;
+			document.getElementById('statTotalScribesTrained').innerHTML = statTotalScribesTrained;			
+		break;		
+
 		case 'Bishop':
 			statBishopsTrained += value;
 			statTotalBishopsTrained += value;
@@ -634,6 +641,35 @@ var Priest = new Unit(
 setDescription(Priest, 'BtnPriestDesc');
 setClickVal(Priest, 'faith', 0.5);
 
+var scribeDesc = "Scribes are Priests that have been specialized into into storing knowledge into tomes. Due to their focused duties, they produce less faith.";
+var Scribe = new Unit(
+/*Name*/			"Scribe",
+/*htmlNumRef*/		'scribes',
+/*htmlNextGoldCost*/'ScribeCost',
+/*htmlNextIronCost*/'none',
+/*htmlNextSilverCost*/'ScribeSilverCost',
+/*htmlNextFaithCost*/'ScribeFaithCost',
+/*htmlNextSoulCost*/'none',
+/*htmlNextTomeCost*/'ScribeTomeCost',
+/*htmlNextManaCost*/'none',
+/*htmlBuyBtn*/		'btnbuyScribe',
+/*goldCost*/		75000,
+/*ironCost*/		0,
+/*silverCost*/		10000,
+/*faithCost*/		50000,
+/*soulCost*/		0,
+/*tomeCost*/		1,
+/*manaCost*/		0,
+/*costMult*/		1.2, 
+/*description*/		scribeDesc, 
+/*costAdj*/			0, 
+/*hasReqUnit*/		true, 
+/*reqUnit*/			Priest, 
+/*htmlReqUnit*/		"ScribeReqUnit");
+setDescription(Priest, 'BtnScribeDesc');
+setClickVal(Scribe, 'faith', 0.25);
+setClickVal(Scribe, 'tome', 1);
+
 var bishopDesc = "  ";
 //var Bishop = new Unit("Bishop",'bishops','BishopCost','none','BishopSilverCost','BishopFaithCost','none','BishopTomeCost','none','btnbuyBishop',75000,0,10000,5000,0,10,0,1.15, bishopDesc, 0, true, Priest, 'BishopReqUnit');	
 var Bishop = new Unit(
@@ -814,6 +850,9 @@ function checkUnitButtons(){
 	
 	//Enable/disables buy priest button depending on if there is enough currency
 	Priest.canBuy();
+
+	//Enable/disables buy scribe button depending on if there is enough currency
+	Scribe.canBuy();	
 	
 	//Enable/disables buy priest button depending on if there is enough currency
 	Bishop.canBuy();	
@@ -877,31 +916,22 @@ function updateUnitPopover(){
 //	setDescription(Knight, 'BtnKnightDesc');
 
 	//Paladin
-/* 	if(paladinWepUpgrade === true){
-		Paladin.soulsClickVal = 2;
-//		Paladin.spiritPower = 10;
-	} */
 	Paladin.description = paladinDesc + "<br> Provides <img src = 'images/armsmall.png'> " + Paladin.armyPower + " army strength. <br>Provides <img src = 'images/armsmall.png'> " + Paladin.spiritPower + " spiritual strength. <br>Generates " + Paladin.soulsClickVal + " <img src = 'images/soulssmall.png'> per second.";
 	setDescription(Paladin, 'BtnPaladinDesc');
 	
 	//Acolyte
-/* 	if(acFaithUpgrade === true){
-		Acolyte.faithClickVal = 0.2
-	}	 */
 	Acolyte.description = acolyteDesc + "<br> Generates "+ Acolyte.faithClickVal +" <img src = 'images/faithsmall.png'> per second";
 	setDescription(Acolyte, 'BtnAcolyteDesc');
 	
 	//Priest
-/* 	if(prFaithUpgrade === true){
-		Priest.faithClickVal = 1
-	} */
 	Priest.description = priestDesc + "<br>Generates " + Priest.faithClickVal + " <img src = 'images/faithsmall.png'> per second";
 	setDescription(Priest, 'BtnPriestDesc');
 	
+	//Scribe
+	Scribe.description = scribeDesc + "<br>Generates " + Scribe.faithClickVal + " <img src = 'images/faithsmall.png'> per second <br> Creates <img src = 'images/bookssmall.png' Title='Tomes'>" + Scribe.tomeClickVal + " every 15 seconds.";
+	setDescription(Scribe, 'BtnScribeDesc');
+
 	//Bishop
-/* 	if(bishopUpgr1 === true){
-		Bishop.faithClickVal = 20;
-	} */
 	Bishop.description = bishopDesc + "<br> Generates " + Bishop.faithClickVal + " <img src = 'images/faithsmall.png'> per second";
 	setDescription(Bishop, 'BtnBishopDesc');
 	

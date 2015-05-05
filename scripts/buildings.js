@@ -438,7 +438,7 @@ var Lumbermill = new Building('Lumbermill','btnOpenMill','millGoldCost','millWoo
 
 
 var papermillDesc = "Constructing a paper mill allows you to automatically convert wood into paper. Converts 50 <img src = 'images/woodsmall.png'> to 1 <img src = 'images/parchmentsmall.png'> every 10 seconds";
-var PaperMill = new MultBuilding('Papermill','papermills', 'pMillCost', 'pMillWoodCost','pMillIronCost','none','none','none','none','btnbuyPMill',4500,2000,1500,0,0,0,0,1.5,papermillDesc,0,false,0);
+var PaperMill = new MultBuilding('Papermill','papermills', 'pMillCost', 'pMillWoodCost','pMillIronCost','none','none','none','none','btnbuyPMill',4500,2000,1500,0,0,0,0,1.25,papermillDesc,0,false,0);
 setDescription(PaperMill,'BtnPMillDesc');
 
 PaperMill.numberOn = 0;
@@ -623,6 +623,7 @@ var PMillTime = 10000;
 var Pmillticker = setInterval(request, PMillTime);
 
 function request(){
+	var PmillMult = 1;
 	clearInterval(Pmillticker);
 	if(PmillEffUpgr2 === true){
 		PMillTime = 5000;
@@ -630,10 +631,14 @@ function request(){
 	else{
 		PMillTime = 10000;
 	}
+
+	if(PmillEffUpgr3 === true){
+		PmillMult = 1.5;
+	}
 	
 	if(PmillEffUpgr === true){
 		if(PaperMill.status == "On" && wood >= PaperMill.numberOn*50*0.6){
-			clickThing(PaperMill.numberOn,"paper");		
+			clickThing(PaperMill.numberOn*PmillMult,"paper");		
 		}
 		else if(wood < PaperMill.numberOn*30*0.6){
 			PaperMill.status = "Off";
@@ -641,7 +646,7 @@ function request(){
 	}
 	else{
 		if(PaperMill.status == "On" && wood >= PaperMill.numberOn*50){
-			clickThing(PaperMill.numberOn,"paper");		
+			clickThing(PaperMill.numberOn*PmillMult,"paper");		
 		}
 		else if(wood < PaperMill.numberOn*50){
 			PaperMill.status = "Off";
