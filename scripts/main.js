@@ -260,7 +260,7 @@ function clickThing(number, type)
 					statSteelCollected += number;
 					statTotalSteelCollected += number;				
 					document.getElementById("iron").innerHTML = fnum(iron);
-					document.getElementById("coal").innerHTML = fnum(iron);
+					document.getElementById("coal").innerHTML = fnum(coal);
 					document.getElementById("steel").innerHTML = fnum(steel);
 					document.getElementById("statSteelCollected").innerHTML = fnum(statSteelCollected);
 					document.getElementById("statTotalSteelCollected").innerHTML = fnum(statTotalSteelCollected);				
