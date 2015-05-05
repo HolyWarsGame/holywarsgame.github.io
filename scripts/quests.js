@@ -20,7 +20,8 @@ $('#questSelectPicker').selectpicker({
 $("input[name='QuestUnitNumSelect']").TouchSpin({
   prefix: 'Send',
   verticalbuttons: true,
-  min: 1,
+  booster: true,
+  min: 0,
   max: 10000
 });
 
@@ -294,7 +295,7 @@ function loadQuest(QuestName, percent, unit, numUnit){
 
 function btnSendQuest(){			
 
-	 if (checkQuestSelection() == true && $('#unitSelectPicker').selectpicker('val') != "" && $('#questSelectPicker').selectpicker('val') != ""){
+	 if (checkQuestSelection() == true * $('#unitSelectPicker').selectpicker('val') != "" * $('#questSelectPicker').selectpicker('val') != ""){
 		 var string = "<br/>You send " + $('#QuestUnitNumSelect').val() + " " + $('#unitSelectPicker').selectpicker('val');
 		 if($('#QuestUnitNumSelect').val() > 1){
 			 string = string + "s";
@@ -425,24 +426,24 @@ function QuestCheckUnitOptions(){
 }
 
 var goldQuestDesc = "";
-var goldQuest = new Quest('Help the People', goldQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','goldQuestFinishAlert',0,1,500);
+var goldQuest = new Quest('Help the People', goldQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','goldQuestFinishAlert',0,1,750);
 
 var woodQuestDesc = "";
-var woodQuest = new Quest('Slay Treants', woodQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','woodQuestFinishAlert',0,1,500);
+var woodQuest = new Quest('Slay Treants', woodQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','woodQuestFinishAlert',0,1,750);
 
 var ironQuestDesc = "";
-var ironQuest = new Quest('Slay Iron Golems', ironQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','ironQuestFinishAlert',0,1,500);
+var ironQuest = new Quest('Slay Iron Golems', ironQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','ironQuestFinishAlert',0,1,750);
 
 var silverQuestDesc = "";
-var silverQuest = new Quest('Aid the Sprites', silverQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','silverQuestFinishAlert',0,1,500);
+var silverQuest = new Quest('Aid the Sprites', silverQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','silverQuestFinishAlert',0,1,750);
 
 var soulsQuestDesc = "";
-var soulsQuest = new Quest('Hunt Lesser Demons ', soulsQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','soulsQuestFinishAlert',0,1,500);
+var soulsQuest = new Quest('Hunt Lesser Demons ', soulsQuestDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','soulsQuestFinishAlert',0,1,750);
 
 //var Quest = function(name, description, htmlBoxRef, htmlBarRef, htmlAlertRef, percentComplete, percentIncrement,speed){
 var relicHuntDesc = "";
-var RelicHunt = new Quest('Relic Hunt', relicHuntDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','goblinDefeatAlert',0,1,500);
-//setEnemyDescription(Goblins, 'btnDescGoblins');
+var RelicHunt = new Quest('Relic Hunt', relicHuntDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','goblinDefeatAlert',0,1,750);
+
 
 RelicHunt.startQuest = function(){
 		var perComplete = this.percentComplete;
@@ -547,7 +548,7 @@ function rollForFragment(){
 		
 		$.notify({
 			title: "Found! ",
-			message: "Your units found a relic fragment in their search!",
+			message: "Your paladins found a relic fragment in their search!",
 			delay: 25000},{
 		type: 'success'
 		});	
@@ -651,6 +652,7 @@ function returnUnitfromQuest(){
 	}
 };
 
+
 $(function() {
   $('#unitSelectPicker').on('change', function(){
 	var newMax;
@@ -670,12 +672,11 @@ $(function() {
 		default:
 			newMax = 50;
 	}
-	
+	$("input").trigger("touchspin.updatesettings", {max: newMax});
 //	console.log(newMax);
 	if(newMax < document.getElementById('QuestUnitNumSelect').value){
 		document.getElementById('QuestUnitNumSelect').value = 1;
 	}
-	$("input").trigger("touchspin.updatesettings", {max: newMax});
   }); 
 });
 

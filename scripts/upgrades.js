@@ -760,7 +760,7 @@ var bishopUpgrade1 = new Upgrade(
 /*htmlIronCost*/'none',
 /*coalCost*/0, 
 /*htmlCoalCost*/'none',
-/*steelCost*/50, 
+/*steelCost*/100, 
 /*htmlSteelCost*/'bishopUpgrade1SteelCost',
 /*silverCost*/750000, 
 /*htmlSilverCost*/'bishopUpgrade1SilverCost',
@@ -1213,7 +1213,7 @@ var angelUpgrade1 = new Upgrade(
 
  var upgradeTavern = new Upgrade(	
  /*Name*/'upgradeTavern', 
-/*goldCost*/10000, 
+/*goldCost*/15000, 
 /*htmlGoldCost*/'upgradeTavernGoldCost',
 /*woodCost*/0, 
 /*htmlWoodCost*/'none',

@@ -73,17 +73,19 @@ FastForward.cast = function(){
 	var goldGained = 0;
 	var woodGained = 0;
 	var ironGained = 0;
+	var coalGained = 0;
 	var silverGained = 0;
 	var faithGained = 0;
 	var soulsGained = 0;
 	var paperGained = 0;
+
 	
 	if(mana >= 1000){
 	goldGained = timemultiplier*60*goldpersec;
 	gold += goldGained;
 	statGoldCollected += goldGained;
 	statTotalGoldCollected += goldGained;	
-	document.getElementById('gold').innerHTML = gold;  										          //updates the number of gold for the user	
+	document.getElementById('gold').innerHTML = fnum(gold);  										          //updates the number of gold for the user	
 	document.getElementById('statgoldcollected').innerHTML = statGoldCollected;
 	document.getElementById('stattotalgoldcollected').innerHTML = statTotalGoldCollected;
 	
@@ -91,15 +93,23 @@ FastForward.cast = function(){
 	wood += woodGained;
 	statWoodCollected += woodGained;
 	statTotalWoodCollected += woodGained;	
-	document.getElementById('wood').innerHTML = wood;  										          //updates the number of wood for the user	
+	document.getElementById('wood').innerHTML = fnum(wood);  										          //updates the number of wood for the user	
 	document.getElementById('statWoodCollected').innerHTML = statWoodCollected;
 	document.getElementById('statTotalWoodCollected').innerHTML = statTotalWoodCollected;
+	
+	coalGained = timemultiplier*60*coalpersec;
+	coal += coalGained;
+	statCoalCollected += coalGained;
+	statTotalCoalCollected += coalGained;	
+	document.getElementById('coal').innerHTML = fnum(coal);  										          //updates the number of wood for the user	
+	document.getElementById('statCoalCollected').innerHTML = statCoalCollected;
+	document.getElementById('statTotalCoalCollected').innerHTML = statTotalCoalCollected;
 	
 	ironGained = timemultiplier*60*ironpersec;
 	iron += ironGained;
 	statIronCollected += ironGained;
 	statTotalIronCollected += ironGained;	
-	document.getElementById('iron').innerHTML = iron;  										          //updates the number of iron for the user	
+	document.getElementById('iron').innerHTML = fnum(iron);  										          //updates the number of iron for the user	
 	document.getElementById('statIronCollected').innerHTML = statIronCollected;
 	document.getElementById('statTotalIronCollected').innerHTML = statTotalIronCollected;
 	
@@ -107,7 +117,7 @@ FastForward.cast = function(){
 	silver += silverGained;
 	statSilverCollected += silverGained;
 	statTotalSilverCollected += silverGained;
-	document.getElementById('silver').innerHTML = silver;  										          //updates the number of gold for the user	
+	document.getElementById('silver').innerHTML = fnum(silver);  										          //updates the number of gold for the user	
 	document.getElementById('statSilverCollected').innerHTML = statSilverCollected;  
 	document.getElementById('statTotalSilverCollected').innerHTML = statTotalSilverCollected;  
 	
@@ -115,7 +125,7 @@ FastForward.cast = function(){
 	faith += faithGained;
 	statFaithCollected += faithGained;
 	statTotalFaithCollected += faithGained;	
-	document.getElementById('faith').innerHTML = faith;  										          //updates the number of faith for the user	
+	document.getElementById('faith').innerHTML = fnum(faith);  										          //updates the number of faith for the user	
 	document.getElementById('statFaithCollected').innerHTML = statFaithCollected; 
 	document.getElementById('statTotalFaithCollected').innerHTML = statTotalFaithCollected; 
 	
@@ -123,7 +133,7 @@ FastForward.cast = function(){
 	souls += soulsGained;
 	statSoulsCollected += soulsGained;
 	statTotalSoulsCollected += soulsGained;
-	document.getElementById('souls').innerHTML = souls;  										          //updates the number of souls for the user		
+	document.getElementById('souls').innerHTML = fnum(souls);  										          //updates the number of souls for the user		
 	document.getElementById('statSoulsCollected').innerHTML = statSoulsCollected; 
 	document.getElementById('statTotalSoulsCollected').innerHTML = statTotalSoulsCollected; 
 	
@@ -151,6 +161,7 @@ FastForward.cast = function(){
 		if(goldGained > 0){alertString = alertString + "<br>You gain " + fnum(goldGained)+ " gold."}
 		if(woodGained > 0){alertString = alertString + "<br>You gain " + fnum(woodGained) + " wood. "}
 		if(ironGained > 0){alertString = alertString + "<br>You gain " + fnum(ironGained) + " iron."}
+		if(coalGained > 0){alertString = alertString + "<br>You gain " + fnum(coalGained) + " iron."}
 		if(silverGained > 0){alertString = alertString + "<br>You gain " + fnum(silverGained) + " silver."}
 		if(faithGained > 0){alertString = alertString + "<br>You gain " + fnum(faithGained) + " faith."}
 		if(soulsGained > 0){alertString = alertString + "<br>You gain " + fnum(soulsGained) + " souls."}
