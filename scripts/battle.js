@@ -1379,7 +1379,7 @@ function banditLoot(){
 					statTotalGoldStolen += justStolen;
 					gold = gold - justStolen;
 					document.getElementById("gold").innerHTML = fnum(gold);
-//					document.getElementById("goldStolen").innerHTML = fnum(goldStolen);
+					document.getElementById("goldStolen").innerHTML = fnum(goldStolen);
 //					document.getElementById("justStolen").innerHTML = fnum(justStolen);
 					document.getElementById("statTotalGoldStolen").innerHTML = fnum(statTotalGoldStolen);
 //					document.getElementById("banditLootAlert").style.display = "block";
