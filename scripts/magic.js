@@ -36,7 +36,7 @@ Spell.prototype.cast = function(){
 		document.getElementById('mana').innerHTML = mana;  										      //updates the number of souls for the user
 	
 //	alert(this.name + " spell cast!");
-}
+};
 
 Spell.prototype.canCast = function(){
 	var btn = this.htmlBtnRef;
@@ -55,12 +55,12 @@ Spell.prototype.canCast = function(){
 
 Spell.prototype.toBlack = function(){
 	if(this.htmlManaCost != 'none'){document.getElementById(this.htmlManaCost).style.color = "black";}
-} 
+}; 
 
 function setSpellDescription(Spell, element){
 	var popover = document.getElementById(element);
 	popover.setAttribute("data-content", Spell.description);		
-};
+}
 
 
 var fastForwardDesc = "<img src='images/stopwatch.png'>The archmage casts a spell that warps your kingdom 15 minutes into the future. Unfortunately, the spell isn't strong enough to keep your taverns working for the duration of the spell.";
@@ -158,14 +158,14 @@ FastForward.cast = function(){
 	document.getElementById('statTotalCastedTimeSkip').innerHTML = statTotalCastedTimeSkip;
 	
 	var alertString = "<br/>The archmage releases a burst of magic causing the world to blur before your eyes! ";
-		if(goldGained > 0){alertString = alertString + "<br>You gain " + fnum(goldGained)+ " gold."}
-		if(woodGained > 0){alertString = alertString + "<br>You gain " + fnum(woodGained) + " wood. "}
-		if(ironGained > 0){alertString = alertString + "<br>You gain " + fnum(ironGained) + " iron."}
-		if(coalGained > 0){alertString = alertString + "<br>You gain " + fnum(coalGained) + " iron."}
-		if(silverGained > 0){alertString = alertString + "<br>You gain " + fnum(silverGained) + " silver."}
-		if(faithGained > 0){alertString = alertString + "<br>You gain " + fnum(faithGained) + " faith."}
-		if(soulsGained > 0){alertString = alertString + "<br>You gain " + fnum(soulsGained) + " souls."}
-		if(paperGained > 0){alertString = alertString + "<br>You gain " + fnum(paperGained) + " paper."}
+		if(goldGained > 0){alertString = alertString + "<br>You gain " + fnum(goldGained)+ " gold.";}
+		if(woodGained > 0){alertString = alertString + "<br>You gain " + fnum(woodGained) + " wood.";}
+		if(ironGained > 0){alertString = alertString + "<br>You gain " + fnum(ironGained) + " iron.";}
+		if(coalGained > 0){alertString = alertString + "<br>You gain " + fnum(coalGained) + " iron.";}
+		if(silverGained > 0){alertString = alertString + "<br>You gain " + fnum(silverGained) + " silver.";}
+		if(faithGained > 0){alertString = alertString + "<br>You gain " + fnum(faithGained) + " faith.";}
+		if(soulsGained > 0){alertString = alertString + "<br>You gain " + fnum(soulsGained) + " souls.";}
+		if(paperGained > 0){alertString = alertString + "<br>You gain " + fnum(paperGained) + " paper.";}
 					 
 //	document.getElementById('TimeWarpAlert').style.display = "block";
 //	document.getElementById('timeWarpAlertString').innerHTML = alertString;
@@ -180,14 +180,14 @@ FastForward.cast = function(){
 	});	
 
 	}
-}
+};
 
 var fireBallDesc = "<img src='images/fireball.png'>The archmage conjures a flaming ball of fire and sends it hurtling towards your foe! It will damage the enemy you are currently battling, pushing you 15% closer to victory!";
 var FireBall = new Spell("FireBall", fireBallDesc, 0, 0, 'btnSpellFB', 'Alert', 0, 0, 0, 0, 0, 0, 750, 'FBManaCost');
 setSpellDescription(FireBall, 'BtnSpellFBDesc');
 
 FireBall.cast = function(){
-	if(inbattle == false){
+	if(inbattle === false){
 //		document.getElementById('FireBallFailAlert').style.display = "block";
 		$.notify({
 			title: "<img src='images/fireball.png'><strong>Fire Ball Fizzles! </strong>",
@@ -224,7 +224,7 @@ FireBall.cast = function(){
 		});	
 	}
 
-}
+};
 
 function spellBoost(num){			//Boosts current battle completion percent by desired number
 	spellBoostPercent = num;
@@ -237,7 +237,7 @@ function questSpellBoost(num){			//Boosts current Quest completion percent by de
 function checkSpellButtons(){
 	FastForward.canCast();
 	FireBall.canCast();
-};
+}
 
 window.setInterval(function(){ 
 	if(ArcaneLibrary.number > 0){

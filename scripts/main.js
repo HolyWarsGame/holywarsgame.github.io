@@ -96,14 +96,14 @@ function clickThing(number, type)
 				break;
 				
 			case "goldMouse":
-				if(pGoldClickUpgrade == true){
+				if(pGoldClickUpgrade === true){
 					number *= 2;
 				}
-				if(pGoldClickUpgrade2 == true){
-					number *= 5
+				if(pGoldClickUpgrade2 === true){
+					number *= 5;
 				}
-				if(pGoldClickUpgrade3 == true){
-					number += goldpersec*0.1
+				if(pGoldClickUpgrade3 === true){
+					number += goldpersec*0.1;
 				}
 				gold += number;
 				gold = Math.round(gold*100)/100;
@@ -130,8 +130,8 @@ function clickThing(number, type)
 				break;	
 
 			case "woodMouse":
-				if(lwoodClickUpgrade == true){
-					number *= 5
+				if(lwoodClickUpgrade === true){
+					number *= 5;
 				}
 				wood = wood + number;
 				statWoodCollected += number;
@@ -162,10 +162,10 @@ function clickThing(number, type)
 				
 			case "paperMouse":
 				var numMade = 1;
-				if(PmillClickUpgr == true){
+				if(PmillClickUpgr === true){
 					numMade = 10;
 				}
-				if(PmillEffUpgr == true){
+				if(PmillEffUpgr === true){
 						if(wood >= 50*0.6*number*numMade){
 						paper += number*numMade;
 						statPaperCrafted += number*numMade;
@@ -322,6 +322,7 @@ function clickThing(number, type)
 				document.getElementById("mana").innerHTML = fnum((Math.round( mana * 10) / 10).toFixedDown(1));
 				document.getElementById("statManaGained").innerHTML = fnum(statManaGained.toFixedDown(1));		
 				document.getElementById("statTotalManaGained").innerHTML = fnum(statTotalManaGained.toFixedDown(1));		
+				break;
 			default:
 		}
 	}
@@ -335,7 +336,7 @@ function renameKingdom(){
 		  title: "Name your Kingdom",
 		  value: KingdomName,
 		  callback: function(result) {
-			if (result == "") {
+			if (result === "") {
 				document.getElementById("KingdomName").innerHTML = "Kingdom";
 			} else {
 				KingdomName = result;
@@ -347,7 +348,7 @@ function renameKingdom(){
 }
 
 function checkKingdomName(){
-	if (KingdomName == ""){
+	if (KingdomName === ""){
 		renameKingdom();
 	}
 }
@@ -362,29 +363,28 @@ function debugCurrency(){
 	mana += 100000;
 	paper += 3000;
 	tomes += 1000;
-};
+}
 
 function addFaithToRelic(number){
 	
 //	console.log(number);
 	if(number > faith){
-		alert("You don't have enough faith for that.")
+		alert("You don't have enough faith for that.");
 	}
 	else{
 		faith -= number;
 		faithDonated += number;
-		document.getElementById('faithDonated').innerHTML = fnum(faithDonated)
-		document.getElementById('faith').innerHTML = fnum(faith)
+		document.getElementById('faithDonated').innerHTML = fnum(faithDonated);
+		document.getElementById('faith').innerHTML = fnum(faith);
 
 		var description;
 		
 		if(faithDonated < 250000){
-			description = "The necklace from the succubus/angel sits quietly on a black marble pedestal. There must be something more to it."
+			description = "The necklace from the succubus/angel sits quietly on a black marble pedestal. There must be something more to it.";
 		}
 		else if(faithDonated > 250000){
-			description = "The necklace begins to glow slightly, and you swear you can hear a humming noise emanating from deep within."
-//			document.getElementById('RelicHalfAlert').style.display = "block";		
-//			scroll(RelicHalfAlert, 1000);
+			description = "The necklace begins to glow slightly, and you swear you can hear a humming noise emanating from deep within.";
+
 			$.notify({
 				title: "<strong>New!</strong>",
 				message: description
@@ -393,7 +393,7 @@ function addFaithToRelic(number){
 			});	
 		}
 		else if(faithDonate > 400000){
-			description = "The glowing from the necklace intensifies, and now there is a slight shimmering around the surface! Just a little more, something is about to happen!"
+			description = "The glowing from the necklace intensifies, and now there is a slight shimmering around the surface! Just a little more, something is about to happen!";
 			document.getElementById('RelicAlmostAlert').style.display = "block";
 		}
 		var popover = document.getElementById('BtnRelicDesc');
@@ -431,7 +431,7 @@ function recalculateCosts(){
 	Shade.recalcCost();
 	Aspect.recalcCost();
 	Angel.recalcCost();
-};
+}
 
 function UpdateButtons() {
 
@@ -465,7 +465,7 @@ function UpdateButtons() {
 					}*/
 
 	//Mouse gold click upgrade 3
-	clickGoldUpgrade3.canBuy()
+	clickGoldUpgrade3.canBuy();
 	
 	
 	//Lumberjack upgrade collection
@@ -486,7 +486,7 @@ function UpdateButtons() {
 					} */
 	
 	//Miner upgrade panning 
-	minerUpgrade1.canBuy()
+	minerUpgrade1.canBuy();
 				/* 	if(mPanningUpgrade == true || (gold < 3500 || iron < 1000)){
 						document.getElementById("btnminerUpgrade1").disabled = true;
 					}
@@ -609,7 +609,7 @@ function UpdateButtons() {
 
 
 	//Check Relic Buttons
-	if(defeatedDwarf == true){
+	if(defeatedDwarf === true){
 		updateRelicButtons();		
 	}
 
@@ -638,17 +638,17 @@ window.setInterval(function(){                                 //Update per seco
  
  
 	var buildingMult = 1;
-	if(cathUpgrade == true){
+	if(cathUpgrade === true){
 		buildingMult = 2;
 	}
 	faithpersec = (Bishop.number*Bishop.faithClickVal + Priest.number*Priest.faithClickVal + Acolyte.number*Acolyte.faithClickVal)*buildingMult;
-	faithpersec = faithpersec.toFixedDown(2)
+	faithpersec = faithpersec.toFixedDown(2);
     document.getElementById("faithdiv").title = "Faith per second: " + fnum(faithpersec) ; 
 	
     soulspersec = Paladin.number*Paladin.soulsClickVal + Aspect.number*Aspect.soulsClickVal + Angel.number*Angel.soulsClickVal;
 	document.getElementById("soulsdiv").title = "Souls per second: " + fnum(soulspersec) ; 
 	
-	if(PmillEffUpgr2 == true){
+	if(PmillEffUpgr2 === true){
 		paperpersec = PaperMill.number / 5;
 		document.getElementById("paperdiv").title = "Paper per 5 seconds: " + fnum(paperpersec * 5) ; 
 	}
@@ -683,22 +683,22 @@ window.setInterval(function(){
 		woodnumber = Lumberjack.number * 2;
 	}
 	 */
-	clickThing(Lumberjack.number*Lumberjack.woodClickVal, "wood")	
+	clickThing(Lumberjack.number*Lumberjack.woodClickVal, "wood");	
 	
 	//Iron Generation via miners etc every second
-	clickThing(Miner.number, "iron")
+	clickThing(Miner.number, "iron");
 
 	//Coal Generation via coal miners etc every second
-	clickThing(CoalMiner.number*0.1, "coal")
+	clickThing(CoalMiner.number*0.1, "coal");
 	coal = coal.toFixedDown(2);
 	
 	//Silver Generation via miners etc every second
-	clickThing(Miner.number*Miner.silverClickVal, "silver")
+	clickThing(Miner.number*Miner.silverClickVal, "silver");
 	silver = silver.toFixedDown(2);
 	
 	 //Faith Generation via priests etc every second
 	var buildingMult = 1;
-	if(cathUpgrade == true){
+	if(cathUpgrade === true){
 		buildingMult = 2;
 	}
 	 
@@ -710,12 +710,12 @@ window.setInterval(function(){
 
 	
 	//Mana generation per second
-	if(towerBuilt == true){
+	if(towerBuilt === true){
 		if(mana < manaCap){
 			clickThing(1 + Sprite.number*Sprite.manaClickVal,"mana");
 		}
 	}
-	updateUnitPopover()
+	updateUnitPopover();
 }, 1000);
 
 
@@ -723,27 +723,27 @@ window.setInterval(function(){					//Enables/disables buttons
 	UpdateButtons();
 	var nummult = 1;
 	var costmult = 1;
-	if(PmillClickUpgr == true)
+	if(PmillClickUpgr === true)
 	{
 		nummult = 10;
 	}
-	if(PmillEffUpgr == true){
+	if(PmillEffUpgr === true){
 		costmult = 0.6;
 	}
 	
 	if(wood < 100*nummult*costmult){
-		document.getElementById('clickpaper').src = "images/parchmentgrayed.png"
+		document.getElementById('clickpaper').src = "images/parchmentgrayed.png";
 	}
 	else{
-		document.getElementById('clickpaper').src = "images/parchment.png"
+		document.getElementById('clickpaper').src = "images/parchment.png";
 	}	
 
 	
 	if(paper < 2000){
-		document.getElementById('clicktome').src = "images/booksgrayed.png"
+		document.getElementById('clicktome').src = "images/booksgrayed.png";
 	}
 	else{
-		document.getElementById('clicktome').src = "images/books.png"
+		document.getElementById('clicktome').src = "images/books.png";
 	}	
 	
 }, 200);
@@ -773,7 +773,7 @@ function dhms(s, f) { // seconds, format
     m=Math.floor(s/60);
     s-=m*60;
   } 
-  if (f != null) {
+  if (f !== null) {
     var f = f.replace('dd', (d<10)?"0"+d:d);
     f = f.replace('d', d);
     f = f.replace('hh', (h<10)?"0"+h:h);
@@ -851,7 +851,7 @@ function fnum(x) {
 	{
 		return x;
 	}
-};
+}
 
 function toggleTrunc(){
 	if(TruncateNumber == 'standard'){
@@ -866,7 +866,7 @@ function toggleTrunc(){
 		TruncateNumber = 'standard';
 		document.getElementById('ToggleTrunc').innerHTML = '<span class="glyphicon glyphicon-superscript" aria-hidden="true"></span>Number Format: Standard';
 	}
-};
+}
 
 function scroll(name, timeout){
 	setTimeout(function() { 
@@ -918,25 +918,25 @@ function alertOpenQuestPage(){
 
 //Hover effects//
 $('#clickmoney').hover(
-	   function(){ $(this).addClass('animated infinite pulse') },
-	   function(){ $(this).removeClass('animated infinite pulse') }
-)
+	   function(){ $(this).addClass('animated infinite pulse'); },
+	   function(){ $(this).removeClass('animated infinite pulse'); }
+);
 $('#clickwood').hover(
-	   function(){ $(this).addClass('animated infinite pulse') },
-	   function(){ $(this).removeClass('animated infinite pulse') }
-)
+	   function(){ $(this).addClass('animated infinite pulse'); },
+	   function(){ $(this).removeClass('animated infinite pulse'); }
+);
 $('#clickpaper').hover(
-	   function(){ $(this).addClass('animated infinite pulse') },
-	   function(){ $(this).removeClass('animated infinite pulse') }
-)
+	   function(){ $(this).addClass('animated infinite pulse'); },
+	   function(){ $(this).removeClass('animated infinite pulse'); }
+);
 
 $('#clicktome').hover(
-	   function(){ $(this).addClass('animated infinite pulse') },
-	   function(){ $(this).removeClass('animated infinite pulse') }
-)
+	   function(){ $(this).addClass('animated infinite pulse'); },
+	   function(){ $(this).removeClass('animated infinite pulse'); }
+);
 $('#clicksteel').hover(
-	   function(){ $(this).addClass('animated infinite pulse') },
-	   function(){ $(this).removeClass('animated infinite pulse') }
-)
+	   function(){ $(this).addClass('animated infinite pulse'); },
+	   function(){ $(this).removeClass('animated infinite pulse'); }
+);
 
 //=================================//

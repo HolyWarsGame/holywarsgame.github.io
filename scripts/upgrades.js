@@ -33,8 +33,8 @@ var Upgrade = function(name, goldCost, htmlGoldCost, woodCost, htmlWoodCost, iro
 	this.numReqUnit = 0;
 	this.htmlReqUnit = 'none';
 	this.reqArmyPower = 0;
-	this.htmlReqArmyPower = 'none'
-}
+	this.htmlReqArmyPower = 'none';
+};
 
 
 Upgrade.prototype.checkFlag = function(){
@@ -188,12 +188,12 @@ Upgrade.prototype.enableFlag = function(){
 		
 		case 'acolyteUpgrade1':
 			acFaithUpgrade = true;
-			Acolyte.faithClickVal *= 2
+			Acolyte.faithClickVal *= 2;
 		break;		
 		
 		case 'priestUpgrade1':
 			prFaithUpgrade = true;
-			Priest.faithClickVal *= 2
+			Priest.faithClickVal *= 2;
 		break;		
 		
 		case 'tomeUnlock':
@@ -225,7 +225,7 @@ Upgrade.prototype.enableFlag = function(){
 
 		case 'paladinUpgrade2':
 			paladinWepUpgrade2 = true;
-			if(paladinWepUpgrade == true){
+			if(paladinWepUpgrade === true){
 				setSpiritPower(Paladin,100);
 			}
 			else{
@@ -279,16 +279,16 @@ Upgrade.prototype.enableFlag = function(){
 		default:
 		break;
 	}	
-}
+};
 
 Upgrade.prototype.purchasedButton = function(){ 
 	var previousString = document.getElementById(this.buyBtnRef).innerHTML;
 	document.getElementById(this.buyBtnRef).innerHTML = previousString + ' Purchased';
 	document.getElementById(this.buyBtnRef).disabled = true;	
-}
+};
 
 Upgrade.prototype.canBuy = function(){								//Checks to see if all costs are met
-	if(this.checkFlag() == true){									//Upgrade already purchased
+	if(this.checkFlag() === true){									//Upgrade already purchased
 		   document.getElementById(this.buyBtnRef).disabled = true;	
 		   document.getElementById(this.buyBtnRef).style.background='darkblue';	
 		   return false;		
@@ -314,10 +314,10 @@ Upgrade.prototype.canBuy = function(){								//Checks to see if all costs are m
 		   document.getElementById(this.buyBtnRef).disabled = true;				//Costs are not met, button disabled
 		   return false;
 	}
-}
+};
 
 Upgrade.prototype.buyUpgrade = function(){
-	if(this.canBuy() == true){
+	if(this.canBuy() === true){
 		gold -= this.goldCost;
 		wood -= this.woodCost;
 		iron -= this.ironCost;
@@ -330,7 +330,7 @@ Upgrade.prototype.buyUpgrade = function(){
 		tomes -= this.tomeCost;
 		mana -= this.manaCost;
 		
-		if(this.hasReqUnit == true){
+		if(this.hasReqUnit === true){
 			this.reqUnit.number -= this.numReqUnit;
 			document.getElementById(this.reqUnit.htmlNumRef).innerHTML = fnum(this.reqUnit.number);  				//Updates number of units spent for the user
 		}
@@ -348,7 +348,7 @@ Upgrade.prototype.buyUpgrade = function(){
 		document.getElementById('mana').innerHTML = fnum(mana);  										      //updates the mana for the user		
 		this.enableFlag();
 	}
-}
+};
 
 Upgrade.prototype.costTest= function(cost, type, htmlRef){							//Checks the specified resource
 	if(cost == '0')
@@ -356,7 +356,7 @@ Upgrade.prototype.costTest= function(cost, type, htmlRef){							//Checks the sp
 		return true;
 	}	
 	else{
-		if(this.checkFlag() == true){
+		if(this.checkFlag() === true){
 			document.getElementById(htmlRef).style.color = "black";	//If cost is defined and not met, cost is changed to black 			
 			return true;			
 		}
@@ -370,21 +370,21 @@ Upgrade.prototype.costTest= function(cost, type, htmlRef){							//Checks the sp
 		}		
 	}
 
-}
+};
 
 Upgrade.prototype.unitCostTest = function(){
-	if(this.hasReqUnit == false){
+	if(this.hasReqUnit === false){
 		return true;
 	}
-	else if(this.hasReqUnit == true && this.reqUnit.number >= this.numReqUnit){
+	else if(this.hasReqUnit === true && this.reqUnit.number >= this.numReqUnit){
 		document.getElementById(this.htmlReqUnit).style.color = "black";	//If cost is defined and met, cost is changed to black	
 		return true;
 	}
-	else if(this.hasReqUnit == true && this.reqUnit.number < this.numReqUnit){
+	else if(this.hasReqUnit === true && this.reqUnit.number < this.numReqUnit){
 		document.getElementById(this.htmlReqUnit).style.color = "red";	//If cost is defined and not met, cost is changed to red
 		return false;		
 	}
-}
+};
 
 var peasantUpgrade1 = new Upgrade(
 /*Name*/'peasantUpgrade1', 
@@ -411,7 +411,7 @@ var peasantUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnPeasantUpgrade1'
-)
+);
  
  var clickGoldUpgrade = new Upgrade(
 /*Name*/'clickGoldUpgrade', 
@@ -438,7 +438,7 @@ var peasantUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnclickGoldUpgrade'
-)
+);
 
  var clickGoldUpgrade2 = new Upgrade(
 /*Name*/'clickGoldUpgrade2', 
@@ -465,7 +465,7 @@ var peasantUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnclickGoldUpgrade2'
-)
+);
 
  var clickGoldUpgrade3 = new Upgrade(
 /*Name*/'clickGoldUpgrade3', 
@@ -492,7 +492,7 @@ var peasantUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnclickGoldUpgrade3'
-)
+);
 				 
  var ljackUpgrade1 = new Upgrade(
 /*Name*/'ljackUpgrade1', 
@@ -519,7 +519,7 @@ var peasantUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnljackUpgrade1'
-)
+);
 				
  var ljackUpgrade2 = new Upgrade(
 /*Name*/'ljackUpgrade2', 
@@ -546,7 +546,7 @@ var peasantUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnljackUpgrade2'
-)
+);
 ljackUpgrade2.hasReqUnit = true;
 ljackUpgrade2.reqUnit = Shade;
 ljackUpgrade2.numReqUnit = 5;
@@ -577,7 +577,7 @@ ljackUpgrade2.htmlReqUnit = 'ljackUpgrade2UnitCost';
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnMinerUpgrade1'
-)
+);
 				/* function minerUpgradePanning(){
 					if(gold >= 3500 && iron >= 1000){
 						gold -= 3500;
@@ -615,7 +615,7 @@ ljackUpgrade2.htmlReqUnit = 'ljackUpgrade2UnitCost';
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnMinerUpgrade2'
-)
+);
 				/* function minerUpgradeSilver(){
 					if(gold >= 7500 && iron >= 2500){
 						gold -= 7500;
@@ -655,7 +655,7 @@ ljackUpgrade2.htmlReqUnit = 'ljackUpgrade2UnitCost';
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnAcolyteUpgrade1'
-)
+);
 				/* function acolyteUpgradeCollection(){
 					if(gold >= 5000 && wood >= 3000 && faith >= 250){
 						gold -= 5000
@@ -695,7 +695,7 @@ ljackUpgrade2.htmlReqUnit = 'ljackUpgrade2UnitCost';
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnPriestUpgrade1'
-)
+);
 
 				/* function priestUpgradeCollection(){
 					if(gold >= 7000 && wood >= 5000 && faith >= 500){
@@ -736,7 +736,7 @@ ljackUpgrade2.htmlReqUnit = 'ljackUpgrade2UnitCost';
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnTomeUnlock'
-)
+);
 				/* function UnlockTomes(){
 					if(gold >= 12000 && paper >= 2000 && faith >= 1000){
 						gold -= 12000;
@@ -775,7 +775,7 @@ var bishopUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnBishopUpgrade1'
-)				
+);				
 				/* function BishopUpgradeCollection(){
 					if(gold >= 1000000 && wood >= 500000 && silver >= 750000 && faith >= 40000 && steel >= 50){
 						gold -= 1000000;
@@ -815,7 +815,7 @@ var pageUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnPageUpgrade1'
-)
+);
 pageUpgrade1.reqArmyPower = 120;
 pageUpgrade1.htmlReqArmyPower = 'pageUpgrade1ArmyPower';	
 	
@@ -855,7 +855,7 @@ var squireUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnSquireUpgrade1'
-)		
+);		
 squireUpgrade1.reqArmyPower = 500;
 squireUpgrade1.htmlReqArmyPower = 'squireUpgrade1ArmyPower';			
 				/* function UnlockKnight(){
@@ -894,7 +894,7 @@ var paladinUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnPaladinUpgrade1'
-)				
+);				
 				
 				/* function paladinUpgradeWeapon(){
 					if(gold >= 20000 && iron >= 5000 && faith >=2500){
@@ -936,7 +936,7 @@ var paladinUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnPaladinUpgrade2'
-)	
+);	
 				/* function paladinUpgradeWeapon2(){
 					if(gold >= 5000000 && iron >= 1000000 && steel >= 3000 && faith >=2000000){
 						gold -= 5000000;
@@ -948,7 +948,7 @@ var paladinUpgrade1 = new Upgrade(
 						document.getElementById('steel').innerHTML = fnum(steel);
 						document.getElementById('faith').innerHTML = fnum(faith);
 						paladinWepUpgrade2 = true;
-						if(paladinWepUpgrade == true){
+						if(paladinWepUpgrade === true){
 							setSpiritPower(Paladin,100);
 						}
 						else{
@@ -984,7 +984,7 @@ var paladinUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnPmillEffUpgrade'
-)					
+);					
 				/* function PmillEffUpgrade(){
 					if(gold >= 50000 && wood >= 25000 && iron >= 35000){
 						gold -= 50000
@@ -1024,7 +1024,7 @@ var paladinUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnPmillEffUpgrade2'
-)					
+);					
 				/* function PmillEffUpgrade2(){
 					if(gold >= 1000000 && wood >= 1000000 && iron >= 1000000 && souls >= 50000){
 						gold -= 1000000
@@ -1065,7 +1065,7 @@ var paladinUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnPmillClickUpgrade'
-)				
+);				
 				
 				/* function PmillClickUpgrade(){
 					if(gold >= 1200000 && wood >= 1500000 && iron >= 1200000 && souls >= 50000){
@@ -1108,7 +1108,7 @@ var paladinUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnUnlockQuesting'
-)				
+);				
 		
 				/* function unlockQuesting(){
 					if(gold >= 10000){
@@ -1154,7 +1154,7 @@ var shadeUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnShadeUpgrade1'
-)
+);
  
 
 				/* function shadeUpgrade1(){
@@ -1196,7 +1196,7 @@ var angelUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnAngelUpgrade1'
-)				
+);				
 				
 				/* function buyAngelUpgrade1(){
 					if(gold >= 3000000 && silver >= 1500000 && faith >= 1000000 && tomes >= 50){
@@ -1236,7 +1236,7 @@ var angelUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnUpgradeTavern'
-)	
+);	
 
  var upgradeTavern2 = new Upgrade(	
  /*Name*/'upgradeTavern2', 
@@ -1263,7 +1263,7 @@ var angelUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnUpgradeTavern2'
-)
+);
 
  var upgradeChurch = new Upgrade(	
  /*Name*/'upgradeChurch', 
@@ -1290,5 +1290,4 @@ var angelUpgrade1 = new Upgrade(
 /*manaCost*/0, 
 /*htmlManaCost*/'none',
 /*buttonRef*/'btnUpgradeToCathedral'
-)
-	
+);

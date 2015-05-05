@@ -17,7 +17,7 @@ var Relic = function(name, htmlRelicCost, htmlGoldCost, htmlIronCost, htmlSilver
 	this.htmlFaithCost = htmlFaithCost;
 	this.htmlSoulCost = htmlSoulCost;
 	this.htmlBuyBtn = htmlBuyBtn;
-	this.relicCost = relicCost
+	this.relicCost = relicCost;
 	this.goldCost = goldCost;
 	this.ironCost = ironCost;
 	this.silverCost = silverCost;
@@ -25,10 +25,10 @@ var Relic = function(name, htmlRelicCost, htmlGoldCost, htmlIronCost, htmlSilver
 	this.soulCost = soulCost;
 	this.description = description;
 	this.purchased = false;
-}
+};
 
 Relic.prototype.buy = function(){
-	if(this.canBuy() == true){
+	if(this.canBuy() === true){
 		relicFragment -= this.relicCost;
 		gold -= this.goldCost;
 		iron -= this.ironCost;
@@ -73,7 +73,7 @@ Relic.prototype.buy = function(){
 };
 
 Relic.prototype.canBuy = function(){
-	if(this.purchased == false){
+	if(this.purchased === false){
 		if(relicFragment < this.relicCost || gold < this.goldCost || iron < this.ironCost || silver < this.silverCost || faith < this.faithCost || souls < this.soulCost){
 			this.highlightMissing();
 			document.getElementById(this.htmlBuyBtn).disabled = true;
@@ -114,7 +114,7 @@ Relic.prototype.canBuy = function(){
 			
 	}
 
-}
+};
 
 Relic.prototype.costToBlack = function(){
 	if (this.htmlRelicCost != 'none'){
@@ -135,10 +135,10 @@ Relic.prototype.costToBlack = function(){
 	if (this.htmlSoulCost != 'none'){
 		document.getElementById(this.htmlSoulCost).style.color = "black";
 	}	
-}
+};
 
 Relic.prototype.highlightMissing = function(){
-	if(this.purchased == false){
+	if(this.purchased === false){
 		if (relicFragment <= this.relicCost && this.htmlRelicCost != 'none'){
 			document.getElementById(this.htmlRelicCost).style.color = "red";
 		}
@@ -158,7 +158,7 @@ Relic.prototype.highlightMissing = function(){
 			document.getElementById(this.soulCost).style.color = "red";
 		}
 	}
-}
+};
 
 function updateRelicButtons(){
 	
@@ -166,7 +166,7 @@ function updateRelicButtons(){
 	FirePendant.canBuy();
 	WindPendant.canBuy();
 	WaterPendant.canBuy();
-};
+}
 
 var waterPendantDesc = '';
 var WaterPendant = new Relic('Water Pendant', 'WaterPendantRelicCost', 'none', 'WaterPendantIronCost', 'WaterPendantSilverCost', 'none', 'none', 'btnRelicWaterPendant', 10, 0, 10000, 10000, 0, 0,'');

@@ -36,7 +36,7 @@ var Quest = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, html
 	this.percentComplete = percentComplete;
 	this.percentIncrement = percentIncrement;
 	this.speed = speed;
-	this.questSpellBoostPercent;
+	this.questSpellBoostPercent = 0;
 	var $bar = $(document.getElementById(this.htmlBarRef));
 };
 
@@ -51,15 +51,15 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 	var resourceEarned = 0;
 		
 	inQuest = true;
-	curQuestType = this.name
+	curQuestType = this.name;
 
-	UnitOnQuest = $('#unitSelectPicker').selectpicker('val')
+	UnitOnQuest = $('#unitSelectPicker').selectpicker('val');
 	NumUnitOnQuest = $('#QuestUnitNumSelect').val();		
-		if(holdUnitforQuest() == false)
+		if(holdUnitforQuest() === false)
 		{
 			console.log('Bad quest selection.');
 			return;
-		};		
+		}		
 	document.getElementById(this.htmlBoxRef).style.display = "block";	
 	$qbar = $(document.getElementById(this.htmlBarRef));
 		
@@ -86,7 +86,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 		//update the progress
 		if(this.questSpellBoostPercent > 0){
 			perComplete = perComplete + parseInt(questSpellBoostPercent);
-			questSpellBoostPercent = 0
+			questSpellBoostPercent = 0;
 			if(perComplete > 100){
 				perComplete = 100;
 			}
@@ -115,7 +115,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 		switch(resource){
 			case 'gold':
 //				 resourceEarned = QuestDuration*goldpersec;
-				 console.log(QuestDuration + " seconds * " + goldpersec + " = " + resourceEarned)
+				 console.log(QuestDuration + " seconds * " + goldpersec + " = " + resourceEarned);
 				 gold += resourceEarned;
 				 statGoldCollected += resourceEarned;
 				 statTotalGoldCollected += resourceEarned;
@@ -128,7 +128,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 			
 			case 'wood':
 //				 resourceEarned = QuestDuration*woodpersec;
-				 console.log(QuestDuration + " seconds * " + woodpersec + " = " + resourceEarned)
+				 console.log(QuestDuration + " seconds * " + woodpersec + " = " + resourceEarned);
 				 wood += resourceEarned;
 				 statWoodCollected += resourceEarned;
 				 statTotalWoodCollected += resourceEarned;
@@ -141,7 +141,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 			
 			case 'iron':
 //				 resourceEarned = QuestDuration*ironpersec;
-				 console.log(QuestDuration + " seconds * " + ironpersec + " = " + resourceEarned)
+				 console.log(QuestDuration + " seconds * " + ironpersec + " = " + resourceEarned);
 				 iron += resourceEarned;
 				 statIronCollected += resourceEarned;
 				 statTotalIronCollected += resourceEarned;
@@ -154,7 +154,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 
 			case 'silver':
 //				 resourceEarned = QuestDuration*silverpersec;
-				 console.log(QuestDuration + " seconds * " + silverpersec + " = " + resourceEarned)
+				 console.log(QuestDuration + " seconds * " + silverpersec + " = " + resourceEarned);
 				 silver += resourceEarned;
 				 statSilverCollected += resourceEarned;
 				 statTotalSilverCollected += resourceEarned;
@@ -162,7 +162,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 				 document.getElementById('statSilverCollected').innerHTML = fnum(statSilverCollected);
 				 document.getElementById('statTotalSilverCollected').innerHTML = fnum(statTotalSilverCollected);					 
 				 finishString = "<br />Your units successfully help the the friendly sprites living in your mines. As a token of their gratitude, they send you <img src = 'images/silverOresmall.png' title='Silver'>" + fnum(resourceEarned) + " silver to add to your collection.";
-				 if(coalUnlocked == false){
+				 if(coalUnlocked === false){
 					 coalUnlocked = true;
 					 document.getElementById('coaldiv').style.display = "block";
 					 document.getElementById('CoalMining').style.display = "block";
@@ -179,7 +179,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 
 			case 'souls':
 //				 resourceEarned = QuestDuration*soulspersec;
-				 console.log(QuestDuration + " seconds * " + soulspersec + " = " + resourceEarned)
+				 console.log(QuestDuration + " seconds * " + soulspersec + " = " + resourceEarned);
 				 souls += resourceEarned;
 				 statSoulsCollected += resourceEarned;
 				 statTotalSoulsCollected += resourceEarned;
@@ -202,7 +202,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 	  } 
 	}, this.speed);
 	return true;
-}
+};
 
 function questCalcReward(type, unit){
 	var unitPower = 0;
@@ -245,7 +245,7 @@ function questCalcReward(type, unit){
 			return QuestDuration * unitPower * soulspersec;
 		break;
 	}
-};
+}
 
 function loadQuest(QuestName, percent, unit, numUnit){
 	questSpellBoost(percent);
@@ -291,11 +291,11 @@ function loadQuest(QuestName, percent, unit, numUnit){
 		break;		
 	}
 	
-};
+}
 
 function btnSendQuest(){			
 
-	 if (checkQuestSelection() == true * $('#unitSelectPicker').selectpicker('val') != "" * $('#questSelectPicker').selectpicker('val') != ""){
+	 if (checkQuestSelection() === true * $('#unitSelectPicker').selectpicker('val') !== "" * $('#questSelectPicker').selectpicker('val') !== ""){
 		 var string = "<br/>You send " + $('#QuestUnitNumSelect').val() + " " + $('#unitSelectPicker').selectpicker('val');
 		 if($('#QuestUnitNumSelect').val() > 1){
 			 string = string + "s";
@@ -355,7 +355,7 @@ function btnSendQuest(){
 		 break;
 	  }
 	 }
-};
+}
 
 function checkQuestSelection(){
 	if($('.selectpicker').selectpicker('val') == "Paladin"){
@@ -382,8 +382,8 @@ function checkQuestSelection(){
 }
 
 function checkQuestGoButton(){
-	if(inQuest == false){
-		if($('#unitSelectPicker').selectpicker('val') == "" || $('#questSelectPicker').selectpicker('val') == "" ){
+	if(inQuest === false){
+		if($('#unitSelectPicker').selectpicker('val') === "" || $('#questSelectPicker').selectpicker('val') === "" ){
 			document.getElementById('btnQuestGo').disabled = true;
 		}
 		else
@@ -398,7 +398,7 @@ function checkQuestGoButton(){
 }
 
 function QuestCheckUnitOptions(){
-	if(Paladin.number == 0){
+	if(Paladin.number === 0){
 		$('#PaladinOption').prop("disabled", true);
 		$('.selectpicker').selectpicker('refresh');
 	}
@@ -407,7 +407,7 @@ function QuestCheckUnitOptions(){
 		$('.selectpicker').selectpicker('refresh');
 	}
 	
-	if(Knight.number == 0){
+	if(Knight.number === 0){
 		$('#KnightOption').prop("disabled", true);
 		$('.selectpicker').selectpicker('refresh');
 	}
@@ -415,7 +415,7 @@ function QuestCheckUnitOptions(){
 		$('#KnightOption').prop("disabled", false);
 		$('.selectpicker').selectpicker('refresh');
 	}
-	if(Squire.number == 0){
+	if(Squire.number === 0){
 		$('#SquireOption').prop("disabled", true);
 		$('.selectpicker').selectpicker('refresh');
 	}
@@ -461,12 +461,12 @@ RelicHunt.startQuest = function(){
 		NumUnitOnQuest = $('#QuestUnitNumSelect').val();
 		UnitOnQuest = $('#unitSelectPicker').selectpicker('val');
 		
-		if(loadedQuest == false){
-			if(holdUnitforQuest() == false)
+		if(loadedQuest === false){
+			if(holdUnitforQuest() === false)
 			{
 				console.log('Bad quest selection.');
 				return;
-			};			
+			}			
 		}
 		document.getElementById(this.htmlBoxRef).style.display = "block";	
 		$qbar = $(document.getElementById(this.htmlBarRef));
@@ -485,7 +485,7 @@ RelicHunt.startQuest = function(){
 		this.percentComplete = perComplete;
 		questPercent = perComplete;
 
-		if(perComplete%50 == 0){
+		if(perComplete%50 === 0){
 			rollForFragment();
 		}	
 		document.getElementById(btn).disabled = true;					//disables the buttons
@@ -497,7 +497,7 @@ RelicHunt.startQuest = function(){
 		//update the progress
 		if(this.questSpellBoostPercent > 0){
 			perComplete = perComplete + parseInt(questSpellBoostPercent);
-			questSpellBoostPercent = 0
+			questSpellBoostPercent = 0;
 			if(perComplete > 100){
 				perComplete = 100;
 			}
@@ -523,19 +523,19 @@ RelicHunt.startQuest = function(){
 		} 
 	}, this.speed);
 	return true;
-}
+};
 
 function rollForFragment(){
-	var unitType = $('#unitSelectPicker').selectpicker('val')
+	var unitType = $('#unitSelectPicker').selectpicker('val');
 	var numUnits = $('#QuestUnitNumSelect').val();
 	var percentFind = 0;
-	var multiplier = 1.5
+	var multiplier = 1.5;
 	var rand = Math.floor(Math.random()*100) + 1;
 	switch(unitType){
 		case "Paladin":
 			for (i = 0; i < numUnits; i++) { 
 				percentFind += multiplier;
-				multiplier *= .975;
+				multiplier *= 0.975;
 			}
 		break;
 		default:
@@ -609,7 +609,7 @@ function holdUnitforQuest(){
 			}
 		break;		
 	}
-};
+}
 
 function returnUnitfromQuest(){
 	switch(UnitOnQuest){
@@ -650,7 +650,7 @@ function returnUnitfromQuest(){
 			console.log("returned Squires");
 		break;		
 	}
-};
+}
 
 
 $(function() {
@@ -686,7 +686,7 @@ $(function() {
 	
 	switch($('#questSelectPicker').selectpicker('val')){
 		case '':
-			questDescription = 'Your taskmaster patiently awaits your command.'
+			questDescription = 'Your taskmaster patiently awaits your command.';
 			document.getElementById('questDescString').innerHTML = questDescription;
 		break;
 		
@@ -702,8 +702,9 @@ $(function() {
 				$('#unitSelectPicker').selectpicker('val', 'Paladin');
 			}
 //			$('#unitSelectPicker').selectpicker('val', 'Paladin');
+			QuestCheckUnitOptions();
 			$('.selectpicker').selectpicker('refresh');
-			questDescription = "Send your units out to look for mysterious relics. <br>Requires Paladins or higher units. <br>Reward: Chance at relics"
+			questDescription = "Send your units out to look for mysterious relics. <br>Requires Paladins or higher units. <br>Reward: Chance at relics";
 			document.getElementById('questDescString').innerHTML = questDescription;
 		break;
 		
@@ -711,9 +712,9 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
-			QuestCheckUnitOptions()
+			QuestCheckUnitOptions();
 			$('.selectpicker').selectpicker('refresh');
-			questDescription = "Send your units out to slay lesser demons attacking the people in " + KingdomName + ". <br>Reward: <img src = 'images/soulssmall.png' title='Souls'>Souls"
+			questDescription = "Send your units out to slay lesser demons attacking the people in " + KingdomName + ". <br>Reward: <img src = 'images/soulssmall.png' title='Souls'>Souls";
 			document.getElementById('questDescString').innerHTML = questDescription;			
 		break;
 		
@@ -721,9 +722,9 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
-			QuestCheckUnitOptions()
+			QuestCheckUnitOptions();
 			$('.selectpicker').selectpicker('refresh');
-			questDescription = "Send your units out to slay treants menacing the lumberjacks in the woods. <br>Reward: <img src = 'images/woodsmall.png' title = 'Wood'> Wood"
+			questDescription = "Send your units out to slay treants menacing the lumberjacks in the woods. <br>Reward: <img src = 'images/woodsmall.png' title = 'Wood'> Wood";
 			document.getElementById('questDescString').innerHTML = questDescription;			
 		break;
 		
@@ -731,9 +732,9 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
-			QuestCheckUnitOptions()
+			QuestCheckUnitOptions();
 			$('.selectpicker').selectpicker('refresh');
-			questDescription = "Send your units out to slay the iron golems summoned by the Evil One in your mines. <br>Reward: <img src = 'images/ironsmall.png' title='Iron'>Iron"
+			questDescription = "Send your units out to slay the iron golems summoned by the Evil One in your mines. <br>Reward: <img src = 'images/ironsmall.png' title='Iron'>Iron";
 			document.getElementById('questDescString').innerHTML = questDescription;			
 		break;		
 		
@@ -741,9 +742,9 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
-			QuestCheckUnitOptions()
+			QuestCheckUnitOptions();
 			$('.selectpicker').selectpicker('refresh');	
-			questDescription = "Send your units out to help the people of " + KingdomName + " with generic problems, like little children falling down a well. <br>Reward: <img src = 'images/money_goldsmall.png' title ='Gold'>Gold"
+			questDescription = "Send your units out to help the people of " + KingdomName + " with generic problems, like little children falling down a well. <br>Reward: <img src = 'images/money_goldsmall.png' title ='Gold'>Gold";
 			document.getElementById('questDescString').innerHTML = questDescription;			
 		break;
 
@@ -751,9 +752,9 @@ $(function() {
 			$('#PaladinOption').prop("disabled", false);
 			$('#KnightOption').prop("disabled", false);
 			$('#SquireOption').prop("disabled", false);
-			QuestCheckUnitOptions()
+			QuestCheckUnitOptions();
 			$('.selectpicker').selectpicker('refresh');	
-			questDescription = "Send your units into your mines to help the sprites residing within. <br>Reward: <img src = 'images/silverOresmall.png' title='Silver'>Silver"
+			questDescription = "Send your units into your mines to help the sprites residing within. <br>Reward: <img src = 'images/silverOresmall.png' title='Silver'>Silver";
 			document.getElementById('questDescString').innerHTML = questDescription;			
 		break;			
 		

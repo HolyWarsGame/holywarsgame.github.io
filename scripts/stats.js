@@ -140,7 +140,7 @@ function incTimesClicked(){
 	timesClicked += 1;
 	document.getElementById('statTimesClicked').innerHTML = timesClicked;
 	
-	if(timesClicked >= 1000 && ach1kClicks == false){
+	if(timesClicked >= 1000 && ach1kClicks === false){
 		ach1kClicks = true;
 		document.getElementById('Clicked1KTimes').classList.add('achievementearned');
 		document.getElementById('Clicked1KTimes').classList.add('achievement');
@@ -152,7 +152,7 @@ function incTimesClicked(){
 		});			
 	}
 	
-	if(timesClicked >= 10000 && ach10kClicks == false){
+	if(timesClicked >= 10000 && ach10kClicks === false){
 		ach10kClicks = true;
 		document.getElementById('Clicked10KTimes').classList.add('achievementearned');
 		document.getElementById('Clicked10KTimes').classList.add('achievement');
@@ -164,7 +164,7 @@ function incTimesClicked(){
 		});			
 	}	
 	
-	if(timesClicked >= 100000 && ach100kClicks == false){
+	if(timesClicked >= 100000 && ach100kClicks === false){
 		ach100kClicks = true;
 		document.getElementById('Clicked100KTimes').classList.add('achievementearned');
 		document.getElementById('Clicked100KTimes').classList.add('achievement');
@@ -176,7 +176,7 @@ function incTimesClicked(){
 		});			
 	}
 	
-	if(timesClicked >= 1000000 && ach1MClicks == false){
+	if(timesClicked >= 1000000 && ach1MClicks === false){
 		ach1MClicks = true;
 		document.getElementById('Clicked1MTimes').classList.add('achievementearned');
 		document.getElementById('Clicked1MTimes').classList.add('achievement');
@@ -188,7 +188,7 @@ function incTimesClicked(){
 		});			
 	}	
 
-	if(timesClicked >= 1000000 && ach1BClicks == false){
+	if(timesClicked >= 1000000 && ach1BClicks === false){
 		ach1BClicks = true;
 		document.getElementById('Clicked1BTimes').classList.add('achievementearned');
 		document.getElementById('Clicked1BTimes').classList.add('achievement');
@@ -204,7 +204,7 @@ function incTimesClicked(){
 document.body.addEventListener('click', incTimesClicked, true);
 
 function achieveCheckGold(){
-	if(gold >= 1000 && ach1kGold == false){
+	if(gold >= 1000 && ach1kGold === false){
 		ach1kGold = true;
 		document.getElementById('Collected1KGold').classList.add('achievementearned');
 		document.getElementById('Collected1KGold').classList.add('achievement');
@@ -215,7 +215,7 @@ function achieveCheckGold(){
 		type: 'warning'
 		});			
 	}
-	if(gold >= 100000 && ach100kGold == false){
+	if(gold >= 100000 && ach100kGold === false){
 		ach100kGold = true;
 		document.getElementById('Collected100KGold').classList.add('achievementearned');
 		document.getElementById('Collected100KGold').classList.add('achievement');
@@ -226,7 +226,7 @@ function achieveCheckGold(){
 		type: 'warning'
 		});			
 	}
-	if(gold >= 1000000 && ach1MGold == false){
+	if(gold >= 1000000 && ach1MGold === false){
 		ach1MGold = true;
 		document.getElementById('Collected1MGold').classList.add('achievementearned');
 		document.getElementById('Collected1MGold').classList.add('achievement');
@@ -238,7 +238,7 @@ function achieveCheckGold(){
 		});			
 	}
 	
-	if(gold >= 100000000 && ach1BGold == false){
+	if(gold >= 100000000 && ach1BGold === false){
 		ach1BGold = true;
 		$.notify({
 			title: "<strong>Achievement! </strong>",
@@ -248,7 +248,7 @@ function achieveCheckGold(){
 		});			
 	}
 	
-	if(gold >= 100000000000 && ach1TGold == false){
+	if(gold >= 100000000000 && ach1TGold === false){
 		ach1TGold = true;
 		$.notify({
 			title: "<strong>Achievement! </strong>",
@@ -257,8 +257,4 @@ function achieveCheckGold(){
 		type: 'warning'
 		});			
 	}		
-};
-
-
-
-
+}

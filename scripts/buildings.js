@@ -29,8 +29,8 @@ var Building = function(name, htmlBuyBtn, htmlGoldCost, htmlWoodCost, htmlIronCo
 };
 
 Building.prototype.returnName = function(){
-	return name;
-}
+	return this.name;
+};
 
 Building.prototype.canBuy = function(){
 	var myButton = this.htmlBuyBtn;
@@ -65,7 +65,7 @@ Building.prototype.canBuy = function(){
 		return false;
 	}
 	
-}
+};
 
 Building.prototype.CostsToBlack = function(){
 	if(this.htmlGoldCost != 'none'){document.getElementById(this.htmlGoldCost).style.color = "black";}
@@ -74,7 +74,7 @@ Building.prototype.CostsToBlack = function(){
 	if(this.htmlSilverCost != 'none'){document.getElementById(this.htmlSilverCost).style.color = "black";}
 	if(this.htmlFaithCost != 'none'){document.getElementById(this.htmlFaithCost).style.color = "black";}
 	if(this.htmlSoulCost != 'none'){document.getElementById(this.htmlSoulCost).style.color = "black";}
-}
+};
 
 Building.prototype.checkBtnFlag = function(){
 		var myButton = this.htmlBuyBtn;
@@ -89,14 +89,14 @@ Building.prototype.checkBtnFlag = function(){
 				break;				
 				
 				case "minesOpened":
-					if(minesOpened == true){
+					if(minesOpened === true){
 						document.getElementById(myButton).innerHTML = "Mines Opened";
 						document.getElementById(myButton).disabled = true;
 						document.getElementById(myButton).style.background='darkblue';
 					}
 				break; 
 				case "barracksOpened":
-					if(barracksOpened == true){
+					if(barracksOpened === true){
 						document.getElementById(myButton).innerHTML = "Barracks Built";	
 						document.getElementById(myButton).disabled = true;	
 						document.getElementById(myButton).style.background='darkblue';
@@ -104,7 +104,7 @@ Building.prototype.checkBtnFlag = function(){
 				break;
 
 				case "commandPostOpened":
-					if(commandPostOpened == true){
+					if(commandPostOpened === true){
 						document.getElementById(myButton).innerHTML = "Command Post Built";	
 						document.getElementById(myButton).disabled = true;	
 						document.getElementById(myButton).style.background='darkblue';
@@ -112,7 +112,7 @@ Building.prototype.checkBtnFlag = function(){
 				break;
 
 				case "forgeOpened":
-					if(forgeOpened == true){
+					if(forgeOpened === true){
 						document.getElementById(myButton).innerHTML = "Forge Built";	
 						document.getElementById(myButton).disabled = true;	
 						document.getElementById(myButton).style.background='darkblue';
@@ -120,19 +120,19 @@ Building.prototype.checkBtnFlag = function(){
 				break;				
 				
 				case "churchOpened":
-					if(churchOpened == true){
+					if(churchOpened === true){
 						document.getElementById(myButton).innerHTML = "Church Built";
 						document.getElementById(myButton).disabled = true;	
 						document.getElementById(myButton).style.background='darkblue';						
 					}
-					return false;
 				break;
 				case "towerBuilt":
-					if(towerBuilt == true){
+					if(towerBuilt === true){
 						document.getElementById(myButton).innerHTML = "Tower Built";
 						document.getElementById(myButton).disabled = true;	
 						document.getElementById(myButton).style.background='darkblue';
 					}
+				break;
 				default:
 					return false;
 			}
@@ -140,7 +140,7 @@ Building.prototype.checkBtnFlag = function(){
 
 Building.prototype.buy = function(){
 
-		if(this.canBuy() == true ){    //checks that the player can afford the Building
+		if(this.canBuy() === true ){    //checks that the player can afford the Building
 			this.number +=  1;                                  							 	  //increases number of Unit
 			gold -= this.goldCost;                     										          //removes the gold spent
 			wood -= this.woodCost;                                                                      //removes the wood spent
@@ -237,11 +237,12 @@ Building.prototype.buy = function(){
 					towerBuiltAlert = $.notify({
 						title: "<strong>New!</strong> ",
 						message: "Using massive amounts of resources, you build the Archmage the <a href='javascript: alertOpenTowerPage();' class='alert-link'>tower</a> where he can cast magic to help your forces."
-					});	
+					});
+				break;
 				default:
 			}
 		}
-}
+};
 
 var MultBuilding = function(name, htmlNumRef, htmlNextGoldCost, htmlNextWoodCost, htmlNextIronCost, htmlNextSilverCost, htmlNextFaithCost, htmlNextSoulCost, htmlNextTomeCost, htmlBuyBtn, 
 					goldCost, woodCost, ironCost, silverCost, faithCost, soulCost, tomeCost, costMult,description, costAdj, hasReqUnit, reqUnit){
@@ -288,7 +289,7 @@ MultBuilding.prototype.canBuy = function(){
 	var myButton = this.htmlBuyBtn;
 	this.recalcCost();
 	
-	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.returnNumber() > 0)){
+	if(this.hasReqUnit === false || (this.hasReqUnit === true && this.reqUnit.returnNumber() > 0)){
 		if(gold >= this.curGoldCost && wood >= this.curWoodCost && iron >= this.curIronCost && silver >= this.curSilverCost && faith >= this.curFaithCost && souls >= this.curSoulCost && tomes >= this.curTomeCost ){    //checks that the player can afford the Building
 			document.getElementById(myButton).disabled = false;
 			this.CostsToBlack();
@@ -322,7 +323,7 @@ MultBuilding.prototype.canBuy = function(){
 	else{
 		document.getElementById(myButton).disabled = true;	
 	}
-}
+};
 
 MultBuilding.prototype.CostsToBlack = function(){
 	if(this.htmlNextGoldCost != 'none'){document.getElementById(this.htmlNextGoldCost).style.color = "black";}
@@ -332,7 +333,7 @@ MultBuilding.prototype.CostsToBlack = function(){
 	if(this.htmlNextFaithCost != 'none'){document.getElementById(this.htmlNextFaithCost).style.color = "black";}
 	if(this.htmlNextSoulCost != 'none'){document.getElementById(this.htmlNextSoulCost).style.color = "black";}
 	if(this.htmlNextTomeCost != 'none'){document.getElementById(this.htmlNextTomeCost).style.color = "black";}
-}
+};
 
 MultBuilding.prototype.recalcCost = function(){
 	this.curGoldCost = Math.floor(this.goldCost * Math.pow(this.costMult,this.number-this.costAdj));         //works out the cost of the next Building
@@ -378,7 +379,7 @@ MultBuilding.prototype.buyOne = function(){
 	this.curSoulCost =  Math.floor(this.soulCost * Math.pow(this.costMult,this.number));
 	this.curTomeCost =  Math.floor(this.tomeCost * Math.pow(this.costMult,this.number));
 	
-	if(this.hasReqUnit == false || (this.hasReqUnit == true && this.reqUnit.returnNumber() > 0)){
+	if(this.hasReqUnit === false || (this.hasReqUnit === true && this.reqUnit.returnNumber() > 0)){
 		if(gold >= this.curGoldCost && wood >= this.curWoodCost && iron >= this.curIronCost && silver >= this.curSilverCost && faith >= this.curFaithCost && souls >= this.curSoulCost && tomes >= this.curTomeCost ){    //checks that the player can afford the Building
 			this.number += 1;                                  							 	  //increases number of Building
 			gold -= this.curGoldCost;                     										          //removes the gold spent
@@ -427,7 +428,7 @@ MultBuilding.prototype.buyOne = function(){
 				this.nextTomeCost = Math.floor(this.tomeCost * Math.pow(this.costMult,this.number));                       //works out the Soul cost of the next Building
 				document.getElementById(this.htmlNextTomeCost).innerHTML = fnum(this.nextTomeCost);  						      //updates the Building Soul cost for the user
 			}			
-		};
+		}
 	}
 };
 
@@ -438,10 +439,10 @@ var Lumbermill = new Building('Lumbermill','btnOpenMill','millGoldCost','millWoo
 
 var papermillDesc = "Constructing a paper mill allows you to automatically convert wood into paper. Converts 50 <img src = 'images/woodsmall.png'> to 1 <img src = 'images/parchmentsmall.png'> every 10 seconds";
 var PaperMill = new MultBuilding('Papermill','papermills', 'pMillCost', 'pMillWoodCost','pMillIronCost','none','none','none','none','btnbuyPMill',4500,2000,1500,0,0,0,0,1.5,papermillDesc,0,false,0);
-setDescription(PaperMill,'BtnPMillDesc')
+setDescription(PaperMill,'BtnPMillDesc');
 
 PaperMill.numberOn = 0;
-PaperMill.status = "On"
+PaperMill.status = "On";
 
 function PaperMillOnPlus(){
 	if(PaperMill.numberOn + 1 <= PaperMill.number){
@@ -473,26 +474,26 @@ function PaperMillChangeButton(){
 var minesDesc = "Opening the mines lets you collect minerals";
 var Mines = new Building('Mines','btnOpenMines','minesGoldCost','minesWoodCost','none','none','none','none',1250,200,0,0,0,0,minesDesc,"none",'minesOpened');
 
-var tavernDesc = "A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 30 seconds."
+var tavernDesc = "A cozy place where many people gather to drink and celebrate. <br> Recruits 1 peasant every 30 seconds.";
 var Tavern = new MultBuilding('Tavern','taverns','TavernCost','tavernWoodCost', 'tavernIronCost','none','none','none','none','btnbuyTavern',5000,2500,2000,0,0,0,0,2,tavernDesc,0,false,0);
 
-var barracksDesc = ""
+var barracksDesc = "";
 var Barracks = new Building('Barracks','btnOpenBarracks','barracksGoldCost', 'barracksWoodCost', 'barracksIronCost','none','none','none',5000,1000,250,0,0,0,barracksDesc,"none",'barracksOpened');
 
-var commandPostDesc = ""
+var commandPostDesc = "";
 var CommandPost = new Building('Command Post','btnOpenCommandPost','commandPostGoldCost', 'commandPostWoodCost', 'commandPostIronCost','none','none','none',5000,1000,250,0,0,0,commandPostDesc,"none",'commandPostOpened');
 
-var forgeDesc = ""
+var forgeDesc = "";
 var Forge = new Building('Forge','btnOpenForge','forgeGoldCost','forgeWoodCost','forgeIronCost','forgeSilverCost','none','none',750000,400000,750000,100000,0,0,forgeDesc,"none",'forgeOpened');
 
-var churchDesc = ""
+var churchDesc = "";
 var Church = new Building('Church','btnOpenChurch','churchGoldCost','churchWoodCost','churchIronCost','churchSilverCost','none','none',15000,2500,500,100,0,0,churchDesc,"none",'churchOpened');
 
 
-var towerDesc = ""
+var towerDesc = "";
 var Tower = new Building('Tower','btnOpenTower','towerGoldCost','towerWoodCost','towerIronCost','towerSilverCost','towerFaithCost','none',1000000,700000,10000,500,1000,0,towerDesc,"none",'towerBuilt');
 
-var aLibraryDesc = ""
+var aLibraryDesc = "";
 var ArcaneLibrary = new MultBuilding('Arcane Library','ArcaneLibrary','aLibraryCost','aLibraryWoodCost', 'aLibraryIronCost','none','none','none','aLibraryTomeCost','btnbuyALibrary',5000000,3000000,2000000,0,0,0,100,1.5,aLibraryDesc,0,false,0);
 
 
@@ -547,7 +548,7 @@ function checkBuildingButtons(){
 	//Changes status of the building arcane library button
 	ArcaneLibrary.canBuy();	
 	//End of Structure Buttons
-};
+}
 
 window.setInterval(function(){					//Tavern unit generation
 	clickThing(Tavern.number,"peasant");
@@ -565,7 +566,7 @@ window.setInterval(function(){					//Tavern unit generation
 	Peasant.costAdj = tavernpeasants;
 	Peasant.recalcCost();
 	
-	if(tavernUpgrade == true){
+	if(tavernUpgrade === true){
 		clickThing(Tavern.number,"miner");
 		tavernminers += Tavern.number;
 		statTavernMinersHired += Tavern.number;
@@ -581,7 +582,7 @@ window.setInterval(function(){					//Tavern unit generation
 		Miner.recalcCost();	
 	}
 	
-	if(tavernUpgrade2 == true){
+	if(tavernUpgrade2 === true){
 		clickThing(Tavern.number,"lumberjack");
 		tavernlumberjacks += Tavern.number;
 		statTavernLumberjacksHired += Tavern.number;
@@ -623,19 +624,19 @@ var Pmillticker = setInterval(request, PMillTime);
 
 function request(){
 	clearInterval(Pmillticker);
-	if(PmillEffUpgr2 == true){
+	if(PmillEffUpgr2 === true){
 		PMillTime = 5000;
 	}
 	else{
 		PMillTime = 10000;
 	}
 	
-	if(PmillEffUpgr == true){
+	if(PmillEffUpgr === true){
 		if(PaperMill.status == "On" && wood >= PaperMill.numberOn*50*0.6){
 			clickThing(PaperMill.numberOn,"paper");		
 		}
 		else if(wood < PaperMill.numberOn*30*0.6){
-			PaperMill.status = "Off"
+			PaperMill.status = "Off";
 		}		
 	}
 	else{
@@ -643,7 +644,7 @@ function request(){
 			clickThing(PaperMill.numberOn,"paper");		
 		}
 		else if(wood < PaperMill.numberOn*50){
-			PaperMill.status = "Off"
+			PaperMill.status = "Off";
 		}
 	}	
 	
