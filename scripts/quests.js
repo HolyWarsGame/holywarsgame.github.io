@@ -213,6 +213,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 			delay: 25000},{
 		type: 'success'
 		});	
+		checkQuestGoButton();
 	  } 
 	}, this.speed);
 	return true;
@@ -398,7 +399,7 @@ function checkQuestSelection(){
 
 function checkQuestGoButton(){
 	if(inQuest === false){
-		if($('#unitSelectPicker').selectpicker('val') === "" || $('#questSelectPicker').selectpicker('val') === "" ){
+		if($('#unitSelectPicker').selectpicker('val') === "" || $('#questSelectPicker').selectpicker('val') === "" ||  document.getElementById('QuestUnitNumSelect').value === '0'){
 			document.getElementById('btnQuestGo').disabled = true;
 		}
 		else
@@ -671,6 +672,7 @@ function returnUnitfromQuest(){
 $(function() {
   $('#unitSelectPicker').on('change', function(){
 	var newMax;
+	checkQuestGoButton();
 	switch($('#unitSelectPicker').selectpicker('val')){
 		case 'Paladin':
 			newMax = Paladin.number;
@@ -698,7 +700,7 @@ $(function() {
 $(function() {
   $('#questSelectPicker').on('change', function(){
 	var questDescription = "";
-	
+	checkQuestGoButton();
 	switch($('#questSelectPicker').selectpicker('val')){
 		case '':
 			questDescription = 'Your taskmaster patiently awaits your command.';
@@ -770,6 +772,9 @@ $(function() {
 			QuestCheckUnitOptions();
 			$('.selectpicker').selectpicker('refresh');	
 			questDescription = "Send your units into your mines to help the sprites residing within. <br>Reward: <img src = 'images/silverOresmall.png' title='Silver'>Silver";
+			if(coalUnlocked === false){
+				questDescription += "<br /><br /> Your taskmaster notes that the sprites in the mines need your help in particular at this moment. <br /> Additional reward: Unlock <img src = 'images/coalsmall.png' title='Coal'>Coal";
+			}
 			document.getElementById('questDescString').innerHTML = questDescription;			
 		break;			
 		
@@ -781,3 +786,5 @@ $(function() {
 	}
   });
 });
+
+$('#QuestUnitNumSelect').on('touchspin.on.startspin', function () {checkQuestGoButton();});

@@ -122,7 +122,7 @@ Unit.prototype.buyOne = function(){
 			updateStatistic(this.name, 1);
 		}
 	}
-	QuestCheckUnitOptions(); //
+	QuestCheckUnitOptions(); //Update quest selections (disable unit selection if 0, enable if > 0)
 };
 
 Unit.prototype.removeOne = function(){

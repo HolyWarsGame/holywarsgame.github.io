@@ -425,6 +425,7 @@ function recalculateCosts(){
 	Miner.costAdj = tavernminers;
 	Miner.recalcCost();
 	Priest.recalcCost();
+	Scribe.recalcCost();
 	Page.recalcCost();
 	Squire.recalcCost();
 	Knight.recalcCost();
@@ -610,7 +611,7 @@ function UpdateButtons() {
 	checkSpellButtons();
 	
 //	checkQuestGoButton();
-
+	checkQuestGoButton();
 
 	//Check Relic Buttons
 	if(defeatedDwarf === true){

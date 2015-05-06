@@ -506,6 +506,7 @@
 				if(myBool === true){
 					unlockedQuesting = true;
 					unlockQuesting.enableFlag();
+					checkQuestGoButton();
 				}
 			}			
 			
