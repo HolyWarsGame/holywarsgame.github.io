@@ -54,12 +54,14 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 	curQuestType = this.name;
 
 	UnitOnQuest = $('#unitSelectPicker').selectpicker('val');
-	NumUnitOnQuest = $('#QuestUnitNumSelect').val();		
+	NumUnitOnQuest = $('#QuestUnitNumSelect').val();
+	if(loadedQuest === false){
 		if(holdUnitforQuest() === false)
 		{
 			console.log('Bad quest selection.');
 			return;
-		}		
+		}			
+	}	
 	document.getElementById(this.htmlBoxRef).style.display = "block";	
 	$qbar = $(document.getElementById(this.htmlBarRef));
 		
@@ -85,12 +87,18 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 
 		//update the progress
 		if(this.questSpellBoostPercent > 0){
-			perComplete = perComplete + parseInt(questSpellBoostPercent);
+			perComplete += parseInt(questSpellBoostPercent);
 			questSpellBoostPercent = 0;
 			if(perComplete > 100){
 				perComplete = 100;
 			}
-		}		
+		}
+
+		if(perComplete%25 === 0 && resource == 'relics'){
+			if(rollForFragment() === true){
+				resourceEarned += 1;
+			}
+		}			
 		
 	  if (qcurrWidth >= qmaxWidth){
 		clearInterval(progress);
@@ -106,12 +114,16 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 		inQuest = false;
 		$qbar.width(0 +'%');
 		$qbar.attr('aria-valuenow',0);
-		$qbar.text(0+'%');	
+		$qbar.text(0+'%');
+		$('.selectpicker').selectpicker('refresh');
 		
 		var finishString;
-		resourceEarned = questCalcReward(resource, UnitOnQuest);
-		resourceEarned = Math.round(resourceEarned*100)/100;
-		
+
+		if(resource != 'relics'){
+			resourceEarned = questCalcReward(resource, UnitOnQuest);
+			resourceEarned = Math.round(resourceEarned*100)/100;			
+		}
+
 		switch(resource){
 			case 'gold':
 //				 resourceEarned = QuestDuration*goldpersec;
@@ -123,7 +135,6 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 				 document.getElementById('stattotalgoldcollected').innerHTML = fnum(statTotalGoldCollected);
 				 document.getElementById('statgoldcollected').innerHTML = fnum(statGoldCollected);
 				 finishString = "<br/>Your units return from helping out the people in your kingdom! They bring back <img src = 'images/money_goldsmall.png' title ='Gold' >" + fnum(resourceEarned) + " gold to add to your coffers.";
-//				 document.getElementById('questFinishAlertString').innerHTML = finishString;
 			break;
 			
 			case 'wood':
@@ -135,8 +146,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 				 document.getElementById('wood').innerHTML = fnum(wood);
 				 document.getElementById('statWoodCollected').innerHTML = fnum(statWoodCollected);
 				 document.getElementById('statTotalWoodCollected').innerHTML = fnum(statTotalWoodCollected);
-				 finishString = "<br/>Your units return from vanquishing a bunch of angry treants! They bring back <img src = 'images/woodsmall.png' title = 'Wood'>" + fnum(resourceEarned) + " wood to add to your collection.";
-//				 document.getElementById('questWoodFinishAlertString').innerHTML = finishString;				 
+				 finishString = "<br/>Your units return from vanquishing a bunch of angry treants! They bring back <img src = 'images/woodsmall.png' title = 'Wood'>" + fnum(resourceEarned) + " wood to add to your collection.";	 
 			break;
 			
 			case 'iron':
@@ -148,8 +158,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 				 document.getElementById('iron').innerHTML = fnum(iron);
 				 document.getElementById('statIronCollected').innerHTML = fnum(statIronCollected);
 				 document.getElementById('statTotalIronCollected').innerHTML = fnum(statTotalIronCollected);				 
-				 finishString = "<br />Your units return from vanquishing a bunch of sturdy animated iron golems! It wasn't easy, but they bring back <img src = 'images/ironsmall.png' title='Iron'>" + fnum(resourceEarned) + " iron to add to your collection.";
-//				 document.getElementById('questIronFinishAlertString').innerHTML = finishString;			 
+				 finishString = "<br />Your units return from vanquishing a bunch of sturdy animated iron golems! It wasn't easy, but they bring back <img src = 'images/ironsmall.png' title='Iron'>" + fnum(resourceEarned) + " iron to add to your collection.";		 
 			break;
 
 			case 'silver':
@@ -172,9 +181,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 						delay: 25000},{
 					type: 'success'
 					});
-				 }
-				
-//				 document.getElementById('questSilverFinishAlertString').innerHTML = finishString;						 
+				 }					 
 			break;
 
 			case 'souls':
@@ -186,19 +193,26 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 				 document.getElementById('souls').innerHTML = fnum(souls);
 				 document.getElementById('statSoulsCollected').innerHTML = fnum(statSoulsCollected);
 				 document.getElementById('statTotalSoulsCollected').innerHTML = fnum(statTotalSoulsCollected);				 
-				 finishString = "<br />Your units successfully help the the defeat some lesser demons plaguing the countryside. When they die, your troops are able to collect <img src = 'images/soulssmall.png' title='Souls'>" + fnum(resourceEarned) + " souls.";
-//				 document.getElementById('questSoulsFinishAlertString').innerHTML = finishString;			
-			break;					
+				 finishString = "<br />Your units successfully help the the defeat some lesser demons plaguing the countryside. When they die, your troops are able to collect <img src = 'images/soulssmall.png' title='Souls'>" + fnum(resourceEarned) + " souls.";		
+			break;
+
+			case 'relics':
+			console.log('relics ' + resourceEarned);
+				if(resourceEarned === 0){
+					finishString = "<br /> Your paladins are unsuccessful at locating any relic fragments. Perhaps you should send more Paladins to cover more area?";
+				}
+				else{
+					finishString = "<br /> Your paladins have located" + resourceEarned + " relic fragments total on their quest!";
+				}
+			break;			
 		}
 		
 		$.notify({
-			title: "<strong>Success! </strong>",
+			title: "<strong>Quest Finished! </strong>",
 			message: finishString,
 			delay: 25000},{
 		type: 'success'
-		});
-//		document.getElementById(alert).style.display = "block";			//Displays alert related to this quest	
-//		scroll(alert,500);		
+		});	
 	  } 
 	}, this.speed);
 	return true;
@@ -306,7 +320,7 @@ function btnSendQuest(){
 			$.notify({
 				title: "<strong>Questing! </strong>",
 				message: string,
-				delay: 25000
+				delay: 10000
 			});				
 		}
 	  
@@ -346,8 +360,9 @@ function btnSendQuest(){
 		 case 'Relic Hunt':
 			if($('#unitSelectPicker').selectpicker('val') == 'Paladin' && Paladin.number > 0)
 			{
-					RelicHunt.startQuest();
-					notify();
+				console.log('Relic Hunt');
+				RelicHunt.startQuest('relics');
+				notify();
 			}
 			else{
 //				alert("You can only send Paladins relic hunting!");
@@ -445,7 +460,7 @@ var relicHuntDesc = "";
 var RelicHunt = new Quest('Relic Hunt', relicHuntDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','goblinDefeatAlert',0,1,750);
 
 
-RelicHunt.startQuest = function(){
+/*RelicHunt.startQuest = function(){
 		var perComplete = this.percentComplete;
 		var perIncrement = this.percentIncrement;
 		var alert = this.htmlAlertRef;
@@ -512,8 +527,6 @@ RelicHunt.startQuest = function(){
 			document.getElementById('questSelectPicker').disabled = false;  //enables picker
 			document.getElementById('unitSelectPicker').disabled = false;   //enables picker
 			document.getElementById('QuestUnitNumSelect').disabled = false;		//enables number select
-	//		document.getElementById(alert).style.display = "block";			//Displays alert related to this battle
-	//		scroll(alert,500);
 			returnUnitfromQuest();
 			inQuest = false;
 			
@@ -523,7 +536,7 @@ RelicHunt.startQuest = function(){
 		} 
 	}, this.speed);
 	return true;
-};
+};*/
 
 function rollForFragment(){
 	var unitType = $('#unitSelectPicker').selectpicker('val');
@@ -547,14 +560,16 @@ function rollForFragment(){
 		document.getElementById('relicFragments').innerHTML = relicFragment;
 		
 		$.notify({
-			title: "Found! ",
+			title: "<strong>Found! </strong>",
 			message: "Your paladins found a relic fragment in their search!",
 			delay: 25000},{
 		type: 'success'
-		});	
+		});
+		return true;
 	}
 	else{
 		console.log("No Relic found");
+		return false;
 	}
 }
 

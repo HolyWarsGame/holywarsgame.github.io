@@ -1993,7 +1993,7 @@ var input = "PASTE SAVEDATA HERE";
 //				for (var name in storage) { localStorage.setItem(name, storage[name] ); }
 			eval ('storage = ' + input);
 			console.log(storage);
-			for (var name in storage) { localStorage.setItem(name, storage[name] ); };
+			for (var name in storage) { localStorage.setItem(name, storage[name] ); }
 			location.reload(true);
 		}
 	  }
