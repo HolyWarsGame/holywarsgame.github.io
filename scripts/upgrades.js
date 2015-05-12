@@ -299,7 +299,7 @@ Upgrade.prototype.purchasedButton = function(){
 Upgrade.prototype.canBuy = function(){								//Checks to see if all costs are met
 	if(this.checkFlag() === true){									//Upgrade already purchased
 		   document.getElementById(this.buyBtnRef).disabled = true;	
-		   document.getElementById(this.buyBtnRef).style.background='darkblue';	
+		   document.getElementById(this.buyBtnRef).style.background='#12005C';	
 		   return false;		
 	}
 	else if(this.costTest(this.goldCost, gold, this.htmlGoldCost) *
@@ -366,11 +366,11 @@ Upgrade.prototype.costTest= function(cost, type, htmlRef){							//Checks the sp
 	}	
 	else{
 		if(this.checkFlag() === true){
-			document.getElementById(htmlRef).style.color = "black";	//If cost is defined and not met, cost is changed to black 			
+			document.getElementById(htmlRef).style.color = haveResourceColor;	//If cost is defined and not met, cost is changed to black 			
 			return true;			
 		}
 		else if(type >= cost){
-			document.getElementById(htmlRef).style.color = "black";	//If cost is defined and not met, cost is changed to black 			
+			document.getElementById(htmlRef).style.color = haveResourceColor;	//If cost is defined and not met, cost is changed to black 			
 			return true;
 		}
 		else if(type < cost){
@@ -386,11 +386,11 @@ Upgrade.prototype.unitCostTest = function(){
 		return true;
 	}
 	else if(this.hasReqUnit === true && this.reqUnit.number >= this.numReqUnit){
-		document.getElementById(this.htmlReqUnit).style.color = "black";	//If cost is defined and met, cost is changed to black	
+		document.getElementById(this.htmlReqUnit).style.color = haveResourceColor;	//If cost is defined and met, cost is changed to black	
 		return true;
 	}
 	else if(this.hasReqUnit === true && this.reqUnit.number < this.numReqUnit){
-		document.getElementById(this.htmlReqUnit).style.color = "red";	//If cost is defined and not met, cost is changed to red
+		document.getElementById(this.htmlReqUnit).style.color = lackResourceColor;	//If cost is defined and not met, cost is changed to red
 		return false;		
 	}
 };
@@ -1078,7 +1078,7 @@ var pmillEffUpgrade3 = new Upgrade(
 );	
 pmillEffUpgrade3.hasReqUnit = true;
 pmillEffUpgrade3.reqUnit = Shade;
-pmillEffUpgrade3.numReqUnit = 20;
+pmillEffUpgrade3.numReqUnit = 25;
 pmillEffUpgrade3.htmlReqUnit = 'pmillEffUpgrade3UnitCost';
 
  var pmillClickUpgrade = new Upgrade(	
@@ -1254,7 +1254,7 @@ var angelUpgrade1 = new Upgrade(
 
  var upgradeTavern = new Upgrade(	
  /*Name*/'upgradeTavern', 
-/*goldCost*/15000, 
+/*goldCost*/10000, 
 /*htmlGoldCost*/'upgradeTavernGoldCost',
 /*woodCost*/0, 
 /*htmlWoodCost*/'none',
@@ -1281,7 +1281,7 @@ var angelUpgrade1 = new Upgrade(
 
  var upgradeTavern2 = new Upgrade(	
  /*Name*/'upgradeTavern2', 
-/*goldCost*/10000, 
+/*goldCost*/15000, 
 /*htmlGoldCost*/'upgradeTavern2GoldCost',
 /*woodCost*/5000, 
 /*htmlWoodCost*/'upgradeTavern2WoodCost',

@@ -145,6 +145,7 @@
 		//MiscFlags
 		save("faithDonated", faithDonated);
 		save("lastPage", lastPage);
+		save("DayNight", DayNight);
 		save("KingdomName", KingdomName);
 		save("gameSaveVer", gameVer);
 
@@ -1195,6 +1196,15 @@
 			else{
 				lastPage = 'Production';
 			}
+
+
+			if(localStorage.DayNight !== null){
+				DayNight = localStorage.DayNight;
+				if(DayNight === 'night'){
+					toggleDayNight();
+				}
+			}
+			
 
 			//Statistic Page variables 
 				//Clicking Stats

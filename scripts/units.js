@@ -177,26 +177,26 @@ Unit.prototype.canBuy = function(){
 		else{
 			document.getElementById(btn).disabled = true;					//disables the buy button
 			if(gold < this.curGoldCost && this.htmlNextGoldCost != 'none'){
-				document.getElementById(this.htmlNextGoldCost).style.color = "red";
+				document.getElementById(this.htmlNextGoldCost).style.color = lackResourceColor;
 			}
 			if(iron < this.curIronCost && this.htmlNextIronCost != 'none'){
-				document.getElementById(this.htmlNextIronCost).style.color = "red";
+				document.getElementById(this.htmlNextIronCost).style.color = lackResourceColor;
 			}
 			if(silver < this.curSilverCost && this.htmlNextSilverCost != 'none'){
-				document.getElementById(this.htmlNextSilverCost).style.color = "red";
+				document.getElementById(this.htmlNextSilverCost).style.color = lackResourceColor;
 			}
 			if(faith < this.curFaithCost && this.htmlNextFaithCost != 'none'){
-				document.getElementById(this.htmlNextFaithCost).style.color = "red";
+				document.getElementById(this.htmlNextFaithCost).style.color = lackResourceColor;
 			}
 			if(souls < this.curSoulCost && this.htmlNextSoulCost != 'none'){
-				document.getElementById(this.htmlNextSoulCost).style.color = "red";
+				document.getElementById(this.htmlNextSoulCost).style.color = lackResourceColor;
 			}
 			if(tomes < this.curTomeCost && this.htmlNextTomeCost != 'none'){
-				document.getElementById(this.htmlNextTomeCost).style.color = "red";
+				document.getElementById(this.htmlNextTomeCost).style.color = lackResourceColor;
 
 			}
 			if(mana < this.curManaCost && this.htmlNextManaCost != 'none'){
-				document.getElementById(this.htmlNextManaCost).style.color = "red";
+				document.getElementById(this.htmlNextManaCost).style.color = lackResourceColor;
 			}
 			return false;
 		}
@@ -210,25 +210,25 @@ Unit.prototype.checkReqUnit = function(){
 		}
 		else if(this.hasReqUnit === true && this.reqUnit.number < 1)
 		{
-			document.getElementById(this.htmlReqUnit).style.color = "red";
+			document.getElementById(this.htmlReqUnit).style.color = lackResourceColor;
 			return false;
 		}
 		else if(this.hasReqUnit === true && this.reqUnit.number >= 1)
 		{
-			document.getElementById(this.htmlReqUnit).style.color = "black";
+			document.getElementById(this.htmlReqUnit).style.color = haveResourceColor;
 			return true;
 		}
 };
 
 Unit.prototype.CostsToBlack = function(){
-	if(this.htmlNextGoldCost != 'none'){document.getElementById(this.htmlNextGoldCost).style.color = "black";}
-	if(this.htmlNextIronCost != 'none'){document.getElementById(this.htmlNextIronCost).style.color = "black";}
-	if(this.htmlNextSilverCost != 'none'){document.getElementById(this.htmlNextSilverCost).style.color = "black";}
-	if(this.htmlNextFaithCost != 'none'){document.getElementById(this.htmlNextFaithCost).style.color = "black";}
-	if(this.htmlNextSoulCost != 'none'){document.getElementById(this.htmlNextSoulCost).style.color = "black";}
-	if(this.htmlNextTomeCost != 'none'){document.getElementById(this.htmlNextTomeCost).style.color = "black";}
-	if(this.htmlNextManaCost != 'none'){document.getElementById(this.htmlNextManaCost).style.color = "black";}
-//	if(this.htmlReqUnit != 'none'){document.getElementById(this.htmlReqUnit).style.color = "black";}
+	if(this.htmlNextGoldCost != 'none'){document.getElementById(this.htmlNextGoldCost).style.color = haveResourceColor;}
+	if(this.htmlNextIronCost != 'none'){document.getElementById(this.htmlNextIronCost).style.color = haveResourceColor;}
+	if(this.htmlNextSilverCost != 'none'){document.getElementById(this.htmlNextSilverCost).style.color = haveResourceColor;}
+	if(this.htmlNextFaithCost != 'none'){document.getElementById(this.htmlNextFaithCost).style.color = haveResourceColor;}
+	if(this.htmlNextSoulCost != 'none'){document.getElementById(this.htmlNextSoulCost).style.color = haveResourceColor;}
+	if(this.htmlNextTomeCost != 'none'){document.getElementById(this.htmlNextTomeCost).style.color = haveResourceColor;}
+	if(this.htmlNextManaCost != 'none'){document.getElementById(this.htmlNextManaCost).style.color = haveResourceColor;}
+//	if(this.htmlReqUnit != 'none'){document.getElementById(this.htmlReqUnit).style.color = haveResourceColor;}
 };
 
 Unit.prototype.totalArmyPower = function(){
