@@ -9,7 +9,7 @@
     <link rel="icon" href="favicon.ico">
 
     <title>Holy Wars</title>
-	
+		
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 	
@@ -24,9 +24,10 @@
 	
 	<!--Tooltip CSS-->
 	<link href="dist/css/tooltip.css" rel="stylesheet">
-	
+
 	<!-- Custom styles for this template -->
 	<link href="dist/css/holywars.css" rel="stylesheet">
+	<link href="dist/css/floating-sidebar.css" rel="stylesheet">
 	
 	<!-- Other Imported scripts -->
     <script src="dist/assets/js/ie-emulation-modes-warning.js"></script>
@@ -36,8 +37,9 @@
 	<script src="dist/js/bootstrap-notify.js"></script>
 	<script src="dist/js/bootbox.min.js"></script>
 	<script src="dist/js/tooltip.js"></script>
-	
-	<script language="javascript"> 
+
+	<script language="javascript">
+		
 	function toggle(elementId) {
 		var ele = document.getElementById(elementId);
 		if(ele.style.display == "block") {
@@ -81,7 +83,7 @@
 
   </head>
 
-  <body>
+  <body class = 'day'>
 
 <div class="container">
 
@@ -114,19 +116,18 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li class = 'opt'><a id="displayResourceOpt" data-toggle="collapse" href="#Resources" aria-expanded="true" aria-controls="Resources"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Toggle Resources</a></li>
-				  <li class = 'opt'><a id="display2ResourceOpt" data-toggle="collapse" href="#SecondaryResources" aria-expanded="true" aria-controls="SecondaryResources"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Toggle Secondary Resources</a></li>
                   <li class = 'opt'><a id="displayGatheringOpt" data-toggle="collapse" href="#Gathering" aria-expanded="true" aria-controls="Gathering"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Toggle Clickables</a></li>
 				  <li class = 'opt'><a id="closeNotificationOpt" href="javascript: $.notifyClose();" aria-expanded="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close All Notifications</a></li>
 				  <li class = 'opt'><a id="ToggleTrunc" href="javascript:toggleTrunc();"><span class="glyphicon glyphicon-superscript" aria-hidden="true"></span> Number Format: Standard</a></li>
+				  <li class = 'opt'><a id="ToggleDN" href="javascript:toggleDayNight();"><span class="glyphicon glyphicon-adjust" aria-hidden="true"></span> Toggle Night Mode</a></li>
 				  <li class = 'opt'><a id="MobileTooltip" href="javascript:$( '.mobiletooltip' ).toggle();"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Toggle Mobile Tooltip </a></li>
 				  <li class = 'opt'><a id="RenameKingdom" href="javascript:renameKingdom();"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Rename Kingdom</a></li>
 				
-				  
-				  <!--				  <li><a id="UndefeatedOpt" href="javascript:CollapseAll(); toggle('Battle'); setLastPage('Battle'); showUndefeatedBattles();">Show Undefeated Enemies</a></li> -->
 				  <li class="divider"></li>
 				  <li class = 'opt'><a id="save" href="javascript:saveCookie();"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save</a></li>
-                  <li class = 'opt'><a id="load" href="javascript:loadCookie()"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Load</a></li>
+<!--                  <li class = 'opt'><a id="load" href="javascript:loadCookie()"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Load</a></li>-->
+				  <li class = 'opt'><a id="exportSave" href="javascript:exportSave()"><span class="glyphicon glyphicon-download" aria-hidden="true"></span>Export Save</a></li>
+				  <li class = 'opt'><a id="importSave" href="javascript:importSave()"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span>Import Save</a></li>
 <!--				  <li><a id="debugmoney" href="javascript:debugCurrency()">Add debugging currency</a></li> -->
                   <li class="divider"></li>
 				  <li class = 'opt'><a id="hardreset" href="javascript:hardReset()"><span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Hard Reset</a></li>
@@ -145,84 +146,111 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
-		
-	
-	  <div id="Resources" class="collapse in">
-		<div class = "well well-sm" id = "ResourcesWell">
-			<div id = "golddiv" rel="tooltip">
-				<img src = "images/money_goldsmall.png" Title="Gold" title ="" data-html="true" id="resgoldimage" >
-				Gold: <span id="gold">0</span>  <!--( <span id="goldpersec">0</span> gps)-->
-			</div>		
 
-			<div id = "wooddiv" rel="tooltip">
-				<img src = "images/woodsmall.png" Title="Wood" id="reswoodimage">
-				Wood: <span id="wood">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
-			</div>
+	  <!-- Custom Sidebar -->
+		<ul id=menu> 
+			<div id = "resourcepanel">
+				<div id = "golddiv" rel="tooltip">
+					<div class="col1"><img src = "images/money_goldsmall.png" Title="Gold" title ="" data-html="true" id="resgoldimage" > Gold:
+					</div>
+					<div class="col2"><span id="gold">0</span>  <!--( <span id="goldpersec">0</span> gps)-->
+					</div>
+				</div>
 
-			<div id = "irondiv" style="display: none;" rel="tooltip">
-				<img src = "images/ironsmall.png" Title="Iron" id="resironimage">
-				Iron: <span id="iron">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
-			</div>
-			
-			<div id = "coaldiv" style="display: none;" rel="tooltip">
-				<img src = "images/coalsmall.png" Title="Coal" id="rescoalimage"> 
-				Coal: <span id="coal">0</span>     
-			</div>			
-	
-			<div id = "faithdiv" style="display: none;" rel="tooltip">
-				<img src = "images/faithsmall.png" Title="Faith"  id="resfaithimage">
-				Faith: <span id="faith">0</span>   <!-- ( <span id="faithpersec">0</span> fps)-->
-			</div>
-	
-			<div id = "soulsdiv" style="display: none;" rel="tooltip">
-				<img src = "images/soulssmall.png" Title="Souls"  id="ressoulsimage">
-				Souls: <span id="souls">0</span>  <!-- ( <span id="soulspersec">0</span> sps)	-->	
-			</div>
-		
-			<div id = "manadiv" style="display: none;" rel="tooltip">
-				<img src = "images/manasmall.png" Title="Mana" id="resmanaimage">
-				Mana: <span id="mana">0</span>    <!--( <span id="manapersec">0</span> mps)	-->	
-			</div>
+				<div id = "wooddiv" rel="tooltip">
+					<div class="col1"><img src = "images/woodsmall.png" Title="Wood" id="reswoodimage"> Wood: 
+					</div>
+					<div class="col2"><span id="wood">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
+					</div>				
+				</div>
 
-		</div>
-	  </div>
-	  
-	  <div id="SecondaryResources" class="collapse">
-		<div class = "well well-sm" id = "SecondaryResourceWell">
-			<div id = "silverdiv" style="display: none;" rel="tooltip">
-				<img src = "images/silverOresmall.png" Title="Silver" id="ressilverimage"> 
-				Silver: <span id="silver">0</span>     
-			</div>
-			
-			<div id = "steeldiv" style="display: none;" rel="tooltip">
-			<img src = "images/steelsmall.png" Title="Silver" id="ressilverimage"> 
-				Steel: <span id="steel">0</span>     
-			</div>			
-			
-			<div id = "paperdiv" style="display: none;" rel="tooltip">
-				<img src = "images/parchmentsmall.png" Title="Paper" id="respaperimage">
-				Paper: <span id="paper">0</span>    
-			</div>
-			
-			<div id = "tomediv" style="display: none;" rel="tooltip">
-				<img src = "images/bookssmall.png" Title="Holy Tomes" id="restomeimage">
-				Tomes: <span id="tomes">0</span>    
-			</div>
+				<div id = "irondiv" style="display: none;" rel="tooltip">
+					<div class="col1"><img src = "images/ironsmall.png" Title="Iron" id="resironimage">	Iron: 
+					</div>
+					<div class="col2"><span id="iron">0</span>     <!-- ( <span id="ironpersec">0</span> ips)-->
+					</div>
+				</div>
 				
-			<div id = "armystrdiv" style="display: none;" rel="tooltip">
-			<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
-				<img src = "images/armsmall.png" Title="Army Power">
-				Army: <span id="BattlePower">0</span> 
+				<div id = "coaldiv" style="display: none;" rel="tooltip">
+					<div class="col1"><img src = "images/coalsmall.png" Title="Coal" id="rescoalimage"> Coal: 
+					</div>				
+					<div class="col2"><span id="coal">0</span> 
+					</div>				
+				</div>			
+
+				<div id = "faithdiv" style="display: none;" rel="tooltip">
+					<div class="col1"><img src = "images/faithsmall.png" Title="Faith"  id="resfaithimage"> Faith: 
+					</div>
+					<div class="col2"><span id="faith">0</span>   <!-- ( <span id="faithpersec">0</span> fps)-->
+					</div>
+				</div>
+
+				<div id = "soulsdiv" style="display: none;" rel="tooltip">
+					<div class="col1"><img src = "images/soulssmall.png" Title="Souls"  id="ressoulsimage"> Souls: 
+					</div>
+					<div class="col2"><span id="souls">0</span>  <!-- ( <span id="soulspersec">0</span> sps)	-->	
+					</div>
+				</div>
+
+				<div id = "manadiv" style="display: none;" rel="tooltip">
+					<div class="col1"><img src = "images/manasmall.png" Title="Mana" id="resmanaimage"> Mana: 
+					</div>
+					<div class="col2"><span id="mana">0</span>    <!--( <span id="manapersec">0</span> mps)	-->	
+					</div>
+				</div>
+			
+				<div id = "silverdiv" style="display: none;" rel="tooltip">
+					<div class="col1"><img src = "images/silverOresmall.png" Title="Silver" id="ressilverimage"> Silver: 
+					</div>
+					<div class="col2"><span id="silver">0</span> 
+					</div>
+				</div>
+				
+				<div id = "steeldiv" style="display: none;" rel="tooltip">
+					<div class="col1"><img src = "images/steelsmall.png" Title="Silver" id="ressilverimage"> Steel: 
+					</div>
+					<div class="col2"><span id="steel">0</span> 
+					</div>				
+				</div>			
+				
+				<div id = "paperdiv" style="display: none;" rel="tooltip">
+					<div class="col1"><img src = "images/parchmentsmall.png" Title="Paper" id="respaperimage"> Paper: 
+					</div>
+					<div class="col2"><span id="paper">0</span> 
+					</div>
+				</div>
+				
+				<div id = "tomediv" style="display: none;" rel="tooltip">
+					<div class="col1"><img src = "images/bookssmall.png" Title="Holy Tomes" id="restomeimage"> Tomes: 
+					</div>
+					<div class="col2"><span id="tomes">0</span> 
+					</div>				
+				</div>
+					
+				<div id = "armystrdiv" style="display: none;" rel="tooltip">
+				<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
+					<div class="col1"><img src = "images/armsmall.png" Title="Army Power"> Army: 
+					</div>
+					<div class="col2"><span id="BattlePower">0</span> 
+					</div>
+				</div>
+
+				<div id = "spiritarmystrdiv" style="display: none;" rel="tooltip">
+				<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
+					<div class="col1"><img src = "images/armsmall.png" Title="Army Power"> Spirit: 
+					</div>
+					<div class="col2"><span id="SpiritPower">0</span> 
+					</div>
+				</div>
 			</div>
-	
-			<div id = "spiritarmystrdiv" style="display: none;" rel="tooltip">
-			<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
-				<img src = "images/armsmall.png" Title="Army Power">
-				Spirit: <span id="SpiritPower">0</span> 
+			<div id="arrowpanel">
+				<div >
+					<input id="arrowbutton" type="image" src="images/3dtransparentarrow_long_right.png" id="minimize" onclick = "toggleResourcePanel()"/>
+				</div>
 			</div>
-		</div>
-	  </div>	  
-	  
+		</ul>
+
+
 	  <div id="Gathering" class="collapse in">
 		<div id = 'GatherListWell' class = "well well-sm">
 	
@@ -257,7 +285,7 @@
 		<div id="PeasantTab" class = "container">
 		<br />
 		<a id ="BtnPeasantDesc" tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover" data-trigger="focus" data-html="true" title="Peasants"
-    		data-content="";><img src = 'images/PeasCoin.png'> Peasants <span class='badge' id="peasants">0</span></a>
+    		data-content=""><img src = 'images/PeasCoin.png'> Peasants <span class='badge' id="peasants">0</span></a>
 		<br /><br />
 		<button id=btnbuyPeasant onclick="Peasant.buyOne()"	type="button" class="btn btn-default">Recruit Peasant</button>
 		<button id=btnPeasantUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PeasantUpgradeTab" aria-expanded="false" aria-controls="PeasantUpgradeTab">Upgrades</button>		
@@ -277,7 +305,7 @@
 
 		<div id="WoodcuttingTab" class = "container" style="display: none;">
 		<a id ="BtnLumberjackDesc" tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover" data-trigger="focus" data-html="true" title="Lumberjacks" 
-    		data-content="";><img src = 'images/axe.gif'>Lumberjacks <span class='badge' id="lumberjacks">0</span></a>
+    		data-content=""><img src = 'images/axe.gif'>Lumberjacks <span class='badge' id="lumberjacks">0</span></a>
 		<br /><br />
 		<button id=btnbuyLumberjack onclick="Lumberjack.buyOne()"	type="button" class="btn btn-default">Recruit Lumberjack</button>
 		<button id=btnLumberjackUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#LumberjackUpgradeTab" aria-expanded="false" aria-controls="LumberjackUpgradeTab">Upgrades</button>		
@@ -437,8 +465,8 @@
 				</div>
 			</div>
 			<hr>
-		</div>				
-		
+		</div>		
+
 		<div id="BishopTab" class = "container">
 		<a id = 'BtnBishopDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Bishops"
     		data-content="">Bishops <span class='badge' id="bishops">0</span></a>
@@ -683,20 +711,22 @@
 				<div id = "PMillUpgradeTab" class = "upgrade collapse" >
 					<div class = "well">
 						<div id = 'PMillUpgradeEffTab' class = 'container'> 
-							<button id=btnPmillEffUpgrade onclick="pmillEffUpgrade.buyUpgrade()"	type="button" class="btn btn-default" title = "Adjustments to your mills make them much more efficient at converting wood into paper. They require 40% less wood.">Process Control</button>
+							<button id='btnPmillEffUpgrade' onclick="pmillEffUpgrade.buyUpgrade()"	type="button" class="btn btn-default" title = "Adjustments to your mills make them much more efficient at converting wood into paper. They require 40% less wood.">Process Control</button>
 							<span class="glyphicon glyphicon-info-sign mobiletooltip" aria-hidden="true" title = "Adjustments to your mills make them much more efficient at converting wood into paper. They require 40% less wood." rel="tooltip"></span>
 							<br />	
 							<img src = "images/money_goldsmall.png" title ="Gold"><span id = 'pmillEffUpgradeGoldCost'>50,000</span> | <img src = "images/woodsmall.png" title = "Wood"><span id = 'pmillEffUpgradeWoodCost'>25,000</span> | <img src = "images/ironsmall.png" title="Iron"><span id = 'pmillEffUpgradeIronCost'>35,000</span>	
 						</div>
 						<br />
 						<div id = 'PMillUpgradeEff2Tab' class = 'container'> 
-							<button id=btnPmillEffUpgrade2 onclick="pmillEffUpgrade2.buyUpgrade()"	type="button" class="btn btn-default" title = "A total overhaul of the paper creation process halves the time needed for paper mills to produce paper.">Mass Overhaul</button>
+							<button id='btnPmillEffUpgrade2' onclick="pmillEffUpgrade2.buyUpgrade()"	type="button" class="btn btn-default" title = "A total overhaul of the paper creation process halves the time needed for paper mills to produce paper.">Mass Overhaul</button>
 							<span class="glyphicon glyphicon-info-sign mobiletooltip" aria-hidden="true" title = "A total overhaul of the paper creation process halves the time needed for paper mills to produce paper." rel="tooltip"></span>
 							<br />	
 							<img src = "images/money_goldsmall.png" title ="Gold" ><span id = 'pmillEffUpgrade2GoldCost'>1M</span> | <img src = "images/woodsmall.png" title = "Wood"><span id = 'pmillEffUpgrade2WoodCost'>1M</span> | <img src = "images/ironsmall.png" title="Iron"><span id = 'pmillEffUpgrade2IronCost'>1M</span> | <img src = "images/soulssmall.png" title="Souls"><span id = 'pmillEffUpgrade2SoulCost'>50,000</span>
-							<br />
+							<br /> 
 						</div>
-						<br />						
+
+						<br />
+
 						<div id = 'PMillUpgradeEff3Tab' class = 'container'> 
 							<button id='btnPmillEffUpgrade3' onclick="pmillEffUpgrade3.buyUpgrade()"	type="button" class="btn btn-default" title = "A little bit of magic and the help of a couple of shades further increases the efficency of your paper mills. Multiplies paper output by 1.5.">Shady Intervention</button>
 							<span class="glyphicon glyphicon-info-sign mobiletooltip" aria-hidden="true" title = "A little bit of magic and the help of a couple of shades further increases the efficency of your paper mills. Multiplies paper output by 1.5." rel="tooltip"></span>
@@ -704,6 +734,9 @@
 							<img src = "images/money_goldsmall.png" title ="Gold" ><span id = 'pmillEffUpgrade3GoldCost'>5M</span> | <img src = "images/woodsmall.png" title = "Wood"><span id = 'pmillEffUpgrade3WoodCost'>3M</span> | <img src = "images/ironsmall.png" title="Iron"><span id = 'pmillEffUpgrade3IronCost'>3M</span> | <img src = "images/soulssmall.png" title="Souls"><span id = 'pmillEffUpgrade3SoulCost'>2.5M</span> | <span id = 'pmillEffUpgrade3UnitCost'>25 shades</span>
 							<br />
 						</div>
+
+						<br />						
+						
 					</div>
 				</div>				
 		</div>
@@ -1202,7 +1235,7 @@
 
 		  <div class="panel panel-default" id="BatDwarf" style="display: none;">
 			<div class="panel-heading" role="tab" id="DwarfTitle">
-			  <h4 id = 'dwarfh4'  class="panel-title">
+			  <h4 id = 'dwarfh4'  class="panel-title battle">
 				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#DwarfCollapse" aria-expanded="false" aria-controls="DwarfCollapse">
 				  An Ancient Corrupted Dwarf
 				</a>
@@ -1685,248 +1718,8 @@
 	   </div>   
 	 </div>	
 
-
-
-	 <!---------------------------------------------- ALERTS SECTION  --------------------------------------------------------------------------->
-	<!--
-	<div id = 'alerts' type = 'container'>
-		<div id = 'openMillAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You can now <a href="javascript: toggle('openMillAlert');CollapseAll();toggle('Production')" class="alert-link">hire lumberjacks</a> to cut down trees for you!   
-		</div>	 
-	 
-		<div id = 'openMineAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You can now <a href="javascript: toggle('openMineAlert');CollapseAll();toggle('Production')" class="alert-link">hire miners</a> to mine minerals for you!   
-		</div>
-		
-		
-		<div id = 'openBarracksAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You can now <a href="javascript: toggle('openBarracksAlert');CollapseAll();toggle('Barracks')" class="alert-link">train</a> units to fight against the Evil One and his minions.   
-		</div>  
-		
-		<div id = 'openCommandPostAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You can now <a href="javascript: toggle('openCommandPostAlert');CollapseAll();toggle('CommandPost')" class="alert-link">upgrade</a> your own abilities and plan in the comfort of your new Command Post! 
-		</div> 		
-
-		<div id = 'goblinDefeatAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You chase the defeated horde of goblins back to their mound. They put up a last ditch effort, but your forces make quick work out of them. Inside their mound you find a stash of 2000 gold!   
-		</div>	
-		
-		<div id = 'paperMillAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> As your troops put the hermit out of her misery, you get a chance to take a look inside her hovel. A small stack of paper sits in the tray of an metal mechanism - more paper is scattered on the nearby desk, on which she has been 
-					been scrawling things that are completely illegible to you. You study her tools and are able to figure out how to <a href="javascript: toggle('paperMillAlert');CollapseAll();toggle('Structures')" class="alert-link">make your own paper</a>.
-		</div>			
-		<div id = 'openCathAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> The faithful flock to your beautiful <a href="javascript: toggle('openCathAlert');CollapseAll();toggle('Church')" class="alert-link">Church</a>.   
-		</div>
-
-		<div id = 'unlockCathAlert' class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> You successfully chase out the bandits raiding your village. While rifling through the leader's belongings, you find plans for an elaborate  <a href="javascript: toggle('unlockCathAlert');CollapseAll();toggle('Structures')" class="alert-link">Church</a>. 
-			 These bandits sure do have funny taste in loot. In a corner of the camp, you also find a portion of the gold that they have stolen from you.
-		</div>		
-		
-		<div id = 'unlockPaladinsAlert' class="alert alert-success alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> As the ogre flails around in his death throes, something falls from his loincloth and hits the floor. It's a grimy tome on how to train  <a href="javascript: toggle('unlockPaladinsAlert');CollapseAll();toggle('Barracks')" class="alert-link">Paladins!</a> It smells just like the ogre did, but at least it's useful.   
-		</div>	
-			
-		<div id = 'banditLootAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#saveAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Oh No!!</strong> Bandits come and raid <span id = "justStolen">0</span> gold from your gold supply! Maybe you should try <a href="javascript: toggle('banditLootAlert');CollapseAll();toggle('Battle')" class="alert-link">getting rid</a> of them?   
-		</div>		
-
-		<div id = 'hellhoundUnlockAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Oh No!!</strong> Your presence has not gone unnoticed - <a href="javascript: toggle('hellhoundUnlockAlert');CollapseAll();toggle('Battle')" class="alert-link">hellhounds</a> have been summoned by the Evil One's command to attack you.  
-		</div>	
-		
-		<div id = 'hellHoundAttackAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#hellHoundAttackAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Oh No!!</strong> The Evil One's hellhounds break through your defenses and kill <span id = "justKilled">0</span> of your <span id = "typeKilled">x</span>. Build up your strength and <a href="javascript: toggle('hellHoundAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">fight</a> them off!   
-		</div>		
-
-		<div id = 'UnitLossAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#UnitLossAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Oh No!!</strong>  <span id = 'unitlossstring'></span>
-		</div>		
-		
-		<div id = 'openEtherealAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> After the hellhounds explode in a cloud of blood and fire, you sift through their charred remains. You discover a grotesquely carved collar, 
-								 from which dangles a skull-shaped tag. On back side  When you arrive at the marked destination on the map, you realize there is a 
-								 almost <a href="javascript: toggle('openEtherealAlert');CollapseAll();toggle('Ethereal')" class="alert-link">otherworldly tear</a> floating in front of you.   
-		</div>	
-
-		<div id = 'PixieDefeatAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> The pixie dissolves into a pile of glittering dust. Your priests decide to scoop her remains into a bottle for further study.				
-		</div>			
-		
-		<div id = 'unlockAspectofJustice' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> The armor abruptly drops to the floor with a clatter. One of your more curious shades floats into the armor pieces, levitating them around the room. It gives you a new idea on how to make your shades <a href="javascript: toggle('unlockAspectofJustice');CollapseAll();toggle('Ethereal')" class="alert-link">stronger.</a>	
-		</div>			
-		
-		<div id = 'unlockWizardTowerAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> Your forces corner the Archmage. He has run out of mana but still tries to curse you anyway. A few feeble sparks
-					sputter from his fingertips, but nothing happens. One of your paladins has been studying purification techniques, and performs
-					the ritual on the Archmage. After a few minutes, the Archmage's complexion takes on a healthier glow, and he awakens.
-					He thanks you for removing him from the control of The Evil One, and offers to join your forces. 
-					The Archmage suggests you build him a <a href="javascript: toggle('unlockWizardTowerAlert');CollapseAll();toggle('Structures')" class="alert-link">tower</a>
-					where he can channel his energies.   
-		</div>
-
-		<div id = 'builtTowerAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> Using massive amounts of resources, you build the Archmage the <a href="javascript: toggle('builtTowerAlert');CollapseAll();toggle('Magic')" class="alert-link">tower</a>
-					where he can cast magic to help your forces.
-		</div>
-		
-		
-		<div id = 'OozeAttackAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
-			<strong>Oh No!!</strong> A nasty ooze burbles up from inside of your mine and engulfs <span id = 'absorbedAmount'>0</span> of your <span id = "absorbedType">x type</span>! 
-			It's going to be a <a href="javascript: toggle('OozeAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">sticky fight</a>, but if you don't get rid of it it will absorb all of your minerals.  
-		</div>		
-
-		<div id = 'tomeUnlockAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> With an ominous blurp, whatever was animating the ooze comes to a slurpy halt. Although the ore that it has absorbed is now useless, you come to realize that that vast quantity of ooze now own is great for gluing together your paper to make books! Maybe <a href="javascript: toggle('tomeUnlockAlert'); CollapseAll(); toggle('Church');" class="alert-link">someone</a> knows what to do with these...
-		</div>
-
-		<div id = 'DwarfDefeatAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> The dwarf coughs and the ire fades from his eyes. After a few moments gathering his composure, the dwarf offers to use his skills and tools to<a href="javascript: toggle('DwarfDefeatAlert'); CollapseAll(); toggle('Relics');" class="alert-link">identify relics</a> for you.
-		</div>		
-		
-		<div id = 'EvilOneIreAlert' class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Uh oh...</strong> Having defeated one of The Evil One's valued lieutenants, you realize that things are going to heat up from here. 
-					Your intuition is confirmed when a winged demon flies into your kingdom and issues a dire warning letting you know that The Evil
-					One going to destroy you and is sending more of his lieutenants your way.
-		</div>
-		
-		<div id = 'SuccubusAttackAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
-			<strong>Oh No!!</strong> The Evil One's paramour, the Succubus magically appears in the cover of the night... she seduces one of your <span id = "seducedUnitType">x type</span>s! 
-					They are returned the next day but cannot function as their previous role and have to be retrained from a <span id = "previousUnitType"></span>.
-					You better get <a href="javascript: toggle('SuccubusAttackAlert');CollapseAll();toggle('Battle')" class="alert-link">get rid</a> of her before she decimates your entire army.  
-		</div>
-
-		<div id = 'SuccubusDefeatAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<strong>New!</strong> Even in death, the succubus jiggles in a most appealing manner, but that doesn't stop you from ending her 
-					reign of seductive terror. Your paladins attempt to purify her as they did with the Archmage, causing her to writhe around
-					in pain. Her wings transition from leathery to feathery, and her horns recede into her head. It turns out the succubus was
-					actually an angel! The injuries she has sustained in her battle with you are fatal, and none of your people are able to
-					close the angel grievous wounds. She feebly beckons for you to come closer, and when you do, she presses an ancient relic
-					into your hand. "... please defeat Him...", she whispers. Her body fades and dissolves into a million tiny glittering lights
-					that float gently up into the sky. Her demise only deepens your resolve to defeat The Evil One. Your priests take the relic
-					and place it <a href="javascript: toggle('SuccubusDefeatAlert');CollapseAll();toggle('Church')" class="alert-link">on a pedestal</a> in the Church.
-		</div>			
-		<div id = 'RelicHalfAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#RelicHalfAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> The relic begins to glow slightly, and you swear you can hear a humming noise emanating from deep within.
-		</div>
-		<div id = 'RelicAlmostAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#RelicAlmostAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> "The glowing from the relic intensifies, and now there is a slight shimmering around the surface! Just a little more, something is about to happen!"
-		</div>		
-		
-		<div id = 'AngelUnlockAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<strong>New!</strong> The relic is overflowing with the faith! It starts to vibrate violently, and you decide the most prudent thing to do is to take it outside.
-					Just as you step foot outside the Church doors, flies out of your hands and hovers before you. You can literally feel the hum of power as the relic
-					emits a brilliant beam of light that shoots into the heavens. You watch as the skies are turned a vibrant gold.. all of the faith that was 
-					used to empower the relic opens up a <a href="javascript: toggle('AngelUnlockAlert');CollapseAll();toggle('Ethereal')" class="alert-link">divine gate</a>.
-					The gate is directly above your Church, but you swear you can see winged beings flapping just beyond the shimmering portal.
-		</div>			
-		<div id = 'UArmyDefeatAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#UArmyDefeatAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> <span id = "UADefeatMessage"></span>
-		</div>
-
-		<div id = 'UArmyReviveAlert' class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#UArmyReviveAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>What the!</strong> The moaning returns! While you are in the middle of ordering a scout to check the location you buried the undead army, a lookout comes
-					running into your quarters tells you that the undead army has risen and is marching on your kingdom <a href="javascript: toggle('UArmyReviveAlert');CollapseAll();toggle('Battle')" class="alert-link">again!</a>
-		</div>	
-
-		<div id = 'UArmyReviveAlert' class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#UArmyReviveAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>What the!</strong> The moaning returns! While you are in the middle of ordering a scout to check the location you buried the undead army, a lookout comes
-					running into your quarters tells you that the undead army has risen and is marching on your kingdom <a href="javascript: toggle('UArmyReviveAlert');CollapseAll();toggle('Battle')" class="alert-link">again!</a>
-		</div>			
-
-		<div id = 'NecroDefeatAlert' class="alert alert-info alert-dismissible fade in" role="alert" style="display: none;">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>New!</strong> Blah blah blah necromancer dies! You notice strange fluxuations in the surroundings.... The earth shakes, wind howls, water boils, fire blazes almost out of control. You can feel there is something terribly wrong.				
-		</div>	
-
-		<div id = 'TimeWarpAlert' class="alert alert-success fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#TimeWarpAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong><img src='images/stopwatch.png'>Time Warp!</strong> <span id = 'timeWarpAlertString'></span>  
-		</div>		
-
-		<div id = 'FireBallAlert' class="alert alert-success fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#FireBallAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong><img src='images/fireball.png'>Fire Ball!</strong> <span id = 'fireBallAlertString'></span>  
-		</div>
-
-		<div id = 'FireBallFailAlert' class="alert alert-danger fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#FireBallFailAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Fire Ball Fizzles!</strong> You are not in a battle! Your archmage declines to cast fireballs at nothing.
-		</div>			
-		
-		<div id = 'sendQuestAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#sendQuestAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Questing!</strong> <span id = 'questAlertString'></span>
-		</div> 
-
-		<div id = 'goldQuestFinishAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#goldQuestFinishAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Quest Finished!</strong> <span id = 'questFinishAlertString'></span>
-		</div>
-
-		<div id = 'woodQuestFinishAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#woodQuestFinishAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Quest Finished!</strong> <span id = 'questWoodFinishAlertString'></span>
-		</div> 			
-		
-		<div id = 'ironQuestFinishAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#ironQuestFinishAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Quest Finished!</strong> <span id = 'questIronFinishAlertString'></span>
-		</div> 			
-
-		<div id = 'silverQuestFinishAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#silverQuestFinishAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Quest Finished!</strong> <span id = 'questSilverFinishAlertString'></span>
-		</div>
-		
-		<div id = 'soulsQuestFinishAlert' class="alert alert-info fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#soulsQuestFinishAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Quest Finished!</strong> <span id = 'questSoulsFinishAlertString'></span>
-		</div>		
-		
-		<div id = 'saveAlert' class="alert alert-success fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#saveAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Save!</strong> Your game has been saved!   
-		</div>
-		<div id = 'loadAlert' class="alert alert-success fade in" role="alert" style="display: none;">
-			<button type="button" class="close" onclick = "$('#loadAlert').hide()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<strong>Load!</strong> Your game save has been loaded!   
-		</div> 	
-		-->
-		
-	</div> <!-- End Alert Container -->
  </div> <!-- /container -->
 		
-
-	
 	
 	<!-- About Modal -->
 	<div class="modal fade" id="aboutmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -1955,7 +1748,7 @@
 	  </div>
 	</div>
 
-	<div class="modal fade" id="statmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="height:100%;overflow:auto;>
+	<div class="modal fade" id="statmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 		<div class="modal-content">
 		  <div class="modal-header">
@@ -1986,8 +1779,8 @@
 			Iron Collected this game: <img src = "images/ironsmall.png" title="Iron"><span id= "statIronCollected">0</span><br /> <br />
 
 			<h4>Coal</h4>
-			Lifetime Coal Collected: <img src = "images/coalsmall.png" title="Iron"><span id= "statTotalCoalCollected">0</span><br />
-			Coal Collected this game: <img src = "images/coalsmall.png" title="Iron"><span id= "statCoalCollected">0</span><br /> <br />		
+			Lifetime Coal Collected: <img src = "images/coalsmall.png" title="Coal"><span id= "statTotalCoalCollected">0</span><br />
+			Coal Collected this game: <img src = "images/coalsmall.png" title="Coal"><span id= "statCoalCollected">0</span><br /> <br />		
 
 			<h4>Steel</h4>
 			Lifetime Steel Collected: <img src = "images/steelsmall.png" title="Steel"><span id= "statTotalSteelCollected">0</span><br />
@@ -2062,7 +1855,11 @@
 
 			<h4>Priests</h4>
 			Priests trained this game: <span id= "statPriestsTrained">0</span><br />
-			Lifetime Priests trained: <span id = "statTotalPriestsTrained">0</span><br /><br />			
+			Lifetime Priests trained: <span id = "statTotalPriestsTrained">0</span><br /><br />		
+
+			<h4>Scribes</h4>
+			Scribes trained this game: <span id= "statScribesTrained">0</span><br />
+			Lifetime Scribes trained: <span id = "statTotalScribesTrained">0</span><br /><br />						
 			
 			<h4>Bishops</h4>
 			Bishops trained this game: <span id= "statBishopsTrained">0</span><br />
@@ -2128,6 +1925,7 @@
 	</div>		
 	
 	<script type ="text/javascript">
+				
 		function CollapseAll(){
 			document.getElementById("Battle").style.display = "none";
 			document.getElementById("Relics").style.display = "none";

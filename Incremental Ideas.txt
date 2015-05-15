@@ -119,6 +119,12 @@ http://bootstrap-growl.remabledesigns.com/
 //Animate
 http://daneden.github.io/animate.css/
 
+//saveload export
+http://pervasivecode.blogspot.com/2011/07/html5-transferring-localstorage-data.html
+
+//Tiles for battle/achievements?
+http://www.drewgreenwell.com/projects/metrojs#fiddleAround
+
 
 Issues:
 ========================

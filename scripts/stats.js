@@ -52,6 +52,9 @@ var statTavernMinersHired = 0;
 var statTotalTavernMinersHired = 0;
 var statTotalMinersHired = 0;
 
+var statCoalMinersHired = 0;
+var statTotalCoalMinersHired = 0;
+
 var statLumberjacksHired = 0;
 var statSelfLumberjacksHired = 0;
 var statTotalSelfLumberjacksHired = 0;

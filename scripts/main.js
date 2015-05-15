@@ -82,7 +82,7 @@ var DayNight = 'Day';
 var offwhite = '#DBDBDB'
 var lackResourceColor = 'red';
 var haveResourceColor = 'black';
-var gameVer = 0.7;
+var gameVer = '0.7.1';
 var gameSaveVer;
 
 function clickThing(number, type)

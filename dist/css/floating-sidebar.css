@@ -1,0 +1,51 @@
+#menu {
+  position: fixed;
+  right: 0;
+  top: 30%;
+  width: auto;
+  margin: -2.5em 0 0 0;
+  z-index: 5;
+  background: hsla(293, 100%, 14%, 0.32);
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+  border: solid hsla(293, 100%, 14%, 0.32);
+  border-right: none;
+  padding: 1.0em 0em 1.0em 0em;
+  box-shadow: 0 1px 3px black;
+  border-radius: 3em 0.5em 0.5em 3em;
+}
+
+#menu:hover{
+	background: hsla(293, 100%, 14%, 1);
+}
+
+#resourcepanel {
+	float: right;
+	width: 10.5em;
+	margin: 5px 20px 5px 0px;
+	display: ;
+}
+
+#arrowpanel {
+	padding:10% 0;
+	float: left;
+	width: 5em;
+	margin: 5px 2px 5px 0px;
+}
+
+#arrowpanel input{
+  outline: 0;
+}
+
+#arrowbutton{
+	
+}
+
+.col1{
+	display: inline-block;
+}
+.col2{
+	display: inline-block;
+	float: right;
+}

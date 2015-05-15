@@ -246,15 +246,15 @@ width: auto;
 
 .achievement{
 padding-top: 0px;
-margin-left: 10px;
-width: auto;
+margin-left: 1em;
+width: 95%;
 color: gray;
 }
 
 .achievementearned{
 padding-top: 0px;
-margin-left: 10px;
-width: auto;
+margin-left: 1em;
+width: 95%;
 color: black;
 }
 
@@ -307,4 +307,84 @@ display: none;
 
 legend{
 width: 75%
+}
+
+/*
+  #DBDBDB =  Off White
+*/
+
+.day {
+  color: black;
+  background-color: white;
+}
+
+.night {
+  color: #DBDBDB;
+  background-color: #181818 ;
+}
+
+.day #content {
+  color: blue;
+}
+
+.night .panel{
+ background-color: gray;
+}
+
+.night .panel-default{
+background-color:#282828;
+}
+
+.night .panel-group{
+background-color:#282828;
+}
+
+.night .panel-heading{
+ background-color: black;
+ color: #DBDBDB;
+}
+
+.night .panel-title{
+ background-color: black;
+}
+
+.night .well{
+ background-color: #282828;
+}
+
+.night .navbar{
+ background-color: black;
+}
+
+.night .popover{
+background-color: black;
+color:gray;
+}
+
+.night .popover-title{
+background-color: #282828;
+color: #DBDBDB;
+}
+
+.night .btn-primary{
+  background-color: #000099;
+}
+
+.night .badge{
+  background-color: #0066CC;
+  color: #DBDBDB;
+}
+
+.night .achievement{
+color: gray;
+}
+
+.night .achievementearned{
+
+color: white;
+}
+
+
+.night .legend{
+  color: #DBDBDB;
 }

@@ -3,7 +3,15 @@
 	var myBool;
 	
 	function save(key, value){
-		localStorage.setItem(key, value);
+		if(value !== value){
+			console.log(key + ' is NaN, setting value to 0.');
+			eval(key + ' = 0');
+			localStorage.setItem(key, 0);
+		}
+		else{
+			localStorage.setItem(key, value);			
+		}
+		
 	}
 
 	function saveCookie(){
@@ -286,22 +294,7 @@
 		save("ach1MGold",ach1MGold);
 		save("ach1BGold",ach1BGold);
 		save("ach1TGold",ach1TGold);	
-		
-/* 		document.getElementById('saveAlert').style.display = "block";  //Displays saved alert
-		
-		//Dismisses Save Alert
-		var ticker = 0 ;
-		var clearSave = setInterval(function() {
-			ticker = ticker + 1;   
-		  if (ticker == 5){
-			clearInterval(clearSave);
-			if(document.getElementById('saveAlert').style.display == "block"){
-				document.getElementById("saveAlert").style.display = "none";
-			}	
-		  }
-		}, 1000);	
-	    //End Dismisses Save Alert */
-	
+			
 		
 		var notify = $.notify({
 			icon: 'glyphicon glyphicon-floppy-disk',
@@ -1177,8 +1170,8 @@
 				if(localStorage.gameSaveVer !== null){
 					gameSaveVer = localStorage.gameSaveVer;
 					console.log("Save version: " + gameSaveVer);
-					if(gameSaveVer < gameVer || gameSaveVer === ''){
-						alert("The game save data you have came from a previous version of the game, and in order to get the best experience, a hard reset is in order. Apologies for the inconvenience!");
+					if(gameSaveVer.substring(0,3) < gameVer.substring(0,3) || gameSaveVer === ''){			//Uses major version as metric for reset
+						alert("The game save data you have came from a too old previous version of the game, and in order to get the best experience, a hard reset is in order. Apologies for the inconvenience!");
 							deleteCookie();
 							location.reload(true);
 					}
@@ -1682,29 +1675,12 @@
 			}			
 			//End Statistics Page variables loaded
 			
+
+			document.getElementById('verinfo').innerHTML = "<span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> Version " + gameVer;
+
 			recalculateCosts();
 			QuestCheckUnitOptions();
 			
-	//		setTimeout(function() { showUndefeatedBattles(); }, 1000)
-	//		showUndefeatedBattles();
-			
-
-	//			console.log("Save loaded.");
-	//			console.log(Math.round((Date.now()-saveTime)/1000) + ' seconds since last save');	
-	//			document.getElementById('loadAlert').style.display = "block";  //Displays load alert
-				
-	/* 			//Dismisses load Alert
-				var ticker = 0 ;
-				var clearSave = setInterval(function() {
-					ticker = ticker + 1;   
-				  if (ticker == 3){
-					clearInterval(clearSave);
-					if(document.getElementById('loadAlert').style.display == "block"){
-						document.getElementById("loadAlert").style.display = "none";
-					}	
-				  }
-				}, 1000);	
-				//End Dismisses load Alert	 */	
 
 			$.notify({
 				icon: 'glyphicon glyphicon-download-alt',
@@ -1975,10 +1951,39 @@ function loadScenario(number){
 }
 
 
+
+function xor_str(input)
+{
+	var to_enc = input;
+
+	var xor_key = 6;
+	var the_res="";//the result will be here
+	for(i=0;i<to_enc.length;++i)
+	{
+		the_res+=String.fromCharCode(xor_key^to_enc.charCodeAt(i));
+	}
+	return(the_res);
+}
+
+function decrypt_str(input)
+{
+	var to_dec = input
+	var the_res = "";
+	
+
+	var xor_key=6;
+	for(i=0;i<to_dec.length;i++)
+	{
+		the_res+=String.fromCharCode(xor_key^to_dec.charCodeAt(i));
+	}
+	return the_res;
+}
+
+
 function exportSave(){
-var storage = JSON.stringify(localStorage);
+var storage = xor_str(JSON.stringify(localStorage));
 	bootbox.prompt({
-	  title: "Paste your savedata here",
+	  title: "Copy and save your export somewhere safe!",
 	  value: storage,
 	  callback: function(storage) {
 		if (storage === "") {
@@ -1992,15 +1997,16 @@ var storage = JSON.stringify(localStorage);
 
 var storage;
 function importSave(){
-var input = "PASTE SAVEDATA HERE";
+var input = "";
 
 	bootbox.prompt({
-	  title: "Paste your savedata here",
+	  title: "Paste your savedata here: ",
 	  value: input,
 	  callback: function(input) {
 		if (input === "") {
 			alert('invalid save data');
 		} else {
+			input = decrypt_str(input);
 //				for (var name in storage) { localStorage.setItem(name, storage[name] ); }
 			eval ('storage = ' + input);
 			console.log(storage);
