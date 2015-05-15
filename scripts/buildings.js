@@ -171,7 +171,10 @@ Building.prototype.buy = function(){
 					minesOpened = true;
 					document.getElementById('irondiv').style.display = "block";
 					document.getElementById('Mining').style.display = "block";
-//					document.getElementById('openMineAlert').style.display = "block";	
+					document.getElementById('OpenBarracksTab').style.display = "block";
+					document.getElementById('OpenCommandPostTab').style.display = "block";
+					document.getElementById('buildForgeTab').style.display = "block";
+
 					var minesOpenedAlert;
 					minesOpenedAlert = $.notify({
 						title: "<strong>New!</strong> ",

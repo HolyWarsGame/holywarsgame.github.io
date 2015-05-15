@@ -3,7 +3,7 @@
 	var myBool;
 	
 	function save(key, value){
-		if(value !== value){
+		if(value !== value){		//Best way to check for NaN atm
 			console.log(key + ' is NaN, setting value to 0.');
 			eval(key + ' = 0');
 			localStorage.setItem(key, 0);
@@ -432,6 +432,9 @@
 					minesOpened = true;
 					document.getElementById('irondiv').style.display = "block";
 					document.getElementById("Mining").style.display = "block";
+					document.getElementById('OpenBarracksTab').style.display = "block";
+					document.getElementById('OpenCommandPostTab').style.display = "block";
+					document.getElementById('buildForgeTab').style.display = "block";					
 				}
 			}		
 
