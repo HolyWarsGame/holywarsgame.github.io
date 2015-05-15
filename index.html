@@ -287,7 +287,10 @@
 		<a id ="BtnPeasantDesc" tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover" data-trigger="focus" data-html="true" title="Peasants"
     		data-content=""><img src = 'images/PeasCoin.png'> Peasants <span class='badge' id="peasants">0</span></a>
 		<br /><br />
-		<button id=btnbuyPeasant onclick="Peasant.buyOne()"	type="button" class="btn btn-default">Recruit Peasant</button>
+		<div class="btn-group" role="group" aria-label="...">
+			<button id=btnbuyPeasant onclick="Peasant.buyOne()"	type="button" class="btn btn-default">Recruit Peasant</button>
+			<button id=btnbuyPeasant10 onclick="Peasant.buyTen()"	type="button" class="btn btn-default">x10</button>
+		</div>
 		<button id=btnPeasantUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PeasantUpgradeTab" aria-expanded="false" aria-controls="PeasantUpgradeTab">Upgrades</button>		
 		<br />
 		 <img src = "images/money_goldsmall.png" title ="Gold" > <span id="PeasantCost">50</span> 
@@ -307,7 +310,10 @@
 		<a id ="BtnLumberjackDesc" tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover" data-trigger="focus" data-html="true" title="Lumberjacks" 
     		data-content=""><img src = 'images/axe.gif'>Lumberjacks <span class='badge' id="lumberjacks">0</span></a>
 		<br /><br />
-		<button id=btnbuyLumberjack onclick="Lumberjack.buyOne()"	type="button" class="btn btn-default">Recruit Lumberjack</button>
+		<div class="btn-group" role="group" aria-label="...">
+			<button id=btnbuyLumberjack onclick="Lumberjack.buyOne()"	type="button" class="btn btn-default">Recruit Lumberjack</button>
+			<button id=btnbuyLumberjack10 onclick="Lumberjack.buyTen()"	type="button" class="btn btn-default">x10</button>
+		</div>
 		<button id=btnLumberjackUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#LumberjackUpgradeTab" aria-expanded="false" aria-controls="LumberjackUpgradeTab">Upgrades</button>		
 		<br />
 		 <img src = "images/money_goldsmall.png" title ="Gold" > <span id="LumberjackCost">150</span>
@@ -327,7 +333,10 @@
 		<a id = 'BtnMinerDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Miners"
     		data-content="">Miners <span class='badge' id="miners">0</span></a>	
 			<br /><br />
-			<button id=btnbuyMiner onclick="Miner.buyOne()"	type="button" class="btn btn-default">Hire Miner</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnbuyMiner onclick="Miner.buyOne()"	type="button" class="btn btn-default">Hire Miner</button>
+				<button id=btnbuyMiner10 onclick="Miner.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnMinerUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#MinerUpgradeTab" aria-expanded="false" aria-controls="MinerUpgradeTab">Upgrades</button>
 			<br />
 			 <img src = "images/money_goldsmall.png" title ="Gold" > <span id="MinerCost">250</span> 
@@ -357,7 +366,10 @@
 		<a id = 'BtnCoalMinerDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Coal Miners"
     		data-content="">Coal Miners <span class='badge' id="coalminers">0</span></a>	
 			<br /><br />
-			<button id=btnbuyCoalMiner onclick="CoalMiner.buyOne()"	type="button" class="btn btn-default">Specialize Miner</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnbuyCoalMiner onclick="CoalMiner.buyOne()"	type="button" class="btn btn-default">Specialize Miner</button>
+				<button id=btnbuyCoalMiner10 onclick="CoalMiner.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnCoalMinerUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#CoalMinerUpgradeTab" aria-expanded="false" aria-controls="CoalMinerUpgradeTab">Upgrades</button>
 			<br />
 			 <img src = "images/money_goldsmall.png" title ="Gold" > <span id="CoalMinerCost">40,000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="CoalMinerIronCost">20,000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="CoalMinerSilverCost">15,000</span> | <span id = "coalMinerReqUnit">1 miner</span>
@@ -396,7 +408,10 @@
 		<a id = 'BtnAcolyteDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Acolytes"
     		data-content="">Acolytes <span class='badge' id="acolytes">0</span></a>
 			<br /><br />
-			<button id=btnbuyAcolyte onclick="Acolyte.buyOne()"	type="button" class="btn btn-default">Recruit Acolyte</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnbuyAcolyte onclick="Acolyte.buyOne()"	type="button" class="btn btn-default">Recruit Acolyte</button>
+				<button id=btnbuyAcolyte10 onclick="Acolyte.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnAcolyteUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#AcolyteUpgradeTab" aria-expanded="false" aria-controls="AcolyteUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="AcolyteCost">500</span>
@@ -418,7 +433,10 @@
 		<a id = 'BtnPriestDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Priests"
     		data-content="">Priests <span class='badge' id="priests">0</span></a>
 			<br /><br />
-			<button id=btnbuyPriest onclick="Priest.buyOne()"	type="button" class="btn btn-default">Train Priest</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnbuyPriest onclick="Priest.buyOne()"	type="button" class="btn btn-default">Train Priest</button>
+				<button id=btnbuyPriest10 onclick="Priest.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnPriestUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PriestUpgradeTab" aria-expanded="false" aria-controls="PriestUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="PriestCost">1000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="PriestSilverCost">10</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="PriestFaithCost">50</span> | <span id = 'PriestReqUnit'>1 acolyte<span>
@@ -426,7 +444,6 @@
 			<div id ="PriestUpgradeTab" class = "upgrade collapse">
 				<div class = "well">
 					<br />
-					
 					<div class = 'container'>
 					<button id=btnPriestUpgrade1 onclick="priestUpgrade1.buyUpgrade()"	type="button" class="btn btn-default" title = "Your priests carve rosary beads out of wood. The beads allow them to focus on the divine with more clarity. Doubles priest faith generation rate.">Rosary Beads</button>
 					<span class="glyphicon glyphicon-info-sign mobiletooltip" aria-hidden="true" title = "Your priests carve rosary beads out of wood. The beads allow them to focus on the divine with more clarity. Doubles priest faith generation rate." rel="tooltip"></span>
@@ -450,7 +467,10 @@
 		<a id = 'BtnScribeDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Scribes"
     		data-content="">Scribes <span class='badge' id="scribes">0</span></a>
 			<br /><br />
-			<button id=btnbuyScribe onclick="Scribe.buyOne()"	type="button" class="btn btn-default">Train Scribe</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnbuyScribe onclick="Scribe.buyOne()"	type="button" class="btn btn-default">Train Scribe</button>
+				<button id=btnbuyScribe10 onclick="Scribe.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnScribeUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#ScribeUpgradeTab" aria-expanded="false" aria-controls="ScribeUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="ScribeCost">1000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="ScribeSilverCost">10</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="ScribeFaithCost">50</span> | <img src = "images/bookssmall.png" Title="Tomes"> <span id="ScribeTomeCost">1</span>  | <span id = 'ScribeReqUnit'>1 Priest<span>
@@ -471,7 +491,10 @@
 		<a id = 'BtnBishopDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Bishops"
     		data-content="">Bishops <span class='badge' id="bishops">0</span></a>
 			<br /><br />
-			<button id=btnbuyBishop onclick="Bishop.buyOne()"	type="button" class="btn btn-default">Train Bishop</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnbuyBishop onclick="Bishop.buyOne()"	type="button" class="btn btn-default">Train Bishop</button>
+				<button id=btnbuyBishop10 onclick="Bishop.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnBishopUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#BishopUpgradeTab" aria-expanded="false" aria-controls="BishopUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="BishopCost">75000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="BishopSilverCost">10000</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="BishopFaithCost">5000</span> | <img src = "images/bookssmall.png" Title="Tomes"> <span id="BishopTomeCost">10</span> | <span id = 'BishopReqUnit'>1 Priest</span>
@@ -501,7 +524,10 @@
 		<a id = 'BtnPageDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Pages"
     		data-content="">Pages <span class='badge' id="personPage">0</span></a>
 			<br /><br />
-			<button id=btnBuyPage onclick="Page.buyOne()"	type="button" class="btn btn-default">Train Page</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnBuyPage onclick="Page.buyOne()"	type="button" class="btn btn-default">Train Page</button>
+				<button id=btnBuyPage10 onclick="Page.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PageUpgradeTab" aria-expanded="false" aria-controls="PageUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="PageCost">500</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="PageIronCost">100</span>
@@ -525,7 +551,10 @@
 		<a id = 'BtnSquireDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Squires"
     		data-content="">Squires <span class='badge' id="squires">0</span></a>
 			<br /><br />
-			<button id=btnBuySquire onclick="Squire.buyOne()"	type="button" class="btn btn-default">Promote Squire</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnBuySquire onclick="Squire.buyOne()"	type="button" class="btn btn-default">Promote Squire</button>
+				<button id=btnBuySquire10 onclick="Squire.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnSquireUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#SquireUpgradeTab" aria-expanded="false" aria-controls="SquireUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="SquireCost">1200</span> | <img src = "images/ironsmall.png" title="Iron"> <span id = "SquireIronCost">250</span> | <span id = 'SquireReqUnit'>1 Page</span>
@@ -549,7 +578,10 @@
 		<a id = 'BtnKnightDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Knights"
     		data-content="">Knights <span class='badge' id="knights">0</span></a>
 			<br /><br />
-			<button id=btnBuyKnight onclick="Knight.buyOne()"	type="button" class="btn btn-default">Promote Knight</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnBuyKnight onclick="Knight.buyOne()"	type="button" class="btn btn-default">Promote Knight</button>
+				<button id=btnBuyKnight10 onclick="Knight.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnKnightUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#KnightUpgradeTab" aria-expanded="false" aria-controls="KnightUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="KnightCost">3000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id= "KnightIronCost">350</span> | <span id = 'KnightReqUnit'>1 Squire</span>
@@ -566,7 +598,10 @@
 		<a id = 'BtnPaladinDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Paladins"
     		data-content="">Paladins <span class='badge' id="paladins">0</span></a>
 			<br /><br />
-			<button id=btnBuyPaladin onclick="Paladin.buyOne()"	type="button" class="btn btn-default">Train Paladin</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnBuyPaladin onclick="Paladin.buyOne()"	type="button" class="btn btn-default">Train Paladin</button>
+				<button id=btnBuyPaladin10 onclick="Paladin.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnPageUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#PaladinUpgradeTab" aria-expanded="false" aria-controls="PaladinUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="PaladinCost">10,000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="PaladinIronCost">500</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="PaladinSilverCost">50</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="PaladinFaithCost">100</span> | <span id = 'PaladinReqUnit'>1 Knight</span>
@@ -600,7 +635,10 @@
 		<a id = 'BtnShadeDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Shades"
     		data-content="">Shades <span class='badge' id="shades">0</span></a>
 			<br /><br />
-			<button id=btnBuyShade onclick="Shade.buyOne()"	type="button" class="btn btn-default">Summon Shade</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnBuyShade onclick="Shade.buyOne()"	type="button" class="btn btn-default">Summon Shade</button>
+				<button id=btnBuyShade10 onclick="Shade.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnShadeUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#ShadeUpgradeTab" aria-expanded="false" aria-controls="ShadeUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="ShadeCost">10,000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id = "shadeSilverCost">250</span> | <img src = "images/soulssmall.png" title="Souls"> <span id="shadeSoulCost">200</span>
@@ -621,7 +659,10 @@
 		<a id = 'BtnAspectDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Aspect of Justice"
     		data-content="">Aspect of Justices <span class='badge' id="aspects">0</span></a>
 			<br /><br />
-			<button id=btnBuyAspect onclick="Aspect.buyOne()"	type="button" class="btn btn-default">Outfit Shade</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnBuyAspect onclick="Aspect.buyOne()"	type="button" class="btn btn-default">Outfit Shade</button>
+				<button id=btnBuyAspect10 onclick="Aspect.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnAspectUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#AspectUpgradeTab" aria-expanded="false" aria-controls="AspectUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="AspectCost">15,000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="aspectIronCost">1000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="aspectSilverCost">500</span> | <img src = "images/soulssmall.png" title="Souls"> <span id="aspectSoulCost">500</span> | <span id = 'AspectReqUnit'>1 Shade</span>
@@ -638,7 +679,10 @@
 		<a id = 'BtnAngelDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Angels"
     		data-content="">Angels <span class='badge' id="angels">0</span></a>
 			<br /><br />
-			<button id=btnBuyAngel onclick="Angel.buyOne()"	type="button" class="btn btn-default">Summon Angel</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnBuyAngel onclick="Angel.buyOne()"	type="button" class="btn btn-default">Summon Angel</button>
+				<button id=btnBuyAngel10 onclick="Angel.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnAngelUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#AngelUpgradeTab" aria-expanded="false" aria-controls="AngelUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="AngelCost">200,000</span> | <img src = "images/ironsmall.png" title="Iron"> <span id="angelIronCost">500</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="angelSilverCost">2500</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="angelFaithCost">25000</span> | <img src = "images/soulssmall.png" title="Souls"> <span id="angelSoulCost">1500</span> | <img src = "images/bookssmall.png" Title="Tomes"> <span id="angelTomeCost">20</span>
@@ -899,7 +943,10 @@
 		<a id = 'BtnSpritesDesc' tabindex="0" class="btn btn-sm btn-primary" role="button" data-toggle="popover"  data-trigger="focus" data-html="true" title="Arcane Sprites"
     		data-content="">Arcane Sprites <span class='badge' id="sprites">0</span></a>
 			<br /><br />
-			<button id=btnBuySprite onclick="Sprite.buyOne()"	type="button" class="btn btn-default">Summon Arcane Sprite</button>
+			<div class="btn-group" role="group" aria-label="...">
+				<button id=btnBuySprite onclick="Sprite.buyOne()"	type="button" class="btn btn-default">Summon Arcane Sprite</button>
+				<button id=btnBuySprite10 onclick="Sprite.buyTen()"	type="button" class="btn btn-default">x10</button>
+			</div>
 			<button id=btnSpritesUpgrade class="btn btn-default" type="button" class="btn btn-default" data-toggle="collapse" data-target="#SpritesUpgradeTab" aria-expanded="false" aria-controls="AngelUpgradeTab">Upgrades</button>
 			<br />
 			<img src = "images/money_goldsmall.png" title ="Gold" > <span id="SpriteCost">750,000</span> | <img src = "images/silverOresmall.png" title="Silver"> <span id="spriteSilverCost">500,000</span> | <img src = "images/faithsmall.png" title="Faith"> <span id="spriteFaithCost">50000</span> | <img src = "images/soulssmall.png" title="Souls"> <span id="spriteSoulCost">2000</span> | <img src = "images/bookssmall.png" Title="Tomes"> <span id="spriteTomeCost">25</span> | <img src = "images/manasmall.png" Title="Mana"><span id ="spriteManaCost">2,000</span>

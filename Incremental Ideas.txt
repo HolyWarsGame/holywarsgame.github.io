@@ -129,11 +129,7 @@ http://www.drewgreenwell.com/projects/metrojs#fiddleAround
 Issues:
 ========================
 
-- Collection of gold/minerals for upgrades (i.e. weapons, armor, boss drops)
-
-- Magic casting unit collects gold
-
-- Change Succubus drop to mysterious pendant
+-incorporate steel costs into unit declarations & calculations
 
 
 
