@@ -202,7 +202,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 					finishString = "<br /> Your paladins are unsuccessful at locating any relic fragments. Perhaps you should send more Paladins to cover more area?";
 				}
 				else{
-					finishString = "<br /> Your paladins have located" + resourceEarned + " relic fragments total on their quest!";
+					finishString = "<br /> Your paladins have located " + resourceEarned + " relic fragments total on their quest!";
 				}
 			break;			
 		}
