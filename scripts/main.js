@@ -79,10 +79,10 @@ var lastPage;
 var TruncateNumber = 'standard';
 var KingdomName = "";
 var DayNight = 'Day';
-var offwhite = '#DBDBDB'
+var offwhite = '#DBDBDB';
 var lackResourceColor = 'red';
 var haveResourceColor = 'black';
-var gameVer = '0.7.1';
+var gameVer = '0.7.2';
 var gameSaveVer;
 
 function clickThing(number, type)
@@ -725,7 +725,7 @@ window.setInterval(function(){
 window.setInterval(function(){	
 	//Tome generation via scribes every 15 seconds
 	clickThing(Scribe.number*Scribe.tomeClickVal,"tome");
-}, 15000)
+}, 15000);
 
 
 
@@ -891,7 +891,7 @@ function alertOpenProductionPage(){
 }
 
 function alertOpenCommandPostPage(){
-	document.getElementById("CommandPost").click();
+	document.getElementById("CommandMenu").click();
 }
 
 function alertOpenBarracksPage(){

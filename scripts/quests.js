@@ -16,7 +16,7 @@ $('#questSelectPicker').selectpicker({
 	 style: 'btn-info'
 });
  
- 
+ /*
 $("input[name='QuestUnitNumSelect']").TouchSpin({
   prefix: 'Send',
   verticalbuttons: true,
@@ -24,7 +24,7 @@ $("input[name='QuestUnitNumSelect']").TouchSpin({
   min: 0,
   max: 10000
 });
-
+*/
 
 var Quest = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, htmlAlertRef, percentComplete, percentIncrement,speed){
 	this.name = name;
@@ -53,6 +53,8 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 	inQuest = true;
 	curQuestType = this.name;
 
+	console.log(document.getElementById('QuestUnitNumSelect').value)
+	
 	UnitOnQuest = $('#unitSelectPicker').selectpicker('val');
 	NumUnitOnQuest = $('#QuestUnitNumSelect').val();
 	if(loadedQuest === false){
@@ -65,8 +67,8 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 	document.getElementById(this.htmlBoxRef).style.display = "block";	
 	$qbar = $(document.getElementById(this.htmlBarRef));
 		
-	document.getElementById(btn).disabled = true;					//disables the buttons
 	document.getElementById(btn).innerHTML = QuestName + " in progress!";     //Changes button text
+	document.getElementById(btn).disabled = true;					//disables the buttons
 	document.getElementById('questSelectPicker').disabled = true;  //disables picker
 	document.getElementById('unitSelectPicker').disabled = true;   //disables picker
 	document.getElementById('QuestUnitNumSelect').disabled = true;		//disables number select	
@@ -202,7 +204,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 					finishString = "<br /> Your paladins are unsuccessful at locating any relic fragments. Perhaps you should send more Paladins to cover more area?";
 				}
 				else{
-					finishString = "<br /> Your paladins have located " + resourceEarned + " relic fragments total on their quest!";
+					finishString = "<br /> Your paladins have located" + resourceEarned + " relic fragments total on their quest!";
 				}
 			break;			
 		}
@@ -214,6 +216,7 @@ Quest.prototype.startQuest = function(resource){    //Generic Resource quest
 		type: 'success'
 		});	
 		checkQuestGoButton();
+		checkQuestUnits();
 	  } 
 	}, this.speed);
 	return true;
@@ -308,14 +311,7 @@ function loadQuest(QuestName, percent, unit, numUnit){
 	
 }
 
-function btnSendQuest(){			
-
-	 if (checkQuestSelection() === true * $('#unitSelectPicker').selectpicker('val') !== "" * $('#questSelectPicker').selectpicker('val') !== ""){
-		 var string = "<br/>You send " + $('#QuestUnitNumSelect').val() + " " + $('#unitSelectPicker').selectpicker('val');
-		 if($('#QuestUnitNumSelect').val() > 1){
-			 string = string + "s";
-		 }
-		 string = string + " out on the quest '" + $('#questSelectPicker').selectpicker('val') + "'";
+function btnSendQuest(){	
 
 	    function notify(){
 			$.notify({
@@ -324,36 +320,42 @@ function btnSendQuest(){
 				delay: 10000
 			});				
 		}
-	  
-	  
+
+	 if (checkQuestSelection() === true && $('#unitSelectPicker').selectpicker('val') !== "" && $('#questSelectPicker').selectpicker('val') !== "" && inQuest === false){
+		 var string = "<br/>You send " + $('#QuestUnitNumSelect').val() + " " + $('#unitSelectPicker').selectpicker('val');
+		 if($('#QuestUnitNumSelect').val() > 1){
+			 string = string + "s";
+		 }
+		 string = string + " out on the quest '" + $('#questSelectPicker').selectpicker('val') + "'";
+
 	  switch($('#questSelectPicker').selectpicker('val'))
 	  {
 		 case 'Help the People':
-			console.log('Help the People');
+//			console.log('Help the People');
 			goldQuest.startQuest('gold');
 			notify();
 		 break;
 
 		 case 'Slay Treants':
-			console.log('Slay Treants');
+//			console.log('Slay Treants');
 			woodQuest.startQuest('wood');
 			notify();
 		 break;
 		 
 		 case 'Slay Iron Golems':
-			console.log('Slay Iron Golems');
+//			console.log('Slay Iron Golems');
 			ironQuest.startQuest('iron');
 			notify();
 		 break;
 
 		 case 'Aid the Sprites':
-			console.log('Aid the Sprites');
+//			console.log('Aid the Sprites');
 			silverQuest.startQuest('silver');
 			notify();
 		 break;	 
 		 
 		 case 'Hunt Lesser Demons':
-			console.log('Hunt Lesser Demons');
+//			console.log('Hunt Lesser Demons');
 			soulsQuest.startQuest('souls');
 			notify();
 		 break;		 
@@ -374,6 +376,7 @@ function btnSendQuest(){
 }
 
 function checkQuestSelection(){
+//	console.log(document.getElementById('QuestUnitNumSelect').value);
 	if($('.selectpicker').selectpicker('val') == "Paladin"){
 		if(Paladin.number < $('#QuestUnitNumSelect').val()){
 			alert("You do not have enough Paladins for this!");
@@ -382,13 +385,14 @@ function checkQuestSelection(){
 		}
 	}
 	
-	else if ($('.selectpicker').selectpicker('val') == "Knight"){
+	if ($('.selectpicker').selectpicker('val') == "Knight"){
 		if(Knight.number < $('#QuestUnitNumSelect').val()){
 			alert("You do not have enough Knights for this!");
 			return false;
 		}
 	}
-	else if ($('.selectpicker').selectpicker('val') == "Squire"){
+
+	if ($('.selectpicker').selectpicker('val') == "Squire"){
 		if(Squire.number < $('#QuestUnitNumSelect').val()){
 			alert("You do not have enough Squires for this!");
 			return false;
@@ -461,84 +465,6 @@ var relicHuntDesc = "";
 var RelicHunt = new Quest('Relic Hunt', relicHuntDesc, 'QuestProgBarBox', 'QuestProgBar', 'btnQuestGo','goblinDefeatAlert',0,1,750);
 
 
-/*RelicHunt.startQuest = function(){
-		var perComplete = this.percentComplete;
-		var perIncrement = this.percentIncrement;
-		var alert = this.htmlAlertRef;
-		var btn = this.htmlBtnRef;
-		var box = this.htmlBoxRef;
-		var qbar = this.htmlBarRef;
-		var QuestName = this.name;
-		var foundRelic = false;
-			
-		inQuest = true;
-		curQuestType = this.name;
-		
-		NumUnitOnQuest = $('#QuestUnitNumSelect').val();
-		UnitOnQuest = $('#unitSelectPicker').selectpicker('val');
-		
-		if(loadedQuest === false){
-			if(holdUnitforQuest() === false)
-			{
-				console.log('Bad quest selection.');
-				return;
-			}			
-		}
-		document.getElementById(this.htmlBoxRef).style.display = "block";	
-		$qbar = $(document.getElementById(this.htmlBarRef));
-		
-		UnitOnQuest = $('#unitSelectPicker').selectpicker('val');
-		NumUnitOnQuest = $('#QuestUnitNumSelect').val();		
-		var questprogress = setInterval(function() {
-		qcurrWidth = parseInt(this.$qbar.attr('aria-valuenow'));
-		qmaxWidth = parseInt(this.$qbar.attr('aria-valuemax'));	
-				
-		//update the progress
-		$qbar.width(perComplete +'%');
-		$qbar.attr('aria-valuenow',perComplete);
-		$qbar.text(perComplete+'%');
-		perComplete = perComplete + perIncrement;
-		this.percentComplete = perComplete;
-		questPercent = perComplete;
-
-		if(perComplete%50 === 0){
-			rollForFragment();
-		}	
-		document.getElementById(btn).disabled = true;					//disables the buttons
-		document.getElementById(btn).innerHTML = QuestName + " in progress!";     //Changes button text
-		document.getElementById('questSelectPicker').disabled = true;  //disables picker
-		document.getElementById('unitSelectPicker').disabled = true;   //disables picker
-		document.getElementById('QuestUnitNumSelect').disabled = true;		//disables number select
-
-		//update the progress
-		if(this.questSpellBoostPercent > 0){
-			perComplete = perComplete + parseInt(questSpellBoostPercent);
-			questSpellBoostPercent = 0;
-			if(perComplete > 100){
-				perComplete = 100;
-			}
-		}		
-		
-		if (qcurrWidth >= qmaxWidth){
-			clearInterval(questprogress);
-			$qbar.text("Complete!");
-			document.getElementById(box).style.display = "none";			//Hides progress bar box
-			document.getElementById(btn).innerHTML = "Send";                 //Changes button text
-			document.getElementById(btn).disabled = false;					//enables the buttons
-			document.getElementById('questSelectPicker').disabled = false;  //enables picker
-			document.getElementById('unitSelectPicker').disabled = false;   //enables picker
-			document.getElementById('QuestUnitNumSelect').disabled = false;		//enables number select
-			returnUnitfromQuest();
-			inQuest = false;
-			
-			$qbar.width(0 +'%');
-			$qbar.attr('aria-valuenow',0);
-			$qbar.text(0+'%');
-		} 
-	}, this.speed);
-	return true;
-};*/
-
 function rollForFragment(){
 	var unitType = $('#unitSelectPicker').selectpicker('val');
 	var numUnits = $('#QuestUnitNumSelect').val();
@@ -591,7 +517,6 @@ function holdUnitforQuest(){
 //				console.log("taking paladins");
 				return true;				
 			}
-
 		break;
 		
 		case "Knight":
@@ -607,7 +532,6 @@ function holdUnitforQuest(){
 	//			console.log("taking knights");	
 			return true;				
 			}
-
 		break;
 		
 		case "Squire":
@@ -630,7 +554,7 @@ function holdUnitforQuest(){
 function returnUnitfromQuest(){
 	switch(UnitOnQuest){
 		case "Paladin":
-			Paladin.number += parseInt(NumUnitOnQuest);
+			Paladin.number += Paladin.onQuest;
 			Paladin.onQuest = 0;
 			Paladin.totalArmyPower();
 			Paladin.totalSpiritPower();
@@ -641,29 +565,29 @@ function returnUnitfromQuest(){
 			document.getElementById("BattlePower2").innerHTML = BattlePower;			
 			document.getElementById("SpiritPower").innerHTML = fnum(SpiritPower);
 			document.getElementById("SpiritPower2").innerHTML = SpiritPower;
-			console.log("returned paladins");
+			console.log("Paladins returned");
 		break;
 		
 		case "Knight":
-			Knight.number += parseInt(NumUnitOnQuest);
+			Knight.number += Knight.onQuest;
 			Knight.onQuest = 0;
 			Knight.totalArmyPower();
 			document.getElementById('knights').innerHTML = Knight.number;	
 			calculateBattlePower();
 			document.getElementById("BattlePower").innerHTML = fnum(BattlePower);
 			document.getElementById("BattlePower2").innerHTML = BattlePower;					
-			console.log("returned knights");
+			console.log("Knights returned");
 		break;
 		
 		case "Squire":
-			Squire.number += parseInt(NumUnitOnQuest);
-			Squire.totalArmyPower();
+			Squire.number += Squire.onQuest;
 			Squire.onQuest = 0;
+			Squire.totalArmyPower();
 			document.getElementById('squires').innerHTML = Squire.number;	
 			calculateBattlePower();
 			document.getElementById("BattlePower").innerHTML = fnum(BattlePower);
 			document.getElementById("BattlePower2").innerHTML = BattlePower;					
-			console.log("returned Squires");
+			console.log("Squires returned");
 		break;		
 	}
 }
@@ -671,8 +595,36 @@ function returnUnitfromQuest(){
 
 $(function() {
   $('#unitSelectPicker').on('change', function(){
-	var newMax;
+	var newMax = 1;
 	checkQuestGoButton();
+
+	switch($('#unitSelectPicker').selectpicker('val')){
+		case 'Paladin':
+			newMax = Paladin.number;
+			document.getElementById('QuestUnitNumSelect').value = "";
+			document.getElementById('QuestUnitNumSelect').placeholder = newMax;
+		break;
+		
+		case 'Knight':
+			newMax = Knight.number;
+			document.getElementById('QuestUnitNumSelect').value = "";
+			document.getElementById('QuestUnitNumSelect').placeholder = newMax;
+		break;
+		
+		case 'Squire':
+			newMax = Squire.number;
+			document.getElementById('QuestUnitNumSelect').value = "";
+			document.getElementById('QuestUnitNumSelect').placeholder = newMax;
+		break;
+		
+		default:
+//			newMax = 1;
+	}
+  }); 
+});
+
+function checkQuestUnits(){
+	var newMax = 1;
 	switch($('#unitSelectPicker').selectpicker('val')){
 		case 'Paladin':
 			newMax = Paladin.number;
@@ -684,18 +636,12 @@ $(function() {
 		
 		case 'Squire':
 			newMax = Squire.number;
-		break;
-		
-		default:
-			newMax = 50;
+		break;	
 	}
-	$("input").trigger("touchspin.updatesettings", {max: newMax});
-//	console.log(newMax);
-	if(newMax < document.getElementById('QuestUnitNumSelect').value){
-		document.getElementById('QuestUnitNumSelect').value = 1;
+	if(document.getElementById('QuestUnitNumSelect').value > newMax){
+			document.getElementById('QuestUnitNumSelect').value = newMax;
 	}
-  }); 
-});
+};
 
 $(function() {
   $('#questSelectPicker').on('change', function(){
@@ -787,4 +733,4 @@ $(function() {
   });
 });
 
-$('#QuestUnitNumSelect').on('touchspin.on.startspin', function () {checkQuestGoButton();});
+//$('#QuestUnitNumSelect').on('touchspin.on.startspin', function () {checkQuestGoButton();});

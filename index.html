@@ -23,7 +23,7 @@
 	<link href="dist/css/animate.css" rel="stylesheet">
 	
 	<!--Tooltip CSS-->
-	<link href="dist/css/tooltip.css" rel="stylesheet">
+<!-- 	<link href="dist/css/tooltip.css" rel="stylesheet"> -->
 
 	<!-- Custom styles for this template -->
 	<link href="dist/css/holywars.css" rel="stylesheet">
@@ -32,7 +32,7 @@
 	<!-- Other Imported scripts -->
     <script src="dist/assets/js/ie-emulation-modes-warning.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="dist/js/jquery.bootstrap-touchspin.js"></script>
+<!-- 	<script src="dist/js/jquery.bootstrap-touchspin.js"></script> -->
 	<script src="dist/js/bootstrap-select.js"></script>
 	<script src="dist/js/bootstrap-notify.js"></script>
 	<script src="dist/js/bootbox.min.js"></script>
@@ -135,8 +135,9 @@
                   <li class="dropdown-header"></li>
 				  <li class = 'opt'><a href="#" data-toggle="modal" data-target="#statmodal"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Statistics</a></li>
 				  <li class = 'opt'><a id="AchievmentsMenu" href="javascript:CollapseAll(); toggle('Achievements');">Achievements</a></li>
-				  <li class = 'opt'><a id="verinfo" target="_blank" href="changelog.html"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Version 0.7</a></li>
+				  <li class = 'opt'><a id="verinfo" target="_blank" href="changelog.html"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Version 0.0</a></li>
                   <li class = 'opt'><a href="#" data-toggle="modal" data-target="#aboutmodal"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a></li>
+                  <li class = 'opt'><a id="reddit" target="_blank" href="http://www.reddit.com/r/incremental_games/comments/34b0p8/holy_wars_update_07/">Reddit Thread</a></li>
                 </ul>
               </li>		  
             </ul>
@@ -228,7 +229,6 @@
 				</div>
 					
 				<div id = "armystrdiv" style="display: none;" rel="tooltip">
-				<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
 					<div class="col1"><img src = "images/armsmall.png" Title="Army Power"> Army: 
 					</div>
 					<div class="col2"><span id="BattlePower">0</span> 
@@ -236,7 +236,6 @@
 				</div>
 
 				<div id = "spiritarmystrdiv" style="display: none;" rel="tooltip">
-				<!--	<img src = "images/faithsmall.png" alt="Praying Hands" style="display: inline-block">-->
 					<div class="col1"><img src = "images/armsmall.png" Title="Army Power"> Spirit: 
 					</div>
 					<div class="col2"><span id="SpiritPower">0</span> 
@@ -996,9 +995,15 @@
 					  </div>
 					</div>
 				
-					<div id ="questNumSpinner" class = "questComponent">
+	<!-- 				<div id ="questNumSpinner" class = "questComponent">
 						<input id="QuestUnitNumSelect" type="text" value="1" name="QuestUnitNumSelect"> 
+					</div> -->
+
+					<div class="input-group questComponent">
+					  <span class="input-group-addon" id="basic-addon1">Send</span>
+					  <input id= 'QuestUnitNumSelect' type="text" class="form-control" placeholder="1" aria-describedby="basic-addon1" style="width: 5em;" onBlur = 'javascript: checkQuestUnits();'>
 					</div>
+
 					<div class = "questComponent">
 						 <select class="selectpicker" id = "unitSelectPicker" title = "Pick a unit">
 							<option id = "nullOption2" ></option>
@@ -2081,6 +2086,17 @@
 	
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
  <!--   <script src="assets/js/ie10-viewport-bug-workaround.js"></script>-->
+
+			 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- HolyWarsAds -->
+			<ins class="adsbygoogle"
+			     style="display:block"
+			     data-ad-client="ca-pub-1272929999005097"
+			     data-ad-slot="9223875967"
+			     data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
 
   </body>
   

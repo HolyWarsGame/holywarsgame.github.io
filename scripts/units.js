@@ -68,7 +68,7 @@ Unit.prototype.buyTen = function(){
 	if(this.canBuy10() === true){
 		for (i = 0; i < 10; i++) { 
 			this.buyOne();
-		};
+		}
 	}
 };
 
@@ -106,7 +106,7 @@ Unit.prototype.canBuy10 = function(){
 		document.getElementById(this.htmlBuyBtn10).disabled = true;
 		return false;
 	}
-}
+};
 
 Unit.prototype.checkReqUnit10 = function(){
 	

@@ -266,8 +266,8 @@ Upgrade.prototype.enableFlag = function(){
 		
 		case 'unlockQuesting':
 			document.getElementById('QuestMenu').style.display = "block";
-			document.getElementById('Quests').style.display = "block";
-			document.getElementById("navKingdomName").click();
+//			document.getElementById('Quests').style.display = "block";
+//			document.getElementById("navKingdomName").click();
 			unlockedQuesting = true;		
 		break;
 		
@@ -356,6 +356,7 @@ Upgrade.prototype.buyUpgrade = function(){
 		document.getElementById('tomes').innerHTML = fnum(tomes);  										      //updates the number of tomes for the user
 		document.getElementById('mana').innerHTML = fnum(mana);  										      //updates the mana for the user		
 		this.enableFlag();
+		this.alertMessage();
 	}
 };
 
@@ -394,6 +395,20 @@ Upgrade.prototype.unitCostTest = function(){
 		return false;		
 	}
 };
+
+Upgrade.prototype.alertMessage = function(){
+	var UName = this.name;
+	switch(UName){
+		case 'unlockQuesting':
+			$.notify({
+				title: "<strong>New! </strong>",
+				message: "You are now employing a taskmaster whom helps you coordinate your troops and handle <a href='javascript: alertOpenQuestPage();' class='alert-link'>requests.</a>",
+				},{
+			delay: 900000
+			});	
+		break;
+	}
+}
 
 var peasantUpgrade1 = new Upgrade(
 /*Name*/'peasantUpgrade1', 

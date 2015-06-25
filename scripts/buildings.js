@@ -197,8 +197,6 @@ Building.prototype.buy = function(){
 				
 				case "commandPostOpened":
 					commandPostOpened = true;
-//					document.getElementById('openCommandPostAlert').style.display = "block";
-					document.getElementById('CommandPost').style.display = "block";	
 					document.getElementById('CommandPostDiv').style.display = "block";
 					document.getElementById('CommandMenu').style.display = "block";
 					var commandPostOpenedAlert;
@@ -223,7 +221,6 @@ Building.prototype.buy = function(){
 					churchOpened = true;
 					document.getElementById('faithdiv').style.display = "block";
 					document.getElementById('FaithMenu').style.display = "block";
-//					document.getElementById('openCathAlert').style.display = "block";
 					var churchOpenedAlert;
 					churchOpenedAlert = $.notify({
 						title: "<strong>New!</strong> ",

@@ -81,7 +81,7 @@
 		save("defeatedBandits",defeatedBandits);
 		save("defeatedHermit",defeatedHermit);
 		save("defeatedOgre",defeatedOgre); 
-		save("defeatedHhounds",defeatedHhounds);
+		save("defeatedHellhounds",defeatedHellhounds);
 		save("defeatedPixie",defeatedPixie);
 		save("defeatedArmor",defeatedArmor);
 		save("defeatedOoze",defeatedOoze);	
@@ -861,10 +861,10 @@
 					document.getElementById('ogreh4').classList.add('defeatedtitle');	
 				}
 			}
-			if(localStorage.defeatedHhounds !== null){
-				myBool = (localStorage.defeatedHhounds == "true");
+			if(localStorage.defeatedHellhounds !== null){
+				myBool = (localStorage.defeatedHellhounds == "true");
 					if(myBool === true){
-						defeatedHhounds = true;
+						defeatedHellhounds = true;
 						document.getElementById('Ethereal').style.display = "block";
 						document.getElementById('EtherealMenu').style.display = "block";
 						document.getElementById('SpiritualStrength').style.display = "block";
@@ -875,10 +875,10 @@
 						document.getElementById("btnBatHellhound").disabled = true;
 						document.getElementById("btnBatHellhound").innerHTML = "Hellhounds Defeated!";
 						document.getElementById('hellhoundsh4').classList.add('defeatedtitle');	
-						defeatedHhounds = true;
+						defeatedHellhounds = true;
 					}
 					else if(defeatedOgre === true){
-						setTimeout(function() { hellHoundRaid(); }, 30000);			//killed ogre but haven't defeated hhounds yet, start raids again
+						setTimeout(function() { Hellhounds.raid(); }, 30000);			//killed ogre but haven't defeated hhounds yet, start raids again
 					}
 			}
 
@@ -909,7 +909,7 @@
 						document.getElementById('oozeh4').classList.add('defeatedtitle');	
 						document.getElementById('tomeUnlock').style.display = "block";
 					}
-					else if(defeatedHhounds === true && myBool === false){
+					else if(defeatedHellhounds === true && myBool === false){
 						setTimeout(function() { triggerOoze(); }, 60000);				//restarts ooze raids after defeating hhounds
 					}
 			}	
@@ -936,7 +936,7 @@
 						document.getElementById('BatUndeadArmy').style.display = "block";
 						document.getElementById('archmageh4').classList.add('defeatedtitle');	
 						defeatedArchmage = true;
-						setTimeout(function() { succubusRaid(); }, 30000);			//defeated archmage but haven't defeated succubus yet, start raids again
+						setTimeout(function() { Succubus.raid(); }, 30000);			//defeated archmage but haven't defeated succubus yet, start raids again
 					}
 			}	
 			if(localStorage.defeatedSuccubus !== null){
@@ -979,7 +979,8 @@
 						document.getElementById('BatWindElemental').style.display = "block";
 						document.getElementById('BatWaterElemental').style.display = "block";	
 	//					document.getElementById('BatThaumaturge').style.display = "block";
-						document.getElementById('necromancerh4').classList.add('defeatedtitle');						
+						document.getElementById('necromancerh4').classList.add('defeatedtitle');
+						setTimeout(function() { pickElementalRaid(); }, 20000);					
 					}
 			}
 			
@@ -1846,7 +1847,7 @@ function loadScenario(number){
 			defeatedBandits = true;
 			defeatedHermit = true;
 			defeatedOgre = true;
-			defeatedHhounds = true;
+			defeatedHellhounds = true;
 			
 			squiresUnlocked = true;
 			knightsUnlocked = true;
@@ -1885,7 +1886,7 @@ function loadScenario(number){
 			defeatedBandits = true;
 			defeatedHermit = true;
 			defeatedOgre = true;
-			defeatedHhounds = true;
+			defeatedHellhounds = true;
 			defeatedPixie = true;
 			defeatedArmor = true;
 			defeatedOoze = true;
@@ -1928,7 +1929,7 @@ function loadScenario(number){
 			defeatedBandits = true;
 			defeatedHermit = true;
 			defeatedOgre = true;
-			defeatedHhounds = true;
+			defeatedHellhounds = true;
 			defeatedPixie = true;
 			defeatedArmor = true;
 			defeatedOoze = true;
@@ -1970,7 +1971,7 @@ function xor_str(input)
 
 function decrypt_str(input)
 {
-	var to_dec = input
+	var to_dec = input;
 	var the_res = "";
 	
 

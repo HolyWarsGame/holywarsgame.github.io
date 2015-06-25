@@ -6,7 +6,7 @@ var defeatedGoblins = false;
 var defeatedBandits = false;
 var defeatedHermit = false;
 var defeatedOgre = false;
-var defeatedHhounds = false;
+var defeatedHellhounds = false;
 var defeatedPixie = false;
 var defeatedOoze = false;
 var defeatedDwarf = false;
@@ -36,6 +36,10 @@ var ironAbsorbed = 0;	//Ooze statistic
 var silverAbsorbed = 0; //Ooze statistic
 var unitsSeduced = 0;   //Succubus statistic
 var UARevivedCount = 0; //Undead Army Statistic
+var ironDegraded = 0;	//Earth Elemental Statistic
+var woodBurned = 0;		//Fire Elemental Statistic
+var paperLost = 0;		//Wind Elemental Statistic
+var coalLost = 0;		//Water Elemental Statistic
 
 var inbattle = false;
 var curBattling;
@@ -90,6 +94,8 @@ var Enemy = function(name, description, htmlBoxRef, htmlBarRef, htmlBtnRef, Aler
 	this.percentComplete = percentComplete;
 	this.percentIncrement = percentIncrement;
 	this.speed = speed;
+	this.baseRaidTime = 0;
+	this.raidTimeVariance = 0;
 	this.fightable = false;
 	var $bar = $(document.getElementById(this.htmlBarRef));
 	this.spellBoostPercent = 0;
@@ -117,10 +123,6 @@ Enemy.prototype.fight = function(){
 	inbattle = true;
 	curBattling = this.name;
 	document.getElementById(this.htmlBoxRef).style.display = "block";
-	
-//	console.log(this.lossPercentCalc()*100 + '%');
-//	console.log(battleUnitLost.name);
-//	console.log(ethUnitLost.name);
 	
 	$bar = $(document.getElementById(this.htmlBarRef));
 		var progress = setInterval(function() {
@@ -159,7 +161,6 @@ Enemy.prototype.fight = function(){
 					unitLost = true;
 				}
 				else{
-//					console.log("No Combat unit loss");
 				}
 				
 //				console.log(SpirReq);
@@ -190,8 +191,6 @@ Enemy.prototype.fight = function(){
 			document.getElementById(box).style.display = "none";			//Hides progress bar box
 			document.getElementById(btn).innerHTML = EnemyName + " Defeated!";     //Changes button text
 			document.getElementById(btn).disabled = true;					//disables the buttons
-//			document.getElementById(alert).style.display = "block";			//Displays alert related to this battle
-//			scroll(alert,500);
 			statEnemiesDefeated += 1;
 			statTotalEnemiesDefeated += 1;
 			document.getElementById('statEnemiesDefeated').innerHTML = statEnemiesDefeated;
@@ -225,6 +224,106 @@ Enemy.prototype.canFight = function(){		//Checks to see if this enemy can be fou
 		document.getElementById(myButton).disabled = true;
 		this.checkFlag();
 	}	
+};
+
+Enemy.prototype.raid = function(){
+	var EName = this.name;
+	if(eval('defeated'+ this.name) === false && raidBattleCheck(this.name) === false){
+
+		var raidtime = Math.floor((Math.random() * this.baseRaidTime) + this.raidTimeVariance);
+		var ticker = raidtime;
+		var raiding = setInterval(function() {
+			ticker = ticker - 1; 
+//			console.log(EName + ': ' + ticker); 
+	
+			if (ticker === 30){
+				$.notify({
+					title: "<strong>Incoming!</strong>",
+					message: "Your lookout warns you of an attack by " + EName + " coming soon!",
+					},{
+				delay: 8000,
+				type: 'warning'
+				});							
+			}
+
+		  if (ticker === 0){
+			clearInterval(raiding);
+
+			switch(EName){
+				case 'Bandits':
+					if(defeatedBandits === false){
+						if(raidBattleCheck('Bandits') === false){
+							justStolen =  Math.ceil(gold*1/5);
+							goldStolen = goldStolen + justStolen;
+							statTotalGoldStolen += justStolen;
+							gold = gold - justStolen;
+							document.getElementById("gold").innerHTML = fnum(gold);
+							document.getElementById("goldStolen").innerHTML = fnum(goldStolen);
+							document.getElementById("statTotalGoldStolen").innerHTML = fnum(statTotalGoldStolen);
+							var string = "Bandits come and raid " + justStolen + " gold from your gold supply! Maybe you should try <a href='javascript: alertOpenBattlePage();' class='alert-link'>getting rid</a> of them?";
+							
+							if (justStolen > 0){
+								$.notify({
+									title: "<img src='images/swords.gif'><strong>Battle! <br/></strong>",
+									message: string,
+									delay: 60000},{
+								type: 'danger'
+								});							
+							}
+						}
+						Bandits.raid();
+					}				
+				break;
+
+				case 'Hellhounds':
+					if(defeatedHellhounds === false && raidBattleCheck('Hellhounds') === false){	
+						hellhoundCull();
+						Hellhounds.raid();				
+					}
+				break;
+
+				case 'Ooze':
+					if(defeatedOoze === false && raidBattleCheck('Ooze') === false){	
+						oozeAbsorb();
+						Ooze.raid();
+					}
+				break;
+
+				case 'Succubus':
+					if(defeatedSuccubus === false && raidBattleCheck('Succubus') === false){
+						succubusSeduce();
+						Succubus.raid();
+					}
+				break;
+
+				case 'Earth Elemental':
+					if(defeatedEarthElemental === false && raidBattleCheck('Earth Elemental') === false){
+						 pickElementalRaid();
+					}					
+				break;
+
+				case 'Fire Elemental':
+					if(defeatedFireElemental === false && raidBattleCheck('Fire Elemental') === false){
+						pickElementalRaid();
+					}				
+				break;
+
+				case 'Wind Elemental':
+					if(defeatedWindElemental === false && raidBattleCheck('Wind Elemental') === false){
+						pickElementalRaid();
+					}				
+				break;
+
+				case 'Water Elemental':
+					if(defeatedWaterElemental === false && raidBattleCheck('Water Elemental') === false){
+						pickElementalRaid();
+					}				
+				break;
+		 		}
+			}
+		}, 1000);	
+
+	}
 };
 
 Enemy.prototype.lossPercentCalc = function(){ 	//Checks to see percentage of troop loss for the battle (Loss % = 0 at 2x the battle requirement)
@@ -282,11 +381,7 @@ function loseUnitAlert(enemyName, bUnitName, bNumberLost, eUnitName, eNumberLost
 			delay: 60000},{
 		type: 'danger'
 		});			
-		
-//		document.getElementById('UnitLossAlert').style.display = "block";
-//		document.getElementById('unitlossstring').innerHTML = loststring;
 	}
-//	scroll(UnitLossAlert, 500);
 }
 
 function selectRandomBattleUnit(){
@@ -415,7 +510,7 @@ Enemy.prototype.checkFlag = function(){		//Checks to see if battle has been won,
 			break;
 		
 		case 'Hellhounds':
-			if(defeatedHhounds === true){
+			if(defeatedHellhounds === true){
 				document.getElementById(myButton).innerHTML = this.name + " Defeated!";     //Changes button text
 				document.getElementById(myButton).disabled = true;
 				document.getElementById('hellhoundsh4').classList.add('defeatedtitle');
@@ -560,9 +655,7 @@ function setEnemyDescription(Enemy, element){
 }
 
 function setDefeatEvents(name){
-//	eval("var " + this.AlertRef );
 	switch(name){
-		
 		case 'Boar':
 			defeatedBoar = true;
 			gold = gold + 100;
@@ -623,7 +716,6 @@ function setDefeatEvents(name){
 			document.getElementById('soulsdiv').style.display = "block";			
 			document.getElementById('PaladinTab').style.display = "block";
 			document.getElementById('PaladinUpgradeTab').style.display = "block"; //Until a drop unlocks paladin weapon upgrade		
-//			document.getElementById('FaithStructuresTab').style.display = "block";
 			defeatedOgre = true;
 			this.AlertRef = $.notify({
 				title: "<strong>New!</strong>",
@@ -653,12 +745,12 @@ function setDefeatEvents(name){
 			});					
 			
 			setTimeout(function() { triggerOoze(); }, 30000);	
-			defeatedHhounds = true;
+			defeatedHellhounds = true;
 		break;
 
 		case 'Ooze':
 			document.getElementById('tomeUnlock').style.display = "block";
-//			document.getElementById('tomeUnlockAlert').style.display = "block";
+
 			document.getElementById('BatDwarf').style.display = "block";
 			defeatedOoze = true;
 
@@ -796,15 +888,15 @@ function setDefeatEvents(name){
 			document.getElementById('BatFireElemental').style.display = "block";	
 			document.getElementById('BatWindElemental').style.display = "block";
 			document.getElementById('BatWaterElemental').style.display = "block";	
-//			document.getElementById('BatThaumaturge').style.display = "block";
-			
+
 			this.AlertRef = $.notify({
 				title: "<strong>New!</strong>",
 				message: "Blah blah blah necromancer dies! You notice strange fluxuations in the surroundings.... The earth shakes, wind howls, water boils, fire blazes almost out of control. You can feel there is something terribly wrong.	",
 				},{
 			delay: 300000,
 			type: 'success'
-			});						
+			});	
+			pickElementalRaid();					
 		break;		
 
 		case 'Earth Elemental':
@@ -816,7 +908,8 @@ function setDefeatEvents(name){
 				delay: 300000,
 				type: 'danger'
 				});
-				ThaumaturgeRevive(ElementalEarth);		
+				ThaumaturgeRevive(ElementalEarth);
+				pickElementalRaid();	
 			}
 			else{
 				defeatedEarthElemental = true;
@@ -842,7 +935,8 @@ function setDefeatEvents(name){
 				delay: 300000,
 				type: 'danger'
 				});
-				ThaumaturgeRevive(ElementalFire);		
+				ThaumaturgeRevive(ElementalFire);
+				pickElementalRaid();		
 			}
 			else{
 				defeatedFireElemental = true;
@@ -868,7 +962,8 @@ function setDefeatEvents(name){
 				delay: 300000,
 				type: 'danger'
 				});
-				ThaumaturgeRevive(ElementalWind);		
+				ThaumaturgeRevive(ElementalWind);
+				pickElementalRaid();		
 			}
 			else{
 				defeatedWindElemental = true;
@@ -894,7 +989,8 @@ function setDefeatEvents(name){
 				delay: 300000,
 				type: 'danger'
 				});
-				ThaumaturgeRevive(ElementalWater);		
+				ThaumaturgeRevive(ElementalWater);
+				pickElementalRaid();		
 			}
 			else{
 				defeatedWaterElemental = true;
@@ -1107,7 +1203,7 @@ function showUndefeatedBattles(){
 		scroll('BatPixie', 500);
 	}
 	
-	if(defeatedHhounds === false){
+	if(defeatedHellhounds === false){
 		showBattle('Hellhounds');
 		scroll('BatHellhound', 500);
 	}			
@@ -1362,9 +1458,10 @@ setEnemyDescription(Goblins, 'btnDescGoblins');
 var banditsDesc = "Scouts have reported sightings of a large group of marauders camped out on the plains. <br><br> Outfitted in leather armor and wielding iron weapons, these bandits roam the outskirts of your town and periodically pilfer from your peasants.  <br><br> You should probably stop them.";
 var Bandits = new Enemy('Bandits', banditsDesc, 'BatBanditsProgBarBox', 'BatBanditsProgBar', 'btnBatBandits','unlockCathAlert',100,0,0,5,500);
 setEnemyDescription(Bandits, 'btnDescBandits');
+Bandits.baseRaidTime = 45;
+Bandits.raidTimeVariance = 45;
 
-
-function banditLoot(){
+/*function banditLoot(){
 	if(defeatedBandits === false){
 		var raidtime = Math.floor((Math.random() * 90) + 15);
 		var ticker = raidtime;
@@ -1380,9 +1477,7 @@ function banditLoot(){
 					gold = gold - justStolen;
 					document.getElementById("gold").innerHTML = fnum(gold);
 					document.getElementById("goldStolen").innerHTML = fnum(goldStolen);
-//					document.getElementById("justStolen").innerHTML = fnum(justStolen);
 					document.getElementById("statTotalGoldStolen").innerHTML = fnum(statTotalGoldStolen);
-//					document.getElementById("banditLootAlert").style.display = "block";
 					var string = "Bandits come and raid " + justStolen + " gold from your gold supply! Maybe you should try <a href='javascript: alertOpenBattlePage();' class='alert-link'>getting rid</a> of them?";
 					
 					if (justStolen > 0){
@@ -1395,25 +1490,13 @@ function banditLoot(){
 					}
 				}
 				banditLoot();
-/* 				//Dismisses Raid Alert
-				var ticker2 = 0 ;
-				var clearLootAlert = setInterval(function() {
-					ticker2 = ticker2 + 1;   
-						if (ticker2 == 20){
-							clearInterval(clearLootAlert);
-							if(document.getElementById('banditLootAlert').style.display == "block"){
-							document.getElementById("banditLootAlert").style.display = "none";
-						}	
-					}
-				}, 1000);	
-				//End Dismisses Raid Alert */
 			}
 		  }
 		}, 1000);				
 	}
-}
+}*/
 
-setTimeout(function() { banditLoot(); }, 90000);//Triggers bandit looting
+setTimeout(function() { Bandits.raid(); }, 90000);//Triggers bandit looting
 
 var hermitDesc = "Your people have been warned away from the swampy western woods where the mists blanket everything except for the lone hovel at the center. <br><br> Its single occupant can be seen chopping wood and collecting wild plants from time to time, often singing to herself into a garbled, eldritch language. <br><br> Her age hides the true extent of her skills - she keeps visitors away with an array of throwing knives, all launched with terrifyingly great accuracy.";
 var Hermit = new Enemy('Hermit', hermitDesc, 'BatHermitProgBarBox', 'BatHermitProgBar', 'btnBatHermit','paperMillAlert',250,0,0,2,500);
@@ -1426,10 +1509,10 @@ setEnemyDescription(Ogre, 'btnDescOgre');
 var hellhoundsDesc = "Your hunters come across signs of a large pack of canine-like creatures wandering the plains. <br><br> Nightmarish howls can be heard day and night, frightening the livestock and putting your people on edge. <br><br> The most experienced of your hunters finally witnesses a portal rip open one night, sulfurous smoke billowing forth from the dark red maw and spitting out wicked hounds of enormous size that glow like the embers of smoldering lava. <br><br>  The pack will harass your defences and occasionally kill some of your peasants and miners.";
 var Hellhounds = new Enemy("Hellhounds", hellhoundsDesc, 'BatHhoundProgBarBox','BatHhoundProgBar','btnBatHellhound','openEtherealAlert',2000,0,0,1,1000);
 setEnemyDescription(Hellhounds, 'btnDescHellhounds');
-
+Hellhounds.baseRaidTime = 60;
+Hellhounds.raidTimeVariance = 120;
 
 function triggerHellhound(){
-//	document.getElementById('hellhoundUnlockAlert').style.display = "block";
 	$.notify({
 		title: "<strong>Oh No! </strong>",
 		message: " Your presence has not gone unnoticed - <a href='javascript: toggle('hellhoundUnlockAlert');CollapseAll();toggle('Battle')' class='alert-link'>hellhounds</a> have been summoned by the Evil One's command to attack you.",
@@ -1439,42 +1522,25 @@ function triggerHellhound(){
 
 	document.getElementById('BatHellhound').style.display = "block";
 	showBattle('Hellhounds');
-	hellHoundRaid();
+	Hellhounds.raid();
 }
 
-function hellHoundRaid(){
-	if(defeatedHhounds === false){
+/*function hellHoundRaid(){
+	if(defeatedHellhounds === false){
 		var raidtime = Math.floor((Math.random() * 120) + 60); 
-//		console.log("Raidtime in: " + raidtime)
 		var ticker = raidtime;
-		
 		var raid = setInterval(function() {
 			ticker = ticker - 1;  
-//			console.log(ticker);
-		  if (ticker === 0){
+		  if (ticker === 0)
 			clearInterval(raid);
-			if(defeatedHhounds === false && raidBattleCheck('Hellhounds') === false){	
+			if(defeatedHellhounds === false && raidBattleCheck('Hellhounds') === false){	
 				hellhoundCull();
-				hellHoundRaid();
-				
-/* 				//Dismisses Raid Alert
-				var ticker2 = 0 ;
-				var clearAttackAlert = setInterval(function() {
-					ticker2 = ticker2 + 1;   
-						if (ticker2 == 20){
-							clearInterval(clearAttackAlert);
-							if(document.getElementById('hellHoundAttackAlert').style.display == "block"){
-							document.getElementById("hellHoundAttackAlert").style.display = "none";
-						}	
-					}
-				}, 1000);	
-				//End Dismisses Raid Alert */
-				
+				Hellhounds.raid();				
 			}
 		  }
 		}, 1000);				
 	}	
-}
+}*/
 
 //Hellhounds killing peasants or Miners
 function hellhoundCull(){
@@ -1498,28 +1564,26 @@ function hellhoundCull(){
 		}
 		else{
 			typeKilled = "miners";
-//			document.getElementById("typeKilled").innerHTML = typeKilled;
 			justKilled = Math.floor(Miner.number / 10);
 			Miner.number -= justKilled;
-//			document.getElementById("justKilled").innerHTML = justKilled;
 			minersKilled += justKilled;
 			statTotalMinersKilled += justKilled;
 			document.getElementById("miners").innerHTML = Miner.number;
-//			document.getElementById('hellHoundAttackAlert').style.display = "block"
 			document.getElementById("minersKilled").innerHTML = minersKilled;
 			document.getElementById("minersKilled2").innerHTML = minersKilled;
 			document.getElementById("statTotalMinersKilled").innerHTML = statTotalMinersKilled;
 			loststring = "The Evil One's hellhounds break through your defenses and kill " + justKilled + " of your "  + typeKilled + ". Build up your strength and <a href='javascript: alertOpenBattlePage();' class='alert-link'>fight</a> them off!";
 		}
 		
-		$.notify({
-			title: "<strong>Oh No! </strong>",
-			message: loststring,
-			delay: 60000},{
-		type: 'danger'
-		});			
-		
-		recalculateCosts();
+		if(justKilled > 0){
+			$.notify({
+				title: "<strong>Oh No! </strong>",
+				message: loststring,
+				delay: 60000},{
+			type: 'danger'
+			});		
+			recalculateCosts();		
+		}	
 }
 
 var cerberusDesc = "Your hunters come across signs of a large pack of canine-like creatures wandering the plains. <br><br> Nightmarish howls can be heard day and night, frightening the livestock and putting your people on edge. <br><br> The most experienced of your hunters finally witnesses a portal rip open one night, sulfurous smoke billowing forth from the dark red maw and spitting out wicked hounds of enormous size that glow like the embers of smoldering lava. <br><br>  The pack will harass your defences and occasionally kill some of your peasants and miners.";
@@ -1538,14 +1602,16 @@ setEnemyDescription(Armor, 'btnDescArmor');
 var oozeDesc = "Your mine tunnels intersect a long and winding cave system where slimy and moist sounds echo throughout the night. <br><br> Exploring the cavern, you discover an undulating translucent blob oozing slowly over the iron and silver deposits. <br><br> The ooze appears to be consuming the deposits as ore fragments are being rapidly absorbed into its metallic copper surface. <br><br> Conventional weapons slide right through the gelatinous creature - you need to find some other means of defeating it. ";
 var Ooze = new Enemy("Ooze", oozeDesc, 'BatOozeProgBarBox','BatOozeProgBar','btnBatOoze','tomeUnlockAlert',0,550,0,1,1500);
 setEnemyDescription(Ooze, 'btnDescOoze');
+Ooze.baseRaidTime = 60;
+Ooze.raidTimeVariance = 120;
 
 function triggerOoze(){
 	document.getElementById('BatOoze').style.display = "block";
 	showBattle('Ooze');	
-	oozeRaid();
+	Ooze.raid();
 }
 
-function oozeRaid(){
+/*function oozeRaid(){
 	if(defeatedOoze === false){
 		var raidtime = Math.floor((Math.random() * 120) + 60); 
 		var ticker = raidtime;
@@ -1560,8 +1626,8 @@ function oozeRaid(){
 			}
 		  }
 		}, 1000);				
-	}		
-}
+	}	
+}*/	
 
 function oozeAbsorb(){
 	var flipCoin = Math.floor(Math.random()*10+1);    //Determining which unit gets killed
@@ -1587,9 +1653,6 @@ function oozeAbsorb(){
 		document.getElementById('silverAbsorbed2').innerHTML = fnum(silverAbsorbed);
 		document.getElementById('statTotalSilverStolen').innerHTML = fnum(statTotalSilverStolen);
 	}
-//	document.getElementById('absorbedAmount').innerHTML = fnum(absorbedAmount);
-//	document.getElementById('absorbedType').innerHTML = absorbedType;
-//	document.getElementById('OozeAttackAlert').style.display = "block"
 	document.getElementById('BatOoze').style.display = "block";
 
 	var loststring = "A nasty ooze burbles up from inside of your mine and engulfs " + absorbedAmount + " of your " + absorbedType + "! It's going to be a <a href='javascript: alertOpenBattlePage();' class='alert-link'>sticky fight</a>, but if you don't get rid of it it will absorb all of your minerals.";
@@ -1599,19 +1662,6 @@ function oozeAbsorb(){
 		},{delay: 60000},{
 	type: 'danger'
 	});			
-	
-/* 	//Dismisses Raid Alert
-	var ticker2 = 0 ;
-	var clearAttackAlert = setInterval(function() {
-		ticker2 = ticker2 + 1;   
-			if (ticker2 == 20){
-				clearInterval(clearAttackAlert);
-				if(document.getElementById('OozeAttackAlert').style.display == "block"){
-				document.getElementById("OozeAttackAlert").style.display = "none";
-			}	
-		}
-	}, 1000);	
-	//End Dismisses Raid Alert	 */
 }
 
 var dwarfDesc = "In one of the side channels of your mine that was previously blocked off by the gooey ooze you discover an ancient looking abode. <br><br> Inside the carved dwelling is a malevolent looking dwarf that cusses and spits at you and your troops when you get close to him. <br><br> From what you can see of his dwelling, you spy many delicate looking instruments which you presume are used for identification and categorizing. ";
@@ -1625,6 +1675,8 @@ setEnemyDescription(Archmage, 'btnDescMage');
 var succubusDesc = "The unknown force has also deposited temptation at your doorstep in the form of one...very shapely demon. <br><br> The magical powers it commands makes it difficult to resist its will as somehow its androgynous appearance lures in both men and women alike. <br><br> The fact that what it wears barely covers its...uh, more luscious bits...well, let's stop right there, shall we? ";
 var Succubus = new Enemy("Succubus", succubusDesc, 'BatSuccubusProgBarBox','BatSuccubusProgBar','btnBatSuccubus','SuccubusDefeatAlert',35000,2000,0,1,3000);
 setEnemyDescription(Succubus, 'btnDescSuccubus');
+Succubus.baseRaidTime = 70;
+Succubus.raidTimeVariance = 130;
 
 function triggerSuccubus(){
 //	document.getElementById('EvilOneIreAlert').style.display = "block";
@@ -1639,10 +1691,10 @@ function triggerSuccubus(){
 	document.getElementById('BatSuccubus').style.display = "block";
 	showBattle('UndeadArmy');
 	document.getElementById('BatUndeadArmy').style.display = "block";
-	succubusRaid();
+	Succubus.raid();
 }
 
-function succubusRaid(){
+/*function succubusRaid(){
 		if(defeatedSuccubus === false){
 		var raidtime = Math.floor((Math.random() * 130) + 70);
 //		console.log("Raidtime in: " + raidtime)
@@ -1659,7 +1711,7 @@ function succubusRaid(){
 		  }
 		}, 1000);				
 	}	
-}
+}*/
 
 function succubusSeduce(){
 	//find highest tier unit in Barracks
@@ -1689,12 +1741,9 @@ function succubusSeduce(){
 	
 	document.getElementById(highestTier.htmlNumRef).innerHTML = highestTier.number;
 	document.getElementById(previousTier.htmlNumRef).innerHTML = previousTier.number;		
-//	document.getElementById('seducedUnitType').innerHTML = highestTier.name;
-//	document.getElementById('previousUnitType').innerHTML = previousTier.name;
 	document.getElementById('unitsSeduced').innerHTML = unitsSeduced;
 	document.getElementById('unitsSeduced2').innerHTML = unitsSeduced;
 	document.getElementById('statTotalUnitsSeduced').innerHTML = statTotalUnitsSeduced;
-//	document.getElementById('SuccubusAttackAlert').style.display = "block"
 	
 	var loststring = "The Evil One's paramour, the Succubus magically appears in the cover of the night... she seduces one of your " + highestTier.name + "s! They are returned the next day but cannot function as their previous role and have to be retrained from a " + previousTier.name + ". You better get <a href='javascript: alertOpenBattlePage();' class='alert-link'>get rid</a> of her before she decimates your entire army.";
 
@@ -1705,19 +1754,6 @@ function succubusSeduce(){
 	delay: 60000,
 	type: 'danger'
 	});		
-	
-/* 	//Dismisses Raid Alert
-	var ticker2 = 0 ;
-	var clearAttackAlert = setInterval(function() {
-		ticker2 = ticker2 + 1;   
-			if (ticker2 == 20){
-				clearInterval(clearAttackAlert);
-				if(document.getElementById('SuccubusAttackAlert').style.display == "block"){
-				document.getElementById("SuccubusAttackAlert").style.display = "none";
-			}	
-		}
-	}, 1000);	
-	//End Dismisses Raid Alert */
 }
 
 var undeadArmyDesc = "Your patrols are returning with reports of unearthly moaning and groaning beyond the borders of your kingdom. <br><br> The sound are accompanied by the echo of footsteps in the distance as well as the stench of decaying flesh. <br> As if the ragged decomposed beings weren't frightening enough, a majority of the walking dead bear weapons and armor in relatively good shape. <br><br> You may need to bring spiritual forces to combat this unnatural army. ";
@@ -1756,22 +1792,159 @@ function necroReviveUA(){
 var elementalEarthDesc = "";
 var ElementalEarth = new Enemy("Earth Elemental", ElementalEarth, 'BatEarthElementalProgBarBox','BatEarthElementalProgBar','btnBatEarthElemental','EarthElementalDefeatAlert',55000,6500,0,1,4000);
 setEnemyDescription(ElementalEarth, 'btnDescEarthElemental');
+ElementalEarth.baseRaidTime = 60;
+ElementalEarth.raidTimeVariance = 120;
+
+ElementalEarth.earthRaid = function(){
+	var justLost = 0;
+	if(iron > 0){
+		justLost = Math.floor(iron/5);
+		ironDegraded += justLost;
+		iron -= justLost;
+		document.getElementById('iron').innerHTML = fnum(iron);
+
+		var lostString = "A nauseating smell comes from your iron stores! The Earth Elemental has degraded <img src = 'images/ironsmall.png' title='Iron'>" + fnum(justLost) + " into useless dirt!"
+		$.notify({
+			title: "<strong>Oh No! </strong>",
+			message: lostString,
+			},{
+		delay: 60000,
+		type: 'danger'
+		});
+	}
+};
 
 var elementalFireDesc = "";
 var ElementalFire = new Enemy("Fire Elemental", ElementalFire, 'BatFireElementalProgBarBox','BatFireElementalProgBar','btnBatFireElemental','FireElementalDefeatAlert',55000,6500,0,1,4000);
 setEnemyDescription(ElementalFire, 'btnDescFireElemental');
+ElementalFire.baseRaidTime = 60;
+ElementalFire.raidTimeVariance = 120;
+
+ElementalFire.fireRaid = function(){
+	var justLost = 0;
+	if(wood > 0){
+		justLost = Math.floor(wood/3);
+		woodBurned += justLost;
+		wood -= justLost;
+		document.getElementById('wood').innerHTML = fnum(wood);
+
+		var lostString = "A ferocious flame bursts from your wood pile nearly singeing your eyebrows! The Fire Elemental has burned <img src = 'images/woodsmall.png' title='Wood'>" + fnum(justLost) + " into useless pile of ashes!"
+		$.notify({
+			title: "<strong>Oh No! </strong>",
+			message: lostString,
+			},{
+		delay: 60000,
+		type: 'danger'
+		});
+	}
+};
 
 var elementalWindDesc = "";
 var ElementalWind = new Enemy("Wind Elemental", ElementalWind, 'BatWindElementalProgBarBox','BatWindElementalProgBar','btnBatWindElemental','WindElementalDefeatAlert',55000,6500,0,1,4000);
 setEnemyDescription(ElementalWind, 'btnDescWindElemental');
+ElementalWind.baseRaidTime = 60;
+ElementalWind.raidTimeVariance = 120;
+
+ElementalWind.windRaid = function(){
+	var justLost = 0;
+	if(paper > 0){
+		justLost = Math.floor(paper/5);
+		paperLost += justLost;
+		paper -= justLost;
+		document.getElementById('paper').innerHTML = fnum(paper);
+		
+		var lostString = "An amazing gust of wind tears through your camp, blowing away your unsecured papers! The Wind Elemental has blown away <img src = 'images/parchmentsmall.png' title='Paper'>" + fnum(justLost) + "! "
+		$.notify({
+			title: "<strong>Oh No! </strong>",
+			message: lostString,
+			},{
+		delay: 60000,
+		type: 'danger'
+		});
+	}
+};
 
 var elementalWaterDesc = "";
 var ElementalWater = new Enemy("Water Elemental", ElementalWater, 'BatWaterElementalProgBarBox','BatWaterElementalProgBar','btnBatWaterElemental','WaterElementalDefeatAlert',6500,6000,0,1,4000);
 setEnemyDescription(ElementalWater, 'btnDescWaterElemental');
+ElementalWater.baseRaidTime = 60;
+ElementalWater.raidTimeVariance = 120;
+
+ElementalWater.waterRaid = function(){
+	var justLost = 0;
+	if(coal > 0){
+		justLost = Math.floor(coal/3);
+		coal -= justLost;
+		document.getElementById('coal').innerHTML = fnum(coal);
+
+		var lostString = "A wave of water nearly knocks you on your bottom! You realize that the wave has washed away some of your coal. The Water Elemental has washed away <img src = 'images/coalsmall.png' title='Coal'>" + fnum(justLost) + " into the ocean!"
+		$.notify({
+			title: "<strong>Oh No! </strong>",
+			message: lostString,
+			},{
+		delay: 60000,
+		type: 'danger'
+		});
+	}
+};
+
+function pickElementalRaid(){
+	var numElementalLeft = 0;
+
+	if(defeatedEarthElemental === true){numElementalLeft += 1 };
+	if(defeatedFireElemental === true){numElementalLeft += 1 };
+	if(defeatedWindElemental === true){numElementalLeft += 1 };
+	if(defeatedWaterElemental === true){numElementalLeft += 1 };
+
+	var randomize = Math.floor((Math.random()*4)+1);
+	if(numElementalLeft > 0){
+		switch(randomize){
+			case '1':
+				if(defeatedEarthElemental === true)
+				{
+					pickElementalRaid();	
+				}
+				else{
+					ElementalEarth.raid();
+				}
+			break;
+
+			case '2':
+				if(defeatedFireElemental === true)
+				{
+					pickElementalRaid();	
+				}
+				else{
+					ElementalFire.raid();
+				}
+			break;
+
+			case '3':
+				if(defeatedWindElemental === true)
+				{
+					pickElementalRaid();	
+				}
+				else{
+					ElementalWind.raid();
+				}
+			break;
+
+			case '4':
+				if(defeatedEarthWater === true)
+				{
+					pickElementalRaid();	
+				}
+				else{
+					ElementalWater.raid();
+				}
+			break;		
+		}		
+	}
+
+}
 
 function checkDefeatedAllElementals(){
 	if(defeatedEarthElemental === true && defeatedFireElemental === true  && defeatedWindElemental === true  && defeatedWaterElemental === true ){		
-
 			this.AlertRef = $.notify({
 				title: "<strong>New!</strong>",
 				message: "Having defeated the primal elementals, the magic user summoning them finally appears! He seems quite adept at controlling the elements... He could wreck some serious havoc on your kingdom if you don't <a href='javascript: alertOpenBattlePage();' class='alert-link'>get rid of him</a> quickly!",
