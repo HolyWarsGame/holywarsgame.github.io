@@ -321,7 +321,7 @@ function btnSendQuest(){
 			});				
 		}
 
-	 if (checkQuestSelection() === true && $('#unitSelectPicker').selectpicker('val') !== "" && $('#questSelectPicker').selectpicker('val') !== "" && inQuest === false){
+	 if (checkQuestSelection() === true && $('#unitSelectPicker').selectpicker('val') !== "" && $('#questSelectPicker').selectpicker('val') !== "" && inQuest === false && isNaN($('#QuestUnitNumSelect').val()) == false){
 		 var string = "<br/>You send " + $('#QuestUnitNumSelect').val() + " " + $('#unitSelectPicker').selectpicker('val');
 		 if($('#QuestUnitNumSelect').val() > 1){
 			 string = string + "s";
@@ -501,53 +501,61 @@ function rollForFragment(){
 }
 
 function holdUnitforQuest(){
-	switch(UnitOnQuest){
-		case "Paladin":
-			if(Paladin.number < parseInt(NumUnitOnQuest)){
-				return false;
-			}
-			else{
-				Paladin.number -= parseInt(NumUnitOnQuest);
-				Paladin.onQuest = parseInt(NumUnitOnQuest);
-				Paladin.totalArmyPower();
-				Paladin.totalSpiritPower();
-				document.getElementById('paladins').innerHTML = Paladin.number;
-				calculateBattlePower();
-				calculateSpiritPower();	
-//				console.log("taking paladins");
+	if(isNaN(NumUnitOnQuest)){
+		console.log("NAN!");
+		return false;
+	}
+	else{
+
+		switch(UnitOnQuest){
+			case "Paladin":
+				if(Paladin.number < parseInt(NumUnitOnQuest)){
+					return false;
+				}
+				else{
+					Paladin.number -= parseInt(NumUnitOnQuest);
+					Paladin.onQuest = parseInt(NumUnitOnQuest);
+					Paladin.totalArmyPower();
+					Paladin.totalSpiritPower();
+					document.getElementById('paladins').innerHTML = Paladin.number;
+					calculateBattlePower();
+					calculateSpiritPower();	
+	//				console.log("taking paladins");
+					return true;				
+				}
+			break;
+			
+			case "Knight":
+				if(Knight.number < parseInt(NumUnitOnQuest)){
+					return false;
+				}
+				else{
+					Knight.number -= parseInt(NumUnitOnQuest);
+					Knight.totalArmyPower();
+					Knight.onQuest = parseInt(NumUnitOnQuest);
+					document.getElementById('knights').innerHTML = Knight.number;	
+					calculateBattlePower();
+		//			console.log("taking knights");	
 				return true;				
-			}
-		break;
-		
-		case "Knight":
-			if(Knight.number < parseInt(NumUnitOnQuest)){
-				return false;
-			}
-			else{
-				Knight.number -= parseInt(NumUnitOnQuest);
-				Knight.totalArmyPower();
-				Knight.onQuest = parseInt(NumUnitOnQuest);
-				document.getElementById('knights').innerHTML = Knight.number;	
-				calculateBattlePower();
-	//			console.log("taking knights");	
-			return true;				
-			}
-		break;
-		
-		case "Squire":
-			if(Squire.number < parseInt(NumUnitOnQuest)){
-				return false;
-			}
-			else{
-				Squire.number -= parseInt(NumUnitOnQuest);
-				Squire.totalArmyPower();
-				Squire.onQuest = parseInt(NumUnitOnQuest);
-				document.getElementById('squires').innerHTML = Squire.number;	
-				calculateBattlePower();
-	//			console.log("taking Squires");	
-				return true;				
-			}
-		break;		
+				}
+			break;
+			
+			case "Squire":
+				if(Squire.number < parseInt(NumUnitOnQuest)){
+					return false;
+				}
+				else{
+					Squire.number -= parseInt(NumUnitOnQuest);
+					Squire.totalArmyPower();
+					Squire.onQuest = parseInt(NumUnitOnQuest);
+					document.getElementById('squires').innerHTML = Squire.number;	
+					calculateBattlePower();
+		//			console.log("taking Squires");	
+					return true;				
+				}
+			break;		
+		}
+
 	}
 }
 
